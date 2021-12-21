@@ -1,15 +1,14 @@
 import Scene from './Scene.js';
 import Player from './Player.js';
-import Garbage from './Garbage.js';
-import Egg from './Egg.js';
 import Game from './Game.js';
+import GameItem from './GameEntity.js';
 
-export default class Level extends Scene {
+export default class Room extends Scene {
   // TO DO
   private player: Player;
 
   // Garbage items (the player needs to pick these up)
-  private scoringObjects: Garbage[]; // TODO switch to correct type
+  private scoringObjects: GameItem[]; // TODO switch to correct type
 
   // Amount of frames until the next item
   private countUntilNextItem: number;

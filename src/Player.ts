@@ -1,5 +1,5 @@
 import KeyListener from './KeyListener.js';
-import GameItem from './GameItem.js';
+import GameItem from './GameEntity.js';
 
 export default class Player extends GameItem {
   private xVelocity: number;
