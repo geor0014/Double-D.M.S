@@ -1,7 +1,3 @@
 body {
     overflow: hidden;
 }
-
-canvas{
-    background-image: url("./../img/mapTile_022.png");
-}

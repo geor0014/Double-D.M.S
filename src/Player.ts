@@ -1,18 +1,27 @@
 import KeyListener from './KeyListener.js';
-import GameItem from './GameEntity.js';
+import GameEntity from './GameEntity.js';
 
-export default class Player extends GameItem {
+export default class Player extends GameEntity {
   private xVelocity: number;
 
   private yVelocity: number;
 
   private keyboard: KeyListener;
 
-  constructor(maxX: number, maxY: number) {
-    super('./assets/img/character_robot_walk0.png', maxX, maxY);
+  /**
+   * Create new player
+   *
+   * @param canvas a canvas element
+   */
+  constructor(canvas: HTMLCanvasElement) {
+    super('./assets/img/player-boy-standing.png', (canvas.width / 2), canvas.height);
+    this.setYPos(-this.getImage().height);
     this.xVelocity = 3;
     this.yVelocity = 3;
     this.keyboard = new KeyListener();
+
+    this.setImageHeight(20);
+    this.setImageWidth(24);
   }
 
   /**
@@ -25,49 +34,64 @@ export default class Player extends GameItem {
     // Moving right
     if (
       this.keyboard.isKeyDown(KeyListener.KEY_RIGHT)
-      && this.xPos + this.img.width < canvas.width
+      && this.getXPos() + this.getImage().width < canvas.width
     ) {
-      this.xPos += this.xVelocity;
+      this.setXPos(this.xVelocity);
+      this.setImage('./assets/img/player-boy-right.png');
     }
 
     // Moving left
     if (
       this.keyboard.isKeyDown(KeyListener.KEY_LEFT)
-      && this.xPos > 0
+      && this.getXPos() > 0
     ) {
-      this.xPos -= this.xVelocity;
+      this.setXPos(-this.xVelocity);
+      this.setImage('./assets/img/player-boy-left.png');
     }
 
     // Moving up
     if (
       this.keyboard.isKeyDown(KeyListener.KEY_UP)
-      && this.yPos > 0
+      && this.getYPos() > 0
     ) {
-      this.yPos -= this.yVelocity;
+      this.setYPos(-this.yVelocity);
+      this.setImage('./assets/img/player-boy-up.png');
     }
 
     // Moving down
     if (
       this.keyboard.isKeyDown(KeyListener.KEY_DOWN)
-      && this.yPos + this.img.height < canvas.height
+      && this.getYPos() + this.getImage().height < canvas.height
     ) {
-      this.yPos += this.yVelocity;
+      this.setYPos(this.yVelocity);
+      this.setImage('./assets/img/player-boy-standing.png');
     }
   }
 
-  public isCleaning(): boolean {
+  /**
+   * this method checks if the player is trying to interact
+   *
+   * @returns true or false
+   */
+  public isInteracting(): boolean {
     if (this.keyboard.isKeyDown(KeyListener.KEY_SPACE)) {
       return true;
     }
     return false;
   }
 
-  public collidesWith(other: GameItem): boolean {
+  /**
+   * this method checks if the player is colliding with an item
+   *
+   * @param other game item
+   * @returns true of false
+   */
+  public collidesWith(other: GameEntity): boolean {
     if (
-      this.xPos < other.getXPos() + other.getImageWidth()
-      && this.xPos + this.img.width > other.getXPos()
-      && this.yPos < other.getYPos() + other.getImageHeight()
-      && this.yPos + this.img.height > other.getYPos()
+      this.getXPos() < other.getXPos() + other.getImage().width
+      && this.getXPos() + this.getImage().width > other.getXPos()
+      && this.getYPos() < other.getYPos() + other.getImage().height
+      && this.getYPos() + this.getImage().height > other.getYPos()
     ) {
       return true;
     }

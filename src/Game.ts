@@ -1,17 +1,19 @@
-import UserData from './UserData.js';
-import Start from './StartScreen.js';
-
 import GameLoop from './GameLoop.js';
+import Hallway from './Hallway.js';
+import Player from './Player.js';
+import Candy from './Candy.js';
 
 export default class Game {
   private randomNumber: number;
 
   private canvas: HTMLCanvasElement;
 
-  public readonly userData: UserData;
+  // public readonly userData: UserData;
 
   // game loop
   private gameLoop: GameLoop;
+
+  private player: Player;
 
   /**
    * Initialize the game
@@ -20,16 +22,18 @@ export default class Game {
    * should be rendered upon
    */
   public constructor(canvas: HTMLCanvasElement) {
-    this.userData = new UserData();
+    // this.userData = new UserData();
     this.canvas = canvas;
 
     this.canvas.width = window.innerWidth;
     this.canvas.height = window.innerHeight;
 
+    this.player = new Player(this.canvas);
+
     // Start the game cycle
     // this.loop();
     this.gameLoop = new GameLoop();
-    this.gameLoop.start(new Start(this));
+    this.gameLoop.start(new Hallway(this.canvas, this.player));
   }
 
   /**

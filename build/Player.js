@@ -1,44 +1,51 @@
 import KeyListener from './KeyListener.js';
-import GameItem from './GameItem.js';
-export default class Player extends GameItem {
+import GameEntity from './GameEntity.js';
+export default class Player extends GameEntity {
     xVelocity;
     yVelocity;
     keyboard;
-    constructor(maxX, maxY) {
-        super('./assets/img/character_robot_walk0.png', maxX, maxY);
+    constructor(canvas) {
+        super('./assets/img/player-boy-standing.png', (canvas.width / 2), canvas.height);
+        this.setYPos(-this.getImage().height);
         this.xVelocity = 3;
         this.yVelocity = 3;
         this.keyboard = new KeyListener();
+        this.setImageHeight(20);
+        this.setImageWidth(24);
     }
     movePlayer(canvas) {
         if (this.keyboard.isKeyDown(KeyListener.KEY_RIGHT)
-            && this.xPos + this.img.width < canvas.width) {
-            this.xPos += this.xVelocity;
+            && this.getXPos() + this.getImage().width < canvas.width) {
+            this.setXPos(this.xVelocity);
+            this.setImage('./assets/img/player-boy-right.png');
         }
         if (this.keyboard.isKeyDown(KeyListener.KEY_LEFT)
-            && this.xPos > 0) {
-            this.xPos -= this.xVelocity;
+            && this.getXPos() > 0) {
+            this.setXPos(-this.xVelocity);
+            this.setImage('./assets/img/player-boy-left.png');
         }
         if (this.keyboard.isKeyDown(KeyListener.KEY_UP)
-            && this.yPos > 0) {
-            this.yPos -= this.yVelocity;
+            && this.getYPos() > 0) {
+            this.setYPos(-this.yVelocity);
+            this.setImage('./assets/img/player-boy-up.png');
         }
         if (this.keyboard.isKeyDown(KeyListener.KEY_DOWN)
-            && this.yPos + this.img.height < canvas.height) {
-            this.yPos += this.yVelocity;
+            && this.getYPos() + this.getImage().height < canvas.height) {
+            this.setYPos(this.yVelocity);
+            this.setImage('./assets/img/player-boy-standing.png');
         }
     }
-    isCleaning() {
+    isInteracting() {
         if (this.keyboard.isKeyDown(KeyListener.KEY_SPACE)) {
             return true;
         }
         return false;
     }
     collidesWith(other) {
-        if (this.xPos < other.getXPos() + other.getImageWidth()
-            && this.xPos + this.img.width > other.getXPos()
-            && this.yPos < other.getYPos() + other.getImageHeight()
-            && this.yPos + this.img.height > other.getYPos()) {
+        if (this.getXPos() < other.getXPos() + other.getImage().width
+            && this.getXPos() + this.getImage().width > other.getXPos()
+            && this.getYPos() < other.getYPos() + other.getImage().height
+            && this.getYPos() + this.getImage().height > other.getYPos()) {
             return true;
         }
         return false;

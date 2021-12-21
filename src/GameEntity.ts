@@ -1,43 +1,114 @@
-export default abstract class GameItem {
+export default abstract class GameEntity {
+  private img: HTMLImageElement;
 
-  protected img: HTMLImageElement;
+  private xPos: number;
 
-  protected xPos: number;
+  private yPos: number;
 
-  protected yPos: number;
+  private imageWidth: number;
 
-  constructor(imageSrc: string, maxX: number, maxY: number) {
-    this.img = GameItem.loadNewImage(imageSrc);
-    this.xPos = GameItem.randomNumber(0, maxX);
-    this.yPos = GameItem.randomNumber(0, maxY);
+  private imageHeight: number;
+
+  /**
+   * creates a new game entity
+   *
+   * @param imageSrc a string for the source of the image
+   * @param xPos a number for x pos
+   * @param yPos a number for y pos
+   */
+  constructor(imageSrc: string, xPos: number, yPos: number) {
+    this.img = GameEntity.loadNewImage(imageSrc);
+    this.xPos = xPos;
+    this.yPos = yPos;
   }
 
-  public getImageHeight(): number {
-    return this.img.height;
+  /**
+   * this method returns the image
+   *
+   * @returns image image element
+   */
+  public getImage(): HTMLImageElement {
+    return this.img;
   }
 
-  public getImageWidth(): number {
-    return this.img.width;
+  /**
+   * this method returns the image
+   *
+   * @param source a string for the image
+   */
+  public setImage(source: string): void {
+    this.img = GameEntity.loadNewImage(source);
   }
 
+  /**
+   * this method returns the image
+   *
+   * @param width a number for the image width
+   */
+  public setImageWidth(width: number): void {
+    this.imageWidth = width;
+  }
+
+  /**
+   * this method returns the image
+   *
+   * @param height a number for the image height
+   */
+  public setImageHeight(height: number): void {
+    this.imageHeight = height;
+  }
+
+  /**
+   * getter for x position
+   *
+   * @returns x position
+   */
   public getXPos(): number {
     return this.xPos;
   }
 
+  /**
+   * getter for y position
+   *
+   * @returns y position
+   */
   public getYPos(): number {
     return this.yPos;
   }
 
-  public draw(ctx: CanvasRenderingContext2D): void {
-    ctx.drawImage(this.img, this.xPos, this.yPos);
+  /**
+   * setter for the x position
+   *
+   * @param number by how much the x position should change
+   */
+  public setXPos(number: number): void {
+    this.xPos += number;
   }
 
   /**
-  * Method to load an image
-  *
-  * @param source the source
-  * @returns HTMLImageElement - returns an image
-  */
+   * setter for the y position
+   *
+   * @param number by how much the y position should change
+   */
+  public setYPos(number: number): void {
+    this.yPos += number;
+  }
+
+  /**
+   * this method draws the entity to the canvas
+   *
+   * @param ctx canvas rendering context 2d
+   */
+  public draw(ctx: CanvasRenderingContext2D): void {
+    ctx.drawImage(this.img, this.xPos, this.yPos, this.imageWidth, this.imageHeight);
+  }
+
+  /**
+   * Method to load an image
+   *
+   * @param source the source
+   * @returns HTMLImageElement - returns an image
+   */
   private static loadNewImage(source: string): HTMLImageElement {
     const img = new Image();
     img.src = source;
@@ -45,12 +116,12 @@ export default abstract class GameItem {
   }
 
   /**
- * Returns a random number between min and max
- *
- * @param min - lower boundary
- * @param max - upper boundary
- * @returns a random number between min and max
- */
+   * Returns a random number between min and max
+   *
+   * @param min - lower boundary
+   * @param max - upper boundary
+   * @returns a random number between min and max
+   */
   protected static randomNumber(min: number, max: number): number {
     return Math.round(Math.random() * (max - min) + min);
   }

@@ -1,63 +1,52 @@
 import Scene from './Scene.js';
 import Player from './Player.js';
-import Game from './Game.js';
-import GameItem from './GameEntity.js';
+import Candy from './Candy.js';
 
-export default class Room extends Scene {
-  // TO DO
-  private player: Player;
+export default abstract class Room extends Scene {
+  // player
+  // private player: Player;
 
-  // Garbage items (the player needs to pick these up)
-  private scoringObjects: GameItem[]; // TODO switch to correct type
+  // X position of the image of the room
+  protected xPos: number;
 
-  // Amount of frames until the next item
-  private countUntilNextItem: number;
+  // Y position of the image of the room
+  protected yPos: number;
 
-  private randomItem: number;
+  // Image of the room
+  protected img: HTMLImageElement;
+
+  protected imageWidth: number;
+
+  protected imageHeight: number;
+
+  protected player: Player;
+
+  protected candies: Candy[] = [];
 
   /**
+   * Create a new room
    *
-   * @param game
-   * @param canvas
+   * @param canvas canvas element
+   * @param imgSrc source for image
+   * @param player a player
    */
-  constructor(game: Game) {
-    super(game);
-    this.scoringObjects = [];
+  constructor(canvas: HTMLCanvasElement, imgSrc: string, player: Player) {
+    super(canvas);
 
-    // Create garbage items
-    for (let i = 0; i < Scene.randomNumber(3, 10); i++) {
-      this.createRandom();
-    }
+    this.player = player;
+    this.img = new Image();
+    this.img.src = imgSrc;
 
-    // Create player
-    this.player = new Player(this.canvas.width - 76, this.canvas.height - 92);
+    this.candies.push(new Candy(this.canvas.width / 2, this.canvas.height / 2));
 
-    // Take about 5 seconds on a decent computer to show next item
-    this.countUntilNextItem = 300;
+    console.log(this.img.width);
   }
 
+  /**
+   * Methos to detect the input of the player
+   */
   public processInput(): void {
     this.player.movePlayer(this.canvas);
-  }
-
-  /**
-   * Removes garbage items from the game based on box collision detection.
-   *
-   * Read for more info about filter function: https://alligator.io/js/filter-array-method/
-   */
-  private cleanUpGarbage() {
-    // create a new array with garbage item that are still on the screen
-    // (filter the clicked garbage item out of the array garbage items)
-    this.scoringObjects = this.scoringObjects.filter((element) => {
-      // check if the player is over (collided with) the garbage item.
-      if (this.player.collidesWith(element)) {
-        // removing the garbage item from the array
-        this.game.userData.addScore(element.getScore());
-        // Do not include this item.
-        return false;
-      }
-      return true;
-    });
   }
 
   /**
@@ -71,61 +60,30 @@ export default class Room extends Scene {
     // Clear the screen
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-    // Move the player
-    this.processInput();
-
-    // Draw everything
-    // this.render();
-
-    // Player cleans up garbage
-    if (this.player.isCleaning()) {
-      this.cleanUpGarbage();
+    if ((this.player.getXPos() >= this.xPos && this.player.getXPos() <= this.xPos + this.imageWidth)
+      && (this.player.getYPos() >= this.yPos && this.player.getYPos() <= this.yPos + this.imageHeight)) {
+      // Move the player
+      this.processInput();
     }
-
-    // Show score
-    // TODO: fix actual score system
-    this.writeTextToCanvas(`Score: ${this.game.userData.getScore()}`, 36, 120, 50);
-
-    // Create new items if necessary
-    if (this.countUntilNextItem === 0) {
-      const choice = Scene.randomNumber(0, 10);
-
-      if (choice < 5) {
-        this.createRandom();
-      }
-
-      // Reset the timer with a count between 2 and 4 seconds on a
-      // decent computer
-      this.countUntilNextItem = Scene.randomNumber(120, 240);
-    }
-
-    // Lower the count until the next item with 1
-    this.countUntilNextItem -= 1;
-
-    // Make sure the game actually loops
-    // requestAnimationFrame(this.loop);
 
     return null;
   }
 
-  private createRandom(): void {
-    this.randomItem = Scene.randomNumber(1, 2);
-    if (this.randomItem === 1) {
-      this.scoringObjects.push(new Garbage(this.canvas.width - 32,
-        this.canvas.height - 32));
-    } else {
-      this.scoringObjects.push(new Egg(this.canvas.width - 32,
-        this.canvas.height - 32));
-    }
+  /**
+   * Draw the room
+   *
+   * @param ctx of the canvas
+   */
+  public draw(ctx: CanvasRenderingContext2D): void {
+    ctx.drawImage(this.img, this.xPos, this.yPos, this.imageWidth, this.imageHeight);
   }
 
   /**
- * Draw all the necessary items to the screen
- */
+   * Draw all the necessary items to the screen
+   */
   public render(): void {
-    this.scoringObjects.forEach((element) => {
-      element.draw(this.ctx);
-    });
+    this.draw(this.ctx);
+    this.candies[0].draw(this.ctx);
     this.player.draw(this.ctx);
   }
 }

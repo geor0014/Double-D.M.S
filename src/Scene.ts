@@ -1,5 +1,3 @@
-import Game from './Game.js';
-
 /**
  * A superclass for objects that must be able to be animated by a `GameLoop`.
  *
@@ -10,17 +8,16 @@ import Game from './Game.js';
  * @author BugSlayer
  */
 export default abstract class Scene {
-  protected readonly game: Game;
-
   protected canvas: HTMLCanvasElement;
 
   protected ctx: CanvasRenderingContext2D;
 
-  constructor(game: Game) {
-    this.game = game;
-    this.canvas = this.game.getCanvas();
+  constructor(canvas: HTMLCanvasElement) {
+    this.canvas = canvas;
     this.ctx = this.canvas.getContext('2d');
+
   }
+
   /**
    * Handles any user input that has happened since the last call
    */
@@ -50,37 +47,9 @@ export default abstract class Scene {
   public abstract render(): void;
 
   /**
-   * Writes text to the canvas
+   * Draws the Scene
    *
-   * @param text - Text to write
-   * @param fontSize - Font size in pixels
-   * @param xCoordinate - Horizontal coordinate in pixels
-   * @param yCoordinate - Vertical coordinate in pixels
-   * @param alignment - Where to align the text
-   * @param color - The color of the text
+   * @param ctx of the canvas
    */
-  protected writeTextToCanvas(
-    text: string,
-    fontSize: number = 20,
-    xCoordinate: number,
-    yCoordinate: number,
-    alignment: CanvasTextAlign = 'center',
-    color: string = 'white',
-  ): void {
-    this.ctx.font = `${fontSize}px sans-serif`;
-    this.ctx.fillStyle = color;
-    this.ctx.textAlign = alignment;
-    this.ctx.fillText(text, xCoordinate, yCoordinate);
-  }
-
-  /**
- * Returns a random number between min and max
- *
- * @param min - lower boundary
- * @param max - upper boundary
- * @returns a random number between min and max
- */
-  protected static randomNumber(min: number, max: number): number {
-    return Math.round(Math.random() * (max - min) + min);
-  }
+  public abstract draw(ctx: CanvasRenderingContext2D): void;
 }
