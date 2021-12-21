@@ -1,0 +1,1 @@
+{"version":3,"file":"Egg.js","sourceRoot":"","sources":["../src/Egg.ts"],"names":[],"mappings":"AAAA,OAAO,aAAa,MAAM,oBAAoB,CAAC;AAE/C,MAAM,CAAC,OAAO,OAAO,GAAI,SAAQ,aAAa;IAC5C,YAAY,IAAY,EAAE,IAAY;QACpC,KAAK,CAAC,sBAAsB,EAAE,IAAI,EAAE,IAAI,EAAE,CAAC,CAAC,CAAC,CAAC;IAChD,CAAC;CACF"}
