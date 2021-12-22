@@ -28,10 +28,10 @@ export default class GameEntity {
         return this.yPos;
     }
     setXPos(number) {
-        this.xPos += number;
+        this.xPos = number;
     }
     setYPos(number) {
-        this.yPos += number;
+        this.yPos = number;
     }
     draw(ctx) {
         ctx.drawImage(this.img, this.xPos, this.yPos, this.imageWidth, this.imageHeight);

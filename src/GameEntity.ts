@@ -82,7 +82,7 @@ export default abstract class GameEntity {
    * @param number by how much the x position should change
    */
   public setXPos(number: number): void {
-    this.xPos += number;
+    this.xPos = number;
   }
 
   /**
@@ -91,7 +91,7 @@ export default abstract class GameEntity {
    * @param number by how much the y position should change
    */
   public setYPos(number: number): void {
-    this.yPos += number;
+    this.yPos = number;
   }
 
   /**
@@ -100,7 +100,13 @@ export default abstract class GameEntity {
    * @param ctx canvas rendering context 2d
    */
   public draw(ctx: CanvasRenderingContext2D): void {
-    ctx.drawImage(this.img, this.xPos, this.yPos, this.imageWidth, this.imageHeight);
+    ctx.drawImage(
+      this.img,
+      this.xPos,
+      this.yPos,
+      this.imageWidth,
+      this.imageHeight
+    );
   }
 
   /**

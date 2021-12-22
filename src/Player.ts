@@ -14,14 +14,18 @@ export default class Player extends GameEntity {
    * @param canvas a canvas element
    */
   constructor(canvas: HTMLCanvasElement) {
-    super('./assets/img/player-boy-standing.png', (canvas.width / 2), canvas.height);
-    this.setYPos(-this.getImage().height);
+    super(
+      './assets/img/player-boy-standing.png',
+      canvas.width / 2,
+      canvas.height
+    );
+    this.setYPos(this.getYPos() - this.getImage().height);
     this.xVelocity = 3;
     this.yVelocity = 3;
     this.keyboard = new KeyListener();
 
-    this.setImageHeight(20);
-    this.setImageWidth(24);
+    this.setImageHeight(this.getImage().height);
+    this.setImageWidth(this.getImage().width);
   }
 
   /**
@@ -33,37 +37,31 @@ export default class Player extends GameEntity {
   public movePlayer(canvas: HTMLCanvasElement): void {
     // Moving right
     if (
-      this.keyboard.isKeyDown(KeyListener.KEY_RIGHT)
-      && this.getXPos() + this.getImage().width < canvas.width
+      this.keyboard.isKeyDown(KeyListener.KEY_RIGHT) &&
+      this.getXPos() + this.getImage().width < canvas.width
     ) {
-      this.setXPos(this.xVelocity);
+      this.setXPos(this.getXPos() + this.xVelocity);
       this.setImage('./assets/img/player-boy-right.png');
     }
 
     // Moving left
-    if (
-      this.keyboard.isKeyDown(KeyListener.KEY_LEFT)
-      && this.getXPos() > 0
-    ) {
-      this.setXPos(-this.xVelocity);
+    if (this.keyboard.isKeyDown(KeyListener.KEY_LEFT) && this.getXPos() > 0) {
+      this.setXPos(this.getXPos() - this.xVelocity);
       this.setImage('./assets/img/player-boy-left.png');
     }
 
     // Moving up
-    if (
-      this.keyboard.isKeyDown(KeyListener.KEY_UP)
-      && this.getYPos() > 0
-    ) {
-      this.setYPos(-this.yVelocity);
+    if (this.keyboard.isKeyDown(KeyListener.KEY_UP) && this.getYPos() > 0) {
+      this.setYPos(this.getYPos() - this.yVelocity);
       this.setImage('./assets/img/player-boy-up.png');
     }
 
     // Moving down
     if (
-      this.keyboard.isKeyDown(KeyListener.KEY_DOWN)
-      && this.getYPos() + this.getImage().height < canvas.height
+      this.keyboard.isKeyDown(KeyListener.KEY_DOWN) &&
+      this.getYPos() + this.getImage().height < canvas.height
     ) {
-      this.setYPos(this.yVelocity);
+      this.setYPos(this.getYPos() + this.yVelocity);
       this.setImage('./assets/img/player-boy-standing.png');
     }
   }
@@ -88,10 +86,10 @@ export default class Player extends GameEntity {
    */
   public collidesWith(other: GameEntity): boolean {
     if (
-      this.getXPos() < other.getXPos() + other.getImage().width
-      && this.getXPos() + this.getImage().width > other.getXPos()
-      && this.getYPos() < other.getYPos() + other.getImage().height
-      && this.getYPos() + this.getImage().height > other.getYPos()
+      this.getXPos() < other.getXPos() + other.getImage().width &&
+      this.getXPos() + this.getImage().width > other.getXPos() &&
+      this.getYPos() < other.getYPos() + other.getImage().height &&
+      this.getYPos() + this.getImage().height > other.getYPos()
     ) {
       return true;
     }

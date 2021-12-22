@@ -16,13 +16,39 @@ export default class Room extends Scene {
         this.candies.push(new Candy(this.canvas.width / 2, this.canvas.height / 2));
         console.log(this.img.width);
     }
+    getXPos() {
+        return this.xPos;
+    }
+    setXPos(newPos) {
+        this.xPos = newPos;
+    }
+    getYPos() {
+        return this.yPos;
+    }
+    setYPos(newPos) {
+        this.yPos = newPos;
+    }
+    getImgHeight() {
+        return this.img.height;
+    }
+    setImgHeight(newHeight) {
+        this.imageHeight = newHeight;
+    }
+    setImgWidth(newWidth) {
+        this.imageWidth = newWidth;
+    }
+    getImgWidth() {
+        return this.img.width;
+    }
     processInput() {
         this.player.movePlayer(this.canvas);
     }
     update(elapsed) {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        if ((this.player.getXPos() >= this.xPos && this.player.getXPos() <= this.xPos + this.imageWidth)
-            && (this.player.getYPos() >= this.yPos && this.player.getYPos() <= this.yPos + this.imageHeight)) {
+        if (this.player.getXPos() >= this.xPos &&
+            this.player.getXPos() <= this.xPos + this.imageWidth &&
+            this.player.getYPos() >= this.yPos &&
+            this.player.getYPos() <= this.yPos + this.imageHeight) {
             this.processInput();
         }
         return null;
