@@ -117,7 +117,7 @@ export default abstract class Room extends Scene {
 * Removes candy items from the game based on box collision detection.
 *
 */
-  public catchingCandy() {
+  public catchingCandy(): void {
     // (filter the clicked candy item out of the array candy items)
     this.candies = this.candies.filter((element) => {
       // check if the player is over (collided with) the garbage item.
