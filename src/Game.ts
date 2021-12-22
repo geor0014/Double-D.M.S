@@ -1,3 +1,4 @@
+import ClassRoom1 from './Classroom1.js';
 import GameLoop from './GameLoop.js';
 import Hallway from './Hallway.js';
 import Player from './Player.js';

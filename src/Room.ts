@@ -1,10 +1,13 @@
 import Scene from './Scene.js';
 import Player from './Player.js';
 import Candy from './Candy.js';
+import Npc from './Npc.js';
+import Hint from './Hint.js';
+import Door from './Door.js';
 
 export default abstract class Room extends Scene {
   // player
-  // private player: Player;
+  private player: Player;
 
   // X position of the image of the room
   private xPos: number;
@@ -19,9 +22,11 @@ export default abstract class Room extends Scene {
 
   private imageHeight: number;
 
-  private player: Player;
+  private collectibles: any[] = []; // change into class collectibles
 
-  private candies: Candy[] = [];
+  protected npcs: Npc[] = [];
+
+  protected doors: Door[] = [];
 
   /**
    * Create a new room
@@ -35,7 +40,12 @@ export default abstract class Room extends Scene {
     this.img = new Image();
     this.img.src = imgSrc;
 
-    this.candies.push(new Candy(this.canvas.width / 2, this.canvas.height / 2));
+    this.collectibles.push(new Candy(this.canvas.width / 2, this.canvas.height / 2));
+    this.collectibles.push(new Hint(this.canvas.width / 3, this.canvas.height / 1.5));
+
+    this.doors.push(new Door('./assets/img/door1.png', this.canvas.width / 2 - 20, this.canvas.height / 2 - 100));
+
+    this.npcs.push(new Npc('./assets/img/teacher-front.png', (this.canvas.width / 2 - 50), (this.canvas.height - 350)));
 
     this.player = new Player(this.canvas);
 
@@ -117,11 +127,15 @@ export default abstract class Room extends Scene {
 * Removes candy items from the game based on box collision detection.
 *
 */
-  public catchingCandy(): void {
+  public collectCollectibles(): void {
     // (filter the clicked candy item out of the array candy items)
-    this.candies = this.candies.filter((element) => {
+    this.collectibles = this.collectibles.filter((element) => {
       // check if the player is over (collided with) the garbage item.
       if (this.player.collidesWith(element) && element instanceof Candy) {
+        // Deleting the item from the array
+        return false;
+      }
+      if (this.player.collidesWith(element) && element instanceof Hint) {
         // Deleting the item from the array
         return false;
       }
@@ -140,7 +154,7 @@ export default abstract class Room extends Scene {
     // Clear the screen
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-    if (
+    /* if (
       this.player.getXPos() >= this.xPos
       && this.player.getXPos() <= this.xPos + this.imageWidth
       && this.player.getYPos() >= this.yPos
@@ -149,9 +163,10 @@ export default abstract class Room extends Scene {
       // Move the player
       this.processInput();
     }
+    */
 
     if (this.player.isInteracting()) {
-      this.catchingCandy();
+      this.collectCollectibles();
     }
 
     return null;
@@ -177,9 +192,18 @@ export default abstract class Room extends Scene {
    */
   public render(): void {
     this.draw(this.ctx);
-    for (let i = 0; i < this.candies.length; i++) {
-      this.candies[i].draw(this.ctx);
+    for (let i = 0; i < this.collectibles.length; i++) {
+      this.collectibles[i].draw(this.ctx);
     }
+
+    for (let i = 0; i < this.npcs.length; i += 1) {
+      this.npcs[i].draw(this.ctx);
+    }
+
+    for (let i = 0; i < this.doors.length; i += 1) {
+      this.doors[i].draw(this.ctx);
+    }
+
     this.player.draw(this.ctx);
   }
 }
