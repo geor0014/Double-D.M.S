@@ -4,8 +4,6 @@ import Player from './Player.js';
 import Candy from './Candy.js';
 
 export default class Game {
-  private randomNumber: number;
-
   private canvas: HTMLCanvasElement;
 
   // public readonly userData: UserData;

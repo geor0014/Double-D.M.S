@@ -4,11 +4,11 @@ export default class Candy extends GameEntity {
   /**
    * Creates a new candy
    *
-   * @param x number
-   * @param y number
+   * @param xPos number
+   * @param yPos number
    */
-  constructor(x: number, y: number) {
-    super('./assets/img/candy.png', x, y);
+  constructor(xPos: number, yPos: number) {
+    super('./assets/img/candy.png', xPos, yPos);
     this.setImageHeight(10);
     this.setImageWidth(10);
   }

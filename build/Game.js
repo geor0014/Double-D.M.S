@@ -2,7 +2,6 @@ import GameLoop from './GameLoop.js';
 import Hallway from './Hallway.js';
 import Player from './Player.js';
 export default class Game {
-    randomNumber;
     canvas;
     gameLoop;
     player;
