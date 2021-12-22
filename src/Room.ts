@@ -7,21 +7,21 @@ export default abstract class Room extends Scene {
   // private player: Player;
 
   // X position of the image of the room
-  protected xPos: number;
+  private xPos: number;
 
   // Y position of the image of the room
-  protected yPos: number;
+  private yPos: number;
 
   // Image of the room
-  protected img: HTMLImageElement;
+  private img: HTMLImageElement;
 
-  protected imageWidth: number;
+  private imageWidth: number;
 
-  protected imageHeight: number;
+  private imageHeight: number;
 
-  protected player: Player;
+  private player: Player;
 
-  protected candies: Candy[] = [];
+  private candies: Candy[] = [];
 
   /**
    * Create a new room
@@ -43,6 +43,70 @@ export default abstract class Room extends Scene {
   }
 
   /**
+   *
+   * @returns xPos
+   */
+  getXPos(): number {
+    return this.xPos;
+  }
+
+  /**
+   *
+   * @param newPos new Xposition
+   */
+  setXPos(newPos: number): void {
+    this.xPos = newPos;
+  }
+
+  /**
+   *
+   * @returns y position
+   */
+  getYPos(): number {
+    return this.yPos;
+  }
+
+  /**
+   *
+   * @param newPos new Y Position
+   */
+  setYPos(newPos: number): void {
+    this.yPos = newPos;
+  }
+
+  /**
+   *
+   * @returns the image height
+   */
+  getImgHeight(): number {
+    return this.img.height;
+  }
+
+  /**
+   *
+   * @param newHeight new image height
+   */
+  setImgHeight(newHeight: number): void {
+    this.imageHeight = newHeight;
+  }
+
+  /**
+   *
+   * @param newWidth new image width
+   */
+  setImgWidth(newWidth: number): void {
+    this.imageWidth = newWidth;
+  }
+
+  /**
+   *
+   * @returns the image width
+   */
+  getImgWidth(): number {
+    return this.img.width;
+  }
+
+  /**
    * Methos to detect the input of the player
    */
   public processInput(): void {
@@ -60,8 +124,12 @@ export default abstract class Room extends Scene {
     // Clear the screen
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-    if ((this.player.getXPos() >= this.xPos && this.player.getXPos() <= this.xPos + this.imageWidth)
-      && (this.player.getYPos() >= this.yPos && this.player.getYPos() <= this.yPos + this.imageHeight)) {
+    if (
+      this.player.getXPos() >= this.xPos &&
+      this.player.getXPos() <= this.xPos + this.imageWidth &&
+      this.player.getYPos() >= this.yPos &&
+      this.player.getYPos() <= this.yPos + this.imageHeight
+    ) {
       // Move the player
       this.processInput();
     }
@@ -75,7 +143,13 @@ export default abstract class Room extends Scene {
    * @param ctx of the canvas
    */
   public draw(ctx: CanvasRenderingContext2D): void {
-    ctx.drawImage(this.img, this.xPos, this.yPos, this.imageWidth, this.imageHeight);
+    ctx.drawImage(
+      this.img,
+      this.xPos,
+      this.yPos,
+      this.imageWidth,
+      this.imageHeight
+    );
   }
 
   /**
