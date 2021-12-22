@@ -5,17 +5,17 @@ export default class Player extends GameEntity {
     yVelocity;
     keyboard;
     constructor(canvas) {
-        super('./assets/img/player-boy-standing.png', canvas.width / 2, canvas.height);
-        this.setYPos(this.getYPos() - this.getImage().height);
+        super('./assets/img/player-boy-standing.png', canvas.width / 2, canvas.height / 2);
+        this.setImageHeight(this.getImage().height);
+        this.setImageWidth(this.getImage().width);
         this.xVelocity = 3;
         this.yVelocity = 3;
         this.keyboard = new KeyListener();
-        this.setImageHeight(this.getImage().height);
-        this.setImageWidth(this.getImage().width);
+        console.log('creating player');
     }
     movePlayer(canvas) {
-        if (this.keyboard.isKeyDown(KeyListener.KEY_RIGHT) &&
-            this.getXPos() + this.getImage().width < canvas.width) {
+        if (this.keyboard.isKeyDown(KeyListener.KEY_RIGHT)
+            && this.getXPos() + this.getImage().width < canvas.width) {
             this.setXPos(this.getXPos() + this.xVelocity);
             this.setImage('./assets/img/player-boy-right.png');
         }
@@ -27,8 +27,8 @@ export default class Player extends GameEntity {
             this.setYPos(this.getYPos() - this.yVelocity);
             this.setImage('./assets/img/player-boy-up.png');
         }
-        if (this.keyboard.isKeyDown(KeyListener.KEY_DOWN) &&
-            this.getYPos() + this.getImage().height < canvas.height) {
+        if (this.keyboard.isKeyDown(KeyListener.KEY_DOWN)
+            && this.getYPos() + this.getImage().height < canvas.height) {
             this.setYPos(this.getYPos() + this.yVelocity);
             this.setImage('./assets/img/player-boy-standing.png');
         }
@@ -40,10 +40,10 @@ export default class Player extends GameEntity {
         return false;
     }
     collidesWith(other) {
-        if (this.getXPos() < other.getXPos() + other.getImage().width &&
-            this.getXPos() + this.getImage().width > other.getXPos() &&
-            this.getYPos() < other.getYPos() + other.getImage().height &&
-            this.getYPos() + this.getImage().height > other.getYPos()) {
+        if (this.getXPos() < other.getXPos() + other.getImage().width
+            && this.getXPos() + this.getImage().width > other.getXPos()
+            && this.getYPos() < other.getYPos() + other.getImage().height
+            && this.getYPos() + this.getImage().height > other.getYPos()) {
             return true;
         }
         return false;

@@ -35,6 +35,7 @@ export default class GameEntity {
     }
     draw(ctx) {
         ctx.drawImage(this.img, this.xPos, this.yPos, this.imageWidth, this.imageHeight);
+        console.log('drawing');
     }
     static loadNewImage(source) {
         const img = new Image();

@@ -30,14 +30,14 @@ export default abstract class Room extends Scene {
    * @param imgSrc source for image
    * @param player a player
    */
-  constructor(canvas: HTMLCanvasElement, imgSrc: string, player: Player) {
+  constructor(canvas: HTMLCanvasElement, imgSrc: string) {
     super(canvas);
-
-    this.player = player;
     this.img = new Image();
     this.img.src = imgSrc;
 
     this.candies.push(new Candy(this.canvas.width / 2, this.canvas.height / 2));
+
+    this.player = new Player(this.canvas);
 
     console.log(this.img.width);
   }
@@ -114,6 +114,22 @@ export default abstract class Room extends Scene {
   }
 
   /**
+* Removes candy items from the game based on box collision detection.
+*
+*/
+  public catchingCandy() {
+    // (filter the clicked candy item out of the array candy items)
+    this.candies = this.candies.filter((element) => {
+      // check if the player is over (collided with) the garbage item.
+      if (this.player.collidesWith(element) && element instanceof Candy) {
+        // Deleting the item from the array
+        return false;
+      }
+      return true;
+    });
+  }
+
+  /**
    * Game cycle, basically loop that keeps the game running. It contains all
    * the logic needed to draw the individual frames.
    *
@@ -125,13 +141,17 @@ export default abstract class Room extends Scene {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
     if (
-      this.player.getXPos() >= this.xPos &&
-      this.player.getXPos() <= this.xPos + this.imageWidth &&
-      this.player.getYPos() >= this.yPos &&
-      this.player.getYPos() <= this.yPos + this.imageHeight
+      this.player.getXPos() >= this.xPos
+      && this.player.getXPos() <= this.xPos + this.imageWidth
+      && this.player.getYPos() >= this.yPos
+      && this.player.getYPos() <= this.yPos + this.imageHeight
     ) {
       // Move the player
       this.processInput();
+    }
+
+    if (this.player.isInteracting()) {
+      this.catchingCandy();
     }
 
     return null;
@@ -148,7 +168,7 @@ export default abstract class Room extends Scene {
       this.xPos,
       this.yPos,
       this.imageWidth,
-      this.imageHeight
+      this.imageHeight,
     );
   }
 
@@ -157,7 +177,9 @@ export default abstract class Room extends Scene {
    */
   public render(): void {
     this.draw(this.ctx);
-    this.candies[0].draw(this.ctx);
+    for (let i = 0; i < this.candies.length; i++) {
+      this.candies[i].draw(this.ctx);
+    }
     this.player.draw(this.ctx);
   }
 }

@@ -15,7 +15,6 @@ export default abstract class Scene {
   constructor(canvas: HTMLCanvasElement) {
     this.canvas = canvas;
     this.ctx = this.canvas.getContext('2d');
-
   }
 
   /**
@@ -45,11 +44,4 @@ export default abstract class Scene {
    * Draw the game so the player can see what happened
    */
   public abstract render(): void;
-
-  /**
-   * Draws the Scene
-   *
-   * @param ctx of the canvas
-   */
-  public abstract draw(ctx: CanvasRenderingContext2D): void;
 }

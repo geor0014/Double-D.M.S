@@ -1,4 +1,4 @@
-import Player from './Player.js';
+// import Player from './Player.js';
 import Room from './Room.js';
 
 export default class Hallway extends Room {
@@ -8,8 +8,8 @@ export default class Hallway extends Room {
    * @param canvas canvas element
    * @param player a player
    */
-  public constructor(canvas: HTMLCanvasElement, player: Player) {
-    super(canvas, './assets/img/hallway.png', player);
+  public constructor(canvas: HTMLCanvasElement) {
+    super(canvas, './assets/img/hallway.png');
     this.setXPos(canvas.width / 4);
     this.setYPos(0);
     this.setImgHeight(canvas.height);

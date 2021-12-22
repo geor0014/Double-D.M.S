@@ -1,6 +1,5 @@
 import GameLoop from './GameLoop.js';
 import Hallway from './Hallway.js';
-import Player from './Player.js';
 export default class Game {
     canvas;
     gameLoop;
@@ -9,9 +8,8 @@ export default class Game {
         this.canvas = canvas;
         this.canvas.width = window.innerWidth;
         this.canvas.height = window.innerHeight;
-        this.player = new Player(this.canvas);
         this.gameLoop = new GameLoop();
-        this.gameLoop.start(new Hallway(this.canvas, this.player));
+        this.gameLoop.start(new Hallway(this.canvas));
     }
     getCanvas() {
         return this.canvas;

@@ -105,8 +105,9 @@ export default abstract class GameEntity {
       this.xPos,
       this.yPos,
       this.imageWidth,
-      this.imageHeight
+      this.imageHeight,
     );
+    console.log('drawing');
   }
 
   /**

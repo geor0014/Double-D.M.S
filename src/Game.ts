@@ -22,11 +22,11 @@ export default class Game {
     this.canvas.width = window.innerWidth;
     this.canvas.height = window.innerHeight;
 
-    this.player = new Player(this.canvas);
+    // this.player = new Player(this.canvas);
 
     // Start the game cycle
     this.gameLoop = new GameLoop();
-    this.gameLoop.start(new Hallway(this.canvas, this.player));
+    this.gameLoop.start(new Hallway(this.canvas));
   }
 
   /**
