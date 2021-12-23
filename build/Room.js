@@ -57,7 +57,6 @@ export default class Room extends Scene {
         for (let i = 0; i < this.doors.length; i += 1) {
             this.doors[i].draw(this.ctx);
         }
-        console.log(this.player.getXPos(), this.player.getYPos());
         this.player.draw(this.ctx);
     }
 }

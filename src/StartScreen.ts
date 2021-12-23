@@ -6,6 +6,8 @@ import Screen from './Screen.js';
 export default class StartScreen extends Screen {
   private keyListener: KeyListener;
 
+  private music: HTMLAudioElement;
+
   /**
    * Initialises every attribute
    *
@@ -13,6 +15,9 @@ export default class StartScreen extends Screen {
    */
   public constructor(canvas: HTMLCanvasElement) {
     super(canvas, './assets/img/school-front.png');
+
+    this.music = new Audio('./assets/sound/StartScreen.mp3');
+    this.music.play();
 
     this.keyListener = new KeyListener();
 
@@ -27,6 +32,7 @@ export default class StartScreen extends Screen {
    */
   public processInput(): boolean {
     if (this.keyListener.isKeyDown(KeyListener.KEY_SPACE)) {
+      this.music.pause();
       return true;
     }
 

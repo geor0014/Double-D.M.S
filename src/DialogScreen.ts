@@ -38,26 +38,17 @@ export default class DialogScreen extends Scene {
     this.next = false;
   }
 
-  public processInput(): void {
+  public processInput(): boolean {
     if (this.keyboard.isKeyDown(KeyListener.KEY_SPACE)) {
-      this.next = true;
+      return true;
     }
-    this.next = false;
+    return false;
   }
 
   public update(elapsed: number): Scene {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    for (let i = 0; i < this.dialogBubbles.length; i += 1) {
-      if (i === 0) {
-        this.writeTextToCanvas(this.dialogBubbles[i], 24, this.canvas.width / 2, this.canvas.height / 2, 'center', 'black');
-        this.countdown -= 1;
-      } else if (this.next) {
-        this.writeTextToCanvas(this.dialogBubbles[i], 24, this.canvas.width / 2, this.canvas.height / 2, 'center', 'black');
-        this.countdown -= 1;
-      }
-    }
 
-    if (this.countdown <= 0 && this.next) {
+    if (this.countdown <= 0 && this.processInput()) {
       return this.previousScene;
     }
     return null;
@@ -78,5 +69,12 @@ export default class DialogScreen extends Scene {
 
   public render(): void {
     this.draw(this.ctx);
+    this.writeTextToCanvas(this.dialogBubbles[0], 24, this.canvas.width / 2, this.canvas.height / 2, 'center', 'black');
+    if (this.processInput() && this.countdown > 0) {
+      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+      this.draw(this.ctx);
+      this.writeTextToCanvas(this.dialogBubbles[1], 24, this.canvas.width / 2, this.canvas.height / 2, 'center', 'black');
+      this.countdown -= 1;
+    }
   }
 }

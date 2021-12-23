@@ -145,7 +145,7 @@ export default abstract class Room extends Scene {
       this.doors[i].draw(this.ctx);
     }
     // console.log('drawing player');
-    console.log(this.player.getXPos(), this.player.getYPos());
+    // console.log(this.player.getXPos(), this.player.getYPos());
     this.player.draw(this.ctx);
   }
 }
