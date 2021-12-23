@@ -61,9 +61,9 @@ export default abstract class Scene {
     xCoordinate: number,
     yCoordinate: number,
     alignment: CanvasTextAlign = 'center',
-    color: string = 'white',
+    color: string = 'white'
   ): void {
-    this.ctx.font = `${fontSize}px sans-serif`;
+    this.ctx.font = `${fontSize}px 'VT323', monospace`;
     this.ctx.fillStyle = color;
     this.ctx.textAlign = alignment;
     this.ctx.fillText(text, xCoordinate, yCoordinate);

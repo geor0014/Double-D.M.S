@@ -6,7 +6,7 @@ export default class Scene {
         this.ctx = this.canvas.getContext('2d');
     }
     writeTextToCanvas(text, fontSize = 20, xCoordinate, yCoordinate, alignment = 'center', color = 'white') {
-        this.ctx.font = `${fontSize}px sans-serif`;
+        this.ctx.font = `${fontSize}px 'VT323', monospace`;
         this.ctx.fillStyle = color;
         this.ctx.textAlign = alignment;
         this.ctx.fillText(text, xCoordinate, yCoordinate);

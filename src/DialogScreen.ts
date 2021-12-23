@@ -56,26 +56,29 @@ export default class DialogScreen extends Scene {
   }
 
   /**
- * Draw the room
- *
- * @param ctx of the canvas
- */
+   * Draw the room
+   *
+   * @param ctx of the canvas
+   */
   public draw(ctx: CanvasRenderingContext2D): void {
-    ctx.drawImage(
-      this.img,
-      this.xPos,
-      this.yPos,
-    );
+    ctx.drawImage(this.img, this.xPos, this.yPos);
   }
 
   public render(): void {
     this.draw(this.ctx);
-    this.writeTextToCanvas(this.dialogBubbles[0], 24, this.canvas.width / 2, this.canvas.height / 2, 'center', 'black');
-   // if (this.processInput() && this.countdown > 0) {
+    this.writeTextToCanvas(
+      this.dialogBubbles[0],
+      30,
+      this.canvas.width / 2,
+      this.canvas.height / 2,
+      'center',
+      'black'
+    );
+    // if (this.processInput() && this.countdown > 0) {
     //  this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     //  this.draw(this.ctx);
-     // this.writeTextToCanvas(this.dialogBubbles[1], 24, this.canvas.width / 2, this.canvas.height / 2, 'center', 'black');
+    // this.writeTextToCanvas(this.dialogBubbles[1], 24, this.canvas.width / 2, this.canvas.height / 2, 'center', 'black');
     //  this.countdown -= 1;
-   // }
+    // }
   }
 }

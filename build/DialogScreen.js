@@ -41,7 +41,7 @@ export default class DialogScreen extends Scene {
     }
     render() {
         this.draw(this.ctx);
-        this.writeTextToCanvas(this.dialogBubbles[0], 24, this.canvas.width / 2, this.canvas.height / 2, 'center', 'black');
+        this.writeTextToCanvas(this.dialogBubbles[0], 30, this.canvas.width / 2, this.canvas.height / 2, 'center', 'black');
     }
 }
 //# sourceMappingURL=DialogScreen.js.map
