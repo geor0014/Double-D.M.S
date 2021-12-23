@@ -6,8 +6,6 @@ export default class Player extends GameEntity {
     keyboard;
     constructor(canvas) {
         super('./assets/img/player-boy-standing.png', canvas.width / 2, canvas.height / 2);
-        this.setImageHeight(this.getImage().height);
-        this.setImageWidth(this.getImage().width);
         this.xVelocity = 3;
         this.yVelocity = 3;
         this.keyboard = new KeyListener();

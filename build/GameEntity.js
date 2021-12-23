@@ -2,8 +2,6 @@ export default class GameEntity {
     img;
     xPos;
     yPos;
-    imageWidth;
-    imageHeight;
     constructor(imageSrc, xPos, yPos) {
         this.img = GameEntity.loadNewImage(imageSrc);
         this.xPos = xPos;
@@ -14,12 +12,6 @@ export default class GameEntity {
     }
     setImage(source) {
         this.img = GameEntity.loadNewImage(source);
-    }
-    setImageWidth(width) {
-        this.imageWidth = width;
-    }
-    setImageHeight(height) {
-        this.imageHeight = height;
     }
     getXPos() {
         return this.xPos;
@@ -34,8 +26,7 @@ export default class GameEntity {
         this.yPos = number;
     }
     draw(ctx) {
-        ctx.drawImage(this.img, this.xPos, this.yPos, this.imageWidth, this.imageHeight);
-        console.log('drawing');
+        ctx.drawImage(this.img, this.xPos, this.yPos);
     }
     static loadNewImage(source) {
         const img = new Image();

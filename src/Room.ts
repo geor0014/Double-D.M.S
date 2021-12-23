@@ -6,9 +6,6 @@ import Hint from './Hint.js';
 import Door from './Door.js';
 
 export default abstract class Room extends Scene {
-  // player
-  private player: Player;
-
   // X position of the image of the room
   private xPos: number;
 
@@ -18,38 +15,30 @@ export default abstract class Room extends Scene {
   // Image of the room
   private img: HTMLImageElement;
 
-  private imageWidth: number;
+  // player
+  protected player: Player;
 
-  private imageHeight: number;
+  protected collectibles: any[]; // change into class collectibles
 
-  private collectibles: any[] = []; // change into class collectibles
+  protected npcs: Npc[];
 
-  protected npcs: Npc[] = [];
-
-  protected doors: Door[] = [];
+  protected doors: Door[];
 
   /**
    * Create a new room
    *
    * @param canvas canvas element
    * @param imgSrc source for image
-   * @param player a player
    */
   constructor(canvas: HTMLCanvasElement, imgSrc: string) {
     super(canvas);
+    console.log(`loading a new image ${imgSrc}`);
     this.img = new Image();
     this.img.src = imgSrc;
 
-    this.collectibles.push(new Candy(this.canvas.width / 2, this.canvas.height / 2));
-    this.collectibles.push(new Hint(this.canvas.width / 3, this.canvas.height / 1.5));
-
-    this.doors.push(new Door('./assets/img/door1.png', this.canvas.width / 2 - 20, this.canvas.height / 2 - 100));
-
-    this.npcs.push(new Npc('./assets/img/teacher-front.png', (this.canvas.width / 2 - 50), (this.canvas.height - 350)));
-
     this.player = new Player(this.canvas);
 
-    console.log(this.img.width);
+    // console.log(this.img.width);
   }
 
   /**
@@ -85,38 +74,6 @@ export default abstract class Room extends Scene {
   }
 
   /**
-   *
-   * @returns the image height
-   */
-  getImgHeight(): number {
-    return this.img.height;
-  }
-
-  /**
-   *
-   * @param newHeight new image height
-   */
-  setImgHeight(newHeight: number): void {
-    this.imageHeight = newHeight;
-  }
-
-  /**
-   *
-   * @param newWidth new image width
-   */
-  setImgWidth(newWidth: number): void {
-    this.imageWidth = newWidth;
-  }
-
-  /**
-   *
-   * @returns the image width
-   */
-  getImgWidth(): number {
-    return this.img.width;
-  }
-
-  /**
    * Methos to detect the input of the player
    */
   public processInput(): void {
@@ -124,11 +81,12 @@ export default abstract class Room extends Scene {
   }
 
   /**
-* Removes candy items from the game based on box collision detection.
-*
-*/
+   * Removes candy items from the game based on box collision detection.
+   *
+   */
   public collectCollectibles(): void {
     // (filter the clicked candy item out of the array candy items)
+    /*
     this.collectibles = this.collectibles.filter((element) => {
       // check if the player is over (collided with) the garbage item.
       if (this.player.collidesWith(element) && element instanceof Candy) {
@@ -140,36 +98,12 @@ export default abstract class Room extends Scene {
         return false;
       }
       return true;
+    }); */
+    this.collectibles.forEach((item, index) => {
+      if (this.player.collidesWith(item)) {
+        this.collectibles.splice(index, 1);
+      }
     });
-  }
-
-  /**
-   * Game cycle, basically loop that keeps the game running. It contains all
-   * the logic needed to draw the individual frames.
-   *
-   * @param elapsed a number
-   * @returns a scene or null
-   */
-  public update(elapsed: number): Scene {
-    // Clear the screen
-    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
-    /* if (
-      this.player.getXPos() >= this.xPos
-      && this.player.getXPos() <= this.xPos + this.imageWidth
-      && this.player.getYPos() >= this.yPos
-      && this.player.getYPos() <= this.yPos + this.imageHeight
-    ) {
-      // Move the player
-      this.processInput();
-    }
-    */
-
-    if (this.player.isInteracting()) {
-      this.collectCollectibles();
-    }
-
-    return null;
   }
 
   /**
@@ -182,8 +116,6 @@ export default abstract class Room extends Scene {
       this.img,
       this.xPos,
       this.yPos,
-      this.imageWidth,
-      this.imageHeight,
     );
   }
 
@@ -193,6 +125,7 @@ export default abstract class Room extends Scene {
   public render(): void {
     this.draw(this.ctx);
     for (let i = 0; i < this.collectibles.length; i++) {
+      // console.log('drawing collectible');
       this.collectibles[i].draw(this.ctx);
     }
 
@@ -203,7 +136,8 @@ export default abstract class Room extends Scene {
     for (let i = 0; i < this.doors.length; i += 1) {
       this.doors[i].draw(this.ctx);
     }
-
+    // console.log('drawing player');
+    console.log(this.player.getXPos(), this.player.getYPos());
     this.player.draw(this.ctx);
   }
 }

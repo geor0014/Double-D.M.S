@@ -20,9 +20,6 @@ export default class Player extends GameEntity {
       canvas.height / 2,
     );
 
-    this.setImageHeight(this.getImage().height);
-    this.setImageWidth(this.getImage().width);
-
     // this.setYPos(this.getYPos() - this.getImage().height);
     this.xVelocity = 3;
     this.yVelocity = 3;

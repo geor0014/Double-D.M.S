@@ -5,10 +5,6 @@ export default abstract class GameEntity {
 
   private yPos: number;
 
-  private imageWidth: number;
-
-  private imageHeight: number;
-
   /**
    * creates a new game entity
    *
@@ -38,24 +34,6 @@ export default abstract class GameEntity {
    */
   public setImage(source: string): void {
     this.img = GameEntity.loadNewImage(source);
-  }
-
-  /**
-   * this method returns the image
-   *
-   * @param width a number for the image width
-   */
-  public setImageWidth(width: number): void {
-    this.imageWidth = width;
-  }
-
-  /**
-   * this method returns the image
-   *
-   * @param height a number for the image height
-   */
-  public setImageHeight(height: number): void {
-    this.imageHeight = height;
   }
 
   /**
@@ -104,10 +82,7 @@ export default abstract class GameEntity {
       this.img,
       this.xPos,
       this.yPos,
-      this.imageWidth,
-      this.imageHeight,
     );
-    console.log('drawing');
   }
 
   /**
