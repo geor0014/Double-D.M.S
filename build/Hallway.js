@@ -16,7 +16,7 @@ export default class Hallway extends Room {
         this.collectibles.push(new Candy(this.canvas.width / 2, this.canvas.height / 2));
         this.collectibles.push(new Hint(this.canvas.width / 3, this.canvas.height / 1.5));
         this.doors.push(new Door('./assets/img/door1.png', 732, 130));
-        this.npcs.push(new Npc('./assets/img/teacher-front.png', (this.canvas.width / 2), (this.canvas.height - 500)));
+        this.npcs.push(new Npc('./assets/img/teacher-front.png', this.canvas.width / 2, this.canvas.height - 500));
         console.log('hi');
     }
     update(elapsed) {
@@ -31,13 +31,13 @@ export default class Hallway extends Room {
                 if (this.player.collidesWith(this.doors[i])) {
                     console.log('interact with door');
                     this.doorOpen.play();
-                    return (new ClassRoom1(this.canvas));
+                    return new ClassRoom1(this.canvas);
                 }
             }
             for (let i = 0; i < this.npcs.length; i += 1) {
                 if (this.player.collidesWith(this.npcs[i])) {
                     console.log('interact with npc');
-                    return (new DialogScreen(this.canvas, this));
+                    return new DialogScreen(this.canvas, this);
                 }
             }
         }

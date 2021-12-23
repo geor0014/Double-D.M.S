@@ -1,13 +1,12 @@
 import KeyListener from './KeyListener.js';
 import Screen from './Screen.js';
+import Hallway from './Hallway.js';
 export default class DialogScreen extends Screen {
     keyboard;
-    previousScene;
     dialogBubbles;
     constructor(canvas, previousScene) {
         super(canvas, './assets/img/dialogscreen.jpg');
         this.keyboard = new KeyListener();
-        this.previousScene = previousScene;
         this.dialogBubbles = [];
         this.dialogBubbles.push('Hey Good Morning!');
         this.dialogBubbles.push('Welcome to school, please go to class!');
@@ -24,7 +23,7 @@ export default class DialogScreen extends Screen {
     update(elapsed) {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         if (this.processInput()) {
-            return this.previousScene;
+            return new Hallway(this.canvas);
         }
         return null;
     }

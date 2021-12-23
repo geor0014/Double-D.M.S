@@ -25,12 +25,12 @@ export default class ClassRoom1 extends Room {
   }
 
   /**
-  * Game cycle, basically loop that keeps the game running. It contains all
-  * the logic needed to draw the individual frames.
-  *
-  * @param elapsed a number
-  * @returns a scene or null
-  */
+   * Game cycle, basically loop that keeps the game running. It contains all
+   * the logic needed to draw the individual frames.
+   *
+   * @param elapsed a number
+   * @returns a scene or null
+   */
   public update(elapsed: number): Scene {
     // Clear the screen
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -56,7 +56,7 @@ export default class ClassRoom1 extends Room {
         if (this.player.collidesWith(this.doors[i])) {
           console.log('interact with door');
           this.doorClose.play();
-          return (new Hallway(this.canvas));
+          return new Hallway(this.canvas);
         }
       }
     }
