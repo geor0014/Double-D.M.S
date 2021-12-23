@@ -1,42 +1,29 @@
 import KeyListener from './KeyListener.js';
+import Screen from './Screen.js';
 import Scene from './Scene.js';
 
-export default class DialogScreen extends Scene {
+export default class DialogScreen extends Screen {
   private keyboard: KeyListener;
-
-  private next: boolean;
 
   private previousScene: Scene;
 
   private dialogBubbles: string[];
 
-  private countdown: number;
-
-  // X position of the image of the room
-  private xPos: number;
-
-  // Y position of the image of the room
-  private yPos: number;
-
-  // Image of the room
-  private img: HTMLImageElement;
-
   constructor(canvas: HTMLCanvasElement, previousScene: Scene) {
-    super(canvas);
+    super(canvas, './assets/img/dialogscreen.jpg');
     this.keyboard = new KeyListener();
     this.previousScene = previousScene;
     this.dialogBubbles = [];
 
     this.dialogBubbles.push('Hey Good Morning!');
     this.dialogBubbles.push('Welcome to school, please go to class!');
-    this.countdown = this.dialogBubbles.length;
+    // this.countdown = this.dialogBubbles.length;
 
-    this.img = Scene.loadNewImage('./assets/img/dialogscreen.jpg');
-    this.xPos = 0;
-    this.yPos = 0;
+    this.setXPos(0);
+    this.setYPos(0);
     console.log('hello');
 
-    this.next = false;
+    // this.next = false;
   }
 
   public processInput(): boolean {
@@ -61,7 +48,7 @@ export default class DialogScreen extends Scene {
    * @param ctx of the canvas
    */
   public draw(ctx: CanvasRenderingContext2D): void {
-    ctx.drawImage(this.img, this.xPos, this.yPos);
+    ctx.drawImage(this.getImage(), this.getXPos(), this.getYPos());
   }
 
   public render(): void {
@@ -72,12 +59,13 @@ export default class DialogScreen extends Scene {
       this.canvas.width / 2,
       this.canvas.height / 2,
       'center',
-      'black'
+      'black',
     );
     // if (this.processInput() && this.countdown > 0) {
     //  this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     //  this.draw(this.ctx);
-    // this.writeTextToCanvas(this.dialogBubbles[1], 24, this.canvas.width / 2, this.canvas.height / 2, 'center', 'black');
+    // this.writeTextToCanvas(this.dialogBubbles[1], 24, this.canvas.width / 2,
+    // this.canvas.height / 2, 'center', 'black');
     //  this.countdown -= 1;
     // }
   }

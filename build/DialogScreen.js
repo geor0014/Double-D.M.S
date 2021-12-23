@@ -1,27 +1,19 @@
 import KeyListener from './KeyListener.js';
-import Scene from './Scene.js';
-export default class DialogScreen extends Scene {
+import Screen from './Screen.js';
+export default class DialogScreen extends Screen {
     keyboard;
-    next;
     previousScene;
     dialogBubbles;
-    countdown;
-    xPos;
-    yPos;
-    img;
     constructor(canvas, previousScene) {
-        super(canvas);
+        super(canvas, './assets/img/dialogscreen.jpg');
         this.keyboard = new KeyListener();
         this.previousScene = previousScene;
         this.dialogBubbles = [];
         this.dialogBubbles.push('Hey Good Morning!');
         this.dialogBubbles.push('Welcome to school, please go to class!');
-        this.countdown = this.dialogBubbles.length;
-        this.img = Scene.loadNewImage('./assets/img/dialogscreen.jpg');
-        this.xPos = 0;
-        this.yPos = 0;
+        this.setXPos(0);
+        this.setYPos(0);
         console.log('hello');
-        this.next = false;
     }
     processInput() {
         if (this.keyboard.isKeyDown(KeyListener.KEY_SPACE)) {
@@ -37,7 +29,7 @@ export default class DialogScreen extends Scene {
         return null;
     }
     draw(ctx) {
-        ctx.drawImage(this.img, this.xPos, this.yPos);
+        ctx.drawImage(this.getImage(), this.getXPos(), this.getYPos());
     }
     render() {
         this.draw(this.ctx);
