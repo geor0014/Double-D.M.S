@@ -75,7 +75,7 @@ export default abstract class Scene {
    * @param source the source
    * @returns HTMLImageElement - returns an image
    */
-  public static loadNewImage(source: string): HTMLImageElement {
+  protected static loadNewImage(source: string): HTMLImageElement {
     const img = new Image();
     img.src = source;
     return img;

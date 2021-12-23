@@ -1,8 +1,6 @@
 import Scene from './Scene.js';
 import Player from './Player.js';
-import Candy from './Candy.js';
 import Npc from './Npc.js';
-import Hint from './Hint.js';
 import Door from './Door.js';
 
 export default abstract class Room extends Scene {

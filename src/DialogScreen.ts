@@ -34,6 +34,7 @@ export default class DialogScreen extends Scene {
     this.img = Scene.loadNewImage('./assets/img/dialogscreen.jpg');
     this.xPos = 0;
     this.yPos = 0;
+    console.log('hello');
 
     this.next = false;
   }
@@ -48,7 +49,7 @@ export default class DialogScreen extends Scene {
   public update(elapsed: number): Scene {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-    if (this.countdown <= 0 && this.processInput()) {
+    if (this.processInput()) {
       return this.previousScene;
     }
     return null;
@@ -70,11 +71,11 @@ export default class DialogScreen extends Scene {
   public render(): void {
     this.draw(this.ctx);
     this.writeTextToCanvas(this.dialogBubbles[0], 24, this.canvas.width / 2, this.canvas.height / 2, 'center', 'black');
-    if (this.processInput() && this.countdown > 0) {
-      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-      this.draw(this.ctx);
-      this.writeTextToCanvas(this.dialogBubbles[1], 24, this.canvas.width / 2, this.canvas.height / 2, 'center', 'black');
-      this.countdown -= 1;
-    }
+   // if (this.processInput() && this.countdown > 0) {
+    //  this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    //  this.draw(this.ctx);
+     // this.writeTextToCanvas(this.dialogBubbles[1], 24, this.canvas.width / 2, this.canvas.height / 2, 'center', 'black');
+    //  this.countdown -= 1;
+   // }
   }
 }

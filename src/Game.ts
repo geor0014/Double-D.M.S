@@ -10,7 +10,7 @@ export default class Game {
   // game loop
   private gameLoop: GameLoop;
 
-  private player: Player;
+  // private player: Player;
 
   /**
    * Initialize the game
