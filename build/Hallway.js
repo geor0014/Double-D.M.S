@@ -4,6 +4,7 @@ import Npc from './Npc.js';
 import Candy from './Candy.js';
 import Hint from './Hint.js';
 import ClassRoom1 from './Classroom1.js';
+import DialogScreen from './DialogScreen.js';
 export default class Hallway extends Room {
     constructor(canvas) {
         super(canvas, './assets/img/hallway.png');
@@ -29,7 +30,14 @@ export default class Hallway extends Room {
             for (let i = 0; i < this.doors.length; i += 1) {
                 if (this.player.collidesWith(this.doors[i])) {
                     console.log('interact with door');
+                    this.doorOpen.play();
                     return (new ClassRoom1(this.canvas));
+                }
+            }
+            for (let i = 0; i < this.npcs.length; i += 1) {
+                if (this.player.collidesWith(this.npcs[i])) {
+                    console.log('interact with npc');
+                    return (new DialogScreen(this.canvas, this));
                 }
             }
         }

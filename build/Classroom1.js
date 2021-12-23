@@ -24,6 +24,7 @@ export default class ClassRoom1 extends Room {
             for (let i = 0; i < this.doors.length; i += 1) {
                 if (this.player.collidesWith(this.doors[i])) {
                     console.log('interact with door');
+                    this.doorClose.play();
                     return (new Hallway(this.canvas));
                 }
             }

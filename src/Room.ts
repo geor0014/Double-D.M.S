@@ -24,6 +24,10 @@ export default abstract class Room extends Scene {
 
   protected doors: Door[];
 
+  protected doorOpen: HTMLAudioElement;
+
+  protected doorClose: HTMLAudioElement;
+
   /**
    * Create a new room
    *
@@ -37,7 +41,11 @@ export default abstract class Room extends Scene {
     this.img.src = imgSrc;
 
     this.player = new Player(this.canvas);
+    this.player.setXPos(732);
+    this.player.setYPos(535);
 
+    this.doorClose = new Audio('./assets/sound/DoorClose.ogg');
+    this.doorOpen = new Audio('./assets/sound/DoorOpen.ogg');
     // console.log(this.img.width);
   }
 

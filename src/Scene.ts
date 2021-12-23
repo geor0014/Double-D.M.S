@@ -44,4 +44,40 @@ export default abstract class Scene {
    * Draw the game so the player can see what happened
    */
   public abstract render(): void;
+
+  /**
+   * Writes text to the canvas
+   *
+   * @param text - Text to write
+   * @param fontSize - Font size in pixels
+   * @param xCoordinate - Horizontal coordinate in pixels
+   * @param yCoordinate - Vertical coordinate in pixels
+   * @param alignment - Where to align the text
+   * @param color - The color of the text
+   */
+  protected writeTextToCanvas(
+    text: string,
+    fontSize: number = 20,
+    xCoordinate: number,
+    yCoordinate: number,
+    alignment: CanvasTextAlign = 'center',
+    color: string = 'white',
+  ): void {
+    this.ctx.font = `${fontSize}px sans-serif`;
+    this.ctx.fillStyle = color;
+    this.ctx.textAlign = alignment;
+    this.ctx.fillText(text, xCoordinate, yCoordinate);
+  }
+
+  /**
+   * Method to load an image
+   *
+   * @param source the source
+   * @returns HTMLImageElement - returns an image
+   */
+  public static loadNewImage(source: string): HTMLImageElement {
+    const img = new Image();
+    img.src = source;
+    return img;
+  }
 }

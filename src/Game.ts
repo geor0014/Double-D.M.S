@@ -2,6 +2,7 @@ import ClassRoom1 from './Classroom1.js';
 import GameLoop from './GameLoop.js';
 import Hallway from './Hallway.js';
 import Player from './Player.js';
+import StartScreen from './StartScreen.js';
 
 export default class Game {
   private canvas: HTMLCanvasElement;
@@ -27,7 +28,7 @@ export default class Game {
 
     // Start the game cycle
     this.gameLoop = new GameLoop();
-    this.gameLoop.start(new Hallway(this.canvas));
+    this.gameLoop.start(new StartScreen(this.canvas));
   }
 
   /**

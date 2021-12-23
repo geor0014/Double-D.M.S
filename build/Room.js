@@ -8,12 +8,18 @@ export default class Room extends Scene {
     collectibles;
     npcs;
     doors;
+    doorOpen;
+    doorClose;
     constructor(canvas, imgSrc) {
         super(canvas);
         console.log(`loading a new image ${imgSrc}`);
         this.img = new Image();
         this.img.src = imgSrc;
         this.player = new Player(this.canvas);
+        this.player.setXPos(732);
+        this.player.setYPos(535);
+        this.doorClose = new Audio('./assets/sound/DoorClose.ogg');
+        this.doorOpen = new Audio('./assets/sound/DoorOpen.ogg');
     }
     getXPos() {
         return this.xPos;
