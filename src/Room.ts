@@ -34,7 +34,6 @@ export default abstract class Room extends Scene {
    */
   constructor(canvas: HTMLCanvasElement, imgSrc: string) {
     super(canvas);
-    console.log(`loading a new image ${imgSrc}`);
     this.img = new Image();
     this.img.src = imgSrc;
 

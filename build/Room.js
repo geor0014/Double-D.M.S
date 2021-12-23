@@ -12,7 +12,6 @@ export default class Room extends Scene {
     doorClose;
     constructor(canvas, imgSrc) {
         super(canvas);
-        console.log(`loading a new image ${imgSrc}`);
         this.img = new Image();
         this.img.src = imgSrc;
         this.player = new Player(this.canvas);

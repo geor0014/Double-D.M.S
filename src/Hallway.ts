@@ -37,7 +37,7 @@ export default class Hallway extends Room {
       new Npc(
         './assets/img/teacher-front.png',
         this.canvas.width / 2,
-        this.canvas.height - 500
+        this.canvas.height - 500,
       )
     );
 
