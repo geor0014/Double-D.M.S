@@ -37,6 +37,12 @@ export default class Player extends GameEntity {
             this.walk.play();
         }
     }
+    isInteractingMenu() {
+        if (this.keyboard.isKeyDown(KeyListener.KEY_M)) {
+            return true;
+        }
+        return false;
+    }
     isInteracting() {
         if (this.keyboard.isKeyDown(KeyListener.KEY_SPACE)) {
             return true;

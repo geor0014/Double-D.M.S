@@ -1,19 +1,23 @@
 import KeyListener from './KeyListener.js';
 import Screen from './Screen.js';
 import Scene from './Scene.js';
-import Hallway from './Hallway.js';
+import MainHallway from './MainHallway.js';
+import Player from './Player.js';
 
 export default class DialogScreen extends Screen {
   private keyboard: KeyListener;
 
-  // private previousScene: Hallway;
+  private previousScene: MainHallway;
 
   private dialogBubbles: string[];
 
-  constructor(canvas: HTMLCanvasElement, previousScene: Hallway) {
+  private player: Player;
+
+  constructor(canvas: HTMLCanvasElement, previousScene: MainHallway, player: Player) {
     super(canvas, './assets/img/dialogscreen.jpg');
+    this.player = player;
     this.keyboard = new KeyListener();
-    // this.previousScene = previousScene;
+    this.previousScene = previousScene;
     this.dialogBubbles = [];
 
     this.dialogBubbles.push('Hey Good Morning!');
@@ -38,7 +42,7 @@ export default class DialogScreen extends Screen {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
     if (this.processInput()) {
-      return new Hallway(this.canvas);
+      return this.previousScene;
     }
     return null;
   }

@@ -1,4 +1,4 @@
-import Hallway from './Hallway.js';
+import MainHallway from './MainHallway.js';
 import KeyListener from './KeyListener.js';
 import Screen from './Screen.js';
 export default class StartScreen extends Screen {
@@ -21,7 +21,7 @@ export default class StartScreen extends Screen {
     }
     update(elapsed) {
         if (this.processInput()) {
-            return new Hallway(this.canvas);
+            return new MainHallway(this.canvas);
         }
         return null;
     }

@@ -32,6 +32,22 @@ export default class Player extends GameEntity {
     console.log('creating player');
   }
 
+  /*
+  public showHideMenu(): void {
+    // console.log('checking if M is pressed');
+    if (this.keyboard.isKeyDown(KeyListener.KEY_M)) {
+      // console.log(' M is pressed');
+      if (this.isMenuShowing) {
+        this.isMenuShowing = false;
+        console.log(' should hide');
+      } else if (!this.isMenuShowing) {
+        this.isMenuShowing = true;
+        console.log(' should show');
+      }
+    }
+  }
+  */
+
   /**
    * Moves the player depending on which arrow key is pressed. Player is bound
    * to the canvas and cannot move outside of it
@@ -72,6 +88,18 @@ export default class Player extends GameEntity {
       this.setImage('./assets/img/player-boy-standing.png');
       this.walk.play();
     }
+  }
+
+  /**
+ * this method checks if the player is trying to interact
+ *
+ * @returns true or false
+ */
+  public isInteractingMenu(): boolean {
+    if (this.keyboard.isKeyDown(KeyListener.KEY_M)) {
+      return true;
+    }
+    return false;
   }
 
   /**

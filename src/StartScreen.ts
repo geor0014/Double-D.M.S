@@ -1,4 +1,4 @@
-import Hallway from './Hallway.js';
+import MainHallway from './MainHallway.js';
 import KeyListener from './KeyListener.js';
 import Scene from './Scene.js';
 import Screen from './Screen.js';
@@ -48,7 +48,7 @@ export default class StartScreen extends Screen {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   public update(elapsed: number): Scene {
     if (this.processInput()) {
-      return new Hallway(this.canvas);
+      return new MainHallway(this.canvas);
     }
 
     return null;

@@ -2,6 +2,7 @@ import Scene from './Scene.js';
 import Player from './Player.js';
 import Npc from './Npc.js';
 import Door from './Door.js';
+import Menu from './Menu.js';
 
 export default abstract class Room extends Scene {
   // X position of the image of the room
@@ -10,8 +11,12 @@ export default abstract class Room extends Scene {
   // Y position of the image of the room
   private yPos: number;
 
+  private hintNumImg: HTMLImageElement;
+
+  private candyNumImg: HTMLImageElement;
+
   // Image of the room
-  private img: HTMLImageElement;
+  protected img: HTMLImageElement;
 
   // player
   protected player: Player;
@@ -21,6 +26,10 @@ export default abstract class Room extends Scene {
   protected npcs: Npc[];
 
   protected doors: Door[];
+
+  protected menu: Menu;
+
+  protected isMenuShowing: boolean;
 
   protected doorOpen: HTMLAudioElement;
 
@@ -43,6 +52,10 @@ export default abstract class Room extends Scene {
 
     this.doorClose = new Audio('./assets/sound/DoorClose.ogg');
     this.doorOpen = new Audio('./assets/sound/DoorOpen.ogg');
+
+    this.menu = new Menu(this.canvas.width / 3 - 30, 600);
+    this.isMenuShowing = true;
+
     // console.log(this.img.width);
   }
 
@@ -90,20 +103,6 @@ export default abstract class Room extends Scene {
    *
    */
   public collectCollectibles(): void {
-    // (filter the clicked candy item out of the array candy items)
-    /*
-    this.collectibles = this.collectibles.filter((element) => {
-      // check if the player is over (collided with) the garbage item.
-      if (this.player.collidesWith(element) && element instanceof Candy) {
-        // Deleting the item from the array
-        return false;
-      }
-      if (this.player.collidesWith(element) && element instanceof Hint) {
-        // Deleting the item from the array
-        return false;
-      }
-      return true;
-    }); */
     this.collectibles.forEach((item, index) => {
       if (this.player.collidesWith(item)) {
         this.collectibles.splice(index, 1);
@@ -141,6 +140,44 @@ export default abstract class Room extends Scene {
     for (let i = 0; i < this.doors.length; i += 1) {
       this.doors[i].draw(this.ctx);
     }
+
+    if (this.isMenuShowing) {
+      // console.log('need to draw manu');
+      this.menu.draw(this.ctx);
+      if (this.userData.getHintAmount() === 1) {
+        this.hintNumImg = Scene.loadNewImage('./assets/img/1.png');
+      } else if (this.userData.getHintAmount() === 2) {
+        this.hintNumImg = Scene.loadNewImage('./assets/img/2.png');
+      } else if (this.userData.getHintAmount() === 3) {
+        this.hintNumImg = Scene.loadNewImage('./assets/img/3.png');
+      } else if (this.userData.getHintAmount() === 4) {
+        this.hintNumImg = Scene.loadNewImage('./assets/img/4.png');
+      } else if (this.userData.getHintAmount() === 5) {
+        this.hintNumImg = Scene.loadNewImage('./assets/img/5.png');
+      } else {
+        this.hintNumImg = Scene.loadNewImage('./assets/img/0.png');
+      }
+
+      if (this.userData.getCandyAmount() === 1) {
+        this.candyNumImg = Scene.loadNewImage('./assets/img/1.png');
+      } else if (this.userData.getHintAmount() === 2) {
+        this.candyNumImg = Scene.loadNewImage('./assets/img/2.png');
+      } else if (this.userData.getHintAmount() === 3) {
+        this.candyNumImg = Scene.loadNewImage('./assets/img/3.png');
+      } else if (this.userData.getHintAmount() === 4) {
+        this.candyNumImg = Scene.loadNewImage('./assets/img/4.png');
+      } else if (this.userData.getHintAmount() === 5) {
+        this.candyNumImg = Scene.loadNewImage('./assets/img/5.png');
+      } else {
+        this.candyNumImg = Scene.loadNewImage('./assets/img/0.png');
+      }
+
+      this.ctx.drawImage(this.hintNumImg, 489, 670);
+      this.ctx.drawImage(this.candyNumImg, 639, 670);
+    }
+
+    // this.menu.draw(this.ctx);
+
     // console.log('drawing player');
     // console.log(this.player.getXPos(), this.player.getYPos());
     this.player.draw(this.ctx);

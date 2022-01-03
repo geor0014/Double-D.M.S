@@ -1,3 +1,5 @@
+import UserData from './UserData.js';
+
 /**
  * A superclass for objects that must be able to be animated by a `GameLoop`.
  *
@@ -12,9 +14,13 @@ export default abstract class Scene {
 
   protected ctx: CanvasRenderingContext2D;
 
+  protected userData: UserData;
+
   constructor(canvas: HTMLCanvasElement) {
     this.canvas = canvas;
     this.ctx = this.canvas.getContext('2d');
+    console.log('creating new user date');
+    this.userData = new UserData();
   }
 
   /**

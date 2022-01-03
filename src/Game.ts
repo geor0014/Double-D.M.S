@@ -1,14 +1,14 @@
-import ClassRoom1 from './Classroom1.js';
 import GameLoop from './GameLoop.js';
-import Hallway from './Hallway.js';
-import Player from './Player.js';
 import StartScreen from './StartScreen.js';
+import UserData from './UserData.js';
 
 export default class Game {
   private canvas: HTMLCanvasElement;
 
   // game loop
   private gameLoop: GameLoop;
+
+  private userData: UserData;
 
   // private player: Player;
 
@@ -20,6 +20,8 @@ export default class Game {
    */
   public constructor(canvas: HTMLCanvasElement) {
     this.canvas = canvas;
+
+    this.userData = new UserData();
 
     this.canvas.width = window.innerWidth;
     this.canvas.height = window.innerHeight;

@@ -1,29 +1,26 @@
 export default class UserData {
+    hintAmount;
+    candyAmount;
     name;
-    score;
-    level;
+    img;
     constructor() {
-        this.name = 'shirel';
-        this.score = 0;
-        this.level = 0;
+        this.name = 'Player';
+        this.img = new Image();
+        this.img.src = './assets/img/player-boy-up.png';
+        this.hintAmount = 0;
+        this.candyAmount = 0;
     }
-    getName() {
-        return this.name;
+    getHintAmount() {
+        return this.hintAmount;
     }
-    setName(name) {
-        this.name = name;
+    getCandyAmount() {
+        return this.candyAmount;
     }
-    getScore() {
-        return this.score;
+    setHintAmount(number) {
+        this.hintAmount = number;
     }
-    addScore(points) {
-        this.score += points;
-    }
-    getLevel() {
-        return this.level;
-    }
-    increaseLevel() {
-        this.level += 1;
+    setCandyAmount(number) {
+        this.candyAmount = number;
     }
 }
 //# sourceMappingURL=UserData.js.map
