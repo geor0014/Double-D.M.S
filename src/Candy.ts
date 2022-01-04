@@ -1,6 +1,6 @@
-import GameEntity from './GameEntity.js';
+import Collectibles from './collectibles.js';
 
-export default class Candy extends GameEntity {
+export default class Candy extends Collectibles {
   /**
    * Creates a new candy
    *

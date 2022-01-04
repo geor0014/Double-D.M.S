@@ -2,6 +2,7 @@ import Scene from './Scene.js';
 import Npc from './Npc.js';
 import Door from './Door.js';
 import Menu from './Menu.js';
+import Collectibles from './collectibles.js';
 
 export default abstract class Room extends Scene {
   // X position of the image of the room
@@ -20,7 +21,7 @@ export default abstract class Room extends Scene {
   // player
   // protected player: Player;
 
-  protected collectibles: any[]; // change into class collectibles
+  protected collectibles: Collectibles[];
 
   protected npcs: Npc[];
 
