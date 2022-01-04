@@ -1,5 +1,4 @@
 import Scene from './Scene.js';
-import Player from './Player.js';
 import Npc from './Npc.js';
 import Door from './Door.js';
 import Menu from './Menu.js';

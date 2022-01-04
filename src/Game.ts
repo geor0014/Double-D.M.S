@@ -9,10 +9,6 @@ export default class Game {
   // game loop
   private gameLoop: GameLoop;
 
-  private userData: UserData;
-
-  private player: Player;
-
   // private player: Player;
 
   /**

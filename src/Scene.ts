@@ -1,5 +1,4 @@
 import Player from './Player.js';
-import UserData from './UserData.js';
 
 /**
  * A superclass for objects that must be able to be animated by a `GameLoop`.
