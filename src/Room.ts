@@ -19,7 +19,7 @@ export default abstract class Room extends Scene {
   protected img: HTMLImageElement;
 
   // player
-  protected player: Player;
+  // protected player: Player;
 
   protected collectibles: any[]; // change into class collectibles
 
@@ -45,10 +45,6 @@ export default abstract class Room extends Scene {
     super(canvas);
     this.img = new Image();
     this.img.src = imgSrc;
-
-    this.player = new Player(this.canvas);
-    this.player.setXPos(732);
-    this.player.setYPos(535);
 
     this.doorClose = new Audio('./assets/sound/DoorClose.ogg');
     this.doorOpen = new Audio('./assets/sound/DoorOpen.ogg');
@@ -144,29 +140,29 @@ export default abstract class Room extends Scene {
     if (this.isMenuShowing) {
       // console.log('need to draw manu');
       this.menu.draw(this.ctx);
-      if (this.userData.getHintAmount() === 1) {
+      if (this.player.getUserData().getHintAmount() === 1) {
         this.hintNumImg = Scene.loadNewImage('./assets/img/1.png');
-      } else if (this.userData.getHintAmount() === 2) {
+      } else if (this.player.getUserData().getHintAmount() === 2) {
         this.hintNumImg = Scene.loadNewImage('./assets/img/2.png');
-      } else if (this.userData.getHintAmount() === 3) {
+      } else if (this.player.getUserData().getHintAmount() === 3) {
         this.hintNumImg = Scene.loadNewImage('./assets/img/3.png');
-      } else if (this.userData.getHintAmount() === 4) {
+      } else if (this.player.getUserData().getHintAmount() === 4) {
         this.hintNumImg = Scene.loadNewImage('./assets/img/4.png');
-      } else if (this.userData.getHintAmount() === 5) {
+      } else if (this.player.getUserData().getHintAmount() === 5) {
         this.hintNumImg = Scene.loadNewImage('./assets/img/5.png');
       } else {
         this.hintNumImg = Scene.loadNewImage('./assets/img/0.png');
       }
 
-      if (this.userData.getCandyAmount() === 1) {
+      if (this.player.getUserData().getCandyAmount() === 1) {
         this.candyNumImg = Scene.loadNewImage('./assets/img/1.png');
-      } else if (this.userData.getHintAmount() === 2) {
+      } else if (this.player.getUserData().getCandyAmount() === 2) {
         this.candyNumImg = Scene.loadNewImage('./assets/img/2.png');
-      } else if (this.userData.getHintAmount() === 3) {
+      } else if (this.player.getUserData().getCandyAmount() === 3) {
         this.candyNumImg = Scene.loadNewImage('./assets/img/3.png');
-      } else if (this.userData.getHintAmount() === 4) {
+      } else if (this.player.getUserData().getCandyAmount() === 4) {
         this.candyNumImg = Scene.loadNewImage('./assets/img/4.png');
-      } else if (this.userData.getHintAmount() === 5) {
+      } else if (this.player.getUserData().getCandyAmount() === 5) {
         this.candyNumImg = Scene.loadNewImage('./assets/img/5.png');
       } else {
         this.candyNumImg = Scene.loadNewImage('./assets/img/0.png');
@@ -179,7 +175,7 @@ export default abstract class Room extends Scene {
     // this.menu.draw(this.ctx);
 
     // console.log('drawing player');
-    // console.log(this.player.getXPos(), this.player.getYPos());
+    console.log(this.player.getXPos(), this.player.getYPos());
     this.player.draw(this.ctx);
   }
 }

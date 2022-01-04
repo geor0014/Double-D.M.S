@@ -1,5 +1,4 @@
 import Scene from './Scene.js';
-import Player from './Player.js';
 import Menu from './Menu.js';
 export default class Room extends Scene {
     xPos;
@@ -7,7 +6,6 @@ export default class Room extends Scene {
     hintNumImg;
     candyNumImg;
     img;
-    player;
     collectibles;
     npcs;
     doors;
@@ -19,9 +17,6 @@ export default class Room extends Scene {
         super(canvas);
         this.img = new Image();
         this.img.src = imgSrc;
-        this.player = new Player(this.canvas);
-        this.player.setXPos(732);
-        this.player.setYPos(535);
         this.doorClose = new Audio('./assets/sound/DoorClose.ogg');
         this.doorOpen = new Audio('./assets/sound/DoorOpen.ogg');
         this.menu = new Menu(this.canvas.width / 3 - 30, 600);
@@ -65,37 +60,37 @@ export default class Room extends Scene {
         }
         if (this.isMenuShowing) {
             this.menu.draw(this.ctx);
-            if (this.userData.getHintAmount() === 1) {
+            if (this.player.getUserData().getHintAmount() === 1) {
                 this.hintNumImg = Scene.loadNewImage('./assets/img/1.png');
             }
-            else if (this.userData.getHintAmount() === 2) {
+            else if (this.player.getUserData().getHintAmount() === 2) {
                 this.hintNumImg = Scene.loadNewImage('./assets/img/2.png');
             }
-            else if (this.userData.getHintAmount() === 3) {
+            else if (this.player.getUserData().getHintAmount() === 3) {
                 this.hintNumImg = Scene.loadNewImage('./assets/img/3.png');
             }
-            else if (this.userData.getHintAmount() === 4) {
+            else if (this.player.getUserData().getHintAmount() === 4) {
                 this.hintNumImg = Scene.loadNewImage('./assets/img/4.png');
             }
-            else if (this.userData.getHintAmount() === 5) {
+            else if (this.player.getUserData().getHintAmount() === 5) {
                 this.hintNumImg = Scene.loadNewImage('./assets/img/5.png');
             }
             else {
                 this.hintNumImg = Scene.loadNewImage('./assets/img/0.png');
             }
-            if (this.userData.getCandyAmount() === 1) {
+            if (this.player.getUserData().getCandyAmount() === 1) {
                 this.candyNumImg = Scene.loadNewImage('./assets/img/1.png');
             }
-            else if (this.userData.getHintAmount() === 2) {
+            else if (this.player.getUserData().getCandyAmount() === 2) {
                 this.candyNumImg = Scene.loadNewImage('./assets/img/2.png');
             }
-            else if (this.userData.getHintAmount() === 3) {
+            else if (this.player.getUserData().getCandyAmount() === 3) {
                 this.candyNumImg = Scene.loadNewImage('./assets/img/3.png');
             }
-            else if (this.userData.getHintAmount() === 4) {
+            else if (this.player.getUserData().getCandyAmount() === 4) {
                 this.candyNumImg = Scene.loadNewImage('./assets/img/4.png');
             }
-            else if (this.userData.getHintAmount() === 5) {
+            else if (this.player.getUserData().getCandyAmount() === 5) {
                 this.candyNumImg = Scene.loadNewImage('./assets/img/5.png');
             }
             else {
@@ -104,6 +99,7 @@ export default class Room extends Scene {
             this.ctx.drawImage(this.hintNumImg, 489, 670);
             this.ctx.drawImage(this.candyNumImg, 639, 670);
         }
+        console.log(this.player.getXPos(), this.player.getYPos());
         this.player.draw(this.ctx);
     }
 }

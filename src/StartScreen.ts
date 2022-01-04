@@ -15,7 +15,6 @@ export default class StartScreen extends Screen {
    */
   public constructor(canvas: HTMLCanvasElement) {
     super(canvas, './assets/img/school-front.png');
-
     this.music = new Audio('./assets/sound/StartScreen.mp3');
     this.music.play();
 

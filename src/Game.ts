@@ -1,4 +1,5 @@
 import GameLoop from './GameLoop.js';
+import Player from './Player.js';
 import StartScreen from './StartScreen.js';
 import UserData from './UserData.js';
 
@@ -9,6 +10,8 @@ export default class Game {
   private gameLoop: GameLoop;
 
   private userData: UserData;
+
+  private player: Player;
 
   // private player: Player;
 
@@ -21,12 +24,8 @@ export default class Game {
   public constructor(canvas: HTMLCanvasElement) {
     this.canvas = canvas;
 
-    this.userData = new UserData();
-
     this.canvas.width = window.innerWidth;
     this.canvas.height = window.innerHeight;
-
-    // this.player = new Player(this.canvas);
 
     // Start the game cycle
     this.gameLoop = new GameLoop();

@@ -4,10 +4,8 @@ export default class DialogScreen extends Screen {
     keyboard;
     previousScene;
     dialogBubbles;
-    player;
-    constructor(canvas, previousScene, player) {
+    constructor(canvas, previousScene) {
         super(canvas, './assets/img/dialogscreen.jpg');
-        this.player = player;
         this.keyboard = new KeyListener();
         this.previousScene = previousScene;
         this.dialogBubbles = [];

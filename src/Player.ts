@@ -1,5 +1,6 @@
 import KeyListener from './KeyListener.js';
 import GameEntity from './GameEntity.js';
+import UserData from './UserData.js';
 
 export default class Player extends GameEntity {
   private xVelocity: number;
@@ -9,6 +10,8 @@ export default class Player extends GameEntity {
   private keyboard: KeyListener;
 
   private walk: HTMLAudioElement;
+
+  private userData: UserData;
 
   /**
    * Create new player
@@ -22,6 +25,8 @@ export default class Player extends GameEntity {
       canvas.height / 2,
     );
 
+    this.userData = new UserData();
+
     // this.setYPos(this.getYPos() - this.getImage().height);
     this.xVelocity = 3;
     this.yVelocity = 3;
@@ -31,22 +36,6 @@ export default class Player extends GameEntity {
 
     console.log('creating player');
   }
-
-  /*
-  public showHideMenu(): void {
-    // console.log('checking if M is pressed');
-    if (this.keyboard.isKeyDown(KeyListener.KEY_M)) {
-      // console.log(' M is pressed');
-      if (this.isMenuShowing) {
-        this.isMenuShowing = false;
-        console.log(' should hide');
-      } else if (!this.isMenuShowing) {
-        this.isMenuShowing = true;
-        console.log(' should show');
-      }
-    }
-  }
-  */
 
   /**
    * Moves the player depending on which arrow key is pressed. Player is bound
@@ -130,5 +119,9 @@ export default class Player extends GameEntity {
       return true;
     }
     return false;
+  }
+
+  public getUserData(): UserData {
+    return this.userData;
   }
 }

@@ -7,11 +7,16 @@ import ClassRoom1 from './Classroom1.js';
 import DialogScreen from './DialogScreen.js';
 import EasyHallway from './EasyHallway.js';
 import DifficultHallway from './DifficultHallway.js';
+import Player from './Player.js';
 export default class MainHallway extends Room {
     constructor(canvas) {
         super(canvas, './assets/img/hallway.png');
         this.setXPos(50);
         this.setYPos(30);
+        this.player = (new Player(this.canvas));
+        this.player.setXPos(729);
+        this.player.setYPos(488);
+        this.player.setImage('./assets/img/player-boy-up.png');
         this.collectibles = [];
         this.npcs = [];
         this.doors = [];
@@ -36,12 +41,13 @@ export default class MainHallway extends Room {
                 if (this.player.collidesWith(item)) {
                     this.collectCollectibles();
                     if (item instanceof Candy) {
-                        this.userData.setCandyAmount(this.userData.getCandyAmount() + 1);
-                        console.log(this.userData.getCandyAmount());
+                        this.player.getUserData()
+                            .setCandyAmount(this.player.getUserData().getCandyAmount() + 1);
+                        console.log(this.player.getUserData().getCandyAmount());
                     }
                     else if (item instanceof Hint) {
-                        this.userData.setHintAmount(this.userData.getHintAmount() + 1);
-                        console.log(this.userData.getHintAmount());
+                        this.player.getUserData().setHintAmount(this.player.getUserData().getHintAmount() + 1);
+                        console.log(this.player.getUserData().getHintAmount());
                     }
                 }
             });
@@ -49,10 +55,7 @@ export default class MainHallway extends Room {
                 if (this.player.collidesWith(this.doors[i])) {
                     console.log('interact with door');
                     this.doorOpen.play();
-                    this.player.setXPos(726);
-                    this.player.setYPos(190);
-                    this.player.setImage('./assets/img/player-boy-standing.png');
-                    return new ClassRoom1(this.canvas, this);
+                    return new ClassRoom1(this.canvas, this, this.player);
                 }
             }
             for (let i = 0; i < this.npcs.length; i += 1) {
@@ -60,15 +63,15 @@ export default class MainHallway extends Room {
                     console.log('interact with npc');
                     this.player.setXPos(this.player.getXPos() - 50);
                     this.player.setYPos(this.player.getYPos() + 50);
-                    return new DialogScreen(this.canvas, this, this.player);
+                    return new DialogScreen(this.canvas, this);
                 }
             }
         }
         if (this.player.getXPos() <= 45 && this.player.getYPos() <= 364.5) {
-            return new EasyHallway(this.canvas, this);
+            return new EasyHallway(this.canvas, this, this.player);
         }
         if (this.player.getXPos() >= 1410 && this.player.getYPos() <= 376) {
-            return new DifficultHallway(this.canvas, this);
+            return new DifficultHallway(this.canvas, this, this.player);
         }
         return null;
     }

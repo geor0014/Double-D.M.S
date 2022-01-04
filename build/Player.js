@@ -1,12 +1,15 @@
 import KeyListener from './KeyListener.js';
 import GameEntity from './GameEntity.js';
+import UserData from './UserData.js';
 export default class Player extends GameEntity {
     xVelocity;
     yVelocity;
     keyboard;
     walk;
+    userData;
     constructor(canvas) {
         super('./assets/img/player-boy-up.png', canvas.width / 2, canvas.height / 2);
+        this.userData = new UserData();
         this.xVelocity = 3;
         this.yVelocity = 3;
         this.keyboard = new KeyListener();
@@ -57,6 +60,9 @@ export default class Player extends GameEntity {
             return true;
         }
         return false;
+    }
+    getUserData() {
+        return this.userData;
     }
 }
 //# sourceMappingURL=Player.js.map
