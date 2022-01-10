@@ -1,1 +1,1 @@
-{"version":3,"file":"Candy.js","sourceRoot":"","sources":["../src/Candy.ts"],"names":[],"mappings":"AAAA,OAAO,UAAU,MAAM,iBAAiB,CAAC;AAEzC,MAAM,CAAC,OAAO,OAAO,KAAM,SAAQ,UAAU;IAO3C,YAAY,IAAY,EAAE,IAAY;QACpC,KAAK,CAAC,wBAAwB,EAAE,IAAI,EAAE,IAAI,CAAC,CAAC;IAC9C,CAAC;CACF"}
+{"version":3,"file":"Candy.js","sourceRoot":"","sources":["../src/Candy.ts"],"names":[],"mappings":"AAAA,OAAO,YAAY,MAAM,mBAAmB,CAAC;AAE7C,MAAM,CAAC,OAAO,OAAO,KAAM,SAAQ,YAAY;IAO7C,YAAY,IAAY,EAAE,IAAY;QACpC,KAAK,CAAC,wBAAwB,EAAE,IAAI,EAAE,IAAI,CAAC,CAAC;IAC9C,CAAC;CACF"}

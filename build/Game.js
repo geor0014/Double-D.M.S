@@ -3,8 +3,6 @@ import StartScreen from './StartScreen.js';
 export default class Game {
     canvas;
     gameLoop;
-    userData;
-    player;
     constructor(canvas) {
         this.canvas = canvas;
         this.canvas.width = window.innerWidth;
