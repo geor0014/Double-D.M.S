@@ -57,7 +57,7 @@ export default class ClassRoom1 extends Room {
                 }
             }
             if (this.player.collidesWith(this.computer)) {
-                return new QuestionScreen(this.canvas, this, this.questions[0]);
+                return new QuestionScreen(this.canvas, this, this.questions);
             }
         }
         return null;
