@@ -2,7 +2,6 @@ import KeyListener from './KeyListener.js';
 import Screen from './Screen.js';
 import Scene from './Scene.js';
 import MainHallway from './MainHallway.js';
-import Player from './Player.js';
 
 export default class DialogScreen extends Screen {
   private keyboard: KeyListener;

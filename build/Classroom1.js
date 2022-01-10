@@ -4,6 +4,7 @@ import Candy from './Candy.js';
 import Hint from './Hint.js';
 import Computer from './Computer.js';
 import Question from './Question.js';
+import QuestionScreen from './QuestionScreen.js';
 export default class ClassRoom1 extends Room {
     previousScene;
     computer;
@@ -24,8 +25,8 @@ export default class ClassRoom1 extends Room {
         this.player.setXPos(861);
         this.player.setYPos(365);
         this.player.setImage('./assets/img/player-boy-standing.png');
-        this.questions.push(new Question('', '', '', ''));
-        this.questions.push(new Question('', '', '', ''));
+        this.questions.push(new Question('text question 1', 'right answer 1', 'wrong answer 1.1', 'wrong answer 1.2'));
+        this.questions.push(new Question('text question 2', 'right answer 2', 'wrong answer 2.1', 'wrong answer 2.2'));
     }
     update(elapsed) {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -54,6 +55,9 @@ export default class ClassRoom1 extends Room {
                     this.player.setImage('./assets/img/player-boy-standing.png');
                     return this.previousScene;
                 }
+            }
+            if (this.player.collidesWith(this.computer)) {
+                return new QuestionScreen(this.canvas, this, this.questions[0]);
             }
         }
         return null;

@@ -3,22 +3,31 @@ export default class Question {
 
   private rightAnswer: string;
 
-  private wrongAnswer1: string;
-
-  private wrongAnswer2: string;
+  private wrongAnswers: string[] = [];
 
   private rAnsPosition: number;
 
   constructor(qText: string, rAns: string, wAns1: string, wAns2: string) {
     this.questionText = qText;
     this.rightAnswer = rAns;
-    this.wrongAnswer1 = wAns1;
-    this.wrongAnswer2 = wAns2;
-    this.rAnsPosition = Question.randomNumber(1, 3);
+    this.wrongAnswers.push(wAns1, wAns2);
+    this.rAnsPosition = Question.randomNumber(0, 2);
   }
 
   public getRPos(): number {
     return this.rAnsPosition;
+  }
+
+  public getQTxt(): string {
+    return this.questionText;
+  }
+
+  public getRAns(): string {
+    return this.rightAnswer;
+  }
+
+  public getWAns(i : number): string {
+    return this.wrongAnswers[i];
   }
 
   /**

@@ -9,6 +9,7 @@ import Hint from './Hint.js';
 import Computer from './Computer.js';
 
 import Question from './Question.js';
+import QuestionScreen from './QuestionScreen.js';
 
 export default class ClassRoom1 extends Room {
   private previousScene: Scene;
@@ -52,9 +53,9 @@ export default class ClassRoom1 extends Room {
     this.player.setYPos(365);
     this.player.setImage('./assets/img/player-boy-standing.png');
 
-   // creating questions for this classroom
-     this.questions.push(new Question('', '', '', ''));
-     this.questions.push(new Question('', '', '', ''));
+    // creating questions for this classroom
+    this.questions.push(new Question('text question 1', 'right answer 1', 'wrong answer 1.1', 'wrong answer 1.2'));
+    this.questions.push(new Question('text question 2', 'right answer 2', 'wrong answer 2.1', 'wrong answer 2.2'));
   }
 
   /**
@@ -75,7 +76,7 @@ export default class ClassRoom1 extends Room {
           this.collectCollectibles();
           if (item instanceof Candy) {
             this.player.getUserData().setCandyAmount(this.player.getUserData().getCandyAmount()
-            + 1);
+              + 1);
             console.log(this.player.getUserData().getCandyAmount());
           } else if (item instanceof Hint) {
             this.player.getUserData().setHintAmount(this.player.getUserData().getHintAmount() + 1);
@@ -94,6 +95,11 @@ export default class ClassRoom1 extends Room {
           this.player.setImage('./assets/img/player-boy-standing.png');
           return this.previousScene;
         }
+      }
+
+      if (this.player.collidesWith(this.computer)) {
+        // present question screen
+          return new QuestionScreen(this.canvas, this, this.questions[0]);
       }
     }
 
