@@ -123,7 +123,7 @@ export default abstract class Room extends Scene {
    * Draw all the necessary items to the screen
    */
   public render(): void {
-    this.draw(this.ctx);
+    // this.draw(this.ctx);
     for (let i = 0; i < this.collectibles.length; i++) {
       // console.log('drawing collectible');
       this.collectibles[i].draw(this.ctx);

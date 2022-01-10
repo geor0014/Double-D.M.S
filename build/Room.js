@@ -48,7 +48,6 @@ export default class Room extends Scene {
         ctx.drawImage(this.img, this.xPos, this.yPos);
     }
     render() {
-        this.draw(this.ctx);
         for (let i = 0; i < this.collectibles.length; i++) {
             this.collectibles[i].draw(this.ctx);
         }

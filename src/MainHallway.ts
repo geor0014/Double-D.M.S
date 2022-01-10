@@ -10,6 +10,7 @@ import DialogScreen from './DialogScreen.js';
 import EasyHallway from './EasyHallway.js';
 import DifficultHallway from './DifficultHallway.js';
 import Player from './Player.js';
+import HintScreen from './HintScreen.js';
 
 export default class MainHallway extends Room {
   /**
@@ -62,6 +63,17 @@ export default class MainHallway extends Room {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     // console.log(this.player.getXPos(), this.player.getYPos());
 
+    if (
+      this.player.isReadingHint() &&
+      this.player.getUserData().getHintAmount() > 0
+    ) {
+      this.player
+        .getUserData()
+        .setHintAmount(this.player.getUserData().getHintAmount() - 1);
+      console.log(this.player.getUserData().getHintAmount());
+      return new HintScreen(this.canvas, this, 2);
+    }
+
     if (this.player.isInteractingMenu()) {
       if (this.isMenuShowing === true) {
         this.isMenuShowing = false;
@@ -112,6 +124,11 @@ export default class MainHallway extends Room {
     }
 
     return null;
+  }
+
+  public render(): void {
+    this.draw(this.ctx);
+    super.render();
   }
 
 /*

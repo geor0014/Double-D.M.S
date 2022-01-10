@@ -92,6 +92,18 @@ export default class Player extends GameEntity {
   }
 
   /**
+   * checks if player is reading a hint
+   *
+   * @returns boolean
+   */
+  public isReadingHint(): boolean {
+    if (this.keyboard.isKeyDown(KeyListener.KEY_H)) {
+      return true;
+    }
+    return false;
+  }
+
+  /**
    * this method checks if the player is trying to interact
    *
    * @returns true or false

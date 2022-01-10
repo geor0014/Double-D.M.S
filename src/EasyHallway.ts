@@ -38,6 +38,11 @@ export default class EasyHallway extends Room {
     return null;
   }
 
+  public render(): void {
+    this.draw(this.ctx);
+    super.render();
+  }
+
   /*
   public drawRectengles(): void {
     this.ctx.beginPath();

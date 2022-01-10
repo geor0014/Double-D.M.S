@@ -24,5 +24,9 @@ export default class EasyHallway extends Room {
         }
         return null;
     }
+    render() {
+        this.draw(this.ctx);
+        super.render();
+    }
 }
 //# sourceMappingURL=EasyHallway.js.map

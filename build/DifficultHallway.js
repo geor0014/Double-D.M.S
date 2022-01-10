@@ -23,5 +23,9 @@ export default class DifficultHallway extends Room {
         }
         return null;
     }
+    render() {
+        this.draw(this.ctx);
+        super.render();
+    }
 }
 //# sourceMappingURL=DifficultHallway.js.map

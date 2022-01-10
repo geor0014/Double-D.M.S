@@ -2,8 +2,12 @@ import Door from './Door.js';
 import Room from './Room.js';
 import Candy from './Candy.js';
 import Hint from './Hint.js';
+import Computer from './Computer.js';
+import Question from './Question.js';
 export default class ClassRoom1 extends Room {
     previousScene;
+    computer;
+    questions;
     constructor(canvas, previousScene, player) {
         super(canvas, './assets/img/classroom.png');
         this.previousScene = previousScene;
@@ -13,11 +17,15 @@ export default class ClassRoom1 extends Room {
         this.collectibles = [];
         this.npcs = [];
         this.doors = [];
+        this.questions = [];
+        this.computer = new Computer(618, 113);
         this.collectibles.push(new Candy(this.canvas.width / 2, this.canvas.height / 2));
         this.doors.push(new Door('./assets/img/door1.png', 864, 300));
         this.player.setXPos(861);
         this.player.setYPos(365);
         this.player.setImage('./assets/img/player-boy-standing.png');
+        this.questions.push(new Question('', '', '', ''));
+        this.questions.push(new Question('', '', '', ''));
     }
     update(elapsed) {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -26,7 +34,8 @@ export default class ClassRoom1 extends Room {
                 if (this.player.collidesWith(item)) {
                     this.collectCollectibles();
                     if (item instanceof Candy) {
-                        this.player.getUserData().setCandyAmount(this.player.getUserData().getCandyAmount() + 1);
+                        this.player.getUserData().setCandyAmount(this.player.getUserData().getCandyAmount()
+                            + 1);
                         console.log(this.player.getUserData().getCandyAmount());
                     }
                     else if (item instanceof Hint) {
@@ -48,6 +57,11 @@ export default class ClassRoom1 extends Room {
             }
         }
         return null;
+    }
+    render() {
+        this.draw(this.ctx);
+        this.computer.draw(this.ctx);
+        super.render();
     }
 }
 //# sourceMappingURL=Classroom1.js.map

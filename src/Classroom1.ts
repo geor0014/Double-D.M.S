@@ -6,9 +6,16 @@ import Player from './Player.js';
 
 import Candy from './Candy.js';
 import Hint from './Hint.js';
+import Computer from './Computer.js';
+
+import Question from './Question.js';
 
 export default class ClassRoom1 extends Room {
   private previousScene: Scene;
+
+  private computer: Computer;
+
+  private questions: Question[];
 
   /**
    * creats a new classroom
@@ -29,15 +36,25 @@ export default class ClassRoom1 extends Room {
     this.collectibles = [];
     this.npcs = [];
     this.doors = [];
+    this.questions = [];
+    this.computer = new Computer(618, 113);
 
+    // creating collectibles in the classroom
     this.collectibles.push(
       new Candy(this.canvas.width / 2, this.canvas.height / 2),
     );
 
+    // creating the door for the classroom
     this.doors.push(new Door('./assets/img/door1.png', 864, 300));
+
+    // setting player starter position and image in the classroom
     this.player.setXPos(861);
     this.player.setYPos(365);
     this.player.setImage('./assets/img/player-boy-standing.png');
+
+   // creating questions for this classroom
+     this.questions.push(new Question('', '', '', ''));
+     this.questions.push(new Question('', '', '', ''));
   }
 
   /**
@@ -57,7 +74,8 @@ export default class ClassRoom1 extends Room {
         if (this.player.collidesWith(item)) {
           this.collectCollectibles();
           if (item instanceof Candy) {
-            this.player.getUserData().setCandyAmount(this.player.getUserData().getCandyAmount() + 1);
+            this.player.getUserData().setCandyAmount(this.player.getUserData().getCandyAmount()
+            + 1);
             console.log(this.player.getUserData().getCandyAmount());
           } else if (item instanceof Hint) {
             this.player.getUserData().setHintAmount(this.player.getUserData().getHintAmount() + 1);
@@ -80,5 +98,11 @@ export default class ClassRoom1 extends Room {
     }
 
     return null;
+  }
+
+  public render(): void {
+    this.draw(this.ctx);
+    this.computer.draw(this.ctx);
+    super.render();
   }
 }

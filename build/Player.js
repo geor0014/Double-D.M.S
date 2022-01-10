@@ -46,6 +46,12 @@ export default class Player extends GameEntity {
         }
         return false;
     }
+    isReadingHint() {
+        if (this.keyboard.isKeyDown(KeyListener.KEY_H)) {
+            return true;
+        }
+        return false;
+    }
     isInteracting() {
         if (this.keyboard.isKeyDown(KeyListener.KEY_SPACE)) {
             return true;
