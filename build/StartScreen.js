@@ -7,7 +7,6 @@ export default class StartScreen extends Screen {
     constructor(canvas) {
         super(canvas, './assets/img/school-front.png');
         this.music = new Audio('./assets/sound/StartScreen.mp3');
-        this.music.play();
         this.keyListener = new KeyListener();
         this.setXPos(this.canvas.width / 4);
         this.setYPos(this.canvas.height / 4 - 50);

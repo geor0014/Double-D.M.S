@@ -3,18 +3,18 @@ import Door from './Door.js';
 import Npc from './Npc.js';
 import Candy from './Candy.js';
 import Hint from './Hint.js';
-import ClassRoom1 from './Classroom1.js';
 import DialogScreen from './DialogScreen.js';
 import EasyHallway from './EasyHallway.js';
 import DifficultHallway from './DifficultHallway.js';
 import Player from './Player.js';
 import HintScreen from './HintScreen.js';
+import BossRoom from './BoosRoom.js';
 export default class MainHallway extends Room {
     constructor(canvas) {
         super(canvas, './assets/img/hallway.png');
         this.setXPos(50);
         this.setYPos(30);
-        this.player = (new Player(this.canvas));
+        this.player = new Player(this.canvas);
         this.player.setXPos(729);
         this.player.setYPos(488);
         this.player.setImage('./assets/img/player-boy-up.png');
@@ -50,12 +50,15 @@ export default class MainHallway extends Room {
                 if (this.player.collidesWith(item)) {
                     this.collectCollectibles();
                     if (item instanceof Candy) {
-                        this.player.getUserData()
+                        this.player
+                            .getUserData()
                             .setCandyAmount(this.player.getUserData().getCandyAmount() + 1);
                         console.log(this.player.getUserData().getCandyAmount());
                     }
                     else if (item instanceof Hint) {
-                        this.player.getUserData().setHintAmount(this.player.getUserData().getHintAmount() + 1);
+                        this.player
+                            .getUserData()
+                            .setHintAmount(this.player.getUserData().getHintAmount() + 1);
                         console.log(this.player.getUserData().getHintAmount());
                     }
                 }
@@ -64,7 +67,7 @@ export default class MainHallway extends Room {
                 if (this.player.collidesWith(this.doors[i])) {
                     console.log('interact with door');
                     this.doorOpen.play();
-                    return new ClassRoom1(this.canvas, this, this.player);
+                    return new BossRoom(this.canvas, this, this.player);
                 }
             }
             for (let i = 0; i < this.npcs.length; i += 1) {
