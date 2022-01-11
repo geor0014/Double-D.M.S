@@ -5,8 +5,7 @@ import Hint from './Hint.js';
 import Computer from './Computer.js';
 import Question from './Question.js';
 import QuestionScreen from './QuestionScreen.js';
-import HintScreen from './HintScreen.js';
-export default class ClassRoom1 extends Room {
+export default class ClassRoom2 extends Room {
     previousScene;
     computer;
     questions;
@@ -28,26 +27,9 @@ export default class ClassRoom1 extends Room {
         this.player.setImage('./assets/img/player-boy-standing.png');
         this.questions.push(new Question('text question 1', 'right answer 1', 'wrong answer 1.1', 'wrong answer 1.2'));
         this.questions.push(new Question('text question 2', 'right answer 2', 'wrong answer 2.1', 'wrong answer 2.2'));
-        console.log('CLASSROOM1');
     }
     update(elapsed) {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        if (this.player.isReadingHint() &&
-            this.player.getUserData().getHintAmount() > 0) {
-            this.player
-                .getUserData()
-                .setHintAmount(this.player.getUserData().getHintAmount() - 1);
-            console.log(this.player.getUserData().getHintAmount());
-            return new HintScreen(this.canvas, this, 2);
-        }
-        if (this.player.isInteractingMenu()) {
-            if (this.isMenuShowing === true) {
-                this.isMenuShowing = false;
-            }
-            else if (this.isMenuShowing === false) {
-                this.isMenuShowing = true;
-            }
-        }
         if (this.player.isInteracting()) {
             this.collectibles.forEach((item) => {
                 if (this.player.collidesWith(item)) {
@@ -71,7 +53,7 @@ export default class ClassRoom1 extends Room {
                     console.log('interact with door');
                     this.doorClose.play();
                     console.log(this.previousScene);
-                    this.player.setXPos(732);
+                    this.player.setXPos(729);
                     this.player.setYPos(200);
                     this.player.setImage('./assets/img/player-boy-standing.png');
                     return this.previousScene;
@@ -89,4 +71,4 @@ export default class ClassRoom1 extends Room {
         super.render();
     }
 }
-//# sourceMappingURL=Classroom1.js.map
+//# sourceMappingURL=Classroom2%20copy.js.map

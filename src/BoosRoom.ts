@@ -13,7 +13,7 @@ import QuestionScreen from './QuestionScreen.js';
 
 import HintScreen from './HintScreen.js';
 
-export default class ClassRoom1 extends Room {
+export default class BossRoom extends Room {
   private previousScene: Scene;
 
   private computer: Computer;
@@ -32,7 +32,7 @@ export default class ClassRoom1 extends Room {
     previousScene: Scene,
     player: Player
   ) {
-    super(canvas, './assets/img/classroom.png');
+    super(canvas, './assets/img/boss-room.png');
     this.previousScene = previousScene;
 
     this.player = player;

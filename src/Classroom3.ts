@@ -12,8 +12,7 @@ import Question from './Question.js';
 import QuestionScreen from './QuestionScreen.js';
 
 import HintScreen from './HintScreen.js';
-
-export default class ClassRoom1 extends Room {
+export default class ClassRoom3 extends Room {
   private previousScene: Scene;
 
   private computer: Computer;
@@ -76,8 +75,7 @@ export default class ClassRoom1 extends Room {
         'wrong answer 2.2'
       )
     );
-
-    console.log('CLASSROOM1');
+    console.log('CLASSROOM3');
   }
 
   /**
@@ -139,7 +137,7 @@ export default class ClassRoom1 extends Room {
           console.log('interact with door');
           this.doorClose.play();
           console.log(this.previousScene);
-          this.player.setXPos(732);
+          this.player.setXPos(332);
           this.player.setYPos(200);
           this.player.setImage('./assets/img/player-boy-standing.png');
           return this.previousScene;

@@ -5,12 +5,12 @@ import Npc from './Npc.js';
 import Candy from './Candy.js';
 import Hint from './Hint.js';
 import Scene from './Scene.js';
-import ClassRoom1 from './Classroom1.js';
 import DialogScreen from './DialogScreen.js';
 import EasyHallway from './EasyHallway.js';
 import DifficultHallway from './DifficultHallway.js';
 import Player from './Player.js';
 import HintScreen from './HintScreen.js';
+import BossRoom from './BoosRoom.js';
 
 export default class MainHallway extends Room {
   /**
@@ -23,7 +23,7 @@ export default class MainHallway extends Room {
     this.setXPos(50);
     this.setYPos(30);
 
-    this.player = (new Player(this.canvas));
+    this.player = new Player(this.canvas);
     this.player.setXPos(729);
     this.player.setYPos(488);
     this.player.setImage('./assets/img/player-boy-up.png');
@@ -33,10 +33,10 @@ export default class MainHallway extends Room {
     this.doors = [];
 
     this.collectibles.push(
-      new Candy(this.canvas.width / 2, this.canvas.height / 2),
+      new Candy(this.canvas.width / 2, this.canvas.height / 2)
     );
     this.collectibles.push(
-      new Hint(this.canvas.width / 3, this.canvas.height / 1.5),
+      new Hint(this.canvas.width / 3, this.canvas.height / 1.5)
     );
 
     this.doors.push(new Door('./assets/img/door1.png', 732, 130));
@@ -45,8 +45,8 @@ export default class MainHallway extends Room {
       new Npc(
         './assets/img/teacher-front.png',
         this.canvas.width / 2,
-        this.canvas.height - 500,
-      ),
+        this.canvas.height - 500
+      )
     );
     console.log('hi');
   }
@@ -83,28 +83,38 @@ export default class MainHallway extends Room {
     }
 
     if (this.player.isInteracting()) {
+      // COLLECTIBLES
       this.collectibles.forEach((item) => {
         if (this.player.collidesWith(item)) {
           this.collectCollectibles();
           if (item instanceof Candy) {
+<<<<<<< HEAD
             this.player.getUserData()
+=======
+            this.player
+              .getUserData()
+>>>>>>> ef06f21671bb8afee636a9c99c0e3594c94e9df5
               .setCandyAmount(this.player.getUserData().getCandyAmount() + 1);
             console.log(this.player.getUserData().getCandyAmount());
           } else if (item instanceof Hint) {
-            this.player.getUserData().setHintAmount(this.player.getUserData().getHintAmount() + 1);
+            this.player
+              .getUserData()
+              .setHintAmount(this.player.getUserData().getHintAmount() + 1);
             console.log(this.player.getUserData().getHintAmount());
           }
         }
       });
 
+      // WITH DOORS
       for (let i = 0; i < this.doors.length; i += 1) {
         if (this.player.collidesWith(this.doors[i])) {
           console.log('interact with door');
           this.doorOpen.play();
-          return new ClassRoom1(this.canvas, this, this.player);
+          return new BossRoom(this.canvas, this, this.player);
         }
       }
 
+      // WITH NPC
       for (let i = 0; i < this.npcs.length; i += 1) {
         if (this.player.collidesWith(this.npcs[i])) {
           console.log('interact with npc');
@@ -132,6 +142,7 @@ export default class MainHallway extends Room {
   }
 
   /*
+<<<<<<< HEAD
     public drawRectengles(): void {
       // Left rect
       this.ctx.beginPath();
@@ -144,4 +155,18 @@ export default class MainHallway extends Room {
       this.ctx.stroke();
     }
     */
+=======
+  public drawRectengles(): void {
+    // Left rect
+    this.ctx.beginPath();
+    this.ctx.rect(45, 364.5, 50, 50);
+    this.ctx.stroke();
+
+    // Right rect
+    this.ctx.beginPath();
+    this.ctx.rect(1410, 376, 50, 50);
+    this.ctx.stroke();
+  }
+  */
+>>>>>>> ef06f21671bb8afee636a9c99c0e3594c94e9df5
 }

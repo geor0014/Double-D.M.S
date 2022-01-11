@@ -13,7 +13,7 @@ import QuestionScreen from './QuestionScreen.js';
 
 import HintScreen from './HintScreen.js';
 
-export default class ClassRoom1 extends Room {
+export default class ClassRoom6 extends Room {
   private previousScene: Scene;
 
   private computer: Computer;
@@ -76,8 +76,7 @@ export default class ClassRoom1 extends Room {
         'wrong answer 2.2'
       )
     );
-
-    console.log('CLASSROOM1');
+    console.log('door6');
   }
 
   /**
