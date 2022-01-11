@@ -88,7 +88,7 @@ export default class MainHallway extends Room {
           this.collectCollectibles();
           if (item instanceof Candy) {
             this.player.getUserData()
-            .setCandyAmount(this.player.getUserData().getCandyAmount() + 1);
+              .setCandyAmount(this.player.getUserData().getCandyAmount() + 1);
             console.log(this.player.getUserData().getCandyAmount());
           } else if (item instanceof Hint) {
             this.player.getUserData().setHintAmount(this.player.getUserData().getHintAmount() + 1);
@@ -131,17 +131,17 @@ export default class MainHallway extends Room {
     super.render();
   }
 
-/*
-  public drawRectengles(): void {
-    // Left rect
-    this.ctx.beginPath();
-    this.ctx.rect(45, 364.5, 50, 50);
-    this.ctx.stroke();
+  /*
+    public drawRectengles(): void {
+      // Left rect
+      this.ctx.beginPath();
+      this.ctx.rect(45, 364.5, 50, 50);
+      this.ctx.stroke();
 
-    // Right rect
-    this.ctx.beginPath();
-    this.ctx.rect(1410, 376, 50, 50);
-    this.ctx.stroke();
-  }
-  */
+      // Right rect
+      this.ctx.beginPath();
+      this.ctx.rect(1410, 376, 50, 50);
+      this.ctx.stroke();
+    }
+    */
 }
