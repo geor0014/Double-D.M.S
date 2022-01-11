@@ -10,7 +10,7 @@ import EasyHallway from './EasyHallway.js';
 import DifficultHallway from './DifficultHallway.js';
 import Player from './Player.js';
 import HintScreen from './HintScreen.js';
-import BossRoom from './BoosRoom.js';
+import BossRoom from './BossRoom.js';
 
 export default class MainHallway extends Room {
   /**
@@ -59,8 +59,7 @@ export default class MainHallway extends Room {
    * @returns a scene or null
    */
   public update(elapsed: number): Scene {
-    // Clear the screen
-    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.generalInteraction();
     // console.log(this.player.getXPos(), this.player.getYPos());
 
     if (
@@ -74,37 +73,7 @@ export default class MainHallway extends Room {
       return new HintScreen(this.canvas, this, 2);
     }
 
-    if (this.player.isInteractingMenu()) {
-      if (this.isMenuShowing === true) {
-        this.isMenuShowing = false;
-      } else if (this.isMenuShowing === false) {
-        this.isMenuShowing = true;
-      }
-    }
-
     if (this.player.isInteracting()) {
-      // COLLECTIBLES
-      this.collectibles.forEach((item) => {
-        if (this.player.collidesWith(item)) {
-          this.collectCollectibles();
-          if (item instanceof Candy) {
-<<<<<<< HEAD
-            this.player.getUserData()
-=======
-            this.player
-              .getUserData()
->>>>>>> ef06f21671bb8afee636a9c99c0e3594c94e9df5
-              .setCandyAmount(this.player.getUserData().getCandyAmount() + 1);
-            console.log(this.player.getUserData().getCandyAmount());
-          } else if (item instanceof Hint) {
-            this.player
-              .getUserData()
-              .setHintAmount(this.player.getUserData().getHintAmount() + 1);
-            console.log(this.player.getUserData().getHintAmount());
-          }
-        }
-      });
-
       // WITH DOORS
       for (let i = 0; i < this.doors.length; i += 1) {
         if (this.player.collidesWith(this.doors[i])) {
@@ -142,7 +111,6 @@ export default class MainHallway extends Room {
   }
 
   /*
-<<<<<<< HEAD
     public drawRectengles(): void {
       // Left rect
       this.ctx.beginPath();
@@ -155,18 +123,4 @@ export default class MainHallway extends Room {
       this.ctx.stroke();
     }
     */
-=======
-  public drawRectengles(): void {
-    // Left rect
-    this.ctx.beginPath();
-    this.ctx.rect(45, 364.5, 50, 50);
-    this.ctx.stroke();
-
-    // Right rect
-    this.ctx.beginPath();
-    this.ctx.rect(1410, 376, 50, 50);
-    this.ctx.stroke();
-  }
-  */
->>>>>>> ef06f21671bb8afee636a9c99c0e3594c94e9df5
 }

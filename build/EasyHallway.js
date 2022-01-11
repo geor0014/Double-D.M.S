@@ -4,8 +4,6 @@ import ClassRoom1 from './Classroom1.js';
 import ClassRoom2 from './Classroom2.js';
 import ClassRoom3 from './Classroom3.js';
 import HintScreen from './HintScreen.js';
-import Hint from './Hint.js';
-import Candy from './Candy.js';
 import DialogScreen from './DialogScreen.js';
 export default class EasyHallway extends Room {
     mainHallway;
@@ -25,7 +23,7 @@ export default class EasyHallway extends Room {
         this.player.setXPos(this.canvas.width / 2);
     }
     update(elapsed) {
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.generalInteraction();
         if (this.player.getXPos() >= 1450 && this.player.getYPos() <= 433) {
             this.player.setXPos(132);
             this.player.setYPos(371);
@@ -41,32 +39,7 @@ export default class EasyHallway extends Room {
             console.log(this.player.getUserData().getHintAmount());
             return new HintScreen(this.canvas, this, 2);
         }
-        if (this.player.isInteractingMenu()) {
-            if (this.isMenuShowing === true) {
-                this.isMenuShowing = false;
-            }
-            else if (this.isMenuShowing === false) {
-                this.isMenuShowing = true;
-            }
-        }
         if (this.player.isInteracting()) {
-            this.collectibles.forEach((item) => {
-                if (this.player.collidesWith(item)) {
-                    this.collectCollectibles();
-                    if (item instanceof Candy) {
-                        this.player
-                            .getUserData()
-                            .setCandyAmount(this.player.getUserData().getCandyAmount() + 1);
-                        console.log(this.player.getUserData().getCandyAmount());
-                    }
-                    else if (item instanceof Hint) {
-                        this.player
-                            .getUserData()
-                            .setHintAmount(this.player.getUserData().getHintAmount() + 1);
-                        console.log(this.player.getUserData().getHintAmount());
-                    }
-                }
-            });
             for (let i = 0; i < this.doors.length; i += 1) {
                 if (this.player.collidesWith(this.doors[i])) {
                     console.log('interact with door');

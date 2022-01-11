@@ -8,7 +8,7 @@ import EasyHallway from './EasyHallway.js';
 import DifficultHallway from './DifficultHallway.js';
 import Player from './Player.js';
 import HintScreen from './HintScreen.js';
-import BossRoom from './BoosRoom.js';
+import BossRoom from './BossRoom.js';
 export default class MainHallway extends Room {
     constructor(canvas) {
         super(canvas, './assets/img/hallway.png');
@@ -28,7 +28,7 @@ export default class MainHallway extends Room {
         console.log('hi');
     }
     update(elapsed) {
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.generalInteraction();
         if (this.player.isReadingHint() &&
             this.player.getUserData().getHintAmount() > 0) {
             this.player
@@ -37,32 +37,7 @@ export default class MainHallway extends Room {
             console.log(this.player.getUserData().getHintAmount());
             return new HintScreen(this.canvas, this, 2);
         }
-        if (this.player.isInteractingMenu()) {
-            if (this.isMenuShowing === true) {
-                this.isMenuShowing = false;
-            }
-            else if (this.isMenuShowing === false) {
-                this.isMenuShowing = true;
-            }
-        }
         if (this.player.isInteracting()) {
-            this.collectibles.forEach((item) => {
-                if (this.player.collidesWith(item)) {
-                    this.collectCollectibles();
-                    if (item instanceof Candy) {
-                        this.player
-                            .getUserData()
-                            .setCandyAmount(this.player.getUserData().getCandyAmount() + 1);
-                        console.log(this.player.getUserData().getCandyAmount());
-                    }
-                    else if (item instanceof Hint) {
-                        this.player
-                            .getUserData()
-                            .setHintAmount(this.player.getUserData().getHintAmount() + 1);
-                        console.log(this.player.getUserData().getHintAmount());
-                    }
-                }
-            });
             for (let i = 0; i < this.doors.length; i += 1) {
                 if (this.player.collidesWith(this.doors[i])) {
                     console.log('interact with door');

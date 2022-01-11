@@ -88,9 +88,8 @@ export default class ClassRoom2 extends Room {
    * @returns a scene or null
    */
   public update(elapsed: number): Scene {
-    // Clear the screen
-    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    // console.log('candy amount' + this.userData.getCandyAmount());
+    // calling general checkups from Room class
+    this.generalInteraction();
 
     // READING HINT
     if (
@@ -104,35 +103,8 @@ export default class ClassRoom2 extends Room {
       return new HintScreen(this.canvas, this, 2);
     }
 
-    // MENU INTERACTION
-    if (this.player.isInteractingMenu()) {
-      if (this.isMenuShowing === true) {
-        this.isMenuShowing = false;
-      } else if (this.isMenuShowing === false) {
-        this.isMenuShowing = true;
-      }
-    }
-
     // INTERACTIONS
     if (this.player.isInteracting()) {
-      // WITH COLLECTIBLES
-      this.collectibles.forEach((item) => {
-        if (this.player.collidesWith(item)) {
-          this.collectCollectibles();
-          if (item instanceof Candy) {
-            this.player
-              .getUserData()
-              .setCandyAmount(this.player.getUserData().getCandyAmount() + 1);
-            console.log(this.player.getUserData().getCandyAmount());
-          } else if (item instanceof Hint) {
-            this.player
-              .getUserData()
-              .setHintAmount(this.player.getUserData().getHintAmount() + 1);
-            console.log(this.player.getUserData().getHintAmount());
-          }
-        }
-      });
-
       // WITH DOORS
       for (let i = 0; i < this.doors.length; i += 1) {
         if (this.player.collidesWith(this.doors[i])) {

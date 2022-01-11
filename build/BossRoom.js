@@ -5,12 +5,12 @@ import Computer from './Computer.js';
 import Question from './Question.js';
 import QuestionScreen from './QuestionScreen.js';
 import HintScreen from './HintScreen.js';
-export default class ClassRoom5 extends Room {
+export default class BossRoom extends Room {
     previousScene;
     computer;
     questions;
     constructor(canvas, previousScene, player) {
-        super(canvas, './assets/img/classroom.png');
+        super(canvas, './assets/img/boss-room.png');
         this.previousScene = previousScene;
         this.player = player;
         this.setXPos(canvas.width / 4);
@@ -27,7 +27,7 @@ export default class ClassRoom5 extends Room {
         this.player.setImage('./assets/img/player-boy-standing.png');
         this.questions.push(new Question('text question 1', 'right answer 1', 'wrong answer 1.1', 'wrong answer 1.2'));
         this.questions.push(new Question('text question 2', 'right answer 2', 'wrong answer 2.1', 'wrong answer 2.2'));
-        console.log('door5');
+        console.log('CLASSROOM1');
     }
     update(elapsed) {
         this.generalInteraction();
@@ -45,7 +45,7 @@ export default class ClassRoom5 extends Room {
                     console.log('interact with door');
                     this.doorClose.play();
                     console.log(this.previousScene);
-                    this.player.setXPos(532);
+                    this.player.setXPos(732);
                     this.player.setYPos(200);
                     this.player.setImage('./assets/img/player-boy-standing.png');
                     return this.previousScene;
@@ -63,4 +63,4 @@ export default class ClassRoom5 extends Room {
         super.render();
     }
 }
-//# sourceMappingURL=Classroom5.js.map
+//# sourceMappingURL=BossRoom.js.map

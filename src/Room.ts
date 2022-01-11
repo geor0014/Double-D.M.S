@@ -3,6 +3,8 @@ import Npc from './Npc.js';
 import Door from './Door.js';
 import Menu from './Menu.js';
 import Collectibles from './collectibles.js';
+import Candy from './Candy.js';
+import Hint from './Hint.js';
 
 export default abstract class Room extends Scene {
   // X position of the image of the room
@@ -14,6 +16,8 @@ export default abstract class Room extends Scene {
   private hintNumImg: HTMLImageElement;
 
   private candyNumImg: HTMLImageElement;
+
+  private frameCounter: number = 0;
 
   // Image of the room
   protected img: HTMLImageElement;
@@ -106,17 +110,51 @@ export default abstract class Room extends Scene {
     });
   }
 
+  protected generalInteraction(): void {
+    console.log(this.frameCounter);
+    // Clear the screen
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    if (this.player.isInteractingMenu() && this.frameCounter === 7) {
+      if (this.isMenuShowing === true) {
+        this.isMenuShowing = false;
+      } else if (this.isMenuShowing === false) {
+        this.isMenuShowing = true;
+      }
+    }
+
+    if (this.frameCounter === 7) {
+      this.frameCounter = 0;
+    }
+
+    if (this.player.isInteracting()) {
+      // COLLECTIBLES
+      this.collectibles.forEach((item) => {
+        if (this.player.collidesWith(item)) {
+          this.collectCollectibles();
+          if (item instanceof Candy) {
+            this.player
+              .getUserData()
+              .setCandyAmount(this.player.getUserData().getCandyAmount() + 1);
+            console.log(this.player.getUserData().getCandyAmount());
+          } else if (item instanceof Hint) {
+            this.player
+              .getUserData()
+              .setHintAmount(this.player.getUserData().getHintAmount() + 1);
+            console.log(this.player.getUserData().getHintAmount());
+          }
+        }
+      });
+    }
+    this.frameCounter += 1;
+  }
+
   /**
    * Draw the room
    *
    * @param ctx of the canvas
    */
   public draw(ctx: CanvasRenderingContext2D): void {
-    ctx.drawImage(
-      this.img,
-      this.xPos,
-      this.yPos,
-    );
+    ctx.drawImage(this.img, this.xPos, this.yPos);
   }
 
   /**
@@ -175,7 +213,7 @@ export default abstract class Room extends Scene {
     // this.menu.draw(this.ctx);
 
     // console.log('drawing player');
-    console.log(this.player.getXPos(), this.player.getYPos());
+    // console.log(this.player.getXPos(), this.player.getYPos());
     this.player.draw(this.ctx);
   }
 }
