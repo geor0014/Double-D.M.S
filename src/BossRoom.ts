@@ -5,7 +5,6 @@ import Scene from './Scene.js';
 import Player from './Player.js';
 
 import Candy from './Candy.js';
-import Hint from './Hint.js';
 import Computer from './Computer.js';
 
 import Question from './Question.js';
@@ -77,7 +76,7 @@ export default class BossRoom extends Room {
       )
     );
 
-    console.log('CLASSROOM1');
+    console.log('BOSSROOM');
   }
 
   /**
@@ -90,6 +89,7 @@ export default class BossRoom extends Room {
   public update(elapsed: number): Scene {
     // calling general checkups from Room class
     this.generalInteraction();
+
     // READING HINT
     if (
       this.player.isReadingHint() &&
@@ -127,6 +127,9 @@ export default class BossRoom extends Room {
     return null;
   }
 
+  /**
+   * draws items to screen
+   */
   public render(): void {
     this.draw(this.ctx);
     this.computer.draw(this.ctx);

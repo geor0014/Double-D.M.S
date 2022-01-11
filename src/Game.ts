@@ -23,6 +23,8 @@ export default class Game {
     this.canvas.width = window.innerWidth;
     this.canvas.height = window.innerHeight;
 
+    window.addEventListener('resize', this.resizeCanvas());
+
     // Start the game cycle
     this.gameLoop = new GameLoop();
     this.gameLoop.start(new StartScreen(this.canvas));
@@ -35,5 +37,12 @@ export default class Game {
    */
   public getCanvas(): HTMLCanvasElement {
     return this.canvas;
+  }
+
+  public resizeCanvas(): any {
+    console.log('resized');
+
+    this.canvas.width = window.innerWidth;
+    this.canvas.height = window.innerHeight;
   }
 }

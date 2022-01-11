@@ -42,6 +42,7 @@ export default class EasyHallway extends Room {
   public update(elapsed: number): Scene {
     // calling general checkups from Room class
     this.generalInteraction();
+
     // LEAVES EASY HALLWAY
     if (this.player.getXPos() >= 1450 && this.player.getYPos() <= 433) {
       this.player.setXPos(132);
@@ -81,6 +82,7 @@ export default class EasyHallway extends Room {
           }
         }
       }
+
       // WITH NPC
       for (let i = 0; i < this.npcs.length; i += 1) {
         if (this.player.collidesWith(this.npcs[i])) {
@@ -95,6 +97,9 @@ export default class EasyHallway extends Room {
     return null;
   }
 
+  /**
+   * draws everything
+   */
   public render(): void {
     this.draw(this.ctx);
     super.render();

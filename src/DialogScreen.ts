@@ -10,13 +10,22 @@ export default class DialogScreen extends Screen {
 
   private dialogBubbles: string[];
 
+  /**
+   *
+   * @param canvas passes the canvas to Screen
+   * @param previousScene rerturns player to previous screen
+   */
   constructor(canvas: HTMLCanvasElement, previousScene: MainHallway) {
     super(canvas, './assets/img/dialogscreen.jpg');
+
     this.keyboard = new KeyListener();
+
     this.previousScene = previousScene;
+
     this.dialogBubbles = [];
 
     this.dialogBubbles.push('Hey Good Morning!');
+
     this.dialogBubbles.push('Welcome to school, please go to class!');
     // this.countdown = this.dialogBubbles.length;
 
@@ -27,6 +36,10 @@ export default class DialogScreen extends Screen {
     // this.next = false;
   }
 
+  /**
+   *
+   * @returns if player pressed space key
+   */
   public processInput(): boolean {
     if (this.keyboard.isKeyDown(KeyListener.KEY_SPACE)) {
       return true;
@@ -34,7 +47,13 @@ export default class DialogScreen extends Screen {
     return false;
   }
 
+  /**
+   *
+   * @param elapsed time elapsed
+   * @returns previous Scene
+   */
   public update(elapsed: number): Scene {
+    // clears canvas
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
     if (this.processInput()) {
@@ -52,8 +71,13 @@ export default class DialogScreen extends Screen {
     ctx.drawImage(this.getImage(), this.getXPos(), this.getYPos());
   }
 
+  /**
+   * draws everything on screen
+   */
   public render(): void {
     this.draw(this.ctx);
+
+    // Writes dialog to screen
     this.writeTextToCanvas(
       this.dialogBubbles[0],
       30,
