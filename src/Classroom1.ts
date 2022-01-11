@@ -88,7 +88,7 @@ export default class ClassRoom1 extends Room {
     );
     this.questions.push(
       new Question(
-        'Someone sent you a link to a YouTube video, you click on it and suddenly you have a virus on your pc! What could u have done differently? ',
+        'Someone sent you a link to a YouTube video,# you click on it and suddenly you have a virus on your pc!# What could u have done differently? ',
         'Not click on the link',
         'Send this cool link to all my friends!',
         'start chatting with this person for fun',

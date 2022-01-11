@@ -29,7 +29,7 @@ export default class ClassRoom1 extends Room {
         this.player.setYPos(365);
         this.player.setImage('./assets/img/player-boy-standing.png');
         this.questions.push(new Question('Congratulations you just won a giveaway!# a Nigerian Prince chose you to be the winner!!#Send him your bank account details and your ID to get 500.000€!!', 'Not pay attention and delete this email/message', 'Send an E-mail to make sure it is real', 'YES, TAKE ALL MY DATA!'));
-        this.questions.push(new Question('Someone sent you a link to a YouTube video, you click on it and suddenly you have a virus on your pc! What could u have done differently? ', 'Not click on the link', 'Send this cool link to all my friends!', 'start chatting with this person for fun'));
+        this.questions.push(new Question('Someone sent you a link to a YouTube video,# you click on it and suddenly you have a virus on your pc!# What could u have done differently? ', 'Not click on the link', 'Send this cool link to all my friends!', 'start chatting with this person for fun'));
         console.log('CLASSROOM1');
     }
     update(elapsed) {
