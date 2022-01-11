@@ -56,6 +56,7 @@ export default class DifficultHallway extends Room {
     );
 
     this.player.setXPos(this.player.getImage().width);
+
     this.doors.push(new Door('./assets/img/door1.png', 332, 130));
     this.doors.push(new Door('./assets/img/door1.png', 532, 130));
     this.doors.push(new Door('./assets/img/door1.png', 732, 130));
@@ -71,6 +72,7 @@ export default class DifficultHallway extends Room {
   public update(elapsed: number): Scene {
     // calling general checkups from Room class
     this.generalInteraction();
+
     // LEAVES DIFFICULT HALLWAY
     if (this.player.getXPos() <= 0 && this.player.getYPos() <= 433) {
       this.player.setXPos(1368);
@@ -78,6 +80,7 @@ export default class DifficultHallway extends Room {
       this.player.setImage('./assets/img/player-boy-left.png');
       return this.mainHallway;
     }
+
     // READING HINT
     if (
       this.player.isReadingHint()
@@ -108,6 +111,7 @@ export default class DifficultHallway extends Room {
           }
         }
       }
+
       // WITH NPC
       for (let i = 0; i < this.npcs.length; i += 1) {
         if (this.player.collidesWith(this.npcs[i])) {
@@ -123,7 +127,11 @@ export default class DifficultHallway extends Room {
   }
 
   /**
+<<<<<<< HEAD
    * Renders the gdifficult hallway
+=======
+   * draws everything
+>>>>>>> e7b1cd3029958609a24eef98d936b1e6cab24fd9
    */
   public render(): void {
     this.draw(this.ctx);

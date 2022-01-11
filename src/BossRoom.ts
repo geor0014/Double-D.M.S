@@ -5,13 +5,13 @@ import Scene from './Scene.js';
 import Player from './Player.js';
 
 import Candy from './Candy.js';
-import Hint from './Hint.js';
 import Computer from './Computer.js';
 
 import Question from './Question.js';
 import QuestionScreen from './QuestionScreen.js';
 
 import HintScreen from './HintScreen.js';
+import Boss from './Boss.js';
 
 export default class BossRoom extends Room {
   private previousScene: Scene;
@@ -19,6 +19,14 @@ export default class BossRoom extends Room {
   private computer: Computer;
 
   private questions: Question[];
+
+  private boss: Boss;
+
+  private frameY = 0;
+
+  private gameFrame = 0;
+
+  private staggerFrame = 11;
 
   /**
    * creats a new classroom
@@ -77,7 +85,7 @@ export default class BossRoom extends Room {
       )
     );
 
-    console.log('CLASSROOM1');
+    this.boss = new Boss();
   }
 
   /**
@@ -88,8 +96,11 @@ export default class BossRoom extends Room {
    * @returns a scene or null
    */
   public update(elapsed: number): Scene {
+    this.gameFrame += 1;
+
     // calling general checkups from Room class
     this.generalInteraction();
+
     // READING HINT
     if (
       this.player.isReadingHint() &&
@@ -124,12 +135,35 @@ export default class BossRoom extends Room {
       }
     }
 
+    // BOSS RENDERING
+    if (this.gameFrame % this.staggerFrame === 0) {
+      if (this.frameY < 3) {
+        this.frameY += 1;
+      } else {
+        this.frameY = 0;
+      }
+
+      // passes the frame to the Boss class
+      this.boss.setFrameY(this.frameY);
+    }
+
     return null;
   }
 
+  /**
+   * draws items to screen
+   */
   public render(): void {
+    // CLEAR CANVAS
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+    // DRAW ROOM
     this.draw(this.ctx);
+    // DRAW BOSS
+    this.boss.draw(this.ctx);
+    // DRAW COMPUTER
     this.computer.draw(this.ctx);
+
     super.render();
   }
 }

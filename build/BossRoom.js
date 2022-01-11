@@ -5,10 +5,15 @@ import Computer from './Computer.js';
 import Question from './Question.js';
 import QuestionScreen from './QuestionScreen.js';
 import HintScreen from './HintScreen.js';
+import Boss from './Boss.js';
 export default class BossRoom extends Room {
     previousScene;
     computer;
     questions;
+    boss;
+    frameY = 0;
+    gameFrame = 0;
+    staggerFrame = 11;
     constructor(canvas, previousScene, player) {
         super(canvas, './assets/img/boss-room.png');
         this.previousScene = previousScene;
@@ -27,9 +32,10 @@ export default class BossRoom extends Room {
         this.player.setImage('./assets/img/player-boy-standing.png');
         this.questions.push(new Question('text question 1', 'right answer 1', 'wrong answer 1.1', 'wrong answer 1.2'));
         this.questions.push(new Question('text question 2', 'right answer 2', 'wrong answer 2.1', 'wrong answer 2.2'));
-        console.log('CLASSROOM1');
+        this.boss = new Boss();
     }
     update(elapsed) {
+        this.gameFrame += 1;
         this.generalInteraction();
         if (this.player.isReadingHint() &&
             this.player.getUserData().getHintAmount() > 0) {
@@ -55,10 +61,21 @@ export default class BossRoom extends Room {
                 return new QuestionScreen(this.canvas, this, this.questions);
             }
         }
+        if (this.gameFrame % this.staggerFrame === 0) {
+            if (this.frameY < 3) {
+                this.frameY += 1;
+            }
+            else {
+                this.frameY = 0;
+            }
+            this.boss.setFrameY(this.frameY);
+        }
         return null;
     }
     render() {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.draw(this.ctx);
+        this.boss.draw(this.ctx);
         this.computer.draw(this.ctx);
         super.render();
     }
