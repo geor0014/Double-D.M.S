@@ -57,11 +57,7 @@ export default abstract class Room extends Scene {
 
     this.menu = new Menu(this.canvas.width / 3 - 30, 600);
 
-<<<<<<< HEAD
     this.isMenuShowing = false;
-=======
-    this.isMenuShowing = state;
->>>>>>> 068a284b1bdafb6604fe6ac082a6ca0e9efc26e3
   }
 
   /**

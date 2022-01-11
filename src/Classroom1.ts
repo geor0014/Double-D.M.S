@@ -80,7 +80,6 @@ export default class ClassRoom1 extends Room {
     // creating questions for this classroom
     this.questions.push(
       new Question(
-<<<<<<< HEAD
         'Congratulations you just won a giveaway!# a Nigerian Prince chose you to be the winner!!#Send him your bank account details and your ID to get 500.000€!!',
         'Not pay attention and delete this email/message',
         'Send an E-mail to make sure it is real',
@@ -94,21 +93,6 @@ export default class ClassRoom1 extends Room {
         'Send this cool link to all my friends!',
         'start chatting with this person for fun',
       )
-=======
-        'text question 1',
-        'right answer 1',
-        'wrong answer 1.1',
-        'wrong answer 1.2',
-      ),
-    );
-    this.questions.push(
-      new Question(
-        'text question 2',
-        'right answer 2',
-        'wrong answer 2.1',
-        'wrong answer 2.2',
-      ),
->>>>>>> 068a284b1bdafb6604fe6ac082a6ca0e9efc26e3
     );
 
     console.log('CLASSROOM1');
