@@ -33,14 +33,14 @@ export default class QuestionScreen extends Screen {
         }
     }
     update(elapsed) {
-        console.log(` frame counter ${this.frameCounter}`);
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        console.log(this.qCounter);
         if (this.processInput()) {
             return this.previousScene;
         }
         this.moveBetweenQuestions();
-        if (this.nextQ && this.qCounter < this.questions.length - 1 && this.frameCounter === 10) {
+        if (this.nextQ &&
+            this.qCounter < this.questions.length - 1 &&
+            this.frameCounter === 10) {
             this.qCounter += 1;
         }
         if (this.frameCounter === 10) {
@@ -58,7 +58,13 @@ export default class QuestionScreen extends Screen {
             let textToWrite = '';
             let j = 0;
             let textHPos = this.canvas.height / 3;
-            this.writeTextToCanvas(this.questions[this.qCounter].getQTxt(), 30, this.canvas.width / 3, textHPos, 'center', 'black');
+            const textWPos = this.canvas.width / 3.5;
+            for (let i = 0; i < 3; i += 1) {
+                textToWrite = this.questions[this.qCounter].getQTxt(i);
+                console.log(textToWrite);
+                this.writeTextToCanvas(textToWrite, 20, textWPos + 150, textHPos, 'center', 'black');
+                textHPos += 50;
+            }
             for (let i = 0; i <= 2; i += 1) {
                 textHPos += 50;
                 if (this.questions[this.qCounter].getRPos() === i) {
@@ -68,7 +74,7 @@ export default class QuestionScreen extends Screen {
                     textToWrite = `${i + 1} ${this.questions[this.qCounter].getWAns(j)}`;
                     j += 1;
                 }
-                this.writeTextToCanvas(textToWrite, 30, this.canvas.width / 3, textHPos, 'center', 'black');
+                this.writeTextToCanvas(textToWrite, 20, textWPos, textHPos + 130, 'left', 'black');
             }
         }
     }

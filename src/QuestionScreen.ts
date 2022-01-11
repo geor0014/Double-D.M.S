@@ -17,8 +17,11 @@ export default class QuestionScreen extends Screen {
 
   private frameCounter: number = 0;
 
-
-  constructor(canvas: HTMLCanvasElement, previousScene: Room, questions: Question[]) {
+  constructor(
+    canvas: HTMLCanvasElement,
+    previousScene: Room,
+    questions: Question[]
+  ) {
     super(canvas, './assets/img/computer-screen.png');
     this.keyboard = new KeyListener();
     this.previousScene = previousScene;
@@ -41,24 +44,26 @@ export default class QuestionScreen extends Screen {
     if (this.keyboard.isKeyDown(KeyListener.KEY_RIGHT)) {
       console.log('right pressed');
       this.nextQ = true;
-    }
-
-    else {
+    } else {
       this.nextQ = false;
     }
   }
 
   public update(elapsed: number): Scene {
-    console.log(` frame counter ${this.frameCounter}`);
+    // console.log(` frame counter ${this.frameCounter}`);
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    console.log(this.qCounter);
+    // console.log(this.qCounter);
 
     if (this.processInput()) {
       return this.previousScene;
     }
 
     this.moveBetweenQuestions();
-    if (this.nextQ && this.qCounter < this.questions.length - 1 && this.frameCounter === 10) {
+    if (
+      this.nextQ &&
+      this.qCounter < this.questions.length - 1 &&
+      this.frameCounter === 10
+    ) {
       this.qCounter += 1;
     }
 
@@ -85,19 +90,24 @@ export default class QuestionScreen extends Screen {
       let textToWrite: string = '';
       let j: number = 0;
       let textHPos: number = this.canvas.height / 3;
+      const textWPos: number = this.canvas.width / 3.5;
 
-      this.writeTextToCanvas(
-        this.questions[this.qCounter].getQTxt(),
-        30,
-        this.canvas.width / 3,
-        textHPos,
-        'center',
-        'black'
-      );
+      for (let i = 0; i < 3; i += 1) {
+        textToWrite = this.questions[this.qCounter].getQTxt(i);
+        console.log(textToWrite);
+        this.writeTextToCanvas(
+          textToWrite,
+          20,
+          textWPos + 150,
+          textHPos,
+          'center',
+          'black'
+        );
+        textHPos += 50;
+      }
 
       for (let i = 0; i <= 2; i += 1) {
         textHPos += 50;
-        //  console.log(`${this.questions[this.counter].getRPos()}`);
         if (this.questions[this.qCounter].getRPos() === i) {
           textToWrite = `${i + 1} ${this.questions[this.qCounter].getRAns()}`;
         } else if (j <= 1) {
@@ -106,11 +116,11 @@ export default class QuestionScreen extends Screen {
         }
         this.writeTextToCanvas(
           textToWrite,
-          30,
-          this.canvas.width / 3,
-          textHPos,
-          'center',
-          'black'
+          20,
+          textWPos,
+          textHPos + 130,
+          'left',
+          'black',
         );
       }
     }

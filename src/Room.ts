@@ -57,7 +57,7 @@ export default abstract class Room extends Scene {
 
     this.menu = new Menu(this.canvas.width / 3 - 30, 600);
 
-    this.isMenuShowing = true;
+    this.isMenuShowing = false;
   }
 
   /**
@@ -115,7 +115,7 @@ export default abstract class Room extends Scene {
    * Checks if player is interacting with MENU/COLLECTIBLES in each room
    */
   protected generalInteraction(): void {
-    console.log(this.frameCounter);
+    // console.log(this.frameCounter);
     // Clear the screen
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 

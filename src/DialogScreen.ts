@@ -16,7 +16,7 @@ export default class DialogScreen extends Screen {
    * @param previousScene rerturns player to previous screen
    */
   constructor(canvas: HTMLCanvasElement, previousScene: MainHallway) {
-    super(canvas, './assets/img/dialogscreen.jpg');
+    super(canvas, './assets/img/dialogscreen.png');
 
     this.keyboard = new KeyListener();
 
