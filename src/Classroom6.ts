@@ -5,7 +5,6 @@ import Scene from './Scene.js';
 import Player from './Player.js';
 
 import Candy from './Candy.js';
-import Hint from './Hint.js';
 import Computer from './Computer.js';
 
 import Question from './Question.js';
@@ -127,6 +126,9 @@ export default class ClassRoom6 extends Room {
     return null;
   }
 
+  /**
+   * draws items to screen
+   */
   public render(): void {
     this.draw(this.ctx);
     this.computer.draw(this.ctx);

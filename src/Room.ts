@@ -47,16 +47,17 @@ export default abstract class Room extends Scene {
    */
   constructor(canvas: HTMLCanvasElement, imgSrc: string) {
     super(canvas);
+
     this.img = new Image();
+
     this.img.src = imgSrc;
 
     this.doorClose = new Audio('./assets/sound/DoorClose.ogg');
     this.doorOpen = new Audio('./assets/sound/DoorOpen.ogg');
 
     this.menu = new Menu(this.canvas.width / 3 - 30, 600);
-    this.isMenuShowing = true;
 
-    // console.log(this.img.width);
+    this.isMenuShowing = true;
   }
 
   /**
@@ -110,10 +111,15 @@ export default abstract class Room extends Scene {
     });
   }
 
+  /**
+   * Checks if player is interacting with MENU/COLLECTIBLES in each room
+   */
   protected generalInteraction(): void {
     console.log(this.frameCounter);
     // Clear the screen
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+    // INTERACTION WITH MENU
     if (this.player.isInteractingMenu() && this.frameCounter === 7) {
       if (this.isMenuShowing === true) {
         this.isMenuShowing = false;
@@ -126,16 +132,18 @@ export default abstract class Room extends Scene {
       this.frameCounter = 0;
     }
 
+    // WITH COLLECTIBLES
     if (this.player.isInteracting()) {
-      // COLLECTIBLES
       this.collectibles.forEach((item) => {
         if (this.player.collidesWith(item)) {
           this.collectCollectibles();
+          // WITH CANDY
           if (item instanceof Candy) {
             this.player
               .getUserData()
               .setCandyAmount(this.player.getUserData().getCandyAmount() + 1);
             console.log(this.player.getUserData().getCandyAmount());
+            // WITH HINT
           } else if (item instanceof Hint) {
             this.player
               .getUserData()
@@ -162,21 +170,25 @@ export default abstract class Room extends Scene {
    */
   public render(): void {
     // this.draw(this.ctx);
+
+    // DRAWS COLLECTTIBLES
     for (let i = 0; i < this.collectibles.length; i++) {
-      // console.log('drawing collectible');
       this.collectibles[i].draw(this.ctx);
     }
 
+    // DRAWS NPCS
     for (let i = 0; i < this.npcs.length; i += 1) {
       this.npcs[i].draw(this.ctx);
     }
 
+    // DRAWS DOORS
     for (let i = 0; i < this.doors.length; i += 1) {
       this.doors[i].draw(this.ctx);
     }
 
+    // DRAWS MENU
     if (this.isMenuShowing) {
-      // console.log('need to draw manu');
+      // DRAWS HINTS
       this.menu.draw(this.ctx);
       if (this.player.getUserData().getHintAmount() === 1) {
         this.hintNumImg = Scene.loadNewImage('./assets/img/1.png');
@@ -192,6 +204,7 @@ export default abstract class Room extends Scene {
         this.hintNumImg = Scene.loadNewImage('./assets/img/0.png');
       }
 
+      // DRAWS CANDY
       if (this.player.getUserData().getCandyAmount() === 1) {
         this.candyNumImg = Scene.loadNewImage('./assets/img/1.png');
       } else if (this.player.getUserData().getCandyAmount() === 2) {
@@ -212,8 +225,7 @@ export default abstract class Room extends Scene {
 
     // this.menu.draw(this.ctx);
 
-    // console.log('drawing player');
-    // console.log(this.player.getXPos(), this.player.getYPos());
+    // DRAS PALYER
     this.player.draw(this.ctx);
   }
 }
