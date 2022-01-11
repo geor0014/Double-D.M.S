@@ -5,12 +5,13 @@ import Computer from './Computer.js';
 import Question from './Question.js';
 import QuestionScreen from './QuestionScreen.js';
 import HintScreen from './HintScreen.js';
+import Npc from './Npc.js';
 export default class ClassRoom1 extends Room {
     previousScene;
     computer;
     questions;
-    constructor(canvas, previousScene, player) {
-        super(canvas, './assets/img/classroom.png');
+    constructor(canvas, previousScene, player, state) {
+        super(canvas, './assets/img/classroom.png', state);
         this.previousScene = previousScene;
         this.player = player;
         this.setXPos(canvas.width / 4);
@@ -20,6 +21,8 @@ export default class ClassRoom1 extends Room {
         this.doors = [];
         this.questions = [];
         this.computer = new Computer(618, 113);
+        this.npcs.push(new Npc('./assets/img/student-orange-hair-back-faced.png', 702, 236));
+        this.npcs.push(new Npc('./assets/img/teacher-blonde-hair-front-faced.png', 714, 98));
         this.collectibles.push(new Candy(this.canvas.width / 2, this.canvas.height / 2));
         this.doors.push(new Door('./assets/img/door1.png', 864, 300));
         this.player.setXPos(861);
@@ -31,8 +34,8 @@ export default class ClassRoom1 extends Room {
     }
     update(elapsed) {
         this.generalInteraction();
-        if (this.player.isReadingHint() &&
-            this.player.getUserData().getHintAmount() > 0) {
+        if (this.player.isReadingHint()
+            && this.player.getUserData().getHintAmount() > 0) {
             this.player
                 .getUserData()
                 .setHintAmount(this.player.getUserData().getHintAmount() - 1);
@@ -61,6 +64,7 @@ export default class ClassRoom1 extends Room {
         this.draw(this.ctx);
         this.computer.draw(this.ctx);
         super.render();
+        console.log(this.player.getXPos(), this.player.getYPos());
     }
 }
 //# sourceMappingURL=Classroom1.js.map

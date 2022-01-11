@@ -45,7 +45,7 @@ export default abstract class Room extends Scene {
    * @param canvas canvas element
    * @param imgSrc source for image
    */
-  constructor(canvas: HTMLCanvasElement, imgSrc: string) {
+  constructor(canvas: HTMLCanvasElement, imgSrc: string, state: boolean = false) {
     super(canvas);
 
     this.img = new Image();
@@ -57,7 +57,7 @@ export default abstract class Room extends Scene {
 
     this.menu = new Menu(this.canvas.width / 3 - 30, 600);
 
-    this.isMenuShowing = true;
+    this.isMenuShowing = state;
   }
 
   /**

@@ -6,17 +6,23 @@ import ClassRoom1 from './Classroom1.js';
 import ClassRoom2 from './Classroom2.js';
 import ClassRoom3 from './Classroom3.js';
 import HintScreen from './HintScreen.js';
-import Hint from './Hint.js';
-import Candy from './Candy.js';
 import DialogScreen from './DialogScreen.js';
+import Npc from './Npc.js';
 
 export default class EasyHallway extends Room {
   private mainHallway: Room;
 
+  /**
+   * Initialises every attribute
+   *
+   * @param canvas of the game
+   * @param mainHallway of the game
+   * @param player of the game
+   */
   public constructor(
     canvas: HTMLCanvasElement,
     mainHallway: Room,
-    player: Player
+    player: Player,
   ) {
     super(canvas, './assets/img/easyHallway.jpg');
     console.log('creating easy hallway');
@@ -31,6 +37,30 @@ export default class EasyHallway extends Room {
     this.setXPos(0);
     this.setYPos(this.canvas.height / 4);
 
+    this.npcs.push(
+      new Npc(
+        './assets/img/student-1-back-faced.png',
+        561,
+        630,
+      ),
+    );
+
+    this.npcs.push(
+      new Npc(
+        './assets/img/student-black-haired-left-faced.png',
+        50,
+        this.canvas.height - 400,
+      ),
+    );
+
+    this.npcs.push(
+      new Npc(
+        './assets/img/student-red-right-faced.png',
+        0,
+        this.canvas.height - 400,
+      ),
+    );
+
     this.doors.push(new Door('./assets/img/door1.png', 732, 130));
     this.doors.push(new Door('./assets/img/door1.png', 532, 130));
     this.doors.push(new Door('./assets/img/door1.png', 332, 130));
@@ -38,7 +68,14 @@ export default class EasyHallway extends Room {
     this.player.setXPos(this.canvas.width / 2);
   }
 
+  /**
+   * Updates the esay hallway
+   *
+   * @param elapsed of the gameloop
+   * @returns the mainhallway
+   */
   // eslint-disable-next-line class-methods-use-this
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   public update(elapsed: number): Scene {
     // calling general checkups from Room class
     this.generalInteraction();
@@ -53,8 +90,8 @@ export default class EasyHallway extends Room {
 
     // READING HINT
     if (
-      this.player.isReadingHint() &&
-      this.player.getUserData().getHintAmount() > 0
+      this.player.isReadingHint()
+      && this.player.getUserData().getHintAmount() > 0
     ) {
       this.player
         .getUserData()
@@ -71,13 +108,13 @@ export default class EasyHallway extends Room {
           console.log('interact with door');
           this.doorOpen.play();
           if (i === 0) {
-            return new ClassRoom1(this.canvas, this, this.player);
+            return new ClassRoom1(this.canvas, this, this.player, this.isMenuShowing);
           }
           if (i === 1) {
-            return new ClassRoom2(this.canvas, this, this.player);
+            return new ClassRoom2(this.canvas, this, this.player, this.isMenuShowing);
           }
           if (i === 2) {
-            return new ClassRoom3(this.canvas, this, this.player);
+            return new ClassRoom3(this.canvas, this, this.player, this.isMenuShowing);
           }
         }
       }
@@ -95,6 +132,9 @@ export default class EasyHallway extends Room {
     return null;
   }
 
+  /**
+   * Renders the easy hallway
+   */
   public render(): void {
     this.draw(this.ctx);
     super.render();
