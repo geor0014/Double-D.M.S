@@ -9,8 +9,8 @@ export default class ClassRoom6 extends Room {
     previousScene;
     computer;
     questions;
-    constructor(canvas, previousScene, player) {
-        super(canvas, './assets/img/classroom.png');
+    constructor(canvas, previousScene, player, state) {
+        super(canvas, './assets/img/classroom.png', state);
         this.previousScene = previousScene;
         this.player = player;
         this.setXPos(canvas.width / 4);
@@ -31,8 +31,8 @@ export default class ClassRoom6 extends Room {
     }
     update(elapsed) {
         this.generalInteraction();
-        if (this.player.isReadingHint() &&
-            this.player.getUserData().getHintAmount() > 0) {
+        if (this.player.isReadingHint()
+            && this.player.getUserData().getHintAmount() > 0) {
             this.player
                 .getUserData()
                 .setHintAmount(this.player.getUserData().getHintAmount() - 1);

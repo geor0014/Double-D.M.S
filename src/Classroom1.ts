@@ -11,6 +11,7 @@ import Question from './Question.js';
 import QuestionScreen from './QuestionScreen.js';
 
 import HintScreen from './HintScreen.js';
+import Npc from './Npc.js';
 
 export default class ClassRoom1 extends Room {
   private previousScene: Scene;
@@ -25,13 +26,15 @@ export default class ClassRoom1 extends Room {
    * @param canvas canvas element
    * @param previousScene a scene
    * @param player a player
+   * @param state a way of hiding and unhidding the menu bar
    */
   public constructor(
     canvas: HTMLCanvasElement,
     previousScene: Scene,
-    player: Player
+    player: Player,
+    state: boolean,
   ) {
-    super(canvas, './assets/img/classroom.png');
+    super(canvas, './assets/img/classroom.png', state);
     this.previousScene = previousScene;
 
     this.player = player;
@@ -45,9 +48,25 @@ export default class ClassRoom1 extends Room {
     this.questions = [];
     this.computer = new Computer(618, 113);
 
+    this.npcs.push(
+      new Npc(
+        './assets/img/student-orange-hair-back-faced.png',
+        702,
+        236,
+      ),
+    );
+
+    this.npcs.push(
+      new Npc(
+        './assets/img/teacher-blonde-hair-front-faced.png',
+        714,
+        98,
+      ),
+    );
+
     // creating collectibles in the classroom
     this.collectibles.push(
-      new Candy(this.canvas.width / 2, this.canvas.height / 2)
+      new Candy(this.canvas.width / 2, this.canvas.height / 2),
     );
 
     // creating the door for the classroom
@@ -61,6 +80,7 @@ export default class ClassRoom1 extends Room {
     // creating questions for this classroom
     this.questions.push(
       new Question(
+<<<<<<< HEAD
         'Congratulations you just won a giveaway!# a Nigerian Prince chose you to be the winner!!#Send him your bank account details and your ID to get 500.000€!!',
         'Not pay attention and delete this email/message',
         'Send an E-mail to make sure it is real',
@@ -74,6 +94,21 @@ export default class ClassRoom1 extends Room {
         'Send this cool link to all my friends!',
         'start chatting with this person for fun',
       )
+=======
+        'text question 1',
+        'right answer 1',
+        'wrong answer 1.1',
+        'wrong answer 1.2',
+      ),
+    );
+    this.questions.push(
+      new Question(
+        'text question 2',
+        'right answer 2',
+        'wrong answer 2.1',
+        'wrong answer 2.2',
+      ),
+>>>>>>> 068a284b1bdafb6604fe6ac082a6ca0e9efc26e3
     );
 
     console.log('CLASSROOM1');
@@ -86,14 +121,15 @@ export default class ClassRoom1 extends Room {
    * @param elapsed a number
    * @returns a scene or null
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   public update(elapsed: number): Scene {
     // calling general checkups from Room class
     this.generalInteraction();
 
     // READING HINT
     if (
-      this.player.isReadingHint() &&
-      this.player.getUserData().getHintAmount() > 0
+      this.player.isReadingHint()
+      && this.player.getUserData().getHintAmount() > 0
     ) {
       this.player
         .getUserData()
@@ -134,5 +170,6 @@ export default class ClassRoom1 extends Room {
     this.draw(this.ctx);
     this.computer.draw(this.ctx);
     super.render();
+    console.log(this.player.getXPos(), this.player.getYPos());
   }
 }

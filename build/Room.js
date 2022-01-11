@@ -16,14 +16,18 @@ export default class Room extends Scene {
     isMenuShowing;
     doorOpen;
     doorClose;
-    constructor(canvas, imgSrc) {
+    constructor(canvas, imgSrc, state = false) {
         super(canvas);
         this.img = new Image();
         this.img.src = imgSrc;
         this.doorClose = new Audio('./assets/sound/DoorClose.ogg');
         this.doorOpen = new Audio('./assets/sound/DoorOpen.ogg');
         this.menu = new Menu(this.canvas.width / 3 - 30, 600);
+<<<<<<< HEAD
         this.isMenuShowing = false;
+=======
+        this.isMenuShowing = state;
+>>>>>>> 068a284b1bdafb6604fe6ac082a6ca0e9efc26e3
     }
     getXPos() {
         return this.xPos;
