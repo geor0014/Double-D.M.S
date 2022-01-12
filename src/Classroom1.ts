@@ -52,30 +52,20 @@ export default class ClassRoom1 extends Room {
     this.npcs.push(
       new Npc(
         './assets/img/student-orange-hair-back-faced.png',
-<<<<<<< HEAD
-        468,
-        370.5,
-=======
         702,
         236,
         [
           new Dialog('Dont bother me I am trying to study...'),
         ],
->>>>>>> bd4b738c2b887c0f5ac344ac38e0ea3a314b7445
       ),
       new Npc(
         './assets/img/teacher-blonde-hair-front-faced.png',
-<<<<<<< HEAD
-        491,
-        180.5,
-=======
         714,
         98,
         [
           new Dialog('Today we are learning about suspicious links and strangers messeges#'),
           new Dialog('This is very important!'),
         ],
->>>>>>> bd4b738c2b887c0f5ac344ac38e0ea3a314b7445
       ),
     );
     // creating collectibles in the classroom

@@ -68,9 +68,9 @@ export default class BossRoom extends Room {
     this.player.setImage('./assets/img/player-boy-standing.png');
 
     // creating questions for this classroom
-<<<<<<< HEAD
     this.questions.push(
       new Question(
+        this.player.getUserData(),
         'text question 1',
         'right answer 1',
         'wrong answer 1.1',
@@ -79,6 +79,7 @@ export default class BossRoom extends Room {
     );
     this.questions.push(
       new Question(
+        this.player.getUserData(),
         'text question 2',
         'right answer 2',
         'wrong answer 2.1',
@@ -86,8 +87,6 @@ export default class BossRoom extends Room {
       ),
     );
 
-=======
->>>>>>> bd4b738c2b887c0f5ac344ac38e0ea3a314b7445
     this.boss = new Boss();
   }
 

@@ -18,10 +18,18 @@ export default class EasyHallway extends Room {
         this.doors = [];
         this.setXPos(0);
         this.setYPos(0);
-<<<<<<< HEAD
-        this.npcs.push(new Npc('./assets/img/student-1-back-faced.png', 561, 399));
-        this.npcs.push(new Npc('./assets/img/student-black-haired-left-faced.png', 50, this.canvas.height - 400));
-        this.npcs.push(new Npc('./assets/img/student-red-right-faced.png', 0, this.canvas.height - 400));
+        this.npcs.push(new Npc('./assets/img/student-1-back-faced.png', 561, 630, [
+            new Dialog('Heyy how are you today?'),
+            new Dialog('Good luck with your exams!'),
+        ]));
+        this.npcs.push(new Npc('./assets/img/student-black-haired-left-faced.png', 50, this.canvas.height - 400, [
+            new Dialog('Heyy how are you today?'),
+            new Dialog('Good luck with your exams!'),
+        ]));
+        this.npcs.push(new Npc('./assets/img/student-red-right-faced.png', 0, this.canvas.height - 400, [
+            new Dialog('Heyy how are you today?'),
+            new Dialog('Good luck with your exams!'),
+        ]));
         this.doors.push(new Door('./assets/img/door1.png', 632, 238.5));
         this.doors.push(new Door('./assets/img/door1.png', 500, 238.5));
         this.doors.push(new Door('./assets/img/door1.png', 334, 238.5));
@@ -38,24 +46,6 @@ export default class EasyHallway extends Room {
                 this.player.setYPos(406);
             }
         }
-=======
-        this.npcs.push(new Npc('./assets/img/student-1-back-faced.png', 561, 630, [
-            new Dialog('Heyy how are you today?'),
-            new Dialog('Good luck with your exams!'),
-        ]));
-        this.npcs.push(new Npc('./assets/img/student-black-haired-left-faced.png', 50, this.canvas.height - 400, [
-            new Dialog('Heyy how are you today?'),
-            new Dialog('Good luck with your exams!'),
-        ]));
-        this.npcs.push(new Npc('./assets/img/student-red-right-faced.png', 0, this.canvas.height - 400, [
-            new Dialog('Heyy how are you today?'),
-            new Dialog('Good luck with your exams!'),
-        ]));
-        this.doors.push(new Door('./assets/img/door1.png', 732, 130));
-        this.doors.push(new Door('./assets/img/door1.png', 532, 130));
-        this.doors.push(new Door('./assets/img/door1.png', 332, 130));
-        this.player.setXPos(this.canvas.width / 2);
->>>>>>> bd4b738c2b887c0f5ac344ac38e0ea3a314b7445
     }
     update(elapsed) {
         this.generalInteraction();
