@@ -60,7 +60,7 @@ export default class BossRoom extends Room {
     );
 
     // creating the door for the classroom
-    this.doors.push(new Door('./assets/img/door1.png', 296, 297));
+    this.doors.push(new Door('./assets/img/door1.png', 658, 297));
 
     // setting player starter position and image in the classroom
     this.player.setXPos(861);
