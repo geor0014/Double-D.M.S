@@ -2,6 +2,7 @@ import Door from './Door.js';
 import Room from './Room.js';
 import Candy from './Candy.js';
 import Computer from './Computer.js';
+import Question from './Question.js';
 import QuestionScreen from './QuestionScreen.js';
 import HintScreen from './HintScreen.js';
 export default class ClassRoom2 extends Room {
@@ -24,12 +25,13 @@ export default class ClassRoom2 extends Room {
         this.player.setXPos(861);
         this.player.setYPos(365);
         this.player.setImage('./assets/img/player-boy-standing.png');
+        this.questions.push(new Question(this.player.getUserData(), 'You are creating an account on your favorite social media.# Before you can access it, they ask you to accept the general terms of condition!# What do you do?', 'Ask your parents what they think', 'Not read it and accept it', 'Read through everything and decide if you accept or not'), new Question(this.player.getUserData(), 'Which of these files are safe to download?#', 'Game.exe', 'Virus.exe ', 'Trojan.exe'));
         console.log('CLASSROOM2');
     }
     update(elapsed) {
         this.generalInteraction();
-        if (this.player.isReadingHint()
-            && this.player.getUserData().getHintAmount() > 0) {
+        if (this.player.isReadingHint() &&
+            this.player.getUserData().getHintAmount() > 0) {
             this.player
                 .getUserData()
                 .setHintAmount(this.player.getUserData().getHintAmount() - 1);

@@ -55,24 +55,19 @@ export default class ClassRoom1 extends Room {
         702,
         236,
         [
-          new Dialog('Heyy how are you today?'),
-          new Dialog('Good luck with your exams!'),
+          new Dialog('Dont bother me I am trying to study...'),
         ],
       ),
-    );
-
-    this.npcs.push(
       new Npc(
         './assets/img/teacher-blonde-hair-front-faced.png',
         714,
         98,
         [
-          new Dialog('Heyy how are you today?'),
-          new Dialog('Good luck with your exams!'),
+          new Dialog('Today we are learning about suspicious links and strangers messeges#'),
+          new Dialog('This is very important!'),
         ],
       ),
     );
-
     // creating collectibles in the classroom
     this.collectibles.push(
       new Candy(this.canvas.width / 2, this.canvas.height / 2),

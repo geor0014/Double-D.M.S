@@ -88,14 +88,13 @@ export default class QuestionScreen extends Screen {
             let textToWrite = '';
             let j = 0;
             let textHPos = this.canvas.height / 3;
-            const textWPos = this.canvas.width / 3.5;
+            const textWPos = this.canvas.width / 1.9;
             for (let i = 0; i < 3; i += 1) {
                 textToWrite = this.questions[this.qCounter].getText(i);
-                this.writeTextToCanvas(textToWrite, 20, textWPos + 150, textHPos, 'center', 'black');
+                this.writeTextToCanvas(textToWrite, 20, textWPos, textHPos, 'center', 'black');
                 textHPos += 50;
             }
             for (let i = 0; i <= 2; i += 1) {
-                textHPos += 50;
                 if (this.questions[this.qCounter].getRPos() === i) {
                     textToWrite = `${i + 1} ${this.questions[this.qCounter].getRAns()}`;
                 }
@@ -103,7 +102,8 @@ export default class QuestionScreen extends Screen {
                     textToWrite = `${i + 1} ${this.questions[this.qCounter].getWAns(j)}`;
                     j += 1;
                 }
-                this.writeTextToCanvas(textToWrite, 20, textWPos, textHPos + 130, 'left', 'black');
+                this.writeTextToCanvas(textToWrite, 20, textWPos - 200, textHPos + 20, 'left', 'black');
+                textHPos += 50;
             }
         }
     }

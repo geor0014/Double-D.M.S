@@ -2,6 +2,7 @@ import Door from './Door.js';
 import Room from './Room.js';
 import Candy from './Candy.js';
 import Computer from './Computer.js';
+import Question from './Question.js';
 import QuestionScreen from './QuestionScreen.js';
 import HintScreen from './HintScreen.js';
 export default class ClassRoom3 extends Room {
@@ -24,6 +25,7 @@ export default class ClassRoom3 extends Room {
         this.player.setXPos(861);
         this.player.setYPos(365);
         this.player.setImage('./assets/img/player-boy-standing.png');
+        this.questions.push(new Question(this.player.getUserData(), 'You see the following post:#“Hey look at Timmy`s head, man he looks horrible! Share this video or we will stop talking to you!” # What should you do? ', 'Report it and help poor Timmy', 'Share it I don’t want to be alone', 'Ignore and let it happen '), new Question(this.player.getUserData(), 'My parents and I have established rules as to what I can do on the Internet when Im home,# but Im at a friend`s house. #Should I go by my parents rules or do whatever my friend does?', 'Go by your parents rules', 'Do whatever your friend does ', 'It doesn`t really matter'));
         console.log('CLASSROOM3');
     }
     update(elapsed) {

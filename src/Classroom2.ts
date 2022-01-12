@@ -31,7 +31,7 @@ export default class ClassRoom2 extends Room {
     canvas: HTMLCanvasElement,
     previousScene: Scene,
     player: Player,
-    state: boolean,
+    state: boolean
   ) {
     super(canvas, './assets/img/classroom.png', state);
     this.previousScene = previousScene;
@@ -49,7 +49,7 @@ export default class ClassRoom2 extends Room {
 
     // creating collectibles in the classroom
     this.collectibles.push(
-      new Candy(this.canvas.width / 2, this.canvas.height / 2),
+      new Candy(this.canvas.width / 2, this.canvas.height / 2)
     );
 
     // creating the door for the classroom
@@ -61,7 +61,22 @@ export default class ClassRoom2 extends Room {
     this.player.setImage('./assets/img/player-boy-standing.png');
 
     // creating questions for this classroom
-
+    this.questions.push(
+      new Question(
+        this.player.getUserData(),
+        'You are creating an account on your favorite social media.# Before you can access it, they ask you to accept the general terms of condition!# What do you do?',
+        'Ask your parents what they think',
+        'Not read it and accept it',
+        'Read through everything and decide if you accept or not',
+      ),
+      new Question(
+        this.player.getUserData(),
+        'Which of these files are safe to download?#',
+        'Game.exe',
+        'Virus.exe ',
+        'Trojan.exe',
+      ),
+    );
     console.log('CLASSROOM2');
   }
 
@@ -79,8 +94,8 @@ export default class ClassRoom2 extends Room {
 
     // READING HINT
     if (
-      this.player.isReadingHint()
-      && this.player.getUserData().getHintAmount() > 0
+      this.player.isReadingHint() &&
+      this.player.getUserData().getHintAmount() > 0
     ) {
       this.player
         .getUserData()
