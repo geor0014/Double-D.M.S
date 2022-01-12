@@ -26,7 +26,7 @@ export default class BossRoom extends Room {
         this.questions = [];
         this.computer = new Computer(618, 113);
         this.collectibles.push(new Candy(this.canvas.width / 2, this.canvas.height / 2));
-        this.doors.push(new Door('./assets/img/door1.png', 296, 297));
+        this.doors.push(new Door('./assets/img/door1.png', 658, 297));
         this.player.setXPos(861);
         this.player.setYPos(365);
         this.player.setImage('./assets/img/player-boy-standing.png');
