@@ -25,8 +25,8 @@ export default class MainHallway extends Room {
     this.setYPos(0);
 
     this.player = new Player(this.canvas);
-    this.player.setXPos(729);
-    this.player.setYPos(488);
+    this.player.setXPos(532);
+    this.player.setYPos(681.5);
     this.player.setImage('./assets/img/player-boy-up.png');
 
     this.collectibles = [];

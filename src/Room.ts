@@ -124,7 +124,7 @@ export default abstract class Room extends Scene {
   /**
    * Checks if player is interacting with MENU/COLLECTIBLES in each room
    */
-  protected generalInteraction(): void {
+  protected generalInteraction(nextScene: Scene): void {
     console.log(` score ${this.player.getUserData().getScore()}`);
     // console.log(this.frameCounter);
     // Clear the screen

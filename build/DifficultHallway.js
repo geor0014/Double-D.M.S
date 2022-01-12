@@ -18,6 +18,12 @@ export default class DifficultHallway extends Room {
         this.doors = [];
         this.setXPos(0);
         this.setYPos(0);
+<<<<<<< HEAD
+        this.npcs.push(new Npc('./assets/img/student-grey-hair-back-faced.png', 766, 450));
+        this.npcs.push(new Npc('./assets/img/student-blue-hair-faced.png', 1264, 458));
+        this.player.setXPos(13);
+        this.player.setYPos(335);
+=======
         this.npcs.push(new Npc('./assets/img/student-grey-hair-back-faced.png', 766, 450, [
             new Dialog('Heyy how are you today?'),
             new Dialog('Good luck with your exams!'),
@@ -27,13 +33,25 @@ export default class DifficultHallway extends Room {
             new Dialog('Good luck with your exams!'),
         ]));
         this.player.setXPos(this.player.getImage().width);
+>>>>>>> bd4b738c2b887c0f5ac344ac38e0ea3a314b7445
         this.doors.push(new Door('./assets/img/door1.png', 332, 130));
         this.doors.push(new Door('./assets/img/door1.png', 532, 130));
         this.doors.push(new Door('./assets/img/door1.png', 732, 130));
     }
+    processInput() {
+        if (this.player.getYPos() > 292 && this.player.getYPos() < 425.5) {
+            this.player.movePlayer(this.canvas);
+            if (this.player.getYPos() <= 292) {
+                this.player.setYPos(294);
+            }
+            if (this.player.getYPos() >= 425.5) {
+                this.player.setYPos(423);
+            }
+        }
+    }
     update(elapsed) {
         this.generalInteraction();
-        if (this.player.getXPos() <= 14 && this.player.getYPos() >= 433.5) {
+        if (this.player.getXPos() <= 12 && this.player.getYPos() >= 334.5) {
             this.player.setXPos(1060);
             this.player.setYPos(443.5);
             this.player.setImage('./assets/img/player-boy-left.png');

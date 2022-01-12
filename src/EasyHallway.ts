@@ -38,10 +38,18 @@ export default class EasyHallway extends Room {
     this.setYPos(0);
 
     this.npcs.push(
+<<<<<<< HEAD
+      new Npc(
+        './assets/img/student-1-back-faced.png',
+        561,
+        399,
+      ),
+=======
       new Npc('./assets/img/student-1-back-faced.png', 561, 630, [
         new Dialog('Heyy how are you today?'),
         new Dialog('Good luck with your exams!'),
       ])
+>>>>>>> bd4b738c2b887c0f5ac344ac38e0ea3a314b7445
     );
 
     this.npcs.push(
@@ -67,11 +75,27 @@ export default class EasyHallway extends Room {
       )
     );
 
-    this.doors.push(new Door('./assets/img/door1.png', 732, 130));
-    this.doors.push(new Door('./assets/img/door1.png', 532, 130));
-    this.doors.push(new Door('./assets/img/door1.png', 332, 130));
+    this.doors.push(new Door('./assets/img/door1.png', 632, 238.5));
+    this.doors.push(new Door('./assets/img/door1.png', 500, 238.5));
+    this.doors.push(new Door('./assets/img/door1.png', 334, 238.5));
 
-    this.player.setXPos(this.canvas.width / 2);
+    this.player.setXPos(1055);
+    this.player.setYPos(351.5);
+  }
+
+  /**
+   * Methos to detect the input of the player
+   */
+  public processInput(): void {
+    if (this.player.getYPos() > 267.5 && this.player.getYPos() < 407.5) {
+      this.player.movePlayer(this.canvas);
+      if (this.player.getYPos() <= 267.5) {
+        this.player.setYPos(270);
+      }
+      if (this.player.getYPos() >= 407.5) {
+        this.player.setYPos(406);
+      }
+    }
   }
 
   /**
@@ -87,7 +111,7 @@ export default class EasyHallway extends Room {
     this.generalInteraction();
 
     // LEAVES EASY HALLWAY
-    if (this.player.getXPos() >= 1060 && this.player.getYPos() >= 443.5) {
+    if (this.player.getXPos() >= 1060 && this.player.getYPos() >= 309.5) {
       this.player.setXPos(14);
       this.player.setYPos(443.5);
       this.player.setImage('./assets/img/player-boy-right.png');

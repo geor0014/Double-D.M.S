@@ -34,8 +34,8 @@ export default class BossRoom extends Room {
     update(elapsed) {
         this.gameFrame += 1;
         this.generalInteraction();
-        if (this.player.isReadingHint() &&
-            this.player.getUserData().getHintAmount() > 0) {
+        if (this.player.isReadingHint()
+            && this.player.getUserData().getHintAmount() > 0) {
             this.player
                 .getUserData()
                 .setHintAmount(this.player.getUserData().getHintAmount() - 1);

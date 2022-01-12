@@ -53,11 +53,27 @@ export default class DifficultHallway extends Room {
       ])
     );
 
-    this.player.setXPos(this.player.getImage().width);
+    this.player.setXPos(13);
+    this.player.setYPos(335);
 
     this.doors.push(new Door('./assets/img/door1.png', 332, 130));
     this.doors.push(new Door('./assets/img/door1.png', 532, 130));
     this.doors.push(new Door('./assets/img/door1.png', 732, 130));
+  }
+
+  /**
+   * Methos to detect the input of the player
+   */
+  public processInput(): void {
+    if (this.player.getYPos() > 292 && this.player.getYPos() < 425.5) {
+      this.player.movePlayer(this.canvas);
+      if (this.player.getYPos() <= 292) {
+        this.player.setYPos(294);
+      }
+      if (this.player.getYPos() >= 425.5) {
+        this.player.setYPos(423);
+      }
+    }
   }
 
   /**
@@ -72,7 +88,7 @@ export default class DifficultHallway extends Room {
     this.generalInteraction();
 
     // LEAVES DIFFICULT HALLWAY
-    if (this.player.getXPos() <= 14 && this.player.getYPos() >= 433.5) {
+    if (this.player.getXPos() <= 12 && this.player.getYPos() >= 334.5) {
       this.player.setXPos(1060);
       this.player.setYPos(443.5);
       this.player.setImage('./assets/img/player-boy-left.png');
