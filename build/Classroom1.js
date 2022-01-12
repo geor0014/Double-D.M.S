@@ -6,6 +6,7 @@ import Question from './Question.js';
 import QuestionScreen from './QuestionScreen.js';
 import HintScreen from './HintScreen.js';
 import Npc from './Npc.js';
+import Dialog from './Dialog.js';
 export default class ClassRoom1 extends Room {
     previousScene;
     computer;
@@ -21,8 +22,14 @@ export default class ClassRoom1 extends Room {
         this.doors = [];
         this.questions = [];
         this.computer = new Computer(618, 113);
-        this.npcs.push(new Npc('./assets/img/student-orange-hair-back-faced.png', 702, 236));
-        this.npcs.push(new Npc('./assets/img/teacher-blonde-hair-front-faced.png', 714, 98));
+        this.npcs.push(new Npc('./assets/img/student-orange-hair-back-faced.png', 702, 236, [
+            new Dialog('Heyy how are you today?'),
+            new Dialog('Good luck with your exams!'),
+        ]));
+        this.npcs.push(new Npc('./assets/img/teacher-blonde-hair-front-faced.png', 714, 98, [
+            new Dialog('Heyy how are you today?'),
+            new Dialog('Good luck with your exams!'),
+        ]));
         this.collectibles.push(new Candy(this.canvas.width / 2, this.canvas.height / 2));
         this.doors.push(new Door('./assets/img/door1.png', 864, 300));
         this.player.setXPos(861);

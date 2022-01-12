@@ -14,8 +14,8 @@ export default class DialogScreen extends Screen {
         this.dialogs = dialogs;
         this.nextD = false;
         this.dCounter = 0;
-        this.setXPos(this.canvas.width / 5);
-        this.setYPos(this.canvas.height / 10);
+        this.setXPos(0);
+        this.setYPos(0);
     }
     processInput() {
         if (this.keyboard.isKeyDown(KeyListener.KEY_ESC)) {
@@ -56,13 +56,12 @@ export default class DialogScreen extends Screen {
         this.draw(this.ctx);
         if (this.dCounter < this.dialogs.length) {
             let textToWrite = '';
-            let j = 0;
-            let textHPos = this.canvas.height / 3;
+            let textHPos = this.canvas.height / 2.5;
             const textWPos = this.canvas.width / 3.5;
             for (let i = 0; i < 3; i += 1) {
                 textToWrite = this.dialogs[this.dCounter].getText(i);
                 console.log(textToWrite);
-                this.writeTextToCanvas(textToWrite, 20, textWPos + 150, textHPos, 'center', 'black');
+                this.writeTextToCanvas(textToWrite, 30, textWPos + 150, textHPos, 'center', 'black');
                 textHPos += 50;
             }
         }

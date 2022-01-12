@@ -11,6 +11,7 @@ import DifficultHallway from './DifficultHallway.js';
 import Player from './Player.js';
 import HintScreen from './HintScreen.js';
 import BossRoom from './BossRoom.js';
+import Dialog from './Dialog.js';
 
 export default class MainHallway extends Room {
   /**
@@ -33,10 +34,10 @@ export default class MainHallway extends Room {
     this.doors = [];
 
     this.collectibles.push(
-      new Candy(this.canvas.width / 2, this.canvas.height / 2),
+      new Candy(this.canvas.width / 2, this.canvas.height / 2)
     );
     this.collectibles.push(
-      new Hint(this.canvas.width / 3, this.canvas.height / 1.5),
+      new Hint(this.canvas.width / 3, this.canvas.height / 1.5)
     );
 
     this.doors.push(new Door('./assets/img/door1.png', 530, 155));
@@ -46,6 +47,10 @@ export default class MainHallway extends Room {
         './assets/img/teacher-front.png',
         this.canvas.width / 2,
         this.canvas.height - 500,
+        [
+          new Dialog('Heyy how are you today?#'),
+          new Dialog('Good luck with your exams!#'),
+        ],
       ),
     );
     console.log('hi');
@@ -63,8 +68,8 @@ export default class MainHallway extends Room {
     // console.log(this.player.getXPos(), this.player.getYPos());
 
     if (
-      this.player.isReadingHint()
-      && this.player.getUserData().getHintAmount() > 0
+      this.player.isReadingHint() &&
+      this.player.getUserData().getHintAmount() > 0
     ) {
       this.player
         .getUserData()
@@ -86,10 +91,11 @@ export default class MainHallway extends Room {
       // WITH NPC
       for (let i = 0; i < this.npcs.length; i += 1) {
         if (this.player.collidesWith(this.npcs[i])) {
+          const currentNPC: Npc = this.npcs[i];
           console.log('interact with npc');
           this.player.setXPos(this.player.getXPos() - 50);
           this.player.setYPos(this.player.getYPos() + 50);
-          // return new DialogScreen(this.canvas, this);
+          return new DialogScreen(this.canvas, this, currentNPC.getDialogs());
         }
       }
     }

@@ -12,6 +12,7 @@ import QuestionScreen from './QuestionScreen.js';
 
 import HintScreen from './HintScreen.js';
 import Npc from './Npc.js';
+import Dialog from './Dialog.js';
 
 export default class ClassRoom1 extends Room {
   private previousScene: Scene;
@@ -53,6 +54,10 @@ export default class ClassRoom1 extends Room {
         './assets/img/student-orange-hair-back-faced.png',
         702,
         236,
+        [
+          new Dialog('Heyy how are you today?'),
+          new Dialog('Good luck with your exams!'),
+        ],
       ),
     );
 
@@ -61,6 +66,10 @@ export default class ClassRoom1 extends Room {
         './assets/img/teacher-blonde-hair-front-faced.png',
         714,
         98,
+        [
+          new Dialog('Heyy how are you today?'),
+          new Dialog('Good luck with your exams!'),
+        ],
       ),
     );
 

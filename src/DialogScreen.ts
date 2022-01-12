@@ -25,7 +25,7 @@ export default class DialogScreen extends Screen {
   constructor(
     canvas: HTMLCanvasElement,
     previousScene: MainHallway,
-    dialogs: Dialog[],
+    dialogs: Dialog[]
   ) {
     super(canvas, './assets/img/dialogscreen.png');
     this.keyboard = new KeyListener();
@@ -34,8 +34,8 @@ export default class DialogScreen extends Screen {
     this.nextD = false;
     this.dCounter = 0;
 
-    this.setXPos(this.canvas.width / 5);
-    this.setYPos(this.canvas.height / 10);
+    this.setXPos(0);
+    this.setYPos(0);
   }
 
   /**
@@ -102,8 +102,8 @@ export default class DialogScreen extends Screen {
     this.draw(this.ctx);
     if (this.dCounter < this.dialogs.length) {
       let textToWrite: string = '';
-      let j: number = 0;
-      let textHPos: number = this.canvas.height / 3;
+      // let j: number = 0;
+      let textHPos: number = this.canvas.height / 2.5;
       const textWPos: number = this.canvas.width / 3.5;
 
       for (let i = 0; i < 3; i += 1) {
@@ -111,7 +111,7 @@ export default class DialogScreen extends Screen {
         console.log(textToWrite);
         this.writeTextToCanvas(
           textToWrite,
-          20,
+          30,
           textWPos + 150,
           textHPos,
           'center',
