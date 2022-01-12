@@ -75,22 +75,7 @@ export default class ClassRoom4 extends Room {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   public update(elapsed: number): Scene {
     // calling general checkups from Room class
-<<<<<<< HEAD
     const nextScene: Scene = this.generalInteraction();
-=======
-    this.generalInteraction();
-    // READING HINT
-    if (
-      this.player.isReadingHint() &&
-      this.player.getUserData().getHintAmount() > 0
-    ) {
-      this.player
-        .getUserData()
-        .setHintAmount(this.player.getUserData().getHintAmount() - 1);
-      console.log(this.player.getUserData().getHintAmount());
-      return new HintScreen(this.canvas, this, 2);
-    }
->>>>>>> 88e5fe7f552d5d1aa789f469c3aca5b810f72c1f
 
     // INTERACTIONS
     if (this.player.isInteracting()) {
