@@ -12,8 +12,8 @@ import BossRoom from './BossRoom.js';
 export default class MainHallway extends Room {
     constructor(canvas) {
         super(canvas, './assets/img/hallway.png');
-        this.setXPos(50);
-        this.setYPos(30);
+        this.setXPos(0);
+        this.setYPos(0);
         this.player = new Player(this.canvas);
         this.player.setXPos(729);
         this.player.setYPos(488);
@@ -29,8 +29,8 @@ export default class MainHallway extends Room {
     }
     update(elapsed) {
         this.generalInteraction();
-        if (this.player.isReadingHint() &&
-            this.player.getUserData().getHintAmount() > 0) {
+        if (this.player.isReadingHint()
+            && this.player.getUserData().getHintAmount() > 0) {
             this.player
                 .getUserData()
                 .setHintAmount(this.player.getUserData().getHintAmount() - 1);
@@ -57,7 +57,7 @@ export default class MainHallway extends Room {
         if (this.player.getXPos() <= 45 && this.player.getYPos() <= 364.5) {
             return new EasyHallway(this.canvas, this, this.player);
         }
-        if (this.player.getXPos() >= 1410 && this.player.getYPos() <= 376) {
+        if (this.player.getXPos() >= 799 && this.player.getYPos() <= 376) {
             return new DifficultHallway(this.canvas, this, this.player);
         }
         return null;

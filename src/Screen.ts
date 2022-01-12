@@ -7,8 +7,6 @@ export default abstract class Screen extends Scene {
 
   private yPos: number;
 
-
-
   /**
    * Initialises every attribute
    *

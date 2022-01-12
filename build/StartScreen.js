@@ -8,8 +8,9 @@ export default class StartScreen extends Screen {
         super(canvas, './assets/img/school-front.png');
         this.music = new Audio('./assets/sound/StartScreen.mp3');
         this.keyListener = new KeyListener();
-        this.setXPos(this.canvas.width / 4);
-        this.setYPos(this.canvas.height / 4 - 50);
+        this.setXPos(0);
+        this.setYPos(0);
+        console.log(this.getImage().width, this.getImage().height);
     }
     processInput() {
         if (this.keyListener.isKeyDown(KeyListener.KEY_SPACE)) {

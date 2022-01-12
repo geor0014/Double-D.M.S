@@ -37,7 +37,7 @@ export default class DifficultHallway extends Room {
     this.doors = [];
 
     this.setXPos(0);
-    this.setYPos(this.canvas.height / 4);
+    this.setYPos(0);
 
     this.npcs.push(
       new Npc(
@@ -75,7 +75,7 @@ export default class DifficultHallway extends Room {
 
     // LEAVES DIFFICULT HALLWAY
     if (this.player.getXPos() <= 0 && this.player.getYPos() <= 433) {
-      this.player.setXPos(1368);
+      this.player.setXPos(799);
       this.player.setYPos(371);
       this.player.setImage('./assets/img/player-boy-left.png');
       return this.mainHallway;

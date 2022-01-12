@@ -13,7 +13,7 @@ export default class ClassRoom4 extends Room {
         super(canvas, './assets/img/classroom.png', state);
         this.previousScene = previousScene;
         this.player = player;
-        this.setXPos(canvas.width / 4);
+        this.setXPos(0);
         this.setYPos(0);
         this.collectibles = [];
         this.npcs = [];

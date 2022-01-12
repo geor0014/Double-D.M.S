@@ -38,14 +38,14 @@ export default class BossRoom extends Room {
   public constructor(
     canvas: HTMLCanvasElement,
     previousScene: Scene,
-    player: Player
+    player: Player,
   ) {
     super(canvas, './assets/img/boss-room.png');
     this.previousScene = previousScene;
 
     this.player = player;
 
-    this.setXPos(canvas.width / 4);
+    this.setXPos(0);
     this.setYPos(0);
 
     this.collectibles = [];
