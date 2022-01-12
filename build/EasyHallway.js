@@ -9,7 +9,7 @@ import Npc from './Npc.js';
 export default class EasyHallway extends Room {
     mainHallway;
     constructor(canvas, mainHallway, player) {
-        super(canvas, './assets/img/easyHallway.jpg');
+        super(canvas, './assets/img/easyHallway.png');
         console.log('creating easy hallway');
         this.mainHallway = mainHallway;
         this.player = player;
@@ -28,9 +28,9 @@ export default class EasyHallway extends Room {
     }
     update(elapsed) {
         this.generalInteraction();
-        if (this.player.getXPos() >= 799 && this.player.getYPos() <= 433) {
-            this.player.setXPos(132);
-            this.player.setYPos(371);
+        if (this.player.getXPos() >= 1060 && this.player.getYPos() >= 443.5) {
+            this.player.setXPos(14);
+            this.player.setYPos(443.5);
             this.player.setImage('./assets/img/player-boy-right.png');
             console.log('main halwway return');
             return this.mainHallway;

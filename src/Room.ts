@@ -44,9 +44,19 @@ export default abstract class Room extends Scene {
    *
    * @param canvas canvas element
    * @param imgSrc source for image
+   * @param state boolean for the menubar
    */
   constructor(canvas: HTMLCanvasElement, imgSrc: string, state: boolean = false) {
     super(canvas);
+
+    const canvasPosition = this.canvas.getBoundingClientRect();
+
+    this.canvas.addEventListener('click', (event) => {
+      // eslint-disable-next-line @typescript-eslint/func-call-spacing
+      // console.log(this.player.getXPos(), this.player.getYPos());
+      // alert (`${this.player.getXPos()} ${this.player.getYPos()}`);
+      console.log(event.x - canvasPosition.left, event.y - canvasPosition.top);
+    });
 
     this.img = new Image();
 

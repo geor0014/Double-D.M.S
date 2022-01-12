@@ -39,7 +39,7 @@ export default class MainHallway extends Room {
       new Hint(this.canvas.width / 3, this.canvas.height / 1.5),
     );
 
-    this.doors.push(new Door('./assets/img/door1.png', 732, 130));
+    this.doors.push(new Door('./assets/img/door1.png', 530, 155));
 
     this.npcs.push(
       new Npc(
@@ -94,11 +94,11 @@ export default class MainHallway extends Room {
       }
     }
 
-    if (this.player.getXPos() <= 45 && this.player.getYPos() <= 364.5) {
+    if (this.player.getXPos() <= 14 && this.player.getYPos() >= 443.5) {
       return new EasyHallway(this.canvas, this, this.player);
     }
 
-    if (this.player.getXPos() >= 799 && this.player.getYPos() <= 376) {
+    if (this.player.getXPos() >= 1060 && this.player.getYPos() >= 443.5) {
       return new DifficultHallway(this.canvas, this, this.player);
     }
 
@@ -111,6 +111,7 @@ export default class MainHallway extends Room {
   public render(): void {
     this.draw(this.ctx);
     super.render();
+    // console.log(this.player.getXPos(), this.player.getYPos());
   }
 
   /*

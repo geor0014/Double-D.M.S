@@ -24,7 +24,7 @@ export default class DifficultHallway extends Room {
     mainHallway: Room,
     player: Player,
   ) {
-    super(canvas, './assets/img/easyHallway.jpg');
+    super(canvas, './assets/img/difficultHallway.png');
 
     console.log('creating difficult hallway');
 
@@ -74,9 +74,9 @@ export default class DifficultHallway extends Room {
     this.generalInteraction();
 
     // LEAVES DIFFICULT HALLWAY
-    if (this.player.getXPos() <= 0 && this.player.getYPos() <= 433) {
-      this.player.setXPos(799);
-      this.player.setYPos(371);
+    if (this.player.getXPos() <= 14 && this.player.getYPos() >= 433.5) {
+      this.player.setXPos(1060);
+      this.player.setYPos(443.5);
       this.player.setImage('./assets/img/player-boy-left.png');
       return this.mainHallway;
     }
