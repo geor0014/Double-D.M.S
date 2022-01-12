@@ -28,8 +28,8 @@ export default class Boss {
       this.frameY * this.spriteHeight,
       this.spriteWidth,
       this.spriteHeight,
-      0,
-      0,
+      503,
+      414,
       this.spriteWidth,
       this.spriteHeight
     );

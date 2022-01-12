@@ -13,7 +13,7 @@ export default class Boss {
         this.frameY = newFrame;
     }
     draw(ctx) {
-        ctx.drawImage(this.bossImg, 0, this.frameY * this.spriteHeight, this.spriteWidth, this.spriteHeight, 0, 0, this.spriteWidth, this.spriteHeight);
+        ctx.drawImage(this.bossImg, 0, this.frameY * this.spriteHeight, this.spriteWidth, this.spriteHeight, 503, 414, this.spriteWidth, this.spriteHeight);
     }
 }
 //# sourceMappingURL=Boss.js.map

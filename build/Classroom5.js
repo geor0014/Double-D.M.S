@@ -32,15 +32,27 @@ export default class ClassRoom5 extends Room {
         console.log('door5');
     }
     update(elapsed) {
+<<<<<<< HEAD
         const nextScene = this.generalInteraction();
+=======
+        this.generalInteraction();
+        if (this.player.isReadingHint() &&
+            this.player.getUserData().getHintAmount() > 0) {
+            this.player
+                .getUserData()
+                .setHintAmount(this.player.getUserData().getHintAmount() - 1);
+            console.log(this.player.getUserData().getHintAmount());
+            return new HintScreen(this.canvas, this, 2);
+        }
+>>>>>>> 88e5fe7f552d5d1aa789f469c3aca5b810f72c1f
         if (this.player.isInteracting()) {
             for (let i = 0; i < this.doors.length; i += 1) {
                 if (this.player.collidesWith(this.doors[i])) {
                     console.log('interact with door');
                     this.doorClose.play();
                     console.log(this.previousScene);
-                    this.player.setXPos(532);
-                    this.player.setYPos(200);
+                    this.player.setXPos(493);
+                    this.player.setYPos(350);
                     this.player.setImage('./assets/img/player-boy-standing.png');
                     return this.previousScene;
                 }
