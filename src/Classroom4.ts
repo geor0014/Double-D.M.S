@@ -31,7 +31,7 @@ export default class ClassRoom4 extends Room {
     canvas: HTMLCanvasElement,
     previousScene: Scene,
     player: Player,
-    state: boolean,
+    state: boolean
   ) {
     super(canvas, './assets/img/classroom.png', state);
     this.previousScene = previousScene;
@@ -49,7 +49,7 @@ export default class ClassRoom4 extends Room {
 
     // creating collectibles in the classroom
     this.collectibles.push(
-      new Candy(this.canvas.width / 2, this.canvas.height / 2),
+      new Candy(this.canvas.width / 2, this.canvas.height / 2)
     );
 
     // creating the door for the classroom
@@ -78,8 +78,8 @@ export default class ClassRoom4 extends Room {
     this.generalInteraction();
     // READING HINT
     if (
-      this.player.isReadingHint()
-      && this.player.getUserData().getHintAmount() > 0
+      this.player.isReadingHint() &&
+      this.player.getUserData().getHintAmount() > 0
     ) {
       this.player
         .getUserData()
@@ -96,8 +96,8 @@ export default class ClassRoom4 extends Room {
           console.log('interact with door');
           this.doorClose.play();
           console.log(this.previousScene);
-          this.player.setXPos(332);
-          this.player.setYPos(200);
+          this.player.setXPos(343);
+          this.player.setYPos(350);
           this.player.setImage('./assets/img/player-boy-standing.png');
           return this.previousScene;
         }

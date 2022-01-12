@@ -26,7 +26,7 @@ export default class BossRoom extends Room {
         this.questions = [];
         this.computer = new Computer(618, 113);
         this.collectibles.push(new Candy(this.canvas.width / 2, this.canvas.height / 2));
-        this.doors.push(new Door('./assets/img/door1.png', 864, 300));
+        this.doors.push(new Door('./assets/img/door1.png', 296, 297));
         this.player.setXPos(861);
         this.player.setYPos(365);
         this.player.setImage('./assets/img/player-boy-standing.png');
@@ -37,8 +37,8 @@ export default class BossRoom extends Room {
     update(elapsed) {
         this.gameFrame += 1;
         this.generalInteraction();
-        if (this.player.isReadingHint()
-            && this.player.getUserData().getHintAmount() > 0) {
+        if (this.player.isReadingHint() &&
+            this.player.getUserData().getHintAmount() > 0) {
             this.player
                 .getUserData()
                 .setHintAmount(this.player.getUserData().getHintAmount() - 1);

@@ -38,7 +38,7 @@ export default class BossRoom extends Room {
   public constructor(
     canvas: HTMLCanvasElement,
     previousScene: Scene,
-    player: Player,
+    player: Player
   ) {
     super(canvas, './assets/img/boss-room.png');
     this.previousScene = previousScene;
@@ -56,11 +56,11 @@ export default class BossRoom extends Room {
 
     // creating collectibles in the classroom
     this.collectibles.push(
-      new Candy(this.canvas.width / 2, this.canvas.height / 2),
+      new Candy(this.canvas.width / 2, this.canvas.height / 2)
     );
 
     // creating the door for the classroom
-    this.doors.push(new Door('./assets/img/door1.png', 864, 300));
+    this.doors.push(new Door('./assets/img/door1.png', 296, 297));
 
     // setting player starter position and image in the classroom
     this.player.setXPos(861);
@@ -74,8 +74,8 @@ export default class BossRoom extends Room {
         'text question 1',
         'right answer 1',
         'wrong answer 1.1',
-        'wrong answer 1.2',
-      ),
+        'wrong answer 1.2'
+      )
     );
     this.questions.push(
       new Question(
@@ -83,8 +83,8 @@ export default class BossRoom extends Room {
         'text question 2',
         'right answer 2',
         'wrong answer 2.1',
-        'wrong answer 2.2',
-      ),
+        'wrong answer 2.2'
+      )
     );
 
     this.boss = new Boss();
@@ -105,8 +105,8 @@ export default class BossRoom extends Room {
 
     // READING HINT
     if (
-      this.player.isReadingHint()
-      && this.player.getUserData().getHintAmount() > 0
+      this.player.isReadingHint() &&
+      this.player.getUserData().getHintAmount() > 0
     ) {
       this.player
         .getUserData()

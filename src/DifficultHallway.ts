@@ -40,14 +40,14 @@ export default class DifficultHallway extends Room {
     this.setYPos(0);
 
     this.npcs.push(
-      new Npc('./assets/img/student-grey-hair-back-faced.png', 766, 450, [
+      new Npc('./assets/img/student-grey-hair-back-faced.png', 766, 430, [
         new Dialog('Heyy how are you today?'),
         new Dialog('Good luck with your exams!'),
       ])
     );
 
     this.npcs.push(
-      new Npc('./assets/img/student-blue-hair-faced.png', 1264, 458, [
+      new Npc('./assets/img/student-blue-hair-faced.png', 432, 322, [
         new Dialog('Heyy how are you today?'),
         new Dialog('Good luck with your exams!'),
       ])
@@ -56,9 +56,9 @@ export default class DifficultHallway extends Room {
     this.player.setXPos(13);
     this.player.setYPos(335);
 
-    this.doors.push(new Door('./assets/img/door1.png', 332, 130));
-    this.doors.push(new Door('./assets/img/door1.png', 532, 130));
-    this.doors.push(new Door('./assets/img/door1.png', 732, 130));
+    this.doors.push(new Door('./assets/img/door1.png', 343, 267));
+    this.doors.push(new Door('./assets/img/door1.png', 493, 267));
+    this.doors.push(new Door('./assets/img/door1.png', 688, 267));
   }
 
   /**

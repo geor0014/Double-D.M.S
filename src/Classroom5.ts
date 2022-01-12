@@ -34,7 +34,7 @@ export default class ClassRoom5 extends Room {
     canvas: HTMLCanvasElement,
     previousScene: Scene,
     player: Player,
-    state: boolean,
+    state: boolean
   ) {
     super(canvas, './assets/img/classroom.png', state);
     this.previousScene = previousScene;
@@ -51,20 +51,15 @@ export default class ClassRoom5 extends Room {
     this.computer = new Computer(266, 165.5);
 
     this.npcs.push(
-      new Npc(
-        './assets/img/teacher-blonde-hair-front-faced.png',
-        714,
-        98,
-        [
-          new Dialog('Heyy how are you today?'),
-          new Dialog('Good luck with your exams!'),
-        ],
-      ),
+      new Npc('./assets/img/teacher-blonde-hair-front-faced.png', 714, 98, [
+        new Dialog('Heyy how are you today?'),
+        new Dialog('Good luck with your exams!'),
+      ])
     );
 
     // creating collectibles in the classroom
     this.collectibles.push(
-      new Candy(this.canvas.width / 2, this.canvas.height / 2),
+      new Candy(this.canvas.width / 2, this.canvas.height / 2)
     );
 
     // creating the door for the classroom
@@ -94,8 +89,8 @@ export default class ClassRoom5 extends Room {
 
     // READING HINT
     if (
-      this.player.isReadingHint()
-      && this.player.getUserData().getHintAmount() > 0
+      this.player.isReadingHint() &&
+      this.player.getUserData().getHintAmount() > 0
     ) {
       this.player
         .getUserData()
@@ -112,8 +107,8 @@ export default class ClassRoom5 extends Room {
           console.log('interact with door');
           this.doorClose.play();
           console.log(this.previousScene);
-          this.player.setXPos(532);
-          this.player.setYPos(200);
+          this.player.setXPos(493);
+          this.player.setYPos(350);
           this.player.setImage('./assets/img/player-boy-standing.png');
           return this.previousScene;
         }
