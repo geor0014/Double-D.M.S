@@ -108,7 +108,7 @@ export default class DialogScreen extends Screen {
 
       for (let i = 0; i < 3; i += 1) {
         textToWrite = this.dialogs[this.dCounter].getText(i);
-        console.log(textToWrite);
+        // console.log(textToWrite);
         this.writeTextToCanvas(
           textToWrite,
           30,

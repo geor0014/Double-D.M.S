@@ -5,6 +5,8 @@ import Menu from './Menu.js';
 import Collectibles from './collectibles.js';
 import Candy from './Candy.js';
 import Hint from './Hint.js';
+import DialogScreen from './DialogScreen.js';
+import HintScreen from './HintScreen.js';
 
 export default abstract class Room extends Scene {
   // X position of the image of the room
@@ -46,7 +48,11 @@ export default abstract class Room extends Scene {
    * @param imgSrc source for image
    * @param state boolean for the menubar
    */
-  constructor(canvas: HTMLCanvasElement, imgSrc: string, state: boolean = false) {
+  constructor(
+    canvas: HTMLCanvasElement,
+    imgSrc: string,
+    state: boolean = false
+  ) {
     super(canvas);
 
     const canvasPosition = this.canvas.getBoundingClientRect();
@@ -124,11 +130,23 @@ export default abstract class Room extends Scene {
   /**
    * Checks if player is interacting with MENU/COLLECTIBLES in each room
    */
-  protected generalInteraction(): void {
-    console.log(` score ${this.player.getUserData().getScore()}`);
+  protected generalInteraction(): Scene {
+    // console.log(` score ${this.player.getUserData().getScore()}`);
     // console.log(this.frameCounter);
     // Clear the screen
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+    if (
+      this.player.isReadingHint() &&
+      this.player.getUserData().getHintAmount() > 0
+    ) {
+      this.player
+        .getUserData()
+        .setHintAmount(this.player.getUserData().getHintAmount() - 1);
+      console.log(this.player.getUserData().getHintAmount());
+      return new HintScreen(this.canvas, this, 2);
+    }
+
 
     // INTERACTION WITH MENU
     if (this.player.isInteractingMenu() && this.frameCounter === 7) {
@@ -145,6 +163,17 @@ export default abstract class Room extends Scene {
 
     // WITH COLLECTIBLES
     if (this.player.isInteracting()) {
+      // interaction with NPC
+      for (let i = 0; i < this.npcs.length; i += 1) {
+        if (this.player.collidesWith(this.npcs[i])) {
+          const currentNPC: Npc = this.npcs[i];
+          console.log('interact with npc');
+          this.player.setXPos(this.player.getXPos() - 50);
+          this.player.setYPos(this.player.getYPos() + 50);
+          return new DialogScreen(this.canvas, this, currentNPC.getDialogs());
+        }
+      }
+
       this.collectibles.forEach((item) => {
         if (this.player.collidesWith(item)) {
           this.collectCollectibles();
@@ -165,6 +194,7 @@ export default abstract class Room extends Scene {
       });
     }
     this.frameCounter += 1;
+    return null;
   }
 
   /**

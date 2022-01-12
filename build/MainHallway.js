@@ -3,11 +3,9 @@ import Door from './Door.js';
 import Npc from './Npc.js';
 import Candy from './Candy.js';
 import Hint from './Hint.js';
-import DialogScreen from './DialogScreen.js';
 import EasyHallway from './EasyHallway.js';
 import DifficultHallway from './DifficultHallway.js';
 import Player from './Player.js';
-import HintScreen from './HintScreen.js';
 import BossRoom from './BossRoom.js';
 import Dialog from './Dialog.js';
 export default class MainHallway extends Room {
@@ -32,15 +30,7 @@ export default class MainHallway extends Room {
         console.log('hi');
     }
     update(elapsed) {
-        this.generalInteraction();
-        if (this.player.isReadingHint() &&
-            this.player.getUserData().getHintAmount() > 0) {
-            this.player
-                .getUserData()
-                .setHintAmount(this.player.getUserData().getHintAmount() - 1);
-            console.log(this.player.getUserData().getHintAmount());
-            return new HintScreen(this.canvas, this, 2);
-        }
+        const nextScene = this.generalInteraction();
         if (this.player.isInteracting()) {
             for (let i = 0; i < this.doors.length; i += 1) {
                 if (this.player.collidesWith(this.doors[i])) {
@@ -49,21 +39,15 @@ export default class MainHallway extends Room {
                     return new BossRoom(this.canvas, this, this.player);
                 }
             }
-            for (let i = 0; i < this.npcs.length; i += 1) {
-                if (this.player.collidesWith(this.npcs[i])) {
-                    const currentNPC = this.npcs[i];
-                    console.log('interact with npc');
-                    this.player.setXPos(this.player.getXPos() - 50);
-                    this.player.setYPos(this.player.getYPos() + 50);
-                    return new DialogScreen(this.canvas, this, currentNPC.getDialogs());
-                }
-            }
         }
         if (this.player.getXPos() <= 14 && this.player.getYPos() >= 443.5) {
             return new EasyHallway(this.canvas, this, this.player);
         }
         if (this.player.getXPos() >= 1060 && this.player.getYPos() >= 443.5) {
             return new DifficultHallway(this.canvas, this, this.player);
+        }
+        if (nextScene !== null) {
+            return nextScene;
         }
         return null;
     }

@@ -55,7 +55,7 @@ export default class ClassRoom1 extends Room {
         702,
         236,
         [
-          new Dialog('Dont bother me I am trying to study...'),
+          new Dialog('Dont bother me I am trying to study...#'),
         ],
       ),
       new Npc(
@@ -64,7 +64,7 @@ export default class ClassRoom1 extends Room {
         98,
         [
           new Dialog('Today we are learning about suspicious links and strangers messeges#'),
-          new Dialog('This is very important!'),
+          new Dialog('This is very important!#'),
         ],
       ),
     );
@@ -114,19 +114,7 @@ export default class ClassRoom1 extends Room {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   public update(elapsed: number): Scene {
     // calling general checkups from Room class
-    this.generalInteraction();
-
-    // READING HINT
-    if (
-      this.player.isReadingHint()
-      && this.player.getUserData().getHintAmount() > 0
-    ) {
-      this.player
-        .getUserData()
-        .setHintAmount(this.player.getUserData().getHintAmount() - 1);
-      console.log(this.player.getUserData().getHintAmount());
-      return new HintScreen(this.canvas, this, 2);
-    }
+    const nextScene: Scene = this.generalInteraction();
 
     // INTERACTIONS
     if (this.player.isInteracting()) {
@@ -150,6 +138,9 @@ export default class ClassRoom1 extends Room {
       }
     }
 
+    if (nextScene !== null) {
+      return nextScene;
+    }
     return null;
   }
 

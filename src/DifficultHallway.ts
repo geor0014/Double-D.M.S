@@ -85,7 +85,7 @@ export default class DifficultHallway extends Room {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   public update(elapsed: number): Scene {
     // calling general checkups from Room class
-    this.generalInteraction();
+    const nextScene: Scene = this.generalInteraction();
 
     // LEAVES DIFFICULT HALLWAY
     if (this.player.getXPos() <= 12 && this.player.getYPos() >= 334.5) {
@@ -93,18 +93,6 @@ export default class DifficultHallway extends Room {
       this.player.setYPos(443.5);
       this.player.setImage('./assets/img/player-boy-left.png');
       return this.mainHallway;
-    }
-
-    // READING HINT
-    if (
-      this.player.isReadingHint() &&
-      this.player.getUserData().getHintAmount() > 0
-    ) {
-      this.player
-        .getUserData()
-        .setHintAmount(this.player.getUserData().getHintAmount() - 1);
-      console.log(this.player.getUserData().getHintAmount());
-      return new HintScreen(this.canvas, this, 2);
     }
 
     // INTERACTIONS
@@ -142,6 +130,9 @@ export default class DifficultHallway extends Room {
       }
 
       // WITH NPC
+    }
+    if (nextScene !== null) {
+      return nextScene;
     }
     return null;
   }

@@ -60,7 +60,6 @@ export default class DialogScreen extends Screen {
             const textWPos = this.canvas.width / 3.5;
             for (let i = 0; i < 3; i += 1) {
                 textToWrite = this.dialogs[this.dCounter].getText(i);
-                console.log(textToWrite);
                 this.writeTextToCanvas(textToWrite, 30, textWPos + 150, textHPos, 'center', 'black');
                 textHPos += 50;
             }

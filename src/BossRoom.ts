@@ -101,7 +101,7 @@ export default class BossRoom extends Room {
     this.gameFrame += 1;
 
     // calling general checkups from Room class
-    this.generalInteraction();
+    const nextScene: Scene = this.generalInteraction();
 
     // READING HINT
     if (
@@ -149,6 +149,9 @@ export default class BossRoom extends Room {
       this.boss.setFrameY(this.frameY);
     }
 
+    if (nextScene !== null) {
+      return nextScene;
+    }
     return null;
   }
 

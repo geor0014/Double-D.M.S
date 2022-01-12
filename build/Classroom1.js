@@ -4,7 +4,6 @@ import Candy from './Candy.js';
 import Computer from './Computer.js';
 import Question from './Question.js';
 import QuestionScreen from './QuestionScreen.js';
-import HintScreen from './HintScreen.js';
 import Npc from './Npc.js';
 import Dialog from './Dialog.js';
 export default class ClassRoom1 extends Room {
@@ -23,10 +22,10 @@ export default class ClassRoom1 extends Room {
         this.questions = [];
         this.computer = new Computer(266, 165.5);
         this.npcs.push(new Npc('./assets/img/student-orange-hair-back-faced.png', 702, 236, [
-            new Dialog('Dont bother me I am trying to study...'),
+            new Dialog('Dont bother me I am trying to study...#'),
         ]), new Npc('./assets/img/teacher-blonde-hair-front-faced.png', 714, 98, [
             new Dialog('Today we are learning about suspicious links and strangers messeges#'),
-            new Dialog('This is very important!'),
+            new Dialog('This is very important!#'),
         ]));
         this.collectibles.push(new Candy(this.canvas.width / 2, this.canvas.height / 2));
         this.doors.push(new Door('./assets/img/door1.png', 985, 485));
@@ -38,15 +37,7 @@ export default class ClassRoom1 extends Room {
         console.log('CLASSROOM1');
     }
     update(elapsed) {
-        this.generalInteraction();
-        if (this.player.isReadingHint()
-            && this.player.getUserData().getHintAmount() > 0) {
-            this.player
-                .getUserData()
-                .setHintAmount(this.player.getUserData().getHintAmount() - 1);
-            console.log(this.player.getUserData().getHintAmount());
-            return new HintScreen(this.canvas, this, 2);
-        }
+        const nextScene = this.generalInteraction();
         if (this.player.isInteracting()) {
             for (let i = 0; i < this.doors.length; i += 1) {
                 if (this.player.collidesWith(this.doors[i])) {
@@ -62,6 +53,9 @@ export default class ClassRoom1 extends Room {
             if (this.player.collidesWith(this.computer)) {
                 return new QuestionScreen(this.canvas, this, this.questions);
             }
+        }
+        if (nextScene !== null) {
+            return nextScene;
         }
         return null;
     }

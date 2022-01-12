@@ -90,7 +90,7 @@ export default class ClassRoom3 extends Room {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   public update(elapsed: number): Scene {
     // calling general checkups from Room class
-    this.generalInteraction();
+    const nextScene: Scene = this.generalInteraction();
 
     // READING HINT
     if (
@@ -125,6 +125,9 @@ export default class ClassRoom3 extends Room {
       }
     }
 
+    if (nextScene !== null) {
+      return nextScene;
+    }
     return null;
   }
 

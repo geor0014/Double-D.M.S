@@ -36,7 +36,7 @@ export default class BossRoom extends Room {
     }
     update(elapsed) {
         this.gameFrame += 1;
-        this.generalInteraction();
+        const nextScene = this.generalInteraction();
         if (this.player.isReadingHint()
             && this.player.getUserData().getHintAmount() > 0) {
             this.player
@@ -69,6 +69,9 @@ export default class BossRoom extends Room {
                 this.frameY = 0;
             }
             this.boss.setFrameY(this.frameY);
+        }
+        if (nextScene !== null) {
+            return nextScene;
         }
         return null;
     }

@@ -29,7 +29,7 @@ export default class ClassRoom3 extends Room {
         console.log('CLASSROOM3');
     }
     update(elapsed) {
-        this.generalInteraction();
+        const nextScene = this.generalInteraction();
         if (this.player.isReadingHint()
             && this.player.getUserData().getHintAmount() > 0) {
             this.player
@@ -53,6 +53,9 @@ export default class ClassRoom3 extends Room {
             if (this.player.collidesWith(this.computer)) {
                 return new QuestionScreen(this.canvas, this, this.questions);
             }
+        }
+        if (nextScene !== null) {
+            return nextScene;
         }
         return null;
     }

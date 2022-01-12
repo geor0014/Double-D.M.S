@@ -3,7 +3,6 @@ import Door from './Door.js';
 import ClassRoom4 from './Classroom4.js';
 import ClassRoom5 from './Classroom5.js';
 import ClassRoom6 from './Classroom6.js';
-import HintScreen from './HintScreen.js';
 import Dialog from './Dialog.js';
 import Npc from './Npc.js';
 export default class DifficultHallway extends Room {
@@ -44,20 +43,12 @@ export default class DifficultHallway extends Room {
         }
     }
     update(elapsed) {
-        this.generalInteraction();
+        const nextScene = this.generalInteraction();
         if (this.player.getXPos() <= 12 && this.player.getYPos() >= 334.5) {
             this.player.setXPos(1060);
             this.player.setYPos(443.5);
             this.player.setImage('./assets/img/player-boy-left.png');
             return this.mainHallway;
-        }
-        if (this.player.isReadingHint() &&
-            this.player.getUserData().getHintAmount() > 0) {
-            this.player
-                .getUserData()
-                .setHintAmount(this.player.getUserData().getHintAmount() - 1);
-            console.log(this.player.getUserData().getHintAmount());
-            return new HintScreen(this.canvas, this, 2);
         }
         if (this.player.isInteracting()) {
             for (let i = 0; i < this.doors.length; i += 1) {
@@ -75,6 +66,9 @@ export default class DifficultHallway extends Room {
                     }
                 }
             }
+        }
+        if (nextScene !== null) {
+            return nextScene;
         }
         return null;
     }

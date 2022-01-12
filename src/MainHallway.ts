@@ -64,20 +64,8 @@ export default class MainHallway extends Room {
    * @returns a scene or null
    */
   public update(elapsed: number): Scene {
-    this.generalInteraction();
+    const nextScene: Scene = this.generalInteraction();
     // console.log(this.player.getXPos(), this.player.getYPos());
-
-    if (
-      this.player.isReadingHint() &&
-      this.player.getUserData().getHintAmount() > 0
-    ) {
-      this.player
-        .getUserData()
-        .setHintAmount(this.player.getUserData().getHintAmount() - 1);
-      console.log(this.player.getUserData().getHintAmount());
-      return new HintScreen(this.canvas, this, 2);
-    }
-
     if (this.player.isInteracting()) {
       // WITH DOORS
       for (let i = 0; i < this.doors.length; i += 1) {
@@ -85,17 +73,6 @@ export default class MainHallway extends Room {
           console.log('interact with door');
           this.doorOpen.play();
           return new BossRoom(this.canvas, this, this.player);
-        }
-      }
-
-      // WITH NPC
-      for (let i = 0; i < this.npcs.length; i += 1) {
-        if (this.player.collidesWith(this.npcs[i])) {
-          const currentNPC: Npc = this.npcs[i];
-          console.log('interact with npc');
-          this.player.setXPos(this.player.getXPos() - 50);
-          this.player.setYPos(this.player.getYPos() + 50);
-          return new DialogScreen(this.canvas, this, currentNPC.getDialogs());
         }
       }
     }
@@ -107,7 +84,9 @@ export default class MainHallway extends Room {
     if (this.player.getXPos() >= 1060 && this.player.getYPos() >= 443.5) {
       return new DifficultHallway(this.canvas, this, this.player);
     }
-
+    if (nextScene !== null) {
+      return nextScene;
+    }
     return null;
   }
 
