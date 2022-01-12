@@ -18,6 +18,10 @@ export default class Room extends Scene {
     doorClose;
     constructor(canvas, imgSrc, state = false) {
         super(canvas);
+        const canvasPosition = this.canvas.getBoundingClientRect();
+        this.canvas.addEventListener('click', (event) => {
+            console.log(event.x - canvasPosition.left, event.y - canvasPosition.top);
+        });
         this.img = new Image();
         this.img.src = imgSrc;
         this.doorClose = new Audio('./assets/sound/DoorClose.ogg');

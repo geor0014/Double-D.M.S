@@ -38,7 +38,7 @@ export default class ClassRoom4 extends Room {
 
     this.player = player;
 
-    this.setXPos(canvas.width / 4);
+    this.setXPos(0);
     this.setYPos(0);
 
     this.collectibles = [];

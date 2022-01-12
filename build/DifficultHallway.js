@@ -8,7 +8,7 @@ import Npc from './Npc.js';
 export default class DifficultHallway extends Room {
     mainHallway;
     constructor(canvas, mainHallway, player) {
-        super(canvas, './assets/img/easyHallway.jpg');
+        super(canvas, './assets/img/difficultHallway.png');
         console.log('creating difficult hallway');
         this.mainHallway = mainHallway;
         this.player = player;
@@ -16,7 +16,7 @@ export default class DifficultHallway extends Room {
         this.npcs = [];
         this.doors = [];
         this.setXPos(0);
-        this.setYPos(this.canvas.height / 4);
+        this.setYPos(0);
         this.npcs.push(new Npc('./assets/img/student-grey-hair-back-faced.png', 766, 450));
         this.npcs.push(new Npc('./assets/img/student-blue-hair-faced.png', 1264, 458));
         this.player.setXPos(this.player.getImage().width);
@@ -26,9 +26,9 @@ export default class DifficultHallway extends Room {
     }
     update(elapsed) {
         this.generalInteraction();
-        if (this.player.getXPos() <= 0 && this.player.getYPos() <= 433) {
-            this.player.setXPos(1368);
-            this.player.setYPos(371);
+        if (this.player.getXPos() <= 14 && this.player.getYPos() >= 433.5) {
+            this.player.setXPos(1060);
+            this.player.setYPos(443.5);
             this.player.setImage('./assets/img/player-boy-left.png');
             return this.mainHallway;
         }
