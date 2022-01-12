@@ -1,7 +1,5 @@
 import GameLoop from './GameLoop.js';
-import Player from './Player.js';
 import StartScreen from './StartScreen.js';
-import UserData from './UserData.js';
 
 export default class Game {
   private canvas: HTMLCanvasElement;

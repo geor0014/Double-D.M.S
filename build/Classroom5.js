@@ -2,10 +2,10 @@ import Door from './Door.js';
 import Room from './Room.js';
 import Candy from './Candy.js';
 import Computer from './Computer.js';
-import Question from './Question.js';
 import QuestionScreen from './QuestionScreen.js';
 import HintScreen from './HintScreen.js';
 import Npc from './Npc.js';
+import Dialog from './Dialog.js';
 export default class ClassRoom5 extends Room {
     previousScene;
     computer;
@@ -20,15 +20,21 @@ export default class ClassRoom5 extends Room {
         this.npcs = [];
         this.doors = [];
         this.questions = [];
+<<<<<<< HEAD
         this.computer = new Computer(266, 165.5);
         this.npcs.push(new Npc('./assets/img/teacher-blonde-hair-front-faced.png', 714, 98));
+=======
+        this.computer = new Computer(618, 113);
+        this.npcs.push(new Npc('./assets/img/teacher-blonde-hair-front-faced.png', 714, 98, [
+            new Dialog('Heyy how are you today?'),
+            new Dialog('Good luck with your exams!'),
+        ]));
+>>>>>>> bd4b738c2b887c0f5ac344ac38e0ea3a314b7445
         this.collectibles.push(new Candy(this.canvas.width / 2, this.canvas.height / 2));
         this.doors.push(new Door('./assets/img/door1.png', 985, 485));
         this.player.setXPos(990);
         this.player.setYPos(548);
         this.player.setImage('./assets/img/player-boy-standing.png');
-        this.questions.push(new Question('text question 1', 'right answer 1', 'wrong answer 1.1', 'wrong answer 1.2'));
-        this.questions.push(new Question('text question 2', 'right answer 2', 'wrong answer 2.1', 'wrong answer 2.2'));
         console.log('door5');
     }
     update(elapsed) {

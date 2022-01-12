@@ -52,6 +52,7 @@ export default class Room extends Scene {
         });
     }
     generalInteraction() {
+        console.log(` score ${this.player.getUserData().getScore()}`);
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         if (this.player.isInteractingMenu() && this.frameCounter === 7) {
             if (this.isMenuShowing === true) {

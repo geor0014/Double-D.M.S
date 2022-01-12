@@ -6,7 +6,7 @@ import ClassRoom4 from './Classroom4.js';
 import ClassRoom5 from './Classroom5.js';
 import ClassRoom6 from './Classroom6.js';
 import HintScreen from './HintScreen.js';
-import DialogScreen from './DialogScreen.js';
+import Dialog from './Dialog.js';
 import Npc from './Npc.js';
 
 export default class DifficultHallway extends Room {
@@ -22,7 +22,7 @@ export default class DifficultHallway extends Room {
   public constructor(
     canvas: HTMLCanvasElement,
     mainHallway: Room,
-    player: Player,
+    player: Player
   ) {
     super(canvas, './assets/img/difficultHallway.png');
 
@@ -40,19 +40,17 @@ export default class DifficultHallway extends Room {
     this.setYPos(0);
 
     this.npcs.push(
-      new Npc(
-        './assets/img/student-grey-hair-back-faced.png',
-        766,
-        450,
-      ),
+      new Npc('./assets/img/student-grey-hair-back-faced.png', 766, 450, [
+        new Dialog('Heyy how are you today?'),
+        new Dialog('Good luck with your exams!'),
+      ])
     );
 
     this.npcs.push(
-      new Npc(
-        './assets/img/student-blue-hair-faced.png',
-        1264,
-        458,
-      ),
+      new Npc('./assets/img/student-blue-hair-faced.png', 1264, 458, [
+        new Dialog('Heyy how are you today?'),
+        new Dialog('Good luck with your exams!'),
+      ])
     );
 
     this.player.setXPos(13);
@@ -99,8 +97,8 @@ export default class DifficultHallway extends Room {
 
     // READING HINT
     if (
-      this.player.isReadingHint()
-      && this.player.getUserData().getHintAmount() > 0
+      this.player.isReadingHint() &&
+      this.player.getUserData().getHintAmount() > 0
     ) {
       this.player
         .getUserData()
@@ -117,37 +115,39 @@ export default class DifficultHallway extends Room {
           console.log('interact with door');
           this.doorOpen.play();
           if (i === 0) {
-            return new ClassRoom4(this.canvas, this, this.player, this.isMenuShowing);
+            return new ClassRoom4(
+              this.canvas,
+              this,
+              this.player,
+              this.isMenuShowing
+            );
           }
           if (i === 1) {
-            return new ClassRoom5(this.canvas, this, this.player, this.isMenuShowing);
+            return new ClassRoom5(
+              this.canvas,
+              this,
+              this.player,
+              this.isMenuShowing
+            );
           }
           if (i === 2) {
-            return new ClassRoom6(this.canvas, this, this.player, this.isMenuShowing);
+            return new ClassRoom6(
+              this.canvas,
+              this,
+              this.player,
+              this.isMenuShowing
+            );
           }
         }
       }
 
       // WITH NPC
-      for (let i = 0; i < this.npcs.length; i += 1) {
-        if (this.player.collidesWith(this.npcs[i])) {
-          console.log('interact with npc');
-          this.player.setXPos(this.player.getXPos() - 50);
-          this.player.setYPos(this.player.getYPos() + 50);
-          return new DialogScreen(this.canvas, this);
-        }
-      }
     }
-
     return null;
   }
 
   /**
-<<<<<<< HEAD
    * Renders the gdifficult hallway
-=======
-   * draws everything
->>>>>>> e7b1cd3029958609a24eef98d936b1e6cab24fd9
    */
   public render(): void {
     this.draw(this.ctx);

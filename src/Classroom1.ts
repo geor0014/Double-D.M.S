@@ -12,6 +12,7 @@ import QuestionScreen from './QuestionScreen.js';
 
 import HintScreen from './HintScreen.js';
 import Npc from './Npc.js';
+import Dialog from './Dialog.js';
 
 export default class ClassRoom1 extends Room {
   private previousScene: Scene;
@@ -51,16 +52,34 @@ export default class ClassRoom1 extends Room {
     this.npcs.push(
       new Npc(
         './assets/img/student-orange-hair-back-faced.png',
+<<<<<<< HEAD
         468,
         370.5,
+=======
+        702,
+        236,
+        [
+          new Dialog('Heyy how are you today?'),
+          new Dialog('Good luck with your exams!'),
+        ],
+>>>>>>> bd4b738c2b887c0f5ac344ac38e0ea3a314b7445
       ),
     );
 
     this.npcs.push(
       new Npc(
         './assets/img/teacher-blonde-hair-front-faced.png',
+<<<<<<< HEAD
         491,
         180.5,
+=======
+        714,
+        98,
+        [
+          new Dialog('Heyy how are you today?'),
+          new Dialog('Good luck with your exams!'),
+        ],
+>>>>>>> bd4b738c2b887c0f5ac344ac38e0ea3a314b7445
       ),
     );
 
@@ -80,6 +99,7 @@ export default class ClassRoom1 extends Room {
     // creating questions for this classroom
     this.questions.push(
       new Question(
+        this.player.getUserData(),
         'Congratulations you just won a giveaway!# a Nigerian Prince chose you to be the winner!!#Send him your bank account details and your ID to get 500.000€!!',
         'Not pay attention and delete this email/message',
         'Send an E-mail to make sure it is real',
@@ -88,6 +108,7 @@ export default class ClassRoom1 extends Room {
     );
     this.questions.push(
       new Question(
+        this.player.getUserData(),
         'Someone sent you a link to a YouTube video,# you click on it and suddenly you have a virus on your pc!# What could u have done differently? ',
         'Not click on the link',
         'Send this cool link to all my friends!',

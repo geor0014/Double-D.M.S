@@ -13,6 +13,8 @@ import QuestionScreen from './QuestionScreen.js';
 import HintScreen from './HintScreen.js';
 import Npc from './Npc.js';
 
+import Dialog from './Dialog.js';
+
 export default class ClassRoom5 extends Room {
   private previousScene: Scene;
 
@@ -53,6 +55,10 @@ export default class ClassRoom5 extends Room {
         './assets/img/teacher-blonde-hair-front-faced.png',
         714,
         98,
+        [
+          new Dialog('Heyy how are you today?'),
+          new Dialog('Good luck with your exams!'),
+        ],
       ),
     );
 
@@ -70,22 +76,7 @@ export default class ClassRoom5 extends Room {
     this.player.setImage('./assets/img/player-boy-standing.png');
 
     // creating questions for this classroom
-    this.questions.push(
-      new Question(
-        'text question 1',
-        'right answer 1',
-        'wrong answer 1.1',
-        'wrong answer 1.2',
-      ),
-    );
-    this.questions.push(
-      new Question(
-        'text question 2',
-        'right answer 2',
-        'wrong answer 2.1',
-        'wrong answer 2.2',
-      ),
-    );
+
     console.log('door5');
   }
 

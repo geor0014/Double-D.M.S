@@ -4,7 +4,7 @@ import ClassRoom4 from './Classroom4.js';
 import ClassRoom5 from './Classroom5.js';
 import ClassRoom6 from './Classroom6.js';
 import HintScreen from './HintScreen.js';
-import DialogScreen from './DialogScreen.js';
+import Dialog from './Dialog.js';
 import Npc from './Npc.js';
 export default class DifficultHallway extends Room {
     mainHallway;
@@ -18,10 +18,22 @@ export default class DifficultHallway extends Room {
         this.doors = [];
         this.setXPos(0);
         this.setYPos(0);
+<<<<<<< HEAD
         this.npcs.push(new Npc('./assets/img/student-grey-hair-back-faced.png', 766, 450));
         this.npcs.push(new Npc('./assets/img/student-blue-hair-faced.png', 1264, 458));
         this.player.setXPos(13);
         this.player.setYPos(335);
+=======
+        this.npcs.push(new Npc('./assets/img/student-grey-hair-back-faced.png', 766, 450, [
+            new Dialog('Heyy how are you today?'),
+            new Dialog('Good luck with your exams!'),
+        ]));
+        this.npcs.push(new Npc('./assets/img/student-blue-hair-faced.png', 1264, 458, [
+            new Dialog('Heyy how are you today?'),
+            new Dialog('Good luck with your exams!'),
+        ]));
+        this.player.setXPos(this.player.getImage().width);
+>>>>>>> bd4b738c2b887c0f5ac344ac38e0ea3a314b7445
         this.doors.push(new Door('./assets/img/door1.png', 332, 130));
         this.doors.push(new Door('./assets/img/door1.png', 532, 130));
         this.doors.push(new Door('./assets/img/door1.png', 732, 130));
@@ -45,8 +57,8 @@ export default class DifficultHallway extends Room {
             this.player.setImage('./assets/img/player-boy-left.png');
             return this.mainHallway;
         }
-        if (this.player.isReadingHint()
-            && this.player.getUserData().getHintAmount() > 0) {
+        if (this.player.isReadingHint() &&
+            this.player.getUserData().getHintAmount() > 0) {
             this.player
                 .getUserData()
                 .setHintAmount(this.player.getUserData().getHintAmount() - 1);
@@ -67,14 +79,6 @@ export default class DifficultHallway extends Room {
                     if (i === 2) {
                         return new ClassRoom6(this.canvas, this, this.player, this.isMenuShowing);
                     }
-                }
-            }
-            for (let i = 0; i < this.npcs.length; i += 1) {
-                if (this.player.collidesWith(this.npcs[i])) {
-                    console.log('interact with npc');
-                    this.player.setXPos(this.player.getXPos() - 50);
-                    this.player.setYPos(this.player.getYPos() + 50);
-                    return new DialogScreen(this.canvas, this);
                 }
             }
         }
