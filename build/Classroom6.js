@@ -19,11 +19,11 @@ export default class ClassRoom6 extends Room {
         this.npcs = [];
         this.doors = [];
         this.questions = [];
-        this.computer = new Computer(618, 113);
+        this.computer = new Computer(266, 165.5);
         this.collectibles.push(new Candy(this.canvas.width / 2, this.canvas.height / 2));
-        this.doors.push(new Door('./assets/img/door1.png', 864, 300));
-        this.player.setXPos(861);
-        this.player.setYPos(365);
+        this.doors.push(new Door('./assets/img/door1.png', 985, 485));
+        this.player.setXPos(990);
+        this.player.setYPos(548);
         this.player.setImage('./assets/img/player-boy-standing.png');
         this.questions.push(new Question('text question 1', 'right answer 1', 'wrong answer 1.1', 'wrong answer 1.2'));
         this.questions.push(new Question('text question 2', 'right answer 2', 'wrong answer 2.1', 'wrong answer 2.2'));

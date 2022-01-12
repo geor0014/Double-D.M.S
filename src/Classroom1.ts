@@ -46,21 +46,21 @@ export default class ClassRoom1 extends Room {
     this.npcs = [];
     this.doors = [];
     this.questions = [];
-    this.computer = new Computer(618, 113);
+    this.computer = new Computer(266, 165.5);
 
     this.npcs.push(
       new Npc(
         './assets/img/student-orange-hair-back-faced.png',
-        702,
-        236,
+        468,
+        370.5,
       ),
     );
 
     this.npcs.push(
       new Npc(
         './assets/img/teacher-blonde-hair-front-faced.png',
-        714,
-        98,
+        491,
+        180.5,
       ),
     );
 
@@ -70,11 +70,11 @@ export default class ClassRoom1 extends Room {
     );
 
     // creating the door for the classroom
-    this.doors.push(new Door('./assets/img/door1.png', 864, 300));
+    this.doors.push(new Door('./assets/img/door1.png', 985, 485));
 
     // setting player starter position and image in the classroom
-    this.player.setXPos(861);
-    this.player.setYPos(365);
+    this.player.setXPos(990);
+    this.player.setYPos(548);
     this.player.setImage('./assets/img/player-boy-standing.png');
 
     // creating questions for this classroom
@@ -84,7 +84,7 @@ export default class ClassRoom1 extends Room {
         'Not pay attention and delete this email/message',
         'Send an E-mail to make sure it is real',
         'YES, TAKE ALL MY DATA!',
-      )
+      ),
     );
     this.questions.push(
       new Question(
@@ -92,7 +92,7 @@ export default class ClassRoom1 extends Room {
         'Not click on the link',
         'Send this cool link to all my friends!',
         'start chatting with this person for fun',
-      )
+      ),
     );
 
     console.log('CLASSROOM1');
@@ -130,8 +130,8 @@ export default class ClassRoom1 extends Room {
           console.log('interact with door');
           this.doorClose.play();
           console.log(this.previousScene);
-          this.player.setXPos(732);
-          this.player.setYPos(200);
+          this.player.setXPos(632);
+          this.player.setYPos(350);
           this.player.setImage('./assets/img/player-boy-standing.png');
           return this.previousScene;
         }

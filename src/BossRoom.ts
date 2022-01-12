@@ -56,7 +56,7 @@ export default class BossRoom extends Room {
 
     // creating collectibles in the classroom
     this.collectibles.push(
-      new Candy(this.canvas.width / 2, this.canvas.height / 2)
+      new Candy(this.canvas.width / 2, this.canvas.height / 2),
     );
 
     // creating the door for the classroom
@@ -73,16 +73,16 @@ export default class BossRoom extends Room {
         'text question 1',
         'right answer 1',
         'wrong answer 1.1',
-        'wrong answer 1.2'
-      )
+        'wrong answer 1.2',
+      ),
     );
     this.questions.push(
       new Question(
         'text question 2',
         'right answer 2',
         'wrong answer 2.1',
-        'wrong answer 2.2'
-      )
+        'wrong answer 2.2',
+      ),
     );
 
     this.boss = new Boss();
@@ -103,8 +103,8 @@ export default class BossRoom extends Room {
 
     // READING HINT
     if (
-      this.player.isReadingHint() &&
-      this.player.getUserData().getHintAmount() > 0
+      this.player.isReadingHint()
+      && this.player.getUserData().getHintAmount() > 0
     ) {
       this.player
         .getUserData()

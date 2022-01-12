@@ -46,7 +46,7 @@ export default class ClassRoom5 extends Room {
     this.npcs = [];
     this.doors = [];
     this.questions = [];
-    this.computer = new Computer(618, 113);
+    this.computer = new Computer(266, 165.5);
 
     this.npcs.push(
       new Npc(
@@ -62,11 +62,11 @@ export default class ClassRoom5 extends Room {
     );
 
     // creating the door for the classroom
-    this.doors.push(new Door('./assets/img/door1.png', 864, 300));
+    this.doors.push(new Door('./assets/img/door1.png', 985, 485));
 
     // setting player starter position and image in the classroom
-    this.player.setXPos(861);
-    this.player.setYPos(365);
+    this.player.setXPos(990);
+    this.player.setYPos(548);
     this.player.setImage('./assets/img/player-boy-standing.png');
 
     // creating questions for this classroom
