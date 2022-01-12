@@ -126,7 +126,7 @@ export default class EasyHallway extends Room {
           console.log('interact with npc');
           this.player.setXPos(this.player.getXPos() - 50);
           this.player.setYPos(this.player.getYPos() + 50);
-          return new DialogScreen(this.canvas, this);
+         //  return new DialogScreen(this.canvas, this);
         }
       }
     }
@@ -135,11 +135,7 @@ export default class EasyHallway extends Room {
   }
 
   /**
-<<<<<<< HEAD
    * Renders the easy hallway
-=======
-   * draws everything
->>>>>>> e7b1cd3029958609a24eef98d936b1e6cab24fd9
    */
   public render(): void {
     this.draw(this.ctx);

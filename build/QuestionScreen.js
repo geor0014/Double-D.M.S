@@ -7,6 +7,7 @@ export default class QuestionScreen extends Screen {
     nextQ;
     qCounter;
     frameCounter = 0;
+    okPressed;
     constructor(canvas, previousScene, questions) {
         super(canvas, './assets/img/computer-screen.png');
         this.keyboard = new KeyListener();
@@ -14,6 +15,7 @@ export default class QuestionScreen extends Screen {
         this.questions = questions;
         this.nextQ = false;
         this.qCounter = 0;
+        this.okPressed = false;
         this.setXPos(this.canvas.width / 5);
         this.setYPos(this.canvas.height / 10);
     }
@@ -32,16 +34,44 @@ export default class QuestionScreen extends Screen {
             this.nextQ = false;
         }
     }
+    reciveAnswer() {
+        if (this.keyboard.isKeyDown(KeyListener.KEY_1)) {
+            this.okPressed = true;
+            return 1;
+        }
+        if (this.keyboard.isKeyDown(KeyListener.KEY_2)) {
+            this.okPressed = true;
+            return 2;
+        }
+        if (this.keyboard.isKeyDown(KeyListener.KEY_3)) {
+            this.okPressed = true;
+            return 3;
+        }
+        return 0;
+    }
     update(elapsed) {
+        const userData = this.questions[this.qCounter].getUserData();
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         if (this.processInput()) {
             return this.previousScene;
+        }
+        if (this.okPressed === false && this.frameCounter % 10 === 0) {
+            let answerRecived = this.reciveAnswer();
+            console.log(`answer Recived ${answerRecived}`);
+            if (answerRecived !== 0) {
+                console.log('your answer has been registered, please go to the next question >>');
+            }
+            if (answerRecived === this.questions[this.qCounter].getRPos() + 1) {
+                userData.setScore(userData.getScore() + 1);
+            }
+            answerRecived = 0;
         }
         this.moveBetweenQuestions();
         if (this.nextQ &&
             this.qCounter < this.questions.length - 1 &&
             this.frameCounter === 10) {
             this.qCounter += 1;
+            this.okPressed = false;
         }
         if (this.frameCounter === 10) {
             this.frameCounter = 0;
@@ -60,8 +90,7 @@ export default class QuestionScreen extends Screen {
             let textHPos = this.canvas.height / 3;
             const textWPos = this.canvas.width / 3.5;
             for (let i = 0; i < 3; i += 1) {
-                textToWrite = this.questions[this.qCounter].getQTxt(i);
-                console.log(textToWrite);
+                textToWrite = this.questions[this.qCounter].getText(i);
                 this.writeTextToCanvas(textToWrite, 20, textWPos + 150, textHPos, 'center', 'black');
                 textHPos += 50;
             }

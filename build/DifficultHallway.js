@@ -4,7 +4,6 @@ import ClassRoom4 from './Classroom4.js';
 import ClassRoom5 from './Classroom5.js';
 import ClassRoom6 from './Classroom6.js';
 import HintScreen from './HintScreen.js';
-import DialogScreen from './DialogScreen.js';
 import Npc from './Npc.js';
 export default class DifficultHallway extends Room {
     mainHallway;
@@ -62,7 +61,6 @@ export default class DifficultHallway extends Room {
                     console.log('interact with npc');
                     this.player.setXPos(this.player.getXPos() - 50);
                     this.player.setYPos(this.player.getYPos() + 50);
-                    return new DialogScreen(this.canvas, this);
                 }
             }
         }

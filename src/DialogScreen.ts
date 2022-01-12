@@ -2,38 +2,40 @@ import KeyListener from './KeyListener.js';
 import Screen from './Screen.js';
 import Scene from './Scene.js';
 import MainHallway from './MainHallway.js';
+import Dialog from './Dialog.js';
 
 export default class DialogScreen extends Screen {
   private keyboard: KeyListener;
 
   private previousScene: MainHallway;
 
-  private dialogBubbles: string[];
+  private dialogs: Dialog[];
+
+  private nextD: boolean;
+
+  private dCounter: number;
+
+  private frameCounter: number = 0;
 
   /**
    *
    * @param canvas passes the canvas to Screen
    * @param previousScene rerturns player to previous screen
    */
-  constructor(canvas: HTMLCanvasElement, previousScene: MainHallway) {
+  constructor(
+    canvas: HTMLCanvasElement,
+    previousScene: MainHallway,
+    dialogs: Dialog[],
+  ) {
     super(canvas, './assets/img/dialogscreen.png');
-
     this.keyboard = new KeyListener();
-
     this.previousScene = previousScene;
+    this.dialogs = dialogs;
+    this.nextD = false;
+    this.dCounter = 0;
 
-    this.dialogBubbles = [];
-
-    this.dialogBubbles.push('Hey Good Morning!');
-
-    this.dialogBubbles.push('Welcome to school, please go to class!');
-    // this.countdown = this.dialogBubbles.length;
-
-    this.setXPos(0);
-    this.setYPos(0);
-    console.log('hello');
-
-    // this.next = false;
+    this.setXPos(this.canvas.width / 5);
+    this.setYPos(this.canvas.height / 10);
   }
 
   /**
@@ -41,10 +43,19 @@ export default class DialogScreen extends Screen {
    * @returns if player pressed space key
    */
   public processInput(): boolean {
-    if (this.keyboard.isKeyDown(KeyListener.KEY_SPACE)) {
+    if (this.keyboard.isKeyDown(KeyListener.KEY_ESC)) {
       return true;
     }
     return false;
+  }
+
+  public moveBetweenDialogs(): void {
+    if (this.keyboard.isKeyDown(KeyListener.KEY_RIGHT)) {
+      console.log('right pressed');
+      this.nextD = true;
+    } else {
+      this.nextD = false;
+    }
   }
 
   /**
@@ -59,6 +70,19 @@ export default class DialogScreen extends Screen {
     if (this.processInput()) {
       return this.previousScene;
     }
+    this.moveBetweenDialogs();
+    if (
+      this.nextD &&
+      this.dCounter < this.dialogs.length - 1 &&
+      this.frameCounter === 10
+    ) {
+      this.dCounter += 1;
+    }
+
+    if (this.frameCounter === 10) {
+      this.frameCounter = 0;
+    }
+    this.frameCounter += 1;
     return null;
   }
 
@@ -76,22 +100,25 @@ export default class DialogScreen extends Screen {
    */
   public render(): void {
     this.draw(this.ctx);
+    if (this.dCounter < this.dialogs.length) {
+      let textToWrite: string = '';
+      let j: number = 0;
+      let textHPos: number = this.canvas.height / 3;
+      const textWPos: number = this.canvas.width / 3.5;
 
-    // Writes dialog to screen
-    this.writeTextToCanvas(
-      this.dialogBubbles[0],
-      30,
-      this.canvas.width / 2,
-      this.canvas.height / 2,
-      'center',
-      'black'
-    );
-    // if (this.processInput() && this.countdown > 0) {
-    //  this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    //  this.draw(this.ctx);
-    // this.writeTextToCanvas(this.dialogBubbles[1], 24, this.canvas.width / 2,
-    // this.canvas.height / 2, 'center', 'black');
-    //  this.countdown -= 1;
-    // }
+      for (let i = 0; i < 3; i += 1) {
+        textToWrite = this.dialogs[this.dCounter].getText(i);
+        console.log(textToWrite);
+        this.writeTextToCanvas(
+          textToWrite,
+          20,
+          textWPos + 150,
+          textHPos,
+          'center',
+          'black'
+        );
+        textHPos += 50;
+      }
+    }
   }
 }

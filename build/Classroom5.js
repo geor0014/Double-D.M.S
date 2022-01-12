@@ -2,7 +2,6 @@ import Door from './Door.js';
 import Room from './Room.js';
 import Candy from './Candy.js';
 import Computer from './Computer.js';
-import Question from './Question.js';
 import QuestionScreen from './QuestionScreen.js';
 import HintScreen from './HintScreen.js';
 import Npc from './Npc.js';
@@ -27,8 +26,6 @@ export default class ClassRoom5 extends Room {
         this.player.setXPos(861);
         this.player.setYPos(365);
         this.player.setImage('./assets/img/player-boy-standing.png');
-        this.questions.push(new Question('text question 1', 'right answer 1', 'wrong answer 1.1', 'wrong answer 1.2'));
-        this.questions.push(new Question('text question 2', 'right answer 2', 'wrong answer 2.1', 'wrong answer 2.2'));
         console.log('door5');
     }
     update(elapsed) {

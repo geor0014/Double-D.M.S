@@ -118,7 +118,7 @@ export default class DifficultHallway extends Room {
           console.log('interact with npc');
           this.player.setXPos(this.player.getXPos() - 50);
           this.player.setYPos(this.player.getYPos() + 50);
-          return new DialogScreen(this.canvas, this);
+         //  return new DialogScreen(this.canvas, this);
         }
       }
     }

@@ -3,7 +3,6 @@ import Door from './Door.js';
 import Npc from './Npc.js';
 import Candy from './Candy.js';
 import Hint from './Hint.js';
-import DialogScreen from './DialogScreen.js';
 import EasyHallway from './EasyHallway.js';
 import DifficultHallway from './DifficultHallway.js';
 import Player from './Player.js';
@@ -50,7 +49,6 @@ export default class MainHallway extends Room {
                     console.log('interact with npc');
                     this.player.setXPos(this.player.getXPos() - 50);
                     this.player.setYPos(this.player.getYPos() + 50);
-                    return new DialogScreen(this.canvas, this);
                 }
             }
         }

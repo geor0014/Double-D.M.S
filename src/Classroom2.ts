@@ -61,23 +61,6 @@ export default class ClassRoom2 extends Room {
     this.player.setImage('./assets/img/player-boy-standing.png');
 
     // creating questions for this classroom
-    this.questions.push(
-      new Question(
-        'text question 1',
-        'right answer 1',
-        'wrong answer 1.1',
-        'wrong answer 1.2',
-      ),
-    );
-
-    this.questions.push(
-      new Question(
-        'text question 2',
-        'right answer 2',
-        'wrong answer 2.1',
-        'wrong answer 2.2',
-      ),
-    );
 
     console.log('CLASSROOM2');
   }
