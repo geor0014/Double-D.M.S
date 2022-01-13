@@ -34,7 +34,7 @@ export default class ClassRoom1 extends Room {
     canvas: HTMLCanvasElement,
     previousScene: Scene,
     player: Player,
-    state: boolean
+    state: boolean,
   ) {
     super(canvas, './assets/img/classroom.png', state);
     this.previousScene = previousScene;

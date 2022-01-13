@@ -5,7 +5,6 @@ import Question from './Question.js';
 import Boss from './Boss.js';
 export default class BossRoom extends Room {
     previousScene;
-    computer;
     questions;
     boss;
     frameY = 0;

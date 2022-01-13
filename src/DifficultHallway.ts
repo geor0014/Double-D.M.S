@@ -5,7 +5,6 @@ import Door from './Door.js';
 import ClassRoom4 from './Classroom4.js';
 import ClassRoom5 from './Classroom5.js';
 import ClassRoom6 from './Classroom6.js';
-import HintScreen from './HintScreen.js';
 import Dialog from './Dialog.js';
 import Npc from './Npc.js';
 

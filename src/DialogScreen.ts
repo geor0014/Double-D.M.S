@@ -25,7 +25,7 @@ export default class DialogScreen extends Screen {
   constructor(
     canvas: HTMLCanvasElement,
     previousScene: Room,
-    dialogs: Dialog[]
+    dialogs: Dialog[],
   ) {
     super(canvas, './assets/img/dialogscreen.png');
     this.keyboard = new KeyListener();

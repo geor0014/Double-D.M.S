@@ -5,18 +5,13 @@ import Scene from './Scene.js';
 import Player from './Player.js';
 
 import Candy from './Candy.js';
-import Computer from './Computer.js';
 
 import Question from './Question.js';
-import QuestionScreen from './QuestionScreen.js';
 
-import HintScreen from './HintScreen.js';
 import Boss from './Boss.js';
 
 export default class BossRoom extends Room {
   private previousScene: Scene;
-
-  private computer: Computer;
 
   private questions: Question[];
 

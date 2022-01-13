@@ -23,7 +23,7 @@ export default class Player extends GameEntity {
     super(
       './assets/img/player-boy-up.png',
       canvas.width / 2,
-      canvas.height / 2
+      canvas.height / 2,
     );
 
     this.userData = new UserData();
