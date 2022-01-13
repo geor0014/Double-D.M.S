@@ -126,6 +126,15 @@ export default class QuestionScreen extends Screen {
     this.draw(this.ctx);
 
     if (this.qCounter < this.questions.length) {
+      this.writeTextToCanvas(
+        `Q num ${this.qCounter + 1} / ${this.questions.length}`,
+        24,
+        this.canvas.width / 3,
+        220,
+        'center',
+        'Red'
+      );
+
       let textToWrite: string = '';
       let j: number = 0;
       let textHPos: number = this.canvas.height / 3;
@@ -162,6 +171,26 @@ export default class QuestionScreen extends Screen {
         );
         textHPos += 50;
       }
+    }
+
+    if (this.qCounter === this.questions.length - 1) {
+      this.writeTextToCanvas(
+        'press ESC to leave',
+        24,
+        this.canvas.width / 2 + 100,
+        600,
+        'center',
+        'Red'
+      );
+    } else {
+      this.writeTextToCanvas(
+        'Next Question >',
+        24,
+        this.canvas.width / 2 + 100,
+        600,
+        'center',
+        'Red'
+      );
     }
   }
 }

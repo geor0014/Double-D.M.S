@@ -4,13 +4,11 @@ import Scene from './Scene.js';
 
 import Player from './Player.js';
 
-import Candy from './Candy.js';
+import Hint from './Hint.js';
 import Computer from './Computer.js';
 
 import Question from './Question.js';
 import QuestionScreen from './QuestionScreen.js';
-
-import HintScreen from './HintScreen.js';
 import Npc from './Npc.js';
 
 import Dialog from './Dialog.js';
@@ -21,6 +19,8 @@ export default class ClassRoom5 extends Room {
   private computer: Computer;
 
   private questions: Question[];
+
+  private pcInteract: boolean = false;
 
   /**
    * creats a new classroom
@@ -52,14 +52,14 @@ export default class ClassRoom5 extends Room {
 
     this.npcs.push(
       new Npc('./assets/img/teacher-blonde-hair-front-faced.png', 714, 198, [
-        new Dialog('Heyy how are you today?'),
-        new Dialog('Good luck with your exams!'),
-      ])
+        new Dialog('Welcome to class!#'),
+        new Dialog('Did you see my bag anywhere?#'),
+      ]),
     );
 
     // creating collectibles in the classroom
     this.collectibles.push(
-      new Candy(this.canvas.width / 2, this.canvas.height / 2)
+      new Hint(this.canvas.width / 1.5, this.canvas.height / 3),
     );
 
     // creating the door for the classroom
@@ -71,6 +71,29 @@ export default class ClassRoom5 extends Room {
     this.player.setImage('./assets/img/player-boy-standing.png');
 
     // creating questions for this classroom
+    this.questions.push(
+      new Question(
+        this.player.getUserData(),
+        ' Should you use free Anti-Virus?#',
+        'No, since the anti-virus can be a virus!#',
+        'No, since I know what I download!#',
+        'No, since I do not want to use an anti-virus!#',
+      ),
+      new Question(
+        this.player.getUserData(),
+        'Which of the following is NOT an example of cyberbullying',
+        'Inviting a friend to fight with you in a game#',
+        'Creating a fake profile to humiliate someone#',
+        'Posting or sharing embarrassing photos#',
+      ),
+      new Question(
+        this.player.getUserData(),
+        'What is a predator?#',
+        'Someone who uses the internet to do harm to others#',
+        'Someone who shares too much personal information#',
+        'Someone who regularly surfs the web#',
+      ),
+    );
 
     console.log('door5');
   }
@@ -104,8 +127,12 @@ export default class ClassRoom5 extends Room {
 
       // WITH COMPUTER
       if (this.player.collidesWith(this.computer)) {
-        // present question screen
-        return new QuestionScreen(this.canvas, this, this.questions);
+        if (this.pcInteract === false) {
+          // present question screen
+          this.pcInteract = true;
+          return new QuestionScreen(this.canvas, this, this.questions);
+        }
+        console.log('cant use the pc at the moment');
       }
     }
 

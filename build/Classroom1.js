@@ -10,6 +10,7 @@ export default class ClassRoom1 extends Room {
     previousScene;
     computer;
     questions;
+    pcInteract = false;
     constructor(canvas, previousScene, player, state) {
         super(canvas, './assets/img/classroom.png', state);
         this.previousScene = previousScene;
@@ -51,7 +52,11 @@ export default class ClassRoom1 extends Room {
                 }
             }
             if (this.player.collidesWith(this.computer)) {
-                return new QuestionScreen(this.canvas, this, this.questions);
+                if (this.pcInteract === false) {
+                    this.pcInteract = true;
+                    return new QuestionScreen(this.canvas, this, this.questions);
+                }
+                console.log('cant use the pc at the moment');
             }
         }
         if (nextScene !== null) {

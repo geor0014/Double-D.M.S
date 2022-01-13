@@ -62,8 +62,8 @@ export default class Room extends Scene {
             this.player
                 .getUserData()
                 .setHintAmount(this.player.getUserData().getHintAmount() - 1);
-            console.log(this.player.getUserData().getHintAmount());
-            return new HintScreen(this.canvas, this, 2);
+            this.player.getUserData().setHintNum(this.player.getUserData().getHintNum() + 1);
+            return new HintScreen(this.canvas, this, (this.player.getUserData().getHintNum()) - 1);
         }
         if (this.player.isInteractingMenu() && this.frameCounter === 7) {
             if (this.isMenuShowing === true) {
@@ -80,6 +80,7 @@ export default class Room extends Scene {
             for (let i = 0; i < this.npcs.length; i += 1) {
                 if (this.player.collidesWith(this.npcs[i])) {
                     const currentNPC = this.npcs[i];
+                    console.log('interact with npc');
                     return new DialogScreen(this.canvas, this, currentNPC.getDialogs());
                 }
             }

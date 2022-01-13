@@ -5,9 +5,9 @@ import Door from './Door.js';
 import ClassRoom1 from './Classroom1.js';
 import ClassRoom2 from './Classroom2.js';
 import ClassRoom3 from './Classroom3.js';
-import HintScreen from './HintScreen.js';
 import Dialog from './Dialog.js';
 import Npc from './Npc.js';
+import Hint from './Hint.js';
 
 export default class EasyHallway extends Room {
   private mainHallway: Room;
@@ -37,32 +37,33 @@ export default class EasyHallway extends Room {
     this.setXPos(0);
     this.setYPos(0);
 
-    this.npcs.push(
-      new Npc('./assets/img/student-1-back-faced.png', 561, 405, [
-        new Dialog('Heyy how are you today?'),
-        new Dialog('Good luck with your exams!'),
-      ])
+    // creating collectibles
+    this.collectibles.push(
+      new Hint(this.canvas.width / 3, this.canvas.height / 3)
     );
 
+    // npc creation
     this.npcs.push(
+      new Npc('./assets/img/student-1-back-faced.png', 561, 405, [
+        new Dialog('I dont feel like studying today,#'),
+        new Dialog('I want to sleep...#'),
+      ]),
       new Npc(
         './assets/img/student-black-haired-left-faced.png',
         50,
         this.canvas.height - 400,
         [
-          new Dialog('Heyy how are you today?'),
-          new Dialog('Good luck with your exams!'),
+          new Dialog('There are some things you should never share!#'),
+          new Dialog('I hope she will not be bullied#'),
         ]
-      )
-    );
-    this.npcs.push(
+      ),
       new Npc(
         './assets/img/student-red-right-faced.png',
         0,
         this.canvas.height - 400,
         [
-          new Dialog('Heyy how are you today?'),
-          new Dialog('Good luck with your exams!'),
+          new Dialog('Did you hear about Jessica?#'),
+          new Dialog('Cant believe she shared that picture :O#'),
         ]
       )
     );

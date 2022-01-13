@@ -4,13 +4,10 @@ import Room from './Room.js';
 import Scene from './Scene.js';
 import Player from './Player.js';
 
-import Candy from './Candy.js';
 import Computer from './Computer.js';
 
 import Question from './Question.js';
 import QuestionScreen from './QuestionScreen.js';
-
-import HintScreen from './HintScreen.js';
 
 export default class ClassRoom3 extends Room {
   private previousScene: Scene;
@@ -18,6 +15,8 @@ export default class ClassRoom3 extends Room {
   private computer: Computer;
 
   private questions: Question[];
+
+  private pcInteract: boolean = false;
 
   /**
    * creats a new classroom
@@ -48,9 +47,6 @@ export default class ClassRoom3 extends Room {
     this.computer = new Computer(266, 165.5);
 
     // creating collectibles in the classroom
-    this.collectibles.push(
-      new Candy(this.canvas.width / 2, this.canvas.height / 2),
-    );
 
     // creating the door for the classroom
     this.doors.push(new Door('./assets/img/door1.png', 985, 485));
@@ -92,17 +88,6 @@ export default class ClassRoom3 extends Room {
     // calling general checkups from Room class
     const nextScene: Scene = this.generalInteraction();
 
-    // READING HINT
-    if (
-      this.player.isReadingHint()
-      && this.player.getUserData().getHintAmount() > 0
-    ) {
-      this.player
-        .getUserData()
-        .setHintAmount(this.player.getUserData().getHintAmount() - 1);
-      console.log(this.player.getUserData().getHintAmount());
-      return new HintScreen(this.canvas, this, 2);
-    }
     // INTERACTIONS
     if (this.player.isInteracting()) {
       // WITH DOORS
@@ -120,8 +105,12 @@ export default class ClassRoom3 extends Room {
 
       // WITH COMPUTER
       if (this.player.collidesWith(this.computer)) {
-        // present question screen
-        return new QuestionScreen(this.canvas, this, this.questions);
+        if (this.pcInteract === false) {
+          // present question screen
+          this.pcInteract = true;
+          return new QuestionScreen(this.canvas, this, this.questions);
+        }
+        console.log('cant use the pc at the moment');
       }
     }
 

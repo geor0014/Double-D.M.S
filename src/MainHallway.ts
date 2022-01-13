@@ -5,11 +5,9 @@ import Npc from './Npc.js';
 import Candy from './Candy.js';
 import Hint from './Hint.js';
 import Scene from './Scene.js';
-import DialogScreen from './DialogScreen.js';
 import EasyHallway from './EasyHallway.js';
 import DifficultHallway from './DifficultHallway.js';
 import Player from './Player.js';
-import HintScreen from './HintScreen.js';
 import BossRoom from './BossRoom.js';
 import Dialog from './Dialog.js';
 import Hitbox from './Hitbox.js';
@@ -74,9 +72,12 @@ export default class MainHallway extends Room {
       // WITH DOORS
       for (let i = 0; i < this.doors.length; i += 1) {
         if (this.player.collidesWith(this.doors[i])) {
-          console.log('interact with door');
-          this.doorOpen.play();
-          return new BossRoom(this.canvas, this, this.player);
+          if (this.player.getUserData().getScore() === 15) {
+            console.log('interact with door');
+            this.doorOpen.play();
+            return new BossRoom(this.canvas, this, this.player);
+          }
+          console.log('You cant accsess this room! maybe your not worthy enought (evil laugh)');
         }
       }
     }
@@ -85,8 +86,11 @@ export default class MainHallway extends Room {
       return new EasyHallway(this.canvas, this, this.player);
     }
 
-    if (this.player.getXPos() >= 1060 && this.player.getYPos() >= 443.5) {
-      return new DifficultHallway(this.canvas, this, this.player);
+    if ((this.player.getXPos() >= 1060 && this.player.getYPos() >= 443.5)) {
+      if (this.player.getUserData().getScore() > 4) {
+        return new DifficultHallway(this.canvas, this, this.player);
+      }
+      console.log('Sorry you cant enter here yet you need at least 4 points!');
     }
 
     if (nextScene !== null) {
@@ -124,18 +128,4 @@ export default class MainHallway extends Room {
     });
     // console.log(this.player.getXPos(), this.player.getYPos());
   }
-
-  /*
-    public drawRectengles(): void {
-      // Left rect
-      this.ctx.beginPath();
-      this.ctx.rect(45, 364.5, 50, 50);
-      this.ctx.stroke();
-
-      // Right rect
-      this.ctx.beginPath();
-      this.ctx.rect(1410, 376, 50, 50);
-      this.ctx.stroke();
-    }
-    */
 }

@@ -25,9 +25,6 @@ export default abstract class Room extends Scene {
   // Image of the room
   protected img: HTMLImageElement;
 
-  // player
-  // protected player: Player;
-
   protected collectibles: Collectibles[];
 
   protected npcs: Npc[];
@@ -141,6 +138,7 @@ export default abstract class Room extends Scene {
     // Clear the screen
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
+    // reading hint
     if (
       this.player.isReadingHint() &&
       this.player.getUserData().getHintAmount() > 0
@@ -148,8 +146,9 @@ export default abstract class Room extends Scene {
       this.player
         .getUserData()
         .setHintAmount(this.player.getUserData().getHintAmount() - 1);
-      console.log(this.player.getUserData().getHintAmount());
-      return new HintScreen(this.canvas, this, 2);
+      // console.log(this.player.getUserData().getHintAmount());
+      this.player.getUserData().setHintNum(this.player.getUserData().getHintNum() + 1);
+      return new HintScreen(this.canvas, this, (this.player.getUserData().getHintNum()) - 1);
     }
 
     // INTERACTION WITH MENU
@@ -171,7 +170,7 @@ export default abstract class Room extends Scene {
       for (let i = 0; i < this.npcs.length; i += 1) {
         if (this.player.collidesWith(this.npcs[i])) {
           const currentNPC: Npc = this.npcs[i];
-          // console.log('interact with npc');
+          console.log('interact with npc');
           // this.player.setXPos(this.player.getXPos() - 50);
           // this.player.setYPos(this.player.getYPos() + 50);
           return new DialogScreen(this.canvas, this, currentNPC.getDialogs());

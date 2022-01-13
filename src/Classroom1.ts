@@ -10,7 +10,6 @@ import Computer from './Computer.js';
 import Question from './Question.js';
 import QuestionScreen from './QuestionScreen.js';
 
-import HintScreen from './HintScreen.js';
 import Npc from './Npc.js';
 import Dialog from './Dialog.js';
 
@@ -20,6 +19,8 @@ export default class ClassRoom1 extends Room {
   private computer: Computer;
 
   private questions: Question[];
+
+  private pcInteract: boolean = false;
 
   /**
    * creats a new classroom
@@ -80,7 +81,7 @@ export default class ClassRoom1 extends Room {
         'Congratulations you just won a giveaway!# a Nigerian Prince chose you to be the winner!!#Send him your bank account details and your ID to get 500.000€!!',
         'Not pay attention and delete this email/message',
         'Send an E-mail to make sure it is real',
-        'YES, TAKE ALL MY DATA!'
+        'YES, TAKE ALL MY DATA!',
       )
     );
     this.questions.push(
@@ -125,8 +126,12 @@ export default class ClassRoom1 extends Room {
 
       // WITH COMPUTER
       if (this.player.collidesWith(this.computer)) {
-        // present question screen
-        return new QuestionScreen(this.canvas, this, this.questions);
+        if (this.pcInteract === false) {
+          // present question screen
+          this.pcInteract = true;
+          return new QuestionScreen(this.canvas, this, this.questions);
+        }
+        console.log('cant use the pc at the moment');
       }
     }
 
