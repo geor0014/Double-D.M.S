@@ -2,11 +2,6 @@ import Door from './Door.js';
 import Room from './Room.js';
 import Candy from './Candy.js';
 import Question from './Question.js';
-<<<<<<< HEAD
-import QuestionScreen from './QuestionScreen.js';
-=======
-import HintScreen from './HintScreen.js';
->>>>>>> d9c2c3cb50827f948ce404fa4c56a79be1b70a10
 import Boss from './Boss.js';
 export default class BossRoom extends Room {
     previousScene;

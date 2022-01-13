@@ -24,13 +24,8 @@ export default class ClassRoom1 extends Room {
         this.computer = new Computer(266, 165.5);
         this.npcs.push(new Npc('./assets/img/student-orange-hair-back-faced.png', 652, 436, [
             new Dialog('Dont bother me I am trying to study...#'),
-<<<<<<< HEAD
-        ]), new Npc('./assets/img/teacher-blonde-hair-front-faced.png', 714, 98, [
-            new Dialog('Today we are learning about# suspicious links and strangers messeges#'),
-=======
         ]), new Npc('./assets/img/teacher-blonde-hair-front-faced.png', 714, 298, [
             new Dialog('Today we are learning about suspicious links and strangers messeges#'),
->>>>>>> d9c2c3cb50827f948ce404fa4c56a79be1b70a10
             new Dialog('This is very important!#'),
         ]));
         this.collectibles.push(new Candy(this.canvas.width / 2, this.canvas.height / 2));

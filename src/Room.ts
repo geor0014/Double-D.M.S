@@ -170,11 +170,7 @@ export default abstract class Room extends Scene {
       for (let i = 0; i < this.npcs.length; i += 1) {
         if (this.player.collidesWith(this.npcs[i])) {
           const currentNPC: Npc = this.npcs[i];
-<<<<<<< HEAD
           console.log('interact with npc');
-=======
-          // console.log('interact with npc');
->>>>>>> d9c2c3cb50827f948ce404fa4c56a79be1b70a10
           // this.player.setXPos(this.player.getXPos() - 50);
           // this.player.setYPos(this.player.getYPos() + 50);
           return new DialogScreen(this.canvas, this, currentNPC.getDialogs());
