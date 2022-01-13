@@ -55,7 +55,8 @@ export default class MainHallway extends Room {
       )
     );
 
-    this.hitboxes.push(new Hitbox(377, 377, 130, 150));
+    // HITBOX
+    // this.hitboxes.push(new Hitbox(377, 377, 130, 150));
   }
 
   /**
@@ -95,33 +96,21 @@ export default class MainHallway extends Room {
     return null;
   }
 
-  /**
-   *
-   */
-  public processInput(): void {
-    const move = true;
-    const prevX = this.player.getXPos();
-    const prevY = this.player.getYPos();
+  // HITBOX DETECTION
+  // /**
+  //  *
+  //  */
+  // public processInput(): void {
+  //   const move = true;
+  //   const prevX = this.player.getXPos();
+  //   const prevY = this.player.getYPos();
 
-    this.hitboxes.forEach((box) => {
-      if (!this.player.collidesWithHitbox(box)) {
-        this.player.movePlayer(this.canvas);
-      } else {
-        if (
-          this.player.getXPos() > box.getXPos() &&
-          this.player.getXPos() < box.getXPos() + box.getWidth() &&
-          this.player.getYPos() + this.player.getImage().height > box.getYPos()
-        ) {
-          console.log('from right');
-          this.player.setXPos(prevX + 1);
-          this.player.setYPos(prevY + 1);
-        }
-        console.log('from left');
-        this.player.setXPos(prevX - 1);
-        this.player.setYPos(prevY - 1);
-      }
-    });
-  }
+  //   this.hitboxes.forEach((box) => {
+  //     if (!this.player.collidesWithHitbox(box)) {
+  //       this.player.movePlayer(this.canvas);
+  //     }
+  //   });
+  // }
 
   /**
    * Renders the main hallway
