@@ -53,6 +53,7 @@ export default class DifficultHallway extends Room {
       ]),
     );
 
+    // PLAYER POSITTION UPON ENTERING
     this.player.setXPos(13);
     this.player.setYPos(335);
 
@@ -65,6 +66,7 @@ export default class DifficultHallway extends Room {
    * Methos to detect the input of the player
    */
   public processInput(): void {
+    // WALL COLLISION DETECTION
     if (this.player.getYPos() > 292 && this.player.getYPos() < 425.5) {
       this.player.movePlayer(this.canvas);
       if (this.player.getYPos() <= 292) {

@@ -1,6 +1,7 @@
 import KeyListener from './KeyListener.js';
 import GameEntity from './GameEntity.js';
 import UserData from './UserData.js';
+import Hitbox from './Hitbox.js';
 
 export default class Player extends GameEntity {
   private xVelocity: number;
@@ -22,7 +23,7 @@ export default class Player extends GameEntity {
     super(
       './assets/img/player-boy-up.png',
       canvas.width / 2,
-      canvas.height / 2,
+      canvas.height / 2
     );
 
     this.userData = new UserData();
@@ -46,8 +47,8 @@ export default class Player extends GameEntity {
   public movePlayer(canvas: HTMLCanvasElement): void {
     // Moving right
     if (
-      this.keyboard.isKeyDown(KeyListener.KEY_RIGHT)
-      && this.getXPos() + this.getImage().width < canvas.width
+      this.keyboard.isKeyDown(KeyListener.KEY_RIGHT) &&
+      this.getXPos() + this.getImage().width < canvas.width
     ) {
       this.setXPos(this.getXPos() + this.xVelocity);
       this.setImage('./assets/img/player-boy-right.png');
@@ -70,8 +71,8 @@ export default class Player extends GameEntity {
 
     // Moving down
     if (
-      this.keyboard.isKeyDown(KeyListener.KEY_DOWN)
-      && this.getYPos() + this.getImage().height < canvas.height
+      this.keyboard.isKeyDown(KeyListener.KEY_DOWN) &&
+      this.getYPos() + this.getImage().height < canvas.height
     ) {
       this.setYPos(this.getYPos() + this.yVelocity);
       this.setImage('./assets/img/player-boy-standing.png');
@@ -80,10 +81,10 @@ export default class Player extends GameEntity {
   }
 
   /**
- * this method checks if the player is trying to interact
- *
- * @returns true or false
- */
+   * this method checks if the player is trying to interact
+   *
+   * @returns true or false
+   */
   public isInteractingMenu(): boolean {
     if (this.keyboard.isKeyDown(KeyListener.KEY_M)) {
       return true;
@@ -123,11 +124,24 @@ export default class Player extends GameEntity {
    */
   public collidesWith(other: GameEntity): boolean {
     if (
-      this.getXPos() < other.getXPos() + other.getImage().width
-      && this.getXPos() + this.getImage().width > other.getXPos()
-      && this.getYPos() < other.getYPos() + other.getImage().height
-      && this.getYPos() + this.getImage().height > other.getYPos()
+      this.getXPos() < other.getXPos() + other.getImage().width &&
+      this.getXPos() + this.getImage().width > other.getXPos() &&
+      this.getYPos() < other.getYPos() + other.getImage().height &&
+      this.getYPos() + this.getImage().height > other.getYPos()
     ) {
+      return true;
+    }
+    return false;
+  }
+
+  public collidesWithHitbox(box: Hitbox): boolean {
+    if (
+      this.getXPos() < box.getXPos() + box.getWidth() &&
+      this.getXPos() + this.getImage().width > box.getXPos() &&
+      this.getYPos() < box.getYPos() + box.getHeight() &&
+      this.getYPos() + this.getImage().height > box.getYPos()
+    ) {
+      console.log('collision');
       return true;
     }
     return false;

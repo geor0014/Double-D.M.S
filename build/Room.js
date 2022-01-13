@@ -18,6 +18,7 @@ export default class Room extends Scene {
     isMenuShowing;
     doorOpen;
     doorClose;
+    hitboxes;
     constructor(canvas, imgSrc, state = false) {
         super(canvas);
         const canvasPosition = this.canvas.getBoundingClientRect();
@@ -30,6 +31,7 @@ export default class Room extends Scene {
         this.doorOpen = new Audio('./assets/sound/DoorOpen.ogg');
         this.menu = new Menu(this.canvas.width / 3 - 30, 600);
         this.isMenuShowing = false;
+        this.hitboxes = [];
     }
     getXPos() {
         return this.xPos;
@@ -78,7 +80,10 @@ export default class Room extends Scene {
             for (let i = 0; i < this.npcs.length; i += 1) {
                 if (this.player.collidesWith(this.npcs[i])) {
                     const currentNPC = this.npcs[i];
+<<<<<<< HEAD
                     console.log('interact with npc');
+=======
+>>>>>>> d9c2c3cb50827f948ce404fa4c56a79be1b70a10
                     return new DialogScreen(this.canvas, this, currentNPC.getDialogs());
                 }
             }
@@ -107,15 +112,16 @@ export default class Room extends Scene {
         ctx.drawImage(this.img, this.xPos, this.yPos);
     }
     render() {
-        for (let i = 0; i < this.collectibles.length; i++) {
-            this.collectibles[i].draw(this.ctx);
-        }
         for (let i = 0; i < this.npcs.length; i += 1) {
             this.npcs[i].draw(this.ctx);
+        }
+        for (let i = 0; i < this.collectibles.length; i++) {
+            this.collectibles[i].draw(this.ctx);
         }
         for (let i = 0; i < this.doors.length; i += 1) {
             this.doors[i].draw(this.ctx);
         }
+        this.player.draw(this.ctx);
         if (this.isMenuShowing) {
             this.menu.draw(this.ctx);
             if (this.player.getUserData().getHintAmount() === 1) {
@@ -154,10 +160,9 @@ export default class Room extends Scene {
             else {
                 this.candyNumImg = Scene.loadNewImage('./assets/img/0.png');
             }
-            this.ctx.drawImage(this.hintNumImg, 489, 670);
-            this.ctx.drawImage(this.candyNumImg, 639, 670);
+            this.ctx.drawImage(this.hintNumImg, 347, 680, 50, 50);
+            this.ctx.drawImage(this.candyNumImg, 490, 680, 50, 50);
         }
-        this.player.draw(this.ctx);
     }
 }
 //# sourceMappingURL=Room.js.map

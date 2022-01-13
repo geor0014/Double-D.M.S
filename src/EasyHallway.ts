@@ -37,9 +37,17 @@ export default class EasyHallway extends Room {
     this.setXPos(0);
     this.setYPos(0);
 
+<<<<<<< HEAD
     // creating collectibles
     this.collectibles.push(
       new Hint(this.canvas.width / 3, this.canvas.height / 3),
+=======
+    this.npcs.push(
+      new Npc('./assets/img/student-1-back-faced.png', 561, 405, [
+        new Dialog('Heyy how are you today?'),
+        new Dialog('Good luck with your exams!'),
+      ])
+>>>>>>> d9c2c3cb50827f948ce404fa4c56a79be1b70a10
     );
 
     // npc creation

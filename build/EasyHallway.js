@@ -18,6 +18,7 @@ export default class EasyHallway extends Room {
         this.doors = [];
         this.setXPos(0);
         this.setYPos(0);
+<<<<<<< HEAD
         this.collectibles.push(new Hint(this.canvas.width / 3, this.canvas.height / 3));
         this.npcs.push(new Npc('./assets/img/student-1-back-faced.png', 561, 630, [
             new Dialog('There are some things you should never share!#'),
@@ -28,6 +29,19 @@ export default class EasyHallway extends Room {
         ]), new Npc('./assets/img/student-red-right-faced.png', 0, this.canvas.height - 400, [
             new Dialog('Did you hear about Jessica?#'),
             new Dialog('Cant believe she shared that picture :O#'),
+=======
+        this.npcs.push(new Npc('./assets/img/student-1-back-faced.png', 561, 405, [
+            new Dialog('Heyy how are you today?'),
+            new Dialog('Good luck with your exams!'),
+        ]));
+        this.npcs.push(new Npc('./assets/img/student-black-haired-left-faced.png', 50, this.canvas.height - 400, [
+            new Dialog('Heyy how are you today?'),
+            new Dialog('Good luck with your exams!'),
+        ]));
+        this.npcs.push(new Npc('./assets/img/student-red-right-faced.png', 0, this.canvas.height - 400, [
+            new Dialog('Heyy how are you today?'),
+            new Dialog('Good luck with your exams!'),
+>>>>>>> d9c2c3cb50827f948ce404fa4c56a79be1b70a10
         ]));
         this.doors.push(new Door('./assets/img/door1.png', 632, 238.5));
         this.doors.push(new Door('./assets/img/door1.png', 500, 238.5));

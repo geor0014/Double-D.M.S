@@ -52,7 +52,6 @@ export default class BossRoom extends Room {
     this.npcs = [];
     this.doors = [];
     this.questions = [];
-    this.computer = new Computer(618, 113);
 
     // creating collectibles in the classroom
     this.collectibles.push(
@@ -60,11 +59,11 @@ export default class BossRoom extends Room {
     );
 
     // creating the door for the classroom
-    this.doors.push(new Door('./assets/img/door1.png', 658, 297));
+    this.doors.push(new Door('./assets/img/door1.png', 677, 297));
 
     // setting player starter position and image in the classroom
-    this.player.setXPos(861);
-    this.player.setYPos(365);
+    this.player.setXPos(566);
+    this.player.setYPos(305);
     this.player.setImage('./assets/img/player-boy-standing.png');
 
     // creating questions for this classroom
@@ -111,18 +110,18 @@ export default class BossRoom extends Room {
           console.log('interact with door');
           this.doorClose.play();
           console.log(this.previousScene);
-          this.player.setXPos(732);
-          this.player.setYPos(200);
+          this.player.setXPos(521);
+          this.player.setYPos(235);
           this.player.setImage('./assets/img/player-boy-standing.png');
           return this.previousScene;
         }
       }
 
-      // WITH COMPUTER
-      if (this.player.collidesWith(this.computer)) {
-        // present question screen
-        return new QuestionScreen(this.canvas, this, this.questions);
-      }
+      // // WITH COMPUTER
+      // if (this.player.collidesWith(this.computer)) {
+      //   // present question screen
+      //   return new QuestionScreen(this.canvas, this, this.questions);
+      // }
     }
 
     // BOSS RENDERING
@@ -154,8 +153,6 @@ export default class BossRoom extends Room {
     this.draw(this.ctx);
     // DRAW BOSS
     this.boss.draw(this.ctx);
-    // DRAW COMPUTER
-    this.computer.draw(this.ctx);
 
     super.render();
   }

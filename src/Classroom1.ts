@@ -51,12 +51,21 @@ export default class ClassRoom1 extends Room {
     this.computer = new Computer(266, 165.5);
 
     this.npcs.push(
+<<<<<<< HEAD
       new Npc('./assets/img/student-orange-hair-back-faced.png', 702, 236, [
         new Dialog('Dont bother me I am trying to study...#'),
       ]),
       new Npc('./assets/img/teacher-blonde-hair-front-faced.png', 714, 98, [
         new Dialog(
           'Today we are learning about# suspicious links and strangers messeges#'
+=======
+      new Npc('./assets/img/student-orange-hair-back-faced.png', 652, 436, [
+        new Dialog('Dont bother me I am trying to study...#'),
+      ]),
+      new Npc('./assets/img/teacher-blonde-hair-front-faced.png', 714, 298, [
+        new Dialog(
+          'Today we are learning about suspicious links and strangers messeges#'
+>>>>>>> d9c2c3cb50827f948ce404fa4c56a79be1b70a10
         ),
         new Dialog('This is very important!#'),
       ])
@@ -81,7 +90,11 @@ export default class ClassRoom1 extends Room {
         'Congratulations you just won a giveaway!# a Nigerian Prince chose you to be the winner!!#Send him your bank account details and your ID to get 500.000€!!',
         'Not pay attention and delete this email/message',
         'Send an E-mail to make sure it is real',
+<<<<<<< HEAD
         'YES, TAKE ALL MY DATA!',
+=======
+        'YES, TAKE ALL MY DATA!'
+>>>>>>> d9c2c3cb50827f948ce404fa4c56a79be1b70a10
       )
     );
     this.questions.push(

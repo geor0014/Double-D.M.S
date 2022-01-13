@@ -8,6 +8,7 @@ import DifficultHallway from './DifficultHallway.js';
 import Player from './Player.js';
 import BossRoom from './BossRoom.js';
 import Dialog from './Dialog.js';
+import Hitbox from './Hitbox.js';
 export default class MainHallway extends Room {
     constructor(canvas) {
         super(canvas, './assets/img/hallway.png');
@@ -27,7 +28,7 @@ export default class MainHallway extends Room {
             new Dialog('Heyy how are you today?#'),
             new Dialog('Good luck with your exams!#'),
         ]));
-        console.log('hi');
+        this.hitboxes.push(new Hitbox(377, 377, 130, 150));
     }
     update(elapsed) {
         const nextScene = this.generalInteraction();
@@ -57,9 +58,34 @@ export default class MainHallway extends Room {
         }
         return null;
     }
+    processInput() {
+        const move = true;
+        const prevX = this.player.getXPos();
+        const prevY = this.player.getYPos();
+        this.hitboxes.forEach((box) => {
+            if (!this.player.collidesWithHitbox(box)) {
+                this.player.movePlayer(this.canvas);
+            }
+            else {
+                if (this.player.getXPos() > box.getXPos() &&
+                    this.player.getXPos() < box.getXPos() + box.getWidth() &&
+                    this.player.getYPos() + this.player.getImage().height > box.getYPos()) {
+                    console.log('from right');
+                    this.player.setXPos(prevX + 1);
+                    this.player.setYPos(prevY + 1);
+                }
+                console.log('from left');
+                this.player.setXPos(prevX - 1);
+                this.player.setYPos(prevY - 1);
+            }
+        });
+    }
     render() {
         this.draw(this.ctx);
         super.render();
+        this.hitboxes.forEach((box) => {
+            box.draw(this.canvas);
+        });
     }
 }
 //# sourceMappingURL=MainHallway.js.map

@@ -1,9 +1,12 @@
 import Door from './Door.js';
 import Room from './Room.js';
 import Candy from './Candy.js';
-import Computer from './Computer.js';
 import Question from './Question.js';
+<<<<<<< HEAD
 import QuestionScreen from './QuestionScreen.js';
+=======
+import HintScreen from './HintScreen.js';
+>>>>>>> d9c2c3cb50827f948ce404fa4c56a79be1b70a10
 import Boss from './Boss.js';
 export default class BossRoom extends Room {
     previousScene;
@@ -23,11 +26,10 @@ export default class BossRoom extends Room {
         this.npcs = [];
         this.doors = [];
         this.questions = [];
-        this.computer = new Computer(618, 113);
         this.collectibles.push(new Candy(this.canvas.width / 2, this.canvas.height / 2));
-        this.doors.push(new Door('./assets/img/door1.png', 658, 297));
-        this.player.setXPos(861);
-        this.player.setYPos(365);
+        this.doors.push(new Door('./assets/img/door1.png', 677, 297));
+        this.player.setXPos(566);
+        this.player.setYPos(305);
         this.player.setImage('./assets/img/player-boy-standing.png');
         this.questions.push(new Question(this.player.getUserData(), 'text question 1', 'right answer 1', 'wrong answer 1.1', 'wrong answer 1.2'));
         this.questions.push(new Question(this.player.getUserData(), 'text question 2', 'right answer 2', 'wrong answer 2.1', 'wrong answer 2.2'));
@@ -42,14 +44,11 @@ export default class BossRoom extends Room {
                     console.log('interact with door');
                     this.doorClose.play();
                     console.log(this.previousScene);
-                    this.player.setXPos(732);
-                    this.player.setYPos(200);
+                    this.player.setXPos(521);
+                    this.player.setYPos(235);
                     this.player.setImage('./assets/img/player-boy-standing.png');
                     return this.previousScene;
                 }
-            }
-            if (this.player.collidesWith(this.computer)) {
-                return new QuestionScreen(this.canvas, this, this.questions);
             }
         }
         if (this.gameFrame % this.staggerFrame === 0) {
@@ -70,7 +69,6 @@ export default class BossRoom extends Room {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.draw(this.ctx);
         this.boss.draw(this.ctx);
-        this.computer.draw(this.ctx);
         super.render();
     }
 }
