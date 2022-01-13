@@ -7,6 +7,7 @@ import Candy from './Candy.js';
 import Hint from './Hint.js';
 import DialogScreen from './DialogScreen.js';
 import HintScreen from './HintScreen.js';
+import Hitbox from './Hitbox.js';
 
 export default abstract class Room extends Scene {
   // X position of the image of the room
@@ -41,6 +42,8 @@ export default abstract class Room extends Scene {
 
   protected doorClose: HTMLAudioElement;
 
+  protected hitboxes: Hitbox[];
+
   /**
    * Create a new room
    *
@@ -74,6 +77,8 @@ export default abstract class Room extends Scene {
     this.menu = new Menu(this.canvas.width / 3 - 30, 600);
 
     this.isMenuShowing = false;
+
+    this.hitboxes = [];
   }
 
   /**
@@ -147,7 +152,6 @@ export default abstract class Room extends Scene {
       return new HintScreen(this.canvas, this, 2);
     }
 
-
     // INTERACTION WITH MENU
     if (this.player.isInteractingMenu() && this.frameCounter === 7) {
       if (this.isMenuShowing === true) {
@@ -167,9 +171,9 @@ export default abstract class Room extends Scene {
       for (let i = 0; i < this.npcs.length; i += 1) {
         if (this.player.collidesWith(this.npcs[i])) {
           const currentNPC: Npc = this.npcs[i];
-          console.log('interact with npc');
-          this.player.setXPos(this.player.getXPos() - 50);
-          this.player.setYPos(this.player.getYPos() + 50);
+          // console.log('interact with npc');
+          // this.player.setXPos(this.player.getXPos() - 50);
+          // this.player.setYPos(this.player.getYPos() + 50);
           return new DialogScreen(this.canvas, this, currentNPC.getDialogs());
         }
       }
@@ -212,20 +216,23 @@ export default abstract class Room extends Scene {
   public render(): void {
     // this.draw(this.ctx);
 
-    // DRAWS COLLECTTIBLES
-    for (let i = 0; i < this.collectibles.length; i++) {
-      this.collectibles[i].draw(this.ctx);
-    }
-
     // DRAWS NPCS
     for (let i = 0; i < this.npcs.length; i += 1) {
       this.npcs[i].draw(this.ctx);
+    }
+
+    // DRAWS COLLECTTIBLES
+    for (let i = 0; i < this.collectibles.length; i++) {
+      this.collectibles[i].draw(this.ctx);
     }
 
     // DRAWS DOORS
     for (let i = 0; i < this.doors.length; i += 1) {
       this.doors[i].draw(this.ctx);
     }
+
+    // DRAWS PALYER
+    this.player.draw(this.ctx);
 
     // DRAWS MENU
     if (this.isMenuShowing) {
@@ -260,13 +267,10 @@ export default abstract class Room extends Scene {
         this.candyNumImg = Scene.loadNewImage('./assets/img/0.png');
       }
 
-      this.ctx.drawImage(this.hintNumImg, 489, 670);
-      this.ctx.drawImage(this.candyNumImg, 639, 670);
+      this.ctx.drawImage(this.hintNumImg, 347, 680, 50, 50);
+      this.ctx.drawImage(this.candyNumImg, 490, 680, 50, 50);
     }
 
     // this.menu.draw(this.ctx);
-
-    // DRAS PALYER
-    this.player.draw(this.ctx);
   }
 }

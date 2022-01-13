@@ -12,6 +12,7 @@ import Player from './Player.js';
 import HintScreen from './HintScreen.js';
 import BossRoom from './BossRoom.js';
 import Dialog from './Dialog.js';
+import Hitbox from './Hitbox.js';
 
 export default class MainHallway extends Room {
   /**
@@ -50,10 +51,11 @@ export default class MainHallway extends Room {
         [
           new Dialog('Heyy how are you today?#'),
           new Dialog('Good luck with your exams!#'),
-        ],
-      ),
+        ]
+      )
     );
-    console.log('hi');
+
+    this.hitboxes.push(new Hitbox(377, 377, 130, 150));
   }
 
   /**
@@ -65,6 +67,7 @@ export default class MainHallway extends Room {
    */
   public update(elapsed: number): Scene {
     const nextScene: Scene = this.generalInteraction();
+
     // console.log(this.player.getXPos(), this.player.getYPos());
     if (this.player.isInteracting()) {
       // WITH DOORS
@@ -84,10 +87,40 @@ export default class MainHallway extends Room {
     if (this.player.getXPos() >= 1060 && this.player.getYPos() >= 443.5) {
       return new DifficultHallway(this.canvas, this, this.player);
     }
+
     if (nextScene !== null) {
       return nextScene;
     }
+
     return null;
+  }
+
+  /**
+   *
+   */
+  public processInput(): void {
+    const move = true;
+    const prevX = this.player.getXPos();
+    const prevY = this.player.getYPos();
+
+    this.hitboxes.forEach((box) => {
+      if (!this.player.collidesWithHitbox(box)) {
+        this.player.movePlayer(this.canvas);
+      } else {
+        if (
+          this.player.getXPos() > box.getXPos() &&
+          this.player.getXPos() < box.getXPos() + box.getWidth() &&
+          this.player.getYPos() + this.player.getImage().height > box.getYPos()
+        ) {
+          console.log('from right');
+          this.player.setXPos(prevX + 1);
+          this.player.setYPos(prevY + 1);
+        }
+        console.log('from left');
+        this.player.setXPos(prevX - 1);
+        this.player.setYPos(prevY - 1);
+      }
+    });
   }
 
   /**
@@ -96,6 +129,10 @@ export default class MainHallway extends Room {
   public render(): void {
     this.draw(this.ctx);
     super.render();
+
+    this.hitboxes.forEach((box) => {
+      box.draw(this.canvas);
+    });
     // console.log(this.player.getXPos(), this.player.getYPos());
   }
 

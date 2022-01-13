@@ -17,7 +17,7 @@ export default class EasyHallway extends Room {
         this.doors = [];
         this.setXPos(0);
         this.setYPos(0);
-        this.npcs.push(new Npc('./assets/img/student-1-back-faced.png', 561, 630, [
+        this.npcs.push(new Npc('./assets/img/student-1-back-faced.png', 561, 405, [
             new Dialog('Heyy how are you today?'),
             new Dialog('Good luck with your exams!'),
         ]));

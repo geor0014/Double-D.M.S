@@ -51,7 +51,7 @@ export default class ClassRoom5 extends Room {
     this.computer = new Computer(266, 165.5);
 
     this.npcs.push(
-      new Npc('./assets/img/teacher-blonde-hair-front-faced.png', 714, 98, [
+      new Npc('./assets/img/teacher-blonde-hair-front-faced.png', 714, 198, [
         new Dialog('Heyy how are you today?'),
         new Dialog('Good luck with your exams!'),
       ])

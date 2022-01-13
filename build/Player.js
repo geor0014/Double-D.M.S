@@ -17,8 +17,8 @@ export default class Player extends GameEntity {
         console.log('creating player');
     }
     movePlayer(canvas) {
-        if (this.keyboard.isKeyDown(KeyListener.KEY_RIGHT)
-            && this.getXPos() + this.getImage().width < canvas.width) {
+        if (this.keyboard.isKeyDown(KeyListener.KEY_RIGHT) &&
+            this.getXPos() + this.getImage().width < canvas.width) {
             this.setXPos(this.getXPos() + this.xVelocity);
             this.setImage('./assets/img/player-boy-right.png');
             this.walk.play();
@@ -33,8 +33,8 @@ export default class Player extends GameEntity {
             this.setImage('./assets/img/player-boy-up.png');
             this.walk.play();
         }
-        if (this.keyboard.isKeyDown(KeyListener.KEY_DOWN)
-            && this.getYPos() + this.getImage().height < canvas.height) {
+        if (this.keyboard.isKeyDown(KeyListener.KEY_DOWN) &&
+            this.getYPos() + this.getImage().height < canvas.height) {
             this.setYPos(this.getYPos() + this.yVelocity);
             this.setImage('./assets/img/player-boy-standing.png');
             this.walk.play();
@@ -59,10 +59,20 @@ export default class Player extends GameEntity {
         return false;
     }
     collidesWith(other) {
-        if (this.getXPos() < other.getXPos() + other.getImage().width
-            && this.getXPos() + this.getImage().width > other.getXPos()
-            && this.getYPos() < other.getYPos() + other.getImage().height
-            && this.getYPos() + this.getImage().height > other.getYPos()) {
+        if (this.getXPos() < other.getXPos() + other.getImage().width &&
+            this.getXPos() + this.getImage().width > other.getXPos() &&
+            this.getYPos() < other.getYPos() + other.getImage().height &&
+            this.getYPos() + this.getImage().height > other.getYPos()) {
+            return true;
+        }
+        return false;
+    }
+    collidesWithHitbox(box) {
+        if (this.getXPos() < box.getXPos() + box.getWidth() &&
+            this.getXPos() + this.getImage().width > box.getXPos() &&
+            this.getYPos() < box.getYPos() + box.getHeight() &&
+            this.getYPos() + this.getImage().height > box.getYPos()) {
+            console.log('collision');
             return true;
         }
         return false;

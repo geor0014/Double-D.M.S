@@ -33,7 +33,7 @@ export default class ClassRoom1 extends Room {
     canvas: HTMLCanvasElement,
     previousScene: Scene,
     player: Player,
-    state: boolean,
+    state: boolean
   ) {
     super(canvas, './assets/img/classroom.png', state);
     this.previousScene = previousScene;
@@ -50,27 +50,19 @@ export default class ClassRoom1 extends Room {
     this.computer = new Computer(266, 165.5);
 
     this.npcs.push(
-      new Npc(
-        './assets/img/student-orange-hair-back-faced.png',
-        702,
-        236,
-        [
-          new Dialog('Dont bother me I am trying to study...#'),
-        ],
-      ),
-      new Npc(
-        './assets/img/teacher-blonde-hair-front-faced.png',
-        714,
-        98,
-        [
-          new Dialog('Today we are learning about suspicious links and strangers messeges#'),
-          new Dialog('This is very important!#'),
-        ],
-      ),
+      new Npc('./assets/img/student-orange-hair-back-faced.png', 652, 436, [
+        new Dialog('Dont bother me I am trying to study...#'),
+      ]),
+      new Npc('./assets/img/teacher-blonde-hair-front-faced.png', 714, 298, [
+        new Dialog(
+          'Today we are learning about suspicious links and strangers messeges#'
+        ),
+        new Dialog('This is very important!#'),
+      ])
     );
     // creating collectibles in the classroom
     this.collectibles.push(
-      new Candy(this.canvas.width / 2, this.canvas.height / 2),
+      new Candy(this.canvas.width / 2, this.canvas.height / 2)
     );
 
     // creating the door for the classroom
@@ -88,8 +80,8 @@ export default class ClassRoom1 extends Room {
         'Congratulations you just won a giveaway!# a Nigerian Prince chose you to be the winner!!#Send him your bank account details and your ID to get 500.000€!!',
         'Not pay attention and delete this email/message',
         'Send an E-mail to make sure it is real',
-        'YES, TAKE ALL MY DATA!',
-      ),
+        'YES, TAKE ALL MY DATA!'
+      )
     );
     this.questions.push(
       new Question(
@@ -97,8 +89,8 @@ export default class ClassRoom1 extends Room {
         'Someone sent you a link to a YouTube video,# you click on it and suddenly you have a virus on your pc!# What could u have done differently? ',
         'Not click on the link',
         'Send this cool link to all my friends!',
-        'start chatting with this person for fun',
-      ),
+        'start chatting with this person for fun'
+      )
     );
 
     console.log('CLASSROOM1');
