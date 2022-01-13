@@ -4,7 +4,6 @@ import Candy from './Candy.js';
 import Computer from './Computer.js';
 import Question from './Question.js';
 import QuestionScreen from './QuestionScreen.js';
-import HintScreen from './HintScreen.js';
 import Boss from './Boss.js';
 export default class BossRoom extends Room {
     previousScene;
@@ -37,14 +36,6 @@ export default class BossRoom extends Room {
     update(elapsed) {
         this.gameFrame += 1;
         const nextScene = this.generalInteraction();
-        if (this.player.isReadingHint() &&
-            this.player.getUserData().getHintAmount() > 0) {
-            this.player
-                .getUserData()
-                .setHintAmount(this.player.getUserData().getHintAmount() - 1);
-            console.log(this.player.getUserData().getHintAmount());
-            return new HintScreen(this.canvas, this, 2);
-        }
         if (this.player.isInteracting()) {
             for (let i = 0; i < this.doors.length; i += 1) {
                 if (this.player.collidesWith(this.doors[i])) {

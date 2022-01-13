@@ -55,6 +55,7 @@ export default class DialogScreen extends Screen {
     render() {
         this.draw(this.ctx);
         if (this.dCounter < this.dialogs.length) {
+            this.writeTextToCanvas(`Dialog to go ${this.dCounter + 1} / ${this.dialogs.length}`, 24, this.canvas.width / 2, 420, 'center', 'Grey');
             let textToWrite = '';
             let textHPos = this.canvas.height / 2.5;
             const textWPos = this.canvas.width / 3.5;
@@ -63,6 +64,12 @@ export default class DialogScreen extends Screen {
                 this.writeTextToCanvas(textToWrite, 30, textWPos + 150, textHPos, 'center', 'black');
                 textHPos += 50;
             }
+        }
+        if (this.dCounter === this.dialogs.length - 1) {
+            this.writeTextToCanvas('press ESC to leave', 24, this.canvas.width / 2 + 200, 420, 'center', 'Grey');
+        }
+        else {
+            this.writeTextToCanvas('Next >', 24, this.canvas.width / 2 + 200, 420, 'center', 'Grey');
         }
     }
 }

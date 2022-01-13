@@ -1,13 +1,13 @@
 import KeyListener from './KeyListener.js';
 import Screen from './Screen.js';
 import Scene from './Scene.js';
-import MainHallway from './MainHallway.js';
+import Room from './Room.js';
 import Dialog from './Dialog.js';
 
 export default class DialogScreen extends Screen {
   private keyboard: KeyListener;
 
-  private previousScene: MainHallway;
+  private previousScene: Room;
 
   private dialogs: Dialog[];
 
@@ -24,7 +24,7 @@ export default class DialogScreen extends Screen {
    */
   constructor(
     canvas: HTMLCanvasElement,
-    previousScene: MainHallway,
+    previousScene: Room,
     dialogs: Dialog[]
   ) {
     super(canvas, './assets/img/dialogscreen.png');
@@ -101,6 +101,15 @@ export default class DialogScreen extends Screen {
   public render(): void {
     this.draw(this.ctx);
     if (this.dCounter < this.dialogs.length) {
+      this.writeTextToCanvas(
+        `Dialog to go ${this.dCounter + 1} / ${this.dialogs.length}`,
+        24,
+        this.canvas.width / 2,
+        420,
+        'center',
+        'Grey'
+      );
+
       let textToWrite: string = '';
       // let j: number = 0;
       let textHPos: number = this.canvas.height / 2.5;
@@ -119,6 +128,25 @@ export default class DialogScreen extends Screen {
         );
         textHPos += 50;
       }
+    }
+    if (this.dCounter === this.dialogs.length - 1) {
+      this.writeTextToCanvas(
+        'press ESC to leave',
+        24,
+        this.canvas.width / 2 + 200,
+        420,
+        'center',
+        'Grey'
+      );
+    } else {
+      this.writeTextToCanvas(
+        'Next >',
+        24,
+        this.canvas.width / 2 + 200,
+        420,
+        'center',
+        'Grey'
+      );
     }
   }
 }

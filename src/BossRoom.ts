@@ -103,18 +103,6 @@ export default class BossRoom extends Room {
     // calling general checkups from Room class
     const nextScene: Scene = this.generalInteraction();
 
-    // READING HINT
-    if (
-      this.player.isReadingHint() &&
-      this.player.getUserData().getHintAmount() > 0
-    ) {
-      this.player
-        .getUserData()
-        .setHintAmount(this.player.getUserData().getHintAmount() - 1);
-      console.log(this.player.getUserData().getHintAmount());
-      return new HintScreen(this.canvas, this, 2);
-    }
-
     // INTERACTIONS
     if (this.player.isInteracting()) {
       // WITH DOORS

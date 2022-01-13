@@ -1,14 +1,13 @@
 import Door from './Door.js';
 import Room from './Room.js';
-import Candy from './Candy.js';
 import Computer from './Computer.js';
 import Question from './Question.js';
 import QuestionScreen from './QuestionScreen.js';
-import HintScreen from './HintScreen.js';
 export default class ClassRoom3 extends Room {
     previousScene;
     computer;
     questions;
+    pcInteract = false;
     constructor(canvas, previousScene, player, state) {
         super(canvas, './assets/img/classroom.png', state);
         this.previousScene = previousScene;
@@ -20,7 +19,6 @@ export default class ClassRoom3 extends Room {
         this.doors = [];
         this.questions = [];
         this.computer = new Computer(266, 165.5);
-        this.collectibles.push(new Candy(this.canvas.width / 2, this.canvas.height / 2));
         this.doors.push(new Door('./assets/img/door1.png', 985, 485));
         this.player.setXPos(990);
         this.player.setYPos(548);
@@ -30,14 +28,6 @@ export default class ClassRoom3 extends Room {
     }
     update(elapsed) {
         const nextScene = this.generalInteraction();
-        if (this.player.isReadingHint()
-            && this.player.getUserData().getHintAmount() > 0) {
-            this.player
-                .getUserData()
-                .setHintAmount(this.player.getUserData().getHintAmount() - 1);
-            console.log(this.player.getUserData().getHintAmount());
-            return new HintScreen(this.canvas, this, 2);
-        }
         if (this.player.isInteracting()) {
             for (let i = 0; i < this.doors.length; i += 1) {
                 if (this.player.collidesWith(this.doors[i])) {
@@ -51,7 +41,11 @@ export default class ClassRoom3 extends Room {
                 }
             }
             if (this.player.collidesWith(this.computer)) {
-                return new QuestionScreen(this.canvas, this, this.questions);
+                if (this.pcInteract === false) {
+                    this.pcInteract = true;
+                    return new QuestionScreen(this.canvas, this, this.questions);
+                }
+                console.log('cant use the pc at the moment');
             }
         }
         if (nextScene !== null) {

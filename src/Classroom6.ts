@@ -10,7 +10,6 @@ import Computer from './Computer.js';
 import Question from './Question.js';
 import QuestionScreen from './QuestionScreen.js';
 
-import HintScreen from './HintScreen.js';
 
 export default class ClassRoom6 extends Room {
   private previousScene: Scene;
@@ -18,6 +17,8 @@ export default class ClassRoom6 extends Room {
   private computer: Computer;
 
   private questions: Question[];
+
+  private pcInteract: boolean = false;
 
   /**
    * creats a new classroom
@@ -49,7 +50,7 @@ export default class ClassRoom6 extends Room {
 
     // creating collectibles in the classroom
     this.collectibles.push(
-      new Candy(this.canvas.width / 2, this.canvas.height / 2)
+      new Candy(this.canvas.width / 4, this.canvas.height / 4),
     );
 
     // creating the door for the classroom
@@ -61,6 +62,29 @@ export default class ClassRoom6 extends Room {
     this.player.setImage('./assets/img/player-boy-standing.png');
 
     // creating questions for this classroom
+    this.questions.push(
+      new Question(
+        this.player.getUserData(),
+        'You are about to join this amazing new website# all your friends are there.# What information is OK to give online?#',
+        'Nickname#',
+        'Phone number#',
+        'Adress#',
+      ),
+      new Question(
+        this.player.getUserData(),
+        'You are having trouble doing an activity on a safe site you use at school.# Your friend offers to help but needs your password.# Would you give your password to them.',
+        'No#',
+        'It depends#',
+        'Yes#',
+      ),
+      new Question(
+        this.player.getUserData(),
+        'Your parents want to know what you have been doing on a safe site you use at school.# Would you let them use your account?',
+        'Yes, you would let them have a look but while youre there#',
+        'Yes, they are my parents I trust them#',
+        'No way, this site is only for kids and teachers#',
+      ),
+    );
     console.log('door6');
   }
 
@@ -75,18 +99,6 @@ export default class ClassRoom6 extends Room {
   public update(elapsed: number): Scene {
     // calling general checkups from Room class
     const nextScene: Scene = this.generalInteraction();
-
-    // READING HINT
-    if (
-      this.player.isReadingHint() &&
-      this.player.getUserData().getHintAmount() > 0
-    ) {
-      this.player
-        .getUserData()
-        .setHintAmount(this.player.getUserData().getHintAmount() - 1);
-      console.log(this.player.getUserData().getHintAmount());
-      return new HintScreen(this.canvas, this, 2);
-    }
 
     // INTERACTIONS
     if (this.player.isInteracting()) {
@@ -105,8 +117,12 @@ export default class ClassRoom6 extends Room {
 
       // WITH COMPUTER
       if (this.player.collidesWith(this.computer)) {
-        // present question screen
-        return new QuestionScreen(this.canvas, this, this.questions);
+        if (this.pcInteract === false) {
+          // present question screen
+          this.pcInteract = true;
+          return new QuestionScreen(this.canvas, this, this.questions);
+        }
+        console.log('cant use the pc at the moment');
       }
     }
 

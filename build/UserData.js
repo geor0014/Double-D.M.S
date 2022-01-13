@@ -4,6 +4,7 @@ export default class UserData {
     name;
     img;
     score;
+    hintNum;
     constructor() {
         this.name = 'Player';
         this.img = new Image();
@@ -11,6 +12,13 @@ export default class UserData {
         this.hintAmount = 0;
         this.candyAmount = 0;
         this.score = 0;
+        this.hintNum = 0;
+    }
+    getHintNum() {
+        return this.hintNum;
+    }
+    setHintNum(num) {
+        this.hintNum = num;
     }
     getScore() {
         return this.score;

@@ -41,16 +41,16 @@ export default class DifficultHallway extends Room {
 
     this.npcs.push(
       new Npc('./assets/img/student-grey-hair-back-faced.png', 766, 430, [
-        new Dialog('Heyy how are you today?'),
-        new Dialog('Good luck with your exams!'),
+        new Dialog('I heard there is this weird dude in the bathroom#'),
+        new Dialog('I am too scared to go there#'),
       ])
     );
 
     this.npcs.push(
       new Npc('./assets/img/student-blue-hair-faced.png', 432, 322, [
-        new Dialog('Heyy how are you today?'),
-        new Dialog('Good luck with your exams!'),
-      ])
+        new Dialog('(3450987 X 19023) + 4.... this is hard!#'),
+        new Dialog('Sorry I am busy..#'),
+      ]),
     );
 
     this.player.setXPos(13);

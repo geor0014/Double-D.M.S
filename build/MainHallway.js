@@ -34,17 +34,23 @@ export default class MainHallway extends Room {
         if (this.player.isInteracting()) {
             for (let i = 0; i < this.doors.length; i += 1) {
                 if (this.player.collidesWith(this.doors[i])) {
-                    console.log('interact with door');
-                    this.doorOpen.play();
-                    return new BossRoom(this.canvas, this, this.player);
+                    if (this.player.getUserData().getScore() === 15) {
+                        console.log('interact with door');
+                        this.doorOpen.play();
+                        return new BossRoom(this.canvas, this, this.player);
+                    }
+                    console.log('You cant accsess this room! maybe your not worthy enought (evil laugh)');
                 }
             }
         }
         if (this.player.getXPos() <= 14 && this.player.getYPos() >= 443.5) {
             return new EasyHallway(this.canvas, this, this.player);
         }
-        if (this.player.getXPos() >= 1060 && this.player.getYPos() >= 443.5) {
-            return new DifficultHallway(this.canvas, this, this.player);
+        if ((this.player.getXPos() >= 1060 && this.player.getYPos() >= 443.5)) {
+            if (this.player.getUserData().getScore() > 4) {
+                return new DifficultHallway(this.canvas, this, this.player);
+            }
+            console.log('Sorry you cant enter here yet you need at least 4 points!');
         }
         if (nextScene !== null) {
             return nextScene;
