@@ -19,23 +19,46 @@ export default class QuestionScreen extends Screen {
 
   private okPressed: boolean;
 
+  /**
+   * Creates new Question Screen
+   *
+   * @param canvas canvas
+   * @param previousScene previous scene to return to
+   * @param questions an array of questions string
+   */
   constructor(
     canvas: HTMLCanvasElement,
     previousScene: Room,
     questions: Question[]
   ) {
     super(canvas, './assets/img/computer-screen.png');
+
+    // sets keylistener
     this.keyboard = new KeyListener();
+
+    // sets the previous scene to rturn to
     this.previousScene = previousScene;
+
+    // sets the questions
     this.questions = questions;
+
+    // if needed to move to the next question
     this.nextQ = false;
+
+    // counter which question is presented
     this.qCounter = 0;
+
     this.okPressed = false;
 
     this.setXPos(this.canvas.width / 5);
     this.setYPos(this.canvas.height / 10);
   }
 
+  /**
+   * Checks if player wants to exit the dialog screen
+   *
+   * @returns if player pressed space key
+   */
   public processInput(): boolean {
     if (this.keyboard.isKeyDown(KeyListener.KEY_ESC)) {
       return true;
@@ -43,6 +66,9 @@ export default class QuestionScreen extends Screen {
     return false;
   }
 
+  /**
+   * changes if player wants to read next question
+   */
   public moveBetweenQuestions(): void {
     if (this.keyboard.isKeyDown(KeyListener.KEY_RIGHT)) {
       console.log('right pressed');
@@ -52,6 +78,11 @@ export default class QuestionScreen extends Screen {
     }
   }
 
+  /**
+   * checks if player chose an answer
+   *
+   * @returns number pressed
+   */
   public reciveAnswer(): number {
     if (this.keyboard.isKeyDown(KeyListener.KEY_1)) {
       this.okPressed = true;
@@ -70,16 +101,24 @@ export default class QuestionScreen extends Screen {
     return 0;
   }
 
+  /**
+   * Update method
+   *
+   * @param elapsed time elapsed
+   * @returns previous Scene
+   */
   public update(elapsed: number): Scene {
     const userData = this.questions[this.qCounter].getUserData();
     // console.log(` frame counter ${this.frameCounter}`);
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     // console.log(this.qCounter);
 
+    // if player wants to exit dialog
     if (this.processInput()) {
       return this.previousScene;
     }
 
+    // checks if answer was registered and player pressed ok with frame count
     if (this.okPressed === false && this.frameCounter % 10 === 0) {
       let answerRecived = this.reciveAnswer();
       console.log(`answer Recived ${answerRecived}`);
@@ -89,6 +128,7 @@ export default class QuestionScreen extends Screen {
         );
       }
 
+      // check if the answer chosen is correct
       if (answerRecived === this.questions[this.qCounter].getRPos() + 1) {
         // console.log('right answer selected');
         userData.setScore(userData.getScore() + 1);
@@ -96,6 +136,7 @@ export default class QuestionScreen extends Screen {
       answerRecived = 0;
     }
 
+    // checks if player moved to next question
     this.moveBetweenQuestions();
     if (
       this.nextQ &&
@@ -106,6 +147,7 @@ export default class QuestionScreen extends Screen {
       this.okPressed = false;
     }
 
+    // resets the frame counter after it got to 10
     if (this.frameCounter === 10) {
       this.frameCounter = 0;
     }
@@ -122,9 +164,12 @@ export default class QuestionScreen extends Screen {
     ctx.drawImage(this.getImage(), this.getXPos(), this.getYPos());
   }
 
+  /**
+   * draws everything on screen
+   */
   public render(): void {
     this.draw(this.ctx);
-
+    // draws the questions counter and how many left
     if (this.qCounter < this.questions.length) {
       this.writeTextToCanvas(
         `Q num ${this.qCounter + 1} / ${this.questions.length}`,
@@ -140,6 +185,7 @@ export default class QuestionScreen extends Screen {
       let textHPos: number = this.canvas.height / 3;
       const textWPos: number = this.canvas.width / 1.9;
 
+      // draws the question itself
       for (let i = 0; i < 3; i += 1) {
         textToWrite = this.questions[this.qCounter].getText(i);
         // console.log(textToWrite);
@@ -154,6 +200,7 @@ export default class QuestionScreen extends Screen {
         textHPos += 50;
       }
 
+      // draws possible answers
       for (let i = 0; i <= 2; i += 1) {
         if (this.questions[this.qCounter].getRPos() === i) {
           textToWrite = `${i + 1} ${this.questions[this.qCounter].getRAns()}`;
@@ -172,7 +219,7 @@ export default class QuestionScreen extends Screen {
         textHPos += 50;
       }
     }
-
+    // either shows for the next or how to quit
     if (this.qCounter === this.questions.length - 1) {
       this.writeTextToCanvas(
         'press ESC to leave',

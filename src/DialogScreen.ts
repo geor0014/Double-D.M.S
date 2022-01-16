@@ -18,9 +18,11 @@ export default class DialogScreen extends Screen {
   private frameCounter: number = 0;
 
   /**
+   * Creates new Dialog screen
    *
    * @param canvas passes the canvas to Screen
    * @param previousScene rerturns player to previous screen
+   * @param dialogs an array of dialogs string
    */
   constructor(
     canvas: HTMLCanvasElement,
@@ -28,17 +30,29 @@ export default class DialogScreen extends Screen {
     dialogs: Dialog[],
   ) {
     super(canvas, './assets/img/dialogscreen.png');
+
+    // sets keylistener
     this.keyboard = new KeyListener();
+
+    // sets the previous scene to rturn to
     this.previousScene = previousScene;
+
+    // sets the dialogs
     this.dialogs = dialogs;
+
+    // if needed to move to the next dialog
     this.nextD = false;
+
+    // counter which dialog is presented
     this.dCounter = 0;
 
+    // sets the background image position
     this.setXPos(0);
     this.setYPos(0);
   }
 
   /**
+   * Checks if player wants to exit the dialog screen
    *
    * @returns if player pressed space key
    */
@@ -49,6 +63,9 @@ export default class DialogScreen extends Screen {
     return false;
   }
 
+  /**
+   * changes if player wants to read next dialog
+   */
   public moveBetweenDialogs(): void {
     if (this.keyboard.isKeyDown(KeyListener.KEY_RIGHT)) {
       console.log('right pressed');
@@ -59,6 +76,7 @@ export default class DialogScreen extends Screen {
   }
 
   /**
+   * Update method
    *
    * @param elapsed time elapsed
    * @returns previous Scene
@@ -67,9 +85,12 @@ export default class DialogScreen extends Screen {
     // clears canvas
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
+    // if player wants to exit dialog
     if (this.processInput()) {
       return this.previousScene;
     }
+
+    // calls to check if player wants to move to the next dialog
     this.moveBetweenDialogs();
     if (
       this.nextD &&
@@ -79,9 +100,11 @@ export default class DialogScreen extends Screen {
       this.dCounter += 1;
     }
 
+    // resets the frame counter after it got to 10
     if (this.frameCounter === 10) {
       this.frameCounter = 0;
     }
+
     this.frameCounter += 1;
     return null;
   }
@@ -99,6 +122,7 @@ export default class DialogScreen extends Screen {
    * draws everything on screen
    */
   public render(): void {
+    // draws the dialog counter and how many left
     this.draw(this.ctx);
     if (this.dCounter < this.dialogs.length) {
       this.writeTextToCanvas(
@@ -107,7 +131,7 @@ export default class DialogScreen extends Screen {
         this.canvas.width / 2,
         420,
         'center',
-        'Grey'
+        'Grey',
       );
 
       let textToWrite: string = '';
@@ -115,6 +139,7 @@ export default class DialogScreen extends Screen {
       let textHPos: number = this.canvas.height / 2.5;
       const textWPos: number = this.canvas.width / 3.5;
 
+      // draws the dialog itself
       for (let i = 0; i < 3; i += 1) {
         textToWrite = this.dialogs[this.dCounter].getText(i);
         // console.log(textToWrite);
@@ -129,6 +154,8 @@ export default class DialogScreen extends Screen {
         textHPos += 50;
       }
     }
+
+    // either shows for the next or how to quit
     if (this.dCounter === this.dialogs.length - 1) {
       this.writeTextToCanvas(
         'press ESC to leave',
@@ -136,16 +163,16 @@ export default class DialogScreen extends Screen {
         this.canvas.width / 2 + 200,
         420,
         'center',
-        'Grey'
+        'Grey',
       );
     } else {
       this.writeTextToCanvas(
-        'Next >',
+        'Next - right arrow >>',
         24,
         this.canvas.width / 2 + 200,
         420,
         'center',
-        'Grey'
+        'Grey',
       );
     }
   }

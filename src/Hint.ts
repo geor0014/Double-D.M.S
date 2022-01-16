@@ -2,7 +2,7 @@ import Collectibles from './collectibles.js';
 
 export default class Hint extends Collectibles {
   /**
-   * Creates a new candy
+   * Creates a new hint
    *
    * @param xPos number
    * @param yPos number

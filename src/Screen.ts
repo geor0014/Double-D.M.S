@@ -8,7 +8,7 @@ export default abstract class Screen extends Scene {
   private yPos: number;
 
   /**
-   * Initialises every attribute
+   * Creates a new screen
    *
    * @param canvas of the game
    * @param imgSrc of the Screen

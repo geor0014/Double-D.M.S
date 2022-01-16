@@ -69,7 +69,7 @@ export default class DialogScreen extends Screen {
             this.writeTextToCanvas('press ESC to leave', 24, this.canvas.width / 2 + 200, 420, 'center', 'Grey');
         }
         else {
-            this.writeTextToCanvas('Next >', 24, this.canvas.width / 2 + 200, 420, 'center', 'Grey');
+            this.writeTextToCanvas('Next - right arrow >>', 24, this.canvas.width / 2 + 200, 420, 'center', 'Grey');
         }
     }
 }

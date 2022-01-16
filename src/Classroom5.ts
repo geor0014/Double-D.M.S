@@ -34,22 +34,30 @@ export default class ClassRoom5 extends Room {
     canvas: HTMLCanvasElement,
     previousScene: Scene,
     player: Player,
-    state: boolean
+    state: boolean,
   ) {
     super(canvas, './assets/img/classroom.png', state);
+
+    // sets the previous scene to return to
     this.previousScene = previousScene;
 
+    // sets the player
     this.player = player;
 
+    // sets the background image position
     this.setXPos(0);
     this.setYPos(0);
 
+    // resets the items in the room
     this.collectibles = [];
     this.npcs = [];
     this.doors = [];
     this.questions = [];
+
+    // creating a new computer in the classroom
     this.computer = new Computer(266, 165.5);
 
+    // sets the NPCs with their dialogs in the classroom
     this.npcs.push(
       new Npc('./assets/img/teacher-blonde-hair-front-faced.png', 714, 198, [
         new Dialog('Welcome to class!#'),
@@ -95,7 +103,7 @@ export default class ClassRoom5 extends Room {
       ),
     );
 
-    console.log('door5');
+    console.log('CLASSROOM5');
   }
 
   /**
@@ -110,7 +118,7 @@ export default class ClassRoom5 extends Room {
     // calling general checkups from Room class
     const nextScene: Scene = this.generalInteraction();
 
-    // INTERACTIONS
+    // Checking if the player is interacting with items
     if (this.player.isInteracting()) {
       // WITH DOORS
       for (let i = 0; i < this.doors.length; i += 1) {
@@ -136,6 +144,7 @@ export default class ClassRoom5 extends Room {
       }
     }
 
+    // according to the general checks in room
     if (nextScene !== null) {
       return nextScene;
     }

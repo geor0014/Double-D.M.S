@@ -16,6 +16,11 @@ export default abstract class Scene {
 
   protected player: Player;
 
+  /**
+   * Creates a new Scene
+   *
+   * @param canvas a canvas
+   */
   constructor(canvas: HTMLCanvasElement) {
     this.canvas = canvas;
     this.ctx = this.canvas.getContext('2d');

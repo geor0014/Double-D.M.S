@@ -55,6 +55,7 @@ export default abstract class Room extends Scene {
   ) {
     super(canvas);
 
+    // setting canvas position
     const canvasPosition = this.canvas.getBoundingClientRect();
 
     this.canvas.addEventListener('click', (event) => {
@@ -64,21 +65,26 @@ export default abstract class Room extends Scene {
       console.log(event.x - canvasPosition.left, event.y - canvasPosition.top);
     });
 
+    // creates new image and src
     this.img = new Image();
-
     this.img.src = imgSrc;
 
+    // creates audio for the doors
     this.doorClose = new Audio('./assets/sound/DoorClose.ogg');
     this.doorOpen = new Audio('./assets/sound/DoorOpen.ogg');
 
-    this.menu = new Menu(this.canvas.width / 3 - 30, 600);
+    // creates new menu
+    this.menu = new Menu(this.canvas.width / 3 - 100, 600);
 
+    // state of menu
     this.isMenuShowing = false;
 
+    // hit boxes
     this.hitboxes = [];
   }
 
   /**
+   * getter for x position
    *
    * @returns xPos
    */
@@ -87,6 +93,7 @@ export default abstract class Room extends Scene {
   }
 
   /**
+   * setter for x position
    *
    * @param newPos new Xposition
    */
@@ -95,6 +102,7 @@ export default abstract class Room extends Scene {
   }
 
   /**
+   * getter for y position
    *
    * @returns y position
    */
@@ -103,6 +111,7 @@ export default abstract class Room extends Scene {
   }
 
   /**
+   * setter for y position
    *
    * @param newPos new Y Position
    */
@@ -118,7 +127,7 @@ export default abstract class Room extends Scene {
   }
 
   /**
-   * Removes candy items from the game based on box collision detection.
+   * Removes collectibles items from the game based on box collision detection.
    *
    */
   public collectCollectibles(): void {
@@ -130,7 +139,9 @@ export default abstract class Room extends Scene {
   }
 
   /**
-   * Checks if player is interacting with MENU/COLLECTIBLES in each room
+   * Checks if player is interacting with MENU/COLLECTIBLES/NPC in each room
+   *
+   * @returns scene
    */
   protected generalInteraction(): Scene {
     // console.log(` score ${this.player.getUserData().getScore()}`);
@@ -147,8 +158,14 @@ export default abstract class Room extends Scene {
         .getUserData()
         .setHintAmount(this.player.getUserData().getHintAmount() - 1);
       // console.log(this.player.getUserData().getHintAmount());
-      this.player.getUserData().setHintNum(this.player.getUserData().getHintNum() + 1);
-      return new HintScreen(this.canvas, this, (this.player.getUserData().getHintNum()) - 1);
+      this.player
+        .getUserData()
+        .setHintNum(this.player.getUserData().getHintNum() + 1);
+      return new HintScreen(
+        this.canvas,
+        this,
+        this.player.getUserData().getHintNum() - 1
+      );
     }
 
     // INTERACTION WITH MENU
@@ -215,6 +232,24 @@ export default abstract class Room extends Scene {
   public render(): void {
     // this.draw(this.ctx);
 
+    this.writeTextToCanvas(
+      'press M to hide/unhide menu',
+      24,
+      this.canvas.width / 2,
+      this.canvas.height - 50,
+      'center',
+      'yellow'
+    );
+
+    this.writeTextToCanvas(
+      'press Space to ineract',
+      24,
+      this.canvas.width / 2,
+      this.canvas.height - 80,
+      'center',
+      'yellow'
+    );
+
     // DRAWS NPCS
     for (let i = 0; i < this.npcs.length; i += 1) {
       this.npcs[i].draw(this.ctx);
@@ -230,7 +265,7 @@ export default abstract class Room extends Scene {
       this.doors[i].draw(this.ctx);
     }
 
-    // DRAWS PALYER
+    // DRAWS PLAYER
     this.player.draw(this.ctx);
 
     // DRAWS MENU
@@ -266,8 +301,8 @@ export default abstract class Room extends Scene {
         this.candyNumImg = Scene.loadNewImage('./assets/img/0.png');
       }
 
-      this.ctx.drawImage(this.hintNumImg, 347, 680, 50, 50);
-      this.ctx.drawImage(this.candyNumImg, 490, 680, 50, 50);
+      this.ctx.drawImage(this.hintNumImg, 270, 680, 50, 50);
+      this.ctx.drawImage(this.candyNumImg, 415, 680, 50, 50);
     }
 
     // this.menu.draw(this.ctx);

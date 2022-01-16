@@ -58,8 +58,9 @@ export default class Hitbox {
   }
 
   /**
+   * Draws the hit box
    *
-   * @param ctx Canvas Context
+   * @param canvas Canvas
    */
   public draw(canvas: HTMLCanvasElement): void {
     const ctx2 = canvas.getContext('2d');

@@ -47,6 +47,7 @@ export default class HintScreen extends Screen {
             this.writeTextToCanvas(this.textToShow, 18, textWPos, textHPos, 'center', 'black');
             textHPos += 50;
         }
+        this.writeTextToCanvas('press ESC to leave', 24, this.canvas.width / 2 + 200, 600, 'center', 'Black');
     }
     draw(ctx) {
         ctx.drawImage(this.getImage(), this.getXPos(), this.getYPos());

@@ -32,7 +32,7 @@ export default class ClassRoom5 extends Room {
         this.player.setYPos(548);
         this.player.setImage('./assets/img/player-boy-standing.png');
         this.questions.push(new Question(this.player.getUserData(), ' Should you use free Anti-Virus?#', 'No, since the anti-virus can be a virus!#', 'No, since I know what I download!#', 'No, since I do not want to use an anti-virus!#'), new Question(this.player.getUserData(), 'Which of the following is NOT an example of cyberbullying', 'Inviting a friend to fight with you in a game#', 'Creating a fake profile to humiliate someone#', 'Posting or sharing embarrassing photos#'), new Question(this.player.getUserData(), 'What is a predator?#', 'Someone who uses the internet to do harm to others#', 'Someone who shares too much personal information#', 'Someone who regularly surfs the web#'));
-        console.log('door5');
+        console.log('CLASSROOM5');
     }
     update(elapsed) {
         const nextScene = this.generalInteraction();

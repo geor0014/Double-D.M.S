@@ -30,20 +30,27 @@ export default class ClassRoom3 extends Room {
     canvas: HTMLCanvasElement,
     previousScene: Scene,
     player: Player,
-    state: boolean,
+    state: boolean
   ) {
     super(canvas, './assets/img/classroom.png', state);
+
+    // sets the previous scene to return to
     this.previousScene = previousScene;
 
+    // sets the player
     this.player = player;
 
+    // sets the background image position
     this.setXPos(0);
     this.setYPos(0);
 
+    // resets the items in the room
     this.collectibles = [];
     this.npcs = [];
     this.doors = [];
     this.questions = [];
+
+    // creating a new computer in the classroom
     this.computer = new Computer(266, 165.5);
 
     // creating collectibles in the classroom
@@ -62,7 +69,7 @@ export default class ClassRoom3 extends Room {
         this.player.getUserData(),
         'You see the following post:#“Hey look at Timmy`s head, man he looks horrible! Share this video or we will stop talking to you!” # What should you do? ',
         'Report it and help poor Timmy',
-        'Share it I don’t want to be alone',
+        'Share it I don`t want to be alone',
         'Ignore and let it happen ',
       ),
       new Question(
@@ -71,7 +78,7 @@ export default class ClassRoom3 extends Room {
         'Go by your parents rules',
         'Do whatever your friend does ',
         'It doesn`t really matter',
-      ),
+      )
     );
     console.log('CLASSROOM3');
   }
@@ -88,7 +95,7 @@ export default class ClassRoom3 extends Room {
     // calling general checkups from Room class
     const nextScene: Scene = this.generalInteraction();
 
-    // INTERACTIONS
+    // Checking if the player is interacting with items
     if (this.player.isInteracting()) {
       // WITH DOORS
       for (let i = 0; i < this.doors.length; i += 1) {
@@ -114,6 +121,7 @@ export default class ClassRoom3 extends Room {
       }
     }
 
+    // according to the general checks in room
     if (nextScene !== null) {
       return nextScene;
     }

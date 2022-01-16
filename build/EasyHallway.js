@@ -8,9 +8,18 @@ import Npc from './Npc.js';
 import Hint from './Hint.js';
 export default class EasyHallway extends Room {
     mainHallway;
+    room1Interact;
+    room2Interact;
+    room3Interact;
+    class1;
+    class2;
+    class3;
     constructor(canvas, mainHallway, player) {
         super(canvas, './assets/img/easyHallway.png');
         console.log('creating easy hallway');
+        this.room1Interact = false;
+        this.room2Interact = false;
+        this.room3Interact = false;
         this.mainHallway = mainHallway;
         this.player = player;
         this.collectibles = [];
@@ -29,11 +38,11 @@ export default class EasyHallway extends Room {
             new Dialog('Did you hear about Jessica?#'),
             new Dialog('Cant believe she shared that picture :O#'),
         ]));
+        this.player.setXPos(1055);
+        this.player.setYPos(351.5);
         this.doors.push(new Door('./assets/img/door1.png', 632, 238.5));
         this.doors.push(new Door('./assets/img/door1.png', 500, 238.5));
         this.doors.push(new Door('./assets/img/door1.png', 334, 238.5));
-        this.player.setXPos(1055);
-        this.player.setYPos(351.5);
     }
     processInput() {
         if (this.player.getYPos() > 267.5 && this.player.getYPos() < 407.5) {
@@ -59,15 +68,30 @@ export default class EasyHallway extends Room {
             for (let i = 0; i < this.doors.length; i += 1) {
                 if (this.player.collidesWith(this.doors[i])) {
                     console.log('interact with door');
+                    this.player.setXPos(990);
+                    this.player.setYPos(548);
+                    this.player.setImage('./assets/img/player-boy-standing.png');
                     this.doorOpen.play();
                     if (i === 0) {
-                        return new ClassRoom1(this.canvas, this, this.player, this.isMenuShowing);
+                        if (this.room1Interact === false) {
+                            this.class1 = new ClassRoom1(this.canvas, this, this.player, this.isMenuShowing);
+                            this.room1Interact = true;
+                        }
+                        return this.class1;
                     }
                     if (i === 1) {
-                        return new ClassRoom2(this.canvas, this, this.player, this.isMenuShowing);
+                        if (this.room2Interact === false) {
+                            this.class2 = new ClassRoom2(this.canvas, this, this.player, this.isMenuShowing);
+                            this.room2Interact = true;
+                        }
+                        return this.class2;
                     }
                     if (i === 2) {
-                        return new ClassRoom3(this.canvas, this, this.player, this.isMenuShowing);
+                        if (this.room3Interact === false) {
+                            this.class3 = new ClassRoom3(this.canvas, this, this.player, this.isMenuShowing);
+                            this.room3Interact = true;
+                        }
+                        return this.class3;
                     }
                 }
             }

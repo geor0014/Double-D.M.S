@@ -12,6 +12,18 @@ import Hint from './Hint.js';
 export default class EasyHallway extends Room {
   private mainHallway: Room;
 
+  private room1Interact: boolean;
+
+  private room2Interact: boolean;
+
+  private room3Interact: boolean;
+
+  private class1: ClassRoom1;
+
+  private class2: ClassRoom2;
+
+  private class3: ClassRoom3;
+
   /**
    * Initialises every attribute
    *
@@ -26,14 +38,24 @@ export default class EasyHallway extends Room {
   ) {
     super(canvas, './assets/img/easyHallway.png');
     console.log('creating easy hallway');
+
+    // sets the classrooms to not interacted
+    this.room1Interact = false;
+    this.room2Interact = false;
+    this.room3Interact = false;
+
+    // sets previous scene
     this.mainHallway = mainHallway;
 
+    // sets the player
     this.player = player;
 
+    // resets the items in the room
     this.collectibles = [];
     this.npcs = [];
     this.doors = [];
 
+    // sets the background image position
     this.setXPos(0);
     this.setYPos(0);
 
@@ -42,7 +64,7 @@ export default class EasyHallway extends Room {
       new Hint(this.canvas.width / 3, this.canvas.height / 3)
     );
 
-    // npc creation
+    // creates npcs with their dialogs for this room
     this.npcs.push(
       new Npc('./assets/img/student-1-back-faced.png', 561, 405, [
         new Dialog('I dont feel like studying today,#'),
@@ -68,12 +90,14 @@ export default class EasyHallway extends Room {
       )
     );
 
+    // PLAYER POSITTION UPON ENTERING
+    this.player.setXPos(1055);
+    this.player.setYPos(351.5);
+
+    // creats the doors in the hallway
     this.doors.push(new Door('./assets/img/door1.png', 632, 238.5));
     this.doors.push(new Door('./assets/img/door1.png', 500, 238.5));
     this.doors.push(new Door('./assets/img/door1.png', 334, 238.5));
-
-    this.player.setXPos(1055);
-    this.player.setYPos(351.5);
   }
 
   /**
@@ -118,34 +142,57 @@ export default class EasyHallway extends Room {
       for (let i = 0; i < this.doors.length; i += 1) {
         if (this.player.collidesWith(this.doors[i])) {
           console.log('interact with door');
+          // setting player starter position and image in the classrooms
+          this.player.setXPos(990);
+          this.player.setYPos(548);
+          this.player.setImage('./assets/img/player-boy-standing.png');
           this.doorOpen.play();
           if (i === 0) {
-            return new ClassRoom1(
-              this.canvas,
-              this,
-              this.player,
-              this.isMenuShowing
-            );
+            // if this classroom was previously entered to
+            if (this.room1Interact === false) {
+              this.class1 = new ClassRoom1(
+                this.canvas,
+                this,
+                this.player,
+                this.isMenuShowing
+              );
+              this.room1Interact = true;
+            }
+            return this.class1;
           }
+          // checking which door
           if (i === 1) {
-            return new ClassRoom2(
-              this.canvas,
-              this,
-              this.player,
-              this.isMenuShowing
-            );
+            // if this classroom was previously entered to
+            if (this.room2Interact === false) {
+              this.class2 = new ClassRoom2(
+                this.canvas,
+                this,
+                this.player,
+                this.isMenuShowing
+              );
+              this.room2Interact = true;
+            }
+
+            return this.class2;
           }
+          // checking which door
           if (i === 2) {
-            return new ClassRoom3(
-              this.canvas,
-              this,
-              this.player,
-              this.isMenuShowing
-            );
+            // if this classroom was previously entered to
+            if (this.room3Interact === false) {
+              this.class3 = new ClassRoom3(
+                this.canvas,
+                this,
+                this.player,
+                this.isMenuShowing
+              );
+              this.room3Interact = true;
+            }
+            return this.class3;
           }
         }
       }
     }
+    // according to the general checks in room
     if (nextScene !== null) {
       return nextScene;
     }

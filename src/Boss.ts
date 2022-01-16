@@ -7,6 +7,9 @@ export default class Boss {
 
   private frameY: number = 0;
 
+  /**
+   * Creates a new Boss
+   */
   constructor() {
     this.bossImg = new Image();
     this.bossImg.src = './assets/img/boss.png';
@@ -15,10 +18,20 @@ export default class Boss {
     this.spriteWidth = 133;
   }
 
+  /**
+   * Sets the Y frame
+   *
+   * @param newFrame number of frame
+   */
   setFrameY(newFrame: number): void {
     this.frameY = newFrame;
   }
 
+  /**
+   * Drawing method for the Image of the boss
+   *
+   * @param ctx canvas rendring context 2D
+   */
   public draw(ctx: CanvasRenderingContext2D): void {
     // draw boss
     // this.ctx.drawImage(image, sx, sy, sw, sh, dx, dy, dw, dh);

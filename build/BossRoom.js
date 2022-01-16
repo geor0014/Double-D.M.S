@@ -1,6 +1,5 @@
 import Door from './Door.js';
 import Room from './Room.js';
-import Candy from './Candy.js';
 import Question from './Question.js';
 import Boss from './Boss.js';
 export default class BossRoom extends Room {
@@ -20,7 +19,6 @@ export default class BossRoom extends Room {
         this.npcs = [];
         this.doors = [];
         this.questions = [];
-        this.collectibles.push(new Candy(this.canvas.width / 2, this.canvas.height / 2));
         this.doors.push(new Door('./assets/img/door1.png', 677, 297));
         this.player.setXPos(566);
         this.player.setYPos(305);

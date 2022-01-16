@@ -9,21 +9,24 @@ export default class StartScreen extends Screen {
   private music: HTMLAudioElement;
 
   /**
-   * Initialises every attribute
+   * Creates a new start screen
    *
    * @param canvas of the game
    */
   public constructor(canvas: HTMLCanvasElement) {
     super(canvas, './assets/img/school-front.png');
+    // creates starter audio
     this.music = new Audio('./assets/sound/StartScreen.mp3');
     this.music.volume = 0.2;
     // this.music.play();
 
+    // creates keylistener
     this.keyListener = new KeyListener();
 
+    // sets backgroung image position
     this.setXPos(0);
     this.setYPos(0);
-    console.log(this.getImage().width, this.getImage().height);
+    // console.log(this.getImage().width, this.getImage().height);
   }
 
   /**
@@ -69,5 +72,13 @@ export default class StartScreen extends Screen {
    */
   public render(): void {
     this.draw(this.ctx);
+    this.writeTextToCanvas(
+      'press SPACE to start',
+      100,
+      this.canvas.width / 2,
+      this.canvas.height / 2,
+      'center',
+      'Yellow'
+    );
   }
 }

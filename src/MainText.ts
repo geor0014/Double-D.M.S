@@ -7,6 +7,11 @@ export default class MainText {
 
   private part3: string;
 
+  /**
+   * Creating new Main Text
+   *
+   * @param text string
+   */
   constructor(text: string) {
     this.text = text;
     this.part1 = '';
@@ -15,6 +20,9 @@ export default class MainText {
     this.splitText();
   }
 
+  /**
+   * Splits the text accroding to the # position
+   */
   private splitText(): void {
     let i: number = 0;
     const hCount = this.countHashTags();
@@ -37,6 +45,11 @@ export default class MainText {
     }
   }
 
+  /**
+   * counts the number of # in the text
+   *
+   * @returns number of #
+   */
   private countHashTags(): number {
     let countH: number = 0;
     for (let i = 0; i < this.text.length; i += 1) {
@@ -48,8 +61,12 @@ export default class MainText {
     return countH;
   }
 
-
-
+  /**
+   * Getter for the text
+   *
+   * @param i number of part that needs to be written
+   * @returns text of the right part
+   */
   public getText(i: number): string {
     if (i === 0) {
       return this.part1;

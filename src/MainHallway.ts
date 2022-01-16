@@ -13,6 +13,18 @@ import Dialog from './Dialog.js';
 import Hitbox from './Hitbox.js';
 
 export default class MainHallway extends Room {
+  private bRoomInteract: boolean;
+
+  private bossRoom: BossRoom;
+
+  private eHallInteract: boolean;
+
+  private easyHall: EasyHallway;
+
+  private dHallInteract: boolean;
+
+  private diffHall: DifficultHallway;
+
   /**
    * creats a new hallway
    *
@@ -20,27 +32,35 @@ export default class MainHallway extends Room {
    */
   public constructor(canvas: HTMLCanvasElement) {
     super(canvas, './assets/img/hallway.png');
+    // setting all rooms to not interact
+    this.bRoomInteract = false;
+    this.eHallInteract = false;
+    this.dHallInteract = false;
+    // sets background image position
     this.setXPos(0);
     this.setYPos(0);
 
+    // creating the new player and sets its position and image
     this.player = new Player(this.canvas);
     this.player.setXPos(532);
     this.player.setYPos(681.5);
     this.player.setImage('./assets/img/player-boy-up.png');
 
+    // reseting the items in the room
     this.collectibles = [];
     this.npcs = [];
     this.doors = [];
 
+    // creating collectibles
     this.collectibles.push(
-      new Candy(this.canvas.width / 2, this.canvas.height / 2)
-    );
-    this.collectibles.push(
+      new Candy(this.canvas.width / 2, this.canvas.height / 2),
       new Hint(this.canvas.width / 3, this.canvas.height / 1.5)
     );
 
+    // creating the door
     this.doors.push(new Door('./assets/img/door1.png', 530, 155));
 
+    // creating Npc and dialog
     this.npcs.push(
       new Npc(
         './assets/img/teacher-front.png',
@@ -75,24 +95,45 @@ export default class MainHallway extends Room {
           if (this.player.getUserData().getScore() === 15) {
             console.log('interact with door');
             this.doorOpen.play();
-            return new BossRoom(this.canvas, this, this.player);
+            if (this.bRoomInteract === false) {
+              this.bossRoom = new BossRoom(this.canvas, this, this.player);
+              this.bRoomInteract = true;
+            }
+            return this.bossRoom;
           }
-          console.log('You cant accsess this room! maybe your not worthy enought (evil laugh)');
+          console.log(
+            'You cant accsess this room! maybe your not worthy enought (evil laugh)'
+          );
         }
       }
     }
 
     if (this.player.getXPos() <= 14 && this.player.getYPos() >= 443.5) {
-      return new EasyHallway(this.canvas, this, this.player);
+      if (this.eHallInteract === false) {
+        this.easyHall = new EasyHallway(this.canvas, this, this.player);
+        this.eHallInteract = true;
+      }
+      // PLAYER POSITTION UPON ENTERING easy hall
+      this.player.setXPos(1055);
+      this.player.setYPos(351.5);
+      return this.easyHall;
     }
 
-    if ((this.player.getXPos() >= 1060 && this.player.getYPos() >= 443.5)) {
-      if (this.player.getUserData().getScore() > 4) {
-        return new DifficultHallway(this.canvas, this, this.player);
+    if (this.player.getXPos() >= 1060 && this.player.getYPos() >= 443.5) {
+      if (this.player.getUserData().getScore() > -1) {
+        if (this.dHallInteract === false) {
+          this.diffHall = new DifficultHallway(this.canvas, this, this.player);
+          this.dHallInteract = true;
+        }
+        // PLAYER POSITTION UPON ENTERING difficult hall
+        this.player.setXPos(13);
+        this.player.setYPos(335);
+        return this.diffHall;
       }
       console.log('Sorry you cant enter here yet you need at least 4 points!');
     }
 
+    // according to the general checks in room
     if (nextScene !== null) {
       return nextScene;
     }

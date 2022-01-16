@@ -37,19 +37,27 @@ export default class ClassRoom1 extends Room {
     state: boolean,
   ) {
     super(canvas, './assets/img/classroom.png', state);
+
+    // sets the previous scene to return to
     this.previousScene = previousScene;
 
+    // sets the player
     this.player = player;
 
+    // sets the background image position
     this.setXPos(0);
     this.setYPos(0);
 
+    // resets the items in the room
     this.collectibles = [];
     this.npcs = [];
     this.doors = [];
     this.questions = [];
+
+    // creating a new computer in the classroom
     this.computer = new Computer(266, 165.5);
 
+    // sets the NPCs with their dialogs in the classroom
     this.npcs.push(
       new Npc('./assets/img/student-orange-hair-back-faced.png', 652, 436, [
         new Dialog('Dont bother me I am trying to study...#'),
@@ -59,11 +67,11 @@ export default class ClassRoom1 extends Room {
           'Today we are learning about suspicious links and strangers messeges#'
         ),
         new Dialog('This is very important!#'),
-      ])
+      ]),
     );
     // creating collectibles in the classroom
     this.collectibles.push(
-      new Candy(this.canvas.width / 2, this.canvas.height / 2)
+      new Candy(this.canvas.width / 2, this.canvas.height / 2),
     );
 
     // creating the door for the classroom
@@ -82,7 +90,7 @@ export default class ClassRoom1 extends Room {
         'Not pay attention and delete this email/message',
         'Send an E-mail to make sure it is real',
         'YES, TAKE ALL MY DATA!',
-      )
+      ),
     );
     this.questions.push(
       new Question(
@@ -90,8 +98,8 @@ export default class ClassRoom1 extends Room {
         'Someone sent you a link to a YouTube video,# you click on it and suddenly you have a virus on your pc!# What could u have done differently? ',
         'Not click on the link',
         'Send this cool link to all my friends!',
-        'start chatting with this person for fun'
-      )
+        'start chatting with this person for fun',
+      ),
     );
 
     console.log('CLASSROOM1');
@@ -109,7 +117,7 @@ export default class ClassRoom1 extends Room {
     // calling general checkups from Room class
     const nextScene: Scene = this.generalInteraction();
 
-    // INTERACTIONS
+    // Checking if the player is interacting with items
     if (this.player.isInteracting()) {
       // WITH DOORS
       for (let i = 0; i < this.doors.length; i += 1) {
@@ -135,6 +143,7 @@ export default class ClassRoom1 extends Room {
       }
     }
 
+    // according to the general checks in room
     if (nextScene !== null) {
       return nextScene;
     }

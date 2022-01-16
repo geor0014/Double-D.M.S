@@ -126,6 +126,7 @@ export default class ClassRoom6 extends Room {
       }
     }
 
+    // according to the general checks in room
     if (nextScene !== null) {
       return nextScene;
     }

@@ -36,27 +36,28 @@ export default class BossRoom extends Room {
     player: Player
   ) {
     super(canvas, './assets/img/boss-room.png');
+    // sets the previous scene to go back to
     this.previousScene = previousScene;
 
+    // sets the player
     this.player = player;
 
+    // sets the image of the boss room
     this.setXPos(0);
     this.setYPos(0);
 
+    // resets the items in this room that can be communicated with
     this.collectibles = [];
     this.npcs = [];
     this.doors = [];
     this.questions = [];
 
     // creating collectibles in the classroom
-    this.collectibles.push(
-      new Candy(this.canvas.width / 2, this.canvas.height / 2)
-    );
 
     // creating the door for the classroom
     this.doors.push(new Door('./assets/img/door1.png', 677, 297));
 
-    // setting player starter position and image in the classroom
+    // setting player starter position and image in the room
     this.player.setXPos(566);
     this.player.setYPos(305);
     this.player.setImage('./assets/img/player-boy-standing.png');
@@ -81,6 +82,7 @@ export default class BossRoom extends Room {
       )
     );
 
+    // creating a new boss
     this.boss = new Boss();
   }
 
@@ -97,7 +99,7 @@ export default class BossRoom extends Room {
     // calling general checkups from Room class
     const nextScene: Scene = this.generalInteraction();
 
-    // INTERACTIONS
+    // Checking if the player is interacting with different elements
     if (this.player.isInteracting()) {
       // WITH DOORS
       for (let i = 0; i < this.doors.length; i += 1) {
@@ -131,6 +133,7 @@ export default class BossRoom extends Room {
       this.boss.setFrameY(this.frameY);
     }
 
+    // if needs to move to a difeerent scene or not
     if (nextScene !== null) {
       return nextScene;
     }

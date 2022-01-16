@@ -29,7 +29,7 @@ export default class Room extends Scene {
         this.img.src = imgSrc;
         this.doorClose = new Audio('./assets/sound/DoorClose.ogg');
         this.doorOpen = new Audio('./assets/sound/DoorOpen.ogg');
-        this.menu = new Menu(this.canvas.width / 3 - 30, 600);
+        this.menu = new Menu(this.canvas.width / 3 - 100, 600);
         this.isMenuShowing = false;
         this.hitboxes = [];
     }
@@ -62,8 +62,10 @@ export default class Room extends Scene {
             this.player
                 .getUserData()
                 .setHintAmount(this.player.getUserData().getHintAmount() - 1);
-            this.player.getUserData().setHintNum(this.player.getUserData().getHintNum() + 1);
-            return new HintScreen(this.canvas, this, (this.player.getUserData().getHintNum()) - 1);
+            this.player
+                .getUserData()
+                .setHintNum(this.player.getUserData().getHintNum() + 1);
+            return new HintScreen(this.canvas, this, this.player.getUserData().getHintNum() - 1);
         }
         if (this.player.isInteractingMenu() && this.frameCounter === 7) {
             if (this.isMenuShowing === true) {
@@ -109,6 +111,8 @@ export default class Room extends Scene {
         ctx.drawImage(this.img, this.xPos, this.yPos);
     }
     render() {
+        this.writeTextToCanvas('press M to hide/unhide menu', 24, this.canvas.width / 2, this.canvas.height - 50, 'center', 'yellow');
+        this.writeTextToCanvas('press Space to ineract', 24, this.canvas.width / 2, this.canvas.height - 80, 'center', 'yellow');
         for (let i = 0; i < this.npcs.length; i += 1) {
             this.npcs[i].draw(this.ctx);
         }
@@ -157,8 +161,8 @@ export default class Room extends Scene {
             else {
                 this.candyNumImg = Scene.loadNewImage('./assets/img/0.png');
             }
-            this.ctx.drawImage(this.hintNumImg, 347, 680, 50, 50);
-            this.ctx.drawImage(this.candyNumImg, 490, 680, 50, 50);
+            this.ctx.drawImage(this.hintNumImg, 270, 680, 50, 50);
+            this.ctx.drawImage(this.candyNumImg, 415, 680, 50, 50);
         }
     }
 }

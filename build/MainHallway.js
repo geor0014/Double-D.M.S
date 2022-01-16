@@ -9,8 +9,17 @@ import Player from './Player.js';
 import BossRoom from './BossRoom.js';
 import Dialog from './Dialog.js';
 export default class MainHallway extends Room {
+    bRoomInteract;
+    bossRoom;
+    eHallInteract;
+    easyHall;
+    dHallInteract;
+    diffHall;
     constructor(canvas) {
         super(canvas, './assets/img/hallway.png');
+        this.bRoomInteract = false;
+        this.eHallInteract = false;
+        this.dHallInteract = false;
         this.setXPos(0);
         this.setYPos(0);
         this.player = new Player(this.canvas);
@@ -20,8 +29,7 @@ export default class MainHallway extends Room {
         this.collectibles = [];
         this.npcs = [];
         this.doors = [];
-        this.collectibles.push(new Candy(this.canvas.width / 2, this.canvas.height / 2));
-        this.collectibles.push(new Hint(this.canvas.width / 3, this.canvas.height / 1.5));
+        this.collectibles.push(new Candy(this.canvas.width / 2, this.canvas.height / 2), new Hint(this.canvas.width / 3, this.canvas.height / 1.5));
         this.doors.push(new Door('./assets/img/door1.png', 530, 155));
         this.npcs.push(new Npc('./assets/img/teacher-front.png', this.canvas.width / 2, this.canvas.height - 500, [
             new Dialog('Heyy how are you today?#'),
@@ -36,18 +44,34 @@ export default class MainHallway extends Room {
                     if (this.player.getUserData().getScore() === 15) {
                         console.log('interact with door');
                         this.doorOpen.play();
-                        return new BossRoom(this.canvas, this, this.player);
+                        if (this.bRoomInteract === false) {
+                            this.bossRoom = new BossRoom(this.canvas, this, this.player);
+                            this.bRoomInteract = true;
+                        }
+                        return this.bossRoom;
                     }
                     console.log('You cant accsess this room! maybe your not worthy enought (evil laugh)');
                 }
             }
         }
         if (this.player.getXPos() <= 14 && this.player.getYPos() >= 443.5) {
-            return new EasyHallway(this.canvas, this, this.player);
+            if (this.eHallInteract === false) {
+                this.easyHall = new EasyHallway(this.canvas, this, this.player);
+                this.eHallInteract = true;
+            }
+            this.player.setXPos(1055);
+            this.player.setYPos(351.5);
+            return this.easyHall;
         }
-        if ((this.player.getXPos() >= 1060 && this.player.getYPos() >= 443.5)) {
-            if (this.player.getUserData().getScore() > 4) {
-                return new DifficultHallway(this.canvas, this, this.player);
+        if (this.player.getXPos() >= 1060 && this.player.getYPos() >= 443.5) {
+            if (this.player.getUserData().getScore() > -1) {
+                if (this.dHallInteract === false) {
+                    this.diffHall = new DifficultHallway(this.canvas, this, this.player);
+                    this.dHallInteract = true;
+                }
+                this.player.setXPos(13);
+                this.player.setYPos(335);
+                return this.diffHall;
             }
             console.log('Sorry you cant enter here yet you need at least 4 points!');
         }

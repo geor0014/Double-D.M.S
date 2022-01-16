@@ -2,7 +2,7 @@ import GameEntity from './GameEntity.js';
 
 export default class Computer extends GameEntity {
   /**
-   * Creates a new candy
+   * Creates a new computer
    *
    * @param xPos number
    * @param yPos number

@@ -26,13 +26,17 @@ export default class Player extends GameEntity {
       canvas.height / 2,
     );
 
+    // creates a new UserData
     this.userData = new UserData();
 
     // this.setYPos(this.getYPos() - this.getImage().height);
+    // sets the speed of the player
     this.xVelocity = 3;
     this.yVelocity = 3;
+    // creates key listener
     this.keyboard = new KeyListener();
 
+    // audio of player walking
     this.walk = new Audio('./assets/sound/walk.ogg');
 
     console.log('creating player');
@@ -134,6 +138,12 @@ export default class Player extends GameEntity {
     return false;
   }
 
+  /**
+   * checks if player is colliding with hitBox
+   *
+   * @param box hit box
+   * @returns true or false
+   */
   public collidesWithHitbox(box: Hitbox): boolean {
     if (
       this.getXPos() < box.getXPos() + box.getWidth() &&
@@ -147,6 +157,11 @@ export default class Player extends GameEntity {
     return false;
   }
 
+  /**
+   * getter for user data
+   *
+   * @returns user data
+   */
   public getUserData(): UserData {
     return this.userData;
   }
