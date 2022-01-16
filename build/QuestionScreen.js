@@ -50,33 +50,35 @@ export default class QuestionScreen extends Screen {
         return 0;
     }
     update(elapsed) {
+        this.moveBetweenQuestions();
+        if (this.nextQ &&
+            this.qCounter < this.questions.length - 1 &&
+            this.frameCounter === 10) {
+            this.qCounter += 1;
+        }
         const userData = this.questions[this.qCounter].getUserData();
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         if (this.processInput()) {
             return this.previousScene;
         }
-        if (this.okPressed === false && this.frameCounter % 10 === 0) {
-            let answerRecived = this.reciveAnswer();
-            console.log(`answer Recived ${answerRecived}`);
-            if (answerRecived !== 0) {
-                console.log('your answer has been registered, please go to the next question >>');
+        let answerRecived = 0;
+        if (this.frameCounter % 10 === 0) {
+            if (this.okPressed === false) {
+                answerRecived = this.reciveAnswer();
+            }
+            if (answerRecived !== 0 && this.okPressed === true) {
+                alert('your answer has been registered, please go to the next question >>');
             }
             if (answerRecived === this.questions[this.qCounter].getRPos() + 1) {
                 userData.setScore(userData.getScore() + 1);
             }
             answerRecived = 0;
         }
-        this.moveBetweenQuestions();
-        if (this.nextQ &&
-            this.qCounter < this.questions.length - 1 &&
-            this.frameCounter === 10) {
-            this.qCounter += 1;
-            this.okPressed = false;
-        }
         if (this.frameCounter === 10) {
             this.frameCounter = 0;
         }
         this.frameCounter += 1;
+        this.okPressed = false;
         return null;
     }
     draw(ctx) {

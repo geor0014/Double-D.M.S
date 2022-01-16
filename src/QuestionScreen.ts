@@ -29,7 +29,7 @@ export default class QuestionScreen extends Screen {
   constructor(
     canvas: HTMLCanvasElement,
     previousScene: Room,
-    questions: Question[]
+    questions: Question[],
   ) {
     super(canvas, './assets/img/computer-screen.png');
 
@@ -108,6 +108,16 @@ export default class QuestionScreen extends Screen {
    * @returns previous Scene
    */
   public update(elapsed: number): Scene {
+    // checks if player moved to next question
+    this.moveBetweenQuestions();
+    if (
+      this.nextQ &&
+      this.qCounter < this.questions.length - 1 &&
+      this.frameCounter === 10
+    ) {
+      this.qCounter += 1;
+    }
+
     const userData = this.questions[this.qCounter].getUserData();
     // console.log(` frame counter ${this.frameCounter}`);
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -119,11 +129,15 @@ export default class QuestionScreen extends Screen {
     }
 
     // checks if answer was registered and player pressed ok with frame count
-    if (this.okPressed === false && this.frameCounter % 10 === 0) {
-      let answerRecived = this.reciveAnswer();
-      console.log(`answer Recived ${answerRecived}`);
-      if (answerRecived !== 0) {
-        console.log(
+    let answerRecived = 0;
+    if (this.frameCounter % 10 === 0) {
+      if (this.okPressed === false) {
+        answerRecived = this.reciveAnswer();
+      }
+      // console.log(`answer Recived ${answerRecived}`);
+      if (answerRecived !== 0 && this.okPressed === true) {
+        // this.okPressed = false;
+        alert(
           'your answer has been registered, please go to the next question >>'
         );
       }
@@ -136,22 +150,12 @@ export default class QuestionScreen extends Screen {
       answerRecived = 0;
     }
 
-    // checks if player moved to next question
-    this.moveBetweenQuestions();
-    if (
-      this.nextQ &&
-      this.qCounter < this.questions.length - 1 &&
-      this.frameCounter === 10
-    ) {
-      this.qCounter += 1;
-      this.okPressed = false;
-    }
-
     // resets the frame counter after it got to 10
     if (this.frameCounter === 10) {
       this.frameCounter = 0;
     }
     this.frameCounter += 1;
+    this.okPressed = false;
     return null;
   }
 
