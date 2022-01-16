@@ -51,7 +51,7 @@ export default abstract class Room extends Scene {
   constructor(
     canvas: HTMLCanvasElement,
     imgSrc: string,
-    state: boolean = false
+    state: boolean = false,
   ) {
     super(canvas);
 
@@ -151,8 +151,7 @@ export default abstract class Room extends Scene {
 
     // reading hint
     if (
-      this.player.isReadingHint() &&
-      this.player.getUserData().getHintAmount() > 0
+      this.player.isReadingHint() && this.player.getUserData().getHintAmount() > 0
     ) {
       this.player
         .getUserData()
@@ -164,7 +163,7 @@ export default abstract class Room extends Scene {
       return new HintScreen(
         this.canvas,
         this,
-        this.player.getUserData().getHintNum() - 1
+        this.player.getUserData().getHintNum() - 1,
       );
     }
 
@@ -238,7 +237,7 @@ export default abstract class Room extends Scene {
       this.canvas.width / 2,
       this.canvas.height - 50,
       'center',
-      'yellow'
+      'yellow',
     );
 
     this.writeTextToCanvas(
@@ -247,7 +246,7 @@ export default abstract class Room extends Scene {
       this.canvas.width / 2,
       this.canvas.height - 80,
       'center',
-      'yellow'
+      'yellow',
     );
 
     // DRAWS NPCS

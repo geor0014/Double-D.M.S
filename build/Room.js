@@ -57,8 +57,7 @@ export default class Room extends Scene {
     }
     generalInteraction() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        if (this.player.isReadingHint() &&
-            this.player.getUserData().getHintAmount() > 0) {
+        if (this.player.isReadingHint() && this.player.getUserData().getHintAmount() > 0) {
             this.player
                 .getUserData()
                 .setHintAmount(this.player.getUserData().getHintAmount() - 1);
