@@ -137,7 +137,7 @@ export default class QuestionScreen extends Screen {
       // console.log(`answer Recived ${answerRecived}`);
       if (answerRecived !== 0 && this.okPressed === true) {
         // this.okPressed = false;
-        alert(
+        console.log(
           'your answer has been registered, please go to the next question >>'
         );
       }

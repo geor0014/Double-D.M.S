@@ -67,7 +67,7 @@ export default class QuestionScreen extends Screen {
                 answerRecived = this.reciveAnswer();
             }
             if (answerRecived !== 0 && this.okPressed === true) {
-                alert('your answer has been registered, please go to the next question >>');
+                console.log('your answer has been registered, please go to the next question >>');
             }
             if (answerRecived === this.questions[this.qCounter].getRPos() + 1) {
                 userData.setScore(userData.getScore() + 1);
