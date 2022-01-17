@@ -13,7 +13,7 @@ export default class ClassRoom2 extends Room {
     teddy = new QuestItem('teddy', './assets/img/teddy.png', 263, 580);
     pushOnce = true;
     constructor(canvas, previousScene, player, state) {
-        super(canvas, './assets/img/classroom.png', state);
+        super(canvas, './assets/img/scienceclass.png', state);
         this.previousScene = previousScene;
         this.player = player;
         this.setXPos(0);

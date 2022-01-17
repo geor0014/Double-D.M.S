@@ -43,7 +43,7 @@ export default class ClassRoom2 extends Room {
     player: Player,
     state: boolean
   ) {
-    super(canvas, './assets/img/classroom.png', state);
+    super(canvas, './assets/img/scienceclass.png', state);
 
     // sets the previous scene to return to
     this.previousScene = previousScene;
