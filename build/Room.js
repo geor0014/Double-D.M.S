@@ -57,7 +57,8 @@ export default class Room extends Scene {
     }
     generalInteraction() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        if (this.player.isReadingHint() && this.player.getUserData().getHintAmount() > 0) {
+        if (this.player.isReadingHint() &&
+            this.player.getUserData().getHintAmount() > 0) {
             this.player
                 .getUserData()
                 .setHintAmount(this.player.getUserData().getHintAmount() - 1);
@@ -81,7 +82,21 @@ export default class Room extends Scene {
             for (let i = 0; i < this.npcs.length; i += 1) {
                 if (this.player.collidesWith(this.npcs[i])) {
                     const currentNPC = this.npcs[i];
-                    console.log('interact with npc');
+                    currentNPC.getDialogs().forEach((str) => {
+                        if (str.getText(0) === 'Hello, I lost my backpack....') {
+                            this.player.getUserData().getQuests().push('Find backpack');
+                            this.npcs.splice(i, 1);
+                        }
+                        if (str.getText(0) ===
+                            'Hey there! Have you seen a teddy bear around here?') {
+                            this.player.getUserData().getQuests().push('Look for Teddy');
+                            this.npcs.splice(i, 1);
+                        }
+                        if (str.getText(0) === 'Hey, listen...have you seen a doll?') {
+                            this.player.getUserData().getQuests().push('Help find doll');
+                            this.npcs.splice(i, 1);
+                        }
+                    });
                     return new DialogScreen(this.canvas, this, currentNPC.getDialogs());
                 }
             }
@@ -102,16 +117,59 @@ export default class Room extends Scene {
                     }
                 }
             });
+            this.filterQuestItems();
         }
         this.frameCounter += 1;
         return null;
+    }
+    filterQuestItems() {
+        this.player
+            .getUserData()
+            .getQuestItems()
+            .forEach((item, i) => {
+            if (this.player.collidesWith(item)) {
+                console.log(this.player.getUserData().getQuestItems());
+                if (item.getName() === 'backpack') {
+                    this.player.getUserData().getQuests().splice(i, 1);
+                    this.player.getUserData().getQuestItems().splice(i, 1);
+                    this.player
+                        .getUserData()
+                        .setCandyAmount(this.player.getUserData().getCandyAmount() + 1);
+                }
+                if (item.getName() === 'teddy') {
+                    this.player.getUserData().getQuests().splice(i, 1);
+                    this.player.getUserData().getQuestItems().splice(i, 1);
+                    this.player
+                        .getUserData()
+                        .setCandyAmount(this.player.getUserData().getCandyAmount() + 1);
+                }
+                if (item.getName() === 'doll') {
+                    this.player.getUserData().getQuests().splice(i, 1);
+                    this.player.getUserData().getQuestItems().splice(i, 1);
+                    this.player
+                        .getUserData()
+                        .setCandyAmount(this.player.getUserData().getCandyAmount() + 1);
+                }
+            }
+        });
+    }
+    drawQuestItems() {
+        if (this.player.getUserData().getQuests()[0]) {
+            this.writeTextToCanvas(this.player.getUserData().getQuests()[0], 30, 482, 637, 'left', 'black');
+        }
+        if (this.player.getUserData().getQuests()[1]) {
+            this.writeTextToCanvas(this.player.getUserData().getQuests()[1], 30, 482, 672, 'left', 'black');
+        }
+        if (this.player.getUserData().getQuests()[2]) {
+            this.writeTextToCanvas(this.player.getUserData().getQuests()[2], 30, 482, 704, 'left', 'black');
+        }
     }
     draw(ctx) {
         ctx.drawImage(this.img, this.xPos, this.yPos);
     }
     render() {
-        this.writeTextToCanvas('press M to hide/unhide menu', 24, this.canvas.width / 2, this.canvas.height - 50, 'center', 'yellow');
-        this.writeTextToCanvas('press Space to ineract', 24, this.canvas.width / 2, this.canvas.height - 80, 'center', 'yellow');
+        this.writeTextToCanvas('press M to hide/unhide menu', 24, this.canvas.width / 2, this.canvas.height - 50, 'center', 'red');
+        this.writeTextToCanvas('press Space to ineract', 24, this.canvas.width / 2, this.canvas.height - 80, 'center', 'red');
         for (let i = 0; i < this.npcs.length; i += 1) {
             this.npcs[i].draw(this.ctx);
         }
@@ -160,6 +218,7 @@ export default class Room extends Scene {
             else {
                 this.candyNumImg = Scene.loadNewImage('./assets/img/0.png');
             }
+            this.drawQuestItems();
             this.ctx.drawImage(this.hintNumImg, 270, 680, 50, 50);
             this.ctx.drawImage(this.candyNumImg, 415, 680, 50, 50);
         }

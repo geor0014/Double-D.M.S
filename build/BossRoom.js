@@ -2,10 +2,13 @@ import Door from './Door.js';
 import Room from './Room.js';
 import Question from './Question.js';
 import Boss from './Boss.js';
+import Npc from './Npc.js';
+import Dialog from './Dialog.js';
 export default class BossRoom extends Room {
     previousScene;
     questions;
     boss;
+    bossNpc;
     frameY = 0;
     gameFrame = 0;
     staggerFrame = 11;
@@ -26,6 +29,10 @@ export default class BossRoom extends Room {
         this.questions.push(new Question(this.player.getUserData(), 'text question 1', 'right answer 1', 'wrong answer 1.1', 'wrong answer 1.2'));
         this.questions.push(new Question(this.player.getUserData(), 'text question 2', 'right answer 2', 'wrong answer 2.1', 'wrong answer 2.2'));
         this.boss = new Boss();
+        this.bossNpc = new Npc('./assets/img/empty-boss.png', 430, 341, [
+            new Dialog('Hello'),
+        ]);
+        this.npcs.push(this.bossNpc);
     }
     update(elapsed) {
         this.gameFrame += 1;

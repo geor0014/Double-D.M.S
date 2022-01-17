@@ -29,8 +29,8 @@ export default class EasyHallway extends Room {
         this.setYPos(0);
         this.collectibles.push(new Hint(this.canvas.width / 3, this.canvas.height / 3));
         this.npcs.push(new Npc('./assets/img/student-1-back-faced.png', 561, 405, [
-            new Dialog('I dont feel like studying today,#'),
-            new Dialog('I want to sleep...#'),
+            new Dialog('Hello, I lost my backpack....#'),
+            new Dialog('Can you please look for it and bring it back to me tomorrow?#'),
         ]), new Npc('./assets/img/student-black-haired-left-faced.png', 50, this.canvas.height - 400, [
             new Dialog('There are some things you should never share!#'),
             new Dialog('I hope she will not be bullied#'),

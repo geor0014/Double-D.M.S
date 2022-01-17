@@ -5,6 +5,7 @@ import ClassRoom5 from './Classroom5.js';
 import ClassRoom6 from './Classroom6.js';
 import Dialog from './Dialog.js';
 import Npc from './Npc.js';
+import QuestItem from './QuestItem.js';
 export default class DifficultHallway extends Room {
     mainHallway;
     room4Interact;
@@ -13,6 +14,8 @@ export default class DifficultHallway extends Room {
     class4;
     class5;
     class6;
+    doll = new QuestItem('doll', './assets/img/doll.png', 1036, 395);
+    pushOnce = true;
     constructor(canvas, mainHallway, player) {
         super(canvas, './assets/img/difficultHallway.png');
         console.log('creating difficult hallway');
@@ -30,8 +33,8 @@ export default class DifficultHallway extends Room {
             new Dialog('I heard there is this weird dude in the bathroom#'),
             new Dialog('I am too scared to go there#'),
         ]), new Npc('./assets/img/student-blue-hair-faced.png', 432, 322, [
-            new Dialog('(3450987 X 19023) + 4.... this is hard!#'),
-            new Dialog('Sorry I am busy..#'),
+            new Dialog('Hey there! Have you seen a teddy bear around here?#'),
+            new Dialog('I lost mine. If you see it, can you bring it to me tomorrow?#'),
         ]));
         this.player.setXPos(13);
         this.player.setYPos(335);
@@ -48,6 +51,19 @@ export default class DifficultHallway extends Room {
             if (this.player.getYPos() >= 425.5) {
                 this.player.setYPos(423);
             }
+        }
+    }
+    addQuestItems() {
+        if (this.pushOnce === true) {
+            this.player
+                .getUserData()
+                .getQuests()
+                .forEach((quest) => {
+                if (quest === 'Help find doll') {
+                    this.player.getUserData().getQuestItems().push(this.doll);
+                    this.pushOnce = false;
+                }
+            });
         }
     }
     update(elapsed) {
@@ -90,6 +106,7 @@ export default class DifficultHallway extends Room {
                 }
             }
         }
+        this.addQuestItems();
         if (nextScene !== null) {
             return nextScene;
         }
@@ -97,6 +114,13 @@ export default class DifficultHallway extends Room {
     }
     render() {
         this.draw(this.ctx);
+        this.player
+            .getUserData()
+            .getQuestItems()
+            .forEach((item) => {
+            if (item.getName() === 'doll')
+                item.draw(this.ctx);
+        });
         super.render();
     }
 }

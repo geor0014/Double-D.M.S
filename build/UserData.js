@@ -5,6 +5,8 @@ export default class UserData {
     img;
     score;
     hintNum;
+    quests = [];
+    questItems = [];
     constructor() {
         this.name = 'Player';
         this.img = new Image();
@@ -13,6 +15,7 @@ export default class UserData {
         this.candyAmount = 0;
         this.score = 0;
         this.hintNum = 0;
+        const questItems = new Set();
     }
     getHintNum() {
         return this.hintNum;
@@ -37,6 +40,12 @@ export default class UserData {
     }
     setCandyAmount(number) {
         this.candyAmount = number;
+    }
+    getQuests() {
+        return this.quests;
+    }
+    getQuestItems() {
+        return this.questItems;
     }
 }
 //# sourceMappingURL=UserData.js.map

@@ -4,11 +4,14 @@ import Hint from './Hint.js';
 import Computer from './Computer.js';
 import Question from './Question.js';
 import QuestionScreen from './QuestionScreen.js';
+import QuestItem from './QuestItem.js';
 export default class ClassRoom2 extends Room {
     previousScene;
     computer;
     questions;
     pcInteract = false;
+    teddy = new QuestItem('teddy', './assets/img/teddy.png', 263, 580);
+    pushOnce = true;
     constructor(canvas, previousScene, player, state) {
         super(canvas, './assets/img/scienceclass.png', state);
         this.previousScene = previousScene;
@@ -50,13 +53,34 @@ export default class ClassRoom2 extends Room {
                 console.log('cant use the pc at the moment');
             }
         }
+        this.addQuestItems();
         if (nextScene !== null) {
             return nextScene;
         }
         return null;
     }
+    addQuestItems() {
+        if (this.pushOnce === true) {
+            this.player
+                .getUserData()
+                .getQuests()
+                .forEach((quest) => {
+                if (quest === 'Look for Teddy') {
+                    this.player.getUserData().getQuestItems().push(this.teddy);
+                    this.pushOnce = false;
+                }
+            });
+        }
+    }
     render() {
         this.draw(this.ctx);
+        this.player
+            .getUserData()
+            .getQuestItems()
+            .forEach((item) => {
+            if (item.getName() === 'teddy')
+                item.draw(this.ctx);
+        });
         this.computer.draw(this.ctx);
         super.render();
     }

@@ -9,6 +9,7 @@ import Computer from './Computer.js';
 
 import Question from './Question.js';
 import QuestionScreen from './QuestionScreen.js';
+import QuestItem from './QuestItem.js';
 
 export default class ClassRoom2 extends Room {
   private previousScene: Scene;
@@ -18,6 +19,15 @@ export default class ClassRoom2 extends Room {
   private questions: Question[];
 
   private pcInteract: boolean = false;
+
+  private teddy: QuestItem = new QuestItem(
+    'teddy',
+    './assets/img/teddy.png',
+    263,
+    580
+  );
+
+  private pushOnce: boolean = true;
 
   /**
    * creats a new classroom
@@ -72,15 +82,15 @@ export default class ClassRoom2 extends Room {
         'You are creating an account on your favorite social media.# Before you can access it,#they ask you to accept the general terms of condition!# What do you do?',
         'Ask your parents what they think',
         'Not read it and accept it',
-        'Read through everything and decide if you accept or not',
+        'Read through everything and decide if you accept or not'
       ),
       new Question(
         this.player.getUserData(),
         'Which of these files are safe to download?#',
         'Game.exe',
         'Virus.exe ',
-        'Trojan.exe',
-      ),
+        'Trojan.exe'
+      )
     );
     console.log('CLASSROOM2');
   }
@@ -123,6 +133,8 @@ export default class ClassRoom2 extends Room {
       }
     }
 
+    this.addQuestItems();
+
     // according to the general checks in room
     if (nextScene !== null) {
       return nextScene;
@@ -130,11 +142,34 @@ export default class ClassRoom2 extends Room {
     return null;
   }
 
+  private addQuestItems(): void {
+    // CREATES BACKPACK
+    if (this.pushOnce === true) {
+      this.player
+        .getUserData()
+        .getQuests()
+        .forEach((quest) => {
+          if (quest === 'Look for Teddy') {
+            this.player.getUserData().getQuestItems().push(this.teddy);
+            this.pushOnce = false;
+          }
+        });
+    }
+  }
+
   /**
    * draws items to screen
    */
   public render(): void {
     this.draw(this.ctx);
+
+    // DRAWS QUESTITEMS
+    this.player
+      .getUserData()
+      .getQuestItems()
+      .forEach((item) => {
+        if (item.getName() === 'teddy') item.draw(this.ctx);
+      });
     this.computer.draw(this.ctx);
     super.render();
   }
