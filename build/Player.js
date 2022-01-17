@@ -20,23 +20,23 @@ export default class Player extends GameEntity {
         if (this.keyboard.isKeyDown(KeyListener.KEY_RIGHT) &&
             this.getXPos() + this.getImage().width < canvas.width) {
             this.setXPos(this.getXPos() + this.xVelocity);
-            this.setImage('./assets/img/player-boy-right.png');
+            this.setImage('./assets/img/player-boy1-right.png');
             this.walk.play();
         }
         if (this.keyboard.isKeyDown(KeyListener.KEY_LEFT) && this.getXPos() > 0) {
             this.setXPos(this.getXPos() - this.xVelocity);
-            this.setImage('./assets/img/player-boy-left.png');
+            this.setImage('./assets/img/player-boy1-left.png');
             this.walk.play();
         }
         if (this.keyboard.isKeyDown(KeyListener.KEY_UP) && this.getYPos() > 0) {
             this.setYPos(this.getYPos() - this.yVelocity);
-            this.setImage('./assets/img/player-boy-up.png');
+            this.setImage('./assets/img/player-boy1-up.png');
             this.walk.play();
         }
         if (this.keyboard.isKeyDown(KeyListener.KEY_DOWN) &&
             this.getYPos() + this.getImage().height < canvas.height) {
             this.setYPos(this.getYPos() + this.yVelocity);
-            this.setImage('./assets/img/player-boy-standing.png');
+            this.setImage('./assets/img/player-boy1-down.png');
             this.walk.play();
         }
     }
