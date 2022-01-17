@@ -8,6 +8,7 @@ import Hint from './Hint.js';
 import DialogScreen from './DialogScreen.js';
 import HintScreen from './HintScreen.js';
 import Hitbox from './Hitbox.js';
+import Dialog from './Dialog.js';
 
 export default abstract class Room extends Scene {
   // X position of the image of the room
@@ -51,7 +52,7 @@ export default abstract class Room extends Scene {
   constructor(
     canvas: HTMLCanvasElement,
     imgSrc: string,
-    state: boolean = false,
+    state: boolean = false
   ) {
     super(canvas);
 
@@ -151,7 +152,8 @@ export default abstract class Room extends Scene {
 
     // reading hint
     if (
-      this.player.isReadingHint() && this.player.getUserData().getHintAmount() > 0
+      this.player.isReadingHint() &&
+      this.player.getUserData().getHintAmount() > 0
     ) {
       this.player
         .getUserData()
@@ -163,7 +165,7 @@ export default abstract class Room extends Scene {
       return new HintScreen(
         this.canvas,
         this,
-        this.player.getUserData().getHintNum() - 1,
+        this.player.getUserData().getHintNum() - 1
       );
     }
 
@@ -186,9 +188,27 @@ export default abstract class Room extends Scene {
       for (let i = 0; i < this.npcs.length; i += 1) {
         if (this.player.collidesWith(this.npcs[i])) {
           const currentNPC: Npc = this.npcs[i];
-          console.log('interact with npc');
-          // this.player.setXPos(this.player.getXPos() - 50);
-          // this.player.setYPos(this.player.getYPos() + 50);
+
+          currentNPC.getDialogs().forEach((str) => {
+            if (str.getText(0) === 'Hello, I lost my backpack....') {
+              this.player.getUserData().getQuests().push('Find backpack');
+              this.npcs.splice(i, 1);
+            }
+
+            if (
+              str.getText(0) ===
+              'Hey there! Have you seen a teddy bear around here?'
+            ) {
+              this.player.getUserData().getQuests().push('Look for Teddy');
+              this.npcs.splice(i, 1);
+            }
+
+            if (str.getText(0) === 'Hey, listen...have you seen a doll?') {
+              this.player.getUserData().getQuests().push('Help find doll');
+              this.npcs.splice(i, 1);
+            }
+          });
+
           return new DialogScreen(this.canvas, this, currentNPC.getDialogs());
         }
       }
@@ -211,9 +231,85 @@ export default abstract class Room extends Scene {
           }
         }
       });
+      this.filterQuestItems();
     }
+
     this.frameCounter += 1;
     return null;
+  }
+
+  private filterQuestItems(): void {
+    // REMOVES QUESTITEM FROM QUESTS
+    this.player
+      .getUserData()
+      .getQuestItems()
+      .forEach((item, i) => {
+        //
+        if (this.player.collidesWith(item)) {
+          //
+          console.log(this.player.getUserData().getQuestItems());
+
+          if (item.getName() === 'backpack') {
+            this.player.getUserData().getQuests().splice(i, 1);
+            this.player.getUserData().getQuestItems().splice(i, 1);
+            this.player
+              .getUserData()
+              .setCandyAmount(this.player.getUserData().getCandyAmount() + 1);
+          }
+
+          if (item.getName() === 'teddy') {
+            this.player.getUserData().getQuests().splice(i, 1);
+            this.player.getUserData().getQuestItems().splice(i, 1);
+            this.player
+              .getUserData()
+              .setCandyAmount(this.player.getUserData().getCandyAmount() + 1);
+          }
+
+          if (item.getName() === 'doll') {
+            this.player.getUserData().getQuests().splice(i, 1);
+            this.player.getUserData().getQuestItems().splice(i, 1);
+            this.player
+              .getUserData()
+              .setCandyAmount(this.player.getUserData().getCandyAmount() + 1);
+          }
+          //
+        }
+      });
+  }
+
+  private drawQuestItems(): void {
+    // DRAWS QUEST INFO TO MENU
+    if (this.player.getUserData().getQuests()[0]) {
+      this.writeTextToCanvas(
+        this.player.getUserData().getQuests()[0],
+        30,
+        482,
+        637,
+        'left',
+        'black'
+      );
+    }
+
+    if (this.player.getUserData().getQuests()[1]) {
+      this.writeTextToCanvas(
+        this.player.getUserData().getQuests()[1],
+        30,
+        482,
+        672,
+        'left',
+        'black'
+      );
+    }
+    if (this.player.getUserData().getQuests()[2]) {
+      this.writeTextToCanvas(
+        this.player.getUserData().getQuests()[2],
+        30,
+        482,
+        704,
+        'left',
+        'black'
+      );
+    }
   }
 
   /**
@@ -237,7 +333,7 @@ export default abstract class Room extends Scene {
       this.canvas.width / 2,
       this.canvas.height - 50,
       'center',
-      'yellow',
+      'yellow'
     );
 
     this.writeTextToCanvas(
@@ -246,7 +342,7 @@ export default abstract class Room extends Scene {
       this.canvas.width / 2,
       this.canvas.height - 80,
       'center',
-      'yellow',
+      'yellow'
     );
 
     // DRAWS NPCS
@@ -299,6 +395,8 @@ export default abstract class Room extends Scene {
       } else {
         this.candyNumImg = Scene.loadNewImage('./assets/img/0.png');
       }
+      // DRAWS QUEST ITEMS
+      this.drawQuestItems();
 
       this.ctx.drawImage(this.hintNumImg, 270, 680, 50, 50);
       this.ctx.drawImage(this.candyNumImg, 415, 680, 50, 50);

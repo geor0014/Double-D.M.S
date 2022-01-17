@@ -8,6 +8,7 @@ import DifficultHallway from './DifficultHallway.js';
 import Player from './Player.js';
 import BossRoom from './BossRoom.js';
 import Dialog from './Dialog.js';
+import QuestItem from './QuestItem.js';
 export default class MainHallway extends Room {
     bRoomInteract;
     bossRoom;
@@ -15,6 +16,8 @@ export default class MainHallway extends Room {
     easyHall;
     dHallInteract;
     diffHall;
+    backpack;
+    pushOnce = true;
     constructor(canvas) {
         super(canvas, './assets/img/hallway.png');
         this.bRoomInteract = false;
@@ -35,6 +38,7 @@ export default class MainHallway extends Room {
             new Dialog('Heyy how are you today?#'),
             new Dialog('Good luck with your exams!#'),
         ]));
+        this.backpack = new QuestItem('backpack', './assets/img/backpack.png', 321, 210);
     }
     update(elapsed) {
         const nextScene = this.generalInteraction();
@@ -75,13 +79,34 @@ export default class MainHallway extends Room {
             }
             console.log('Sorry you cant enter here yet you need at least 4 points!');
         }
+        this.addQuestItems();
         if (nextScene !== null) {
             return nextScene;
         }
         return null;
     }
+    addQuestItems() {
+        if (this.pushOnce === true) {
+            this.player
+                .getUserData()
+                .getQuests()
+                .forEach((quest) => {
+                if (quest === 'Find backpack') {
+                    this.player.getUserData().getQuestItems().push(this.backpack);
+                    this.pushOnce = false;
+                }
+            });
+        }
+    }
     render() {
         this.draw(this.ctx);
+        this.player
+            .getUserData()
+            .getQuestItems()
+            .forEach((item) => {
+            if (item.getName() === 'backpack')
+                item.draw(this.ctx);
+        });
         super.render();
         this.hitboxes.forEach((box) => {
             box.draw(this.canvas);

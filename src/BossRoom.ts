@@ -9,6 +9,8 @@ import Candy from './Candy.js';
 import Question from './Question.js';
 
 import Boss from './Boss.js';
+import Npc from './Npc.js';
+import Dialog from './Dialog.js';
 
 export default class BossRoom extends Room {
   private previousScene: Scene;
@@ -16,6 +18,8 @@ export default class BossRoom extends Room {
   private questions: Question[];
 
   private boss: Boss;
+
+  private bossNpc: Npc;
 
   private frameY = 0;
 
@@ -84,6 +88,11 @@ export default class BossRoom extends Room {
 
     // creating a new boss
     this.boss = new Boss();
+
+    this.bossNpc = new Npc('./assets/img/empty-boss.png', 430, 341, [
+      new Dialog('Hello'),
+    ]);
+    this.npcs.push(this.bossNpc);
   }
 
   /**

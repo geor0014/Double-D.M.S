@@ -67,8 +67,10 @@ export default class EasyHallway extends Room {
     // creates npcs with their dialogs for this room
     this.npcs.push(
       new Npc('./assets/img/student-1-back-faced.png', 561, 405, [
-        new Dialog('I dont feel like studying today,#'),
-        new Dialog('I want to sleep...#'),
+        new Dialog('Hello, I lost my backpack....#'),
+        new Dialog(
+          'Can you please look for it and bring it back to me tomorrow?#'
+        ),
       ]),
       new Npc(
         './assets/img/student-black-haired-left-faced.png',

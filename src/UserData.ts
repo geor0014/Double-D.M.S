@@ -1,3 +1,5 @@
+import QuestItem from './QuestItem.js';
+
 export default class UserData {
   private hintAmount: number;
 
@@ -11,6 +13,10 @@ export default class UserData {
 
   private hintNum: number;
 
+  private quests: string[] = [];
+
+  private questItems: QuestItem[] = [];
+
   constructor() {
     this.name = 'Player';
     this.img = new Image();
@@ -19,6 +25,8 @@ export default class UserData {
     this.candyAmount = 0;
     this.score = 0;
     this.hintNum = 0;
+
+    const questItems = new Set<QuestItem>();
   }
 
   public getHintNum(): number {
@@ -51,5 +59,13 @@ export default class UserData {
 
   public setCandyAmount(number: number): void {
     this.candyAmount = number;
+  }
+
+  public getQuests(): string[] {
+    return this.quests;
+  }
+
+  public getQuestItems(): QuestItem[] {
+    return this.questItems;
   }
 }

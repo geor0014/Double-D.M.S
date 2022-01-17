@@ -11,6 +11,7 @@ import Player from './Player.js';
 import BossRoom from './BossRoom.js';
 import Dialog from './Dialog.js';
 import Hitbox from './Hitbox.js';
+import QuestItem from './QuestItem.js';
 
 export default class MainHallway extends Room {
   private bRoomInteract: boolean;
@@ -24,6 +25,10 @@ export default class MainHallway extends Room {
   private dHallInteract: boolean;
 
   private diffHall: DifficultHallway;
+
+  private backpack: QuestItem;
+
+  private pushOnce: boolean = true;
 
   /**
    * creats a new hallway
@@ -71,6 +76,13 @@ export default class MainHallway extends Room {
           new Dialog('Good luck with your exams!#'),
         ]
       )
+    );
+
+    this.backpack = new QuestItem(
+      'backpack',
+      './assets/img/backpack.png',
+      321,
+      210
     );
 
     // HITBOX
@@ -132,13 +144,28 @@ export default class MainHallway extends Room {
       }
       console.log('Sorry you cant enter here yet you need at least 4 points!');
     }
-
+    this.addQuestItems();
     // according to the general checks in room
     if (nextScene !== null) {
       return nextScene;
     }
 
     return null;
+  }
+
+  private addQuestItems(): void {
+    // CREATES BACKPACK
+    if (this.pushOnce === true) {
+      this.player
+        .getUserData()
+        .getQuests()
+        .forEach((quest) => {
+          if (quest === 'Find backpack') {
+            this.player.getUserData().getQuestItems().push(this.backpack);
+            this.pushOnce = false;
+          }
+        });
+    }
   }
 
   // HITBOX DETECTION
@@ -162,11 +189,21 @@ export default class MainHallway extends Room {
    */
   public render(): void {
     this.draw(this.ctx);
+
+    // DRAWS QUESTITEMS
+    this.player
+      .getUserData()
+      .getQuestItems()
+      .forEach((item) => {
+        if (item.getName() === 'backpack') item.draw(this.ctx);
+      });
+
     super.render();
 
     this.hitboxes.forEach((box) => {
       box.draw(this.canvas);
     });
+
     // console.log(this.player.getXPos(), this.player.getYPos());
   }
 }
