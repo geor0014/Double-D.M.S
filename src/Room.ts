@@ -333,7 +333,7 @@ export default abstract class Room extends Scene {
       this.canvas.width / 2,
       this.canvas.height - 50,
       'center',
-      'yellow'
+      'red'
     );
 
     this.writeTextToCanvas(
@@ -342,7 +342,7 @@ export default abstract class Room extends Scene {
       this.canvas.width / 2,
       this.canvas.height - 80,
       'center',
-      'yellow'
+      'red'
     );
 
     // DRAWS NPCS

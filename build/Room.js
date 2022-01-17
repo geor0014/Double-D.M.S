@@ -168,8 +168,8 @@ export default class Room extends Scene {
         ctx.drawImage(this.img, this.xPos, this.yPos);
     }
     render() {
-        this.writeTextToCanvas('press M to hide/unhide menu', 24, this.canvas.width / 2, this.canvas.height - 50, 'center', 'yellow');
-        this.writeTextToCanvas('press Space to ineract', 24, this.canvas.width / 2, this.canvas.height - 80, 'center', 'yellow');
+        this.writeTextToCanvas('press M to hide/unhide menu', 24, this.canvas.width / 2, this.canvas.height - 50, 'center', 'red');
+        this.writeTextToCanvas('press Space to ineract', 24, this.canvas.width / 2, this.canvas.height - 80, 'center', 'red');
         for (let i = 0; i < this.npcs.length; i += 1) {
             this.npcs[i].draw(this.ctx);
         }
