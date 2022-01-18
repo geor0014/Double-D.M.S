@@ -134,12 +134,22 @@ export default class DifficultHallway extends Room {
   public update(elapsed: number): Scene {
     // calling general checkups from Room class
     const nextScene: Scene = this.generalInteraction();
+    const cNum: number = this.player.getCharacterNum();
 
     // LEAVES DIFFICULT HALLWAY
     if (this.player.getXPos() <= 12 && this.player.getYPos() >= 334.5) {
       this.player.setXPos(1060);
       this.player.setYPos(443.5);
-      this.player.setImage('./assets/img/player-boy-left.png');
+      // setting image of player according to the right character chosen
+      if (cNum === 1) {
+        this.player.setImage('./assets/img/player-boy1-left.png');
+      } else if (cNum === 2) {
+        this.player.setImage('./assets/img/player-boy2-left.png');
+      } else if (cNum === 3) {
+        this.player.setImage('./assets/img/player-girl2-left.png');
+      } else if (cNum === 4) {
+        this.player.setImage('./assets/img/player-girl1-left.png');
+      }
       return this.mainHallway;
     }
 
@@ -152,7 +162,16 @@ export default class DifficultHallway extends Room {
           // setting player starter position and image in the classrooms
           this.player.setXPos(990);
           this.player.setYPos(548);
-          this.player.setImage('./assets/img/player-boy-standing.png');
+          // setting image of player according to the right character chosen
+          if (cNum === 1) {
+            this.player.setImage('./assets/img/player-boy1-down.png');
+          } else if (cNum === 2) {
+            this.player.setImage('./assets/img/player-boy2-down.png');
+          } else if (cNum === 3) {
+            this.player.setImage('./assets/img/player-girl2-down.png');
+          } else if (cNum === 4) {
+            this.player.setImage('./assets/img/player-girl1-down.png');
+          }
           this.doorOpen.play();
           // checking which door
           if (i === 0) {

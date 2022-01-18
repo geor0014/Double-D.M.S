@@ -1,6 +1,6 @@
-import MainHallway from './MainHallway.js';
 import KeyListener from './KeyListener.js';
 import Screen from './Screen.js';
+import CharacterPick from './CharacterPick.js';
 export default class StartScreen extends Screen {
     keyListener;
     music;
@@ -21,7 +21,7 @@ export default class StartScreen extends Screen {
     }
     update(elapsed) {
         if (this.processInput()) {
-            return new MainHallway(this.canvas);
+            return new CharacterPick(this.canvas);
         }
         return null;
     }

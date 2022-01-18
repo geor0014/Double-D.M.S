@@ -29,7 +29,7 @@ export default class QuestionScreen extends Screen {
   constructor(
     canvas: HTMLCanvasElement,
     previousScene: Room,
-    questions: Question[],
+    questions: Question[]
   ) {
     super(canvas, './assets/img/computer-screen.png');
 
@@ -50,8 +50,9 @@ export default class QuestionScreen extends Screen {
 
     this.okPressed = false;
 
-    this.setXPos(this.canvas.width / 5);
-    this.setYPos(this.canvas.height / 10);
+    // sets the background image position
+    this.setXPos(0);
+    this.setYPos(0);
   }
 
   /**

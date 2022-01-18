@@ -22,9 +22,6 @@ export default class ClassRoom6 extends Room {
         this.computer = new Computer(266, 165.5);
         this.collectibles.push(new Candy(this.canvas.width / 4, this.canvas.height / 4));
         this.doors.push(new Door('./assets/img/door1.png', 985, 485));
-        this.player.setXPos(990);
-        this.player.setYPos(548);
-        this.player.setImage('./assets/img/player-boy-standing.png');
         this.questions.push(new Question(this.player.getUserData(), 'You are about to join this amazing new website# all your friends are there.# What information is OK to give online?#', 'Nickname#', 'Phone number#', 'Adress#'), new Question(this.player.getUserData(), 'You are having trouble doing an activity on a safe site you use at school.# Your friend offers to help but needs your password.# Would you give your password to them.', 'No#', 'It depends#', 'Yes#'), new Question(this.player.getUserData(), 'Your parents want to know what you have been doing on a safe site you use at school.# Would you let them use your account?', 'Yes, you would let them have a look but while youre there#', 'Yes, they are my parents I trust them#', 'No way, this site is only for kids and teachers#'));
         console.log('door6');
     }
@@ -38,7 +35,19 @@ export default class ClassRoom6 extends Room {
                     console.log(this.previousScene);
                     this.player.setXPos(688);
                     this.player.setYPos(350);
-                    this.player.setImage('./assets/img/player-boy-standing.png');
+                    const cNum = this.player.getCharacterNum();
+                    if (cNum === 1) {
+                        this.player.setImage('./assets/img/player-boy1-down.png');
+                    }
+                    else if (cNum === 2) {
+                        this.player.setImage('./assets/img/player-boy2-down.png');
+                    }
+                    else if (cNum === 3) {
+                        this.player.setImage('./assets/img/player-girl2-down.png');
+                    }
+                    else if (cNum === 4) {
+                        this.player.setImage('./assets/img/player-girl1-down.png');
+                    }
                     return this.previousScene;
                 }
             }

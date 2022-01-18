@@ -7,9 +7,23 @@ export default class Player extends GameEntity {
     keyboard;
     walk;
     userData;
-    constructor(canvas) {
-        super('./assets/img/player-boy-up.png', canvas.width / 2, canvas.height / 2);
+    characterNum;
+    constructor(canvas, characterNum) {
+        super('', canvas.width / 2, canvas.height / 2);
         this.userData = new UserData();
+        this.characterNum = characterNum;
+        if (this.characterNum === 1) {
+            this.setImage('./assets/img/player-boy1-up.png');
+        }
+        else if (this.characterNum === 2) {
+            this.setImage('./assets/img/player-boy2-up.png');
+        }
+        else if (this.characterNum === 3) {
+            this.setImage('./assets/img/player-girl2-up.png');
+        }
+        else if (this.characterNum === 4) {
+            this.setImage('./assets/img/player-girl1-up.png');
+        }
         this.xVelocity = 3;
         this.yVelocity = 3;
         this.keyboard = new KeyListener();
@@ -20,24 +34,68 @@ export default class Player extends GameEntity {
         if (this.keyboard.isKeyDown(KeyListener.KEY_RIGHT) &&
             this.getXPos() + this.getImage().width < canvas.width) {
             this.setXPos(this.getXPos() + this.xVelocity);
-            this.setImage('./assets/img/player-boy1-right.png');
             this.walk.play();
+            if (this.characterNum === 1) {
+                this.setImage('./assets/img/player-boy1-right.png');
+            }
+            else if (this.characterNum === 2) {
+                this.setImage('./assets/img/player-boy2-right.png');
+            }
+            else if (this.characterNum === 3) {
+                this.setImage('./assets/img/player-girl2-right.png');
+            }
+            else if (this.characterNum === 4) {
+                this.setImage('./assets/img/player-girl1-right.png');
+            }
         }
         if (this.keyboard.isKeyDown(KeyListener.KEY_LEFT) && this.getXPos() > 0) {
             this.setXPos(this.getXPos() - this.xVelocity);
-            this.setImage('./assets/img/player-boy1-left.png');
             this.walk.play();
+            if (this.characterNum === 1) {
+                this.setImage('./assets/img/player-boy1-left.png');
+            }
+            else if (this.characterNum === 2) {
+                this.setImage('./assets/img/player-boy2-left.png');
+            }
+            else if (this.characterNum === 3) {
+                this.setImage('./assets/img/player-girl2-left.png');
+            }
+            else if (this.characterNum === 4) {
+                this.setImage('./assets/img/player-girl1-left.png');
+            }
         }
         if (this.keyboard.isKeyDown(KeyListener.KEY_UP) && this.getYPos() > 0) {
             this.setYPos(this.getYPos() - this.yVelocity);
-            this.setImage('./assets/img/player-boy1-up.png');
             this.walk.play();
+            if (this.characterNum === 1) {
+                this.setImage('./assets/img/player-boy1-up.png');
+            }
+            else if (this.characterNum === 2) {
+                this.setImage('./assets/img/player-boy2-up.png');
+            }
+            else if (this.characterNum === 3) {
+                this.setImage('./assets/img/player-girl2-up.png');
+            }
+            else if (this.characterNum === 4) {
+                this.setImage('./assets/img/player-girl1-up.png');
+            }
         }
         if (this.keyboard.isKeyDown(KeyListener.KEY_DOWN) &&
             this.getYPos() + this.getImage().height < canvas.height) {
             this.setYPos(this.getYPos() + this.yVelocity);
-            this.setImage('./assets/img/player-boy1-down.png');
             this.walk.play();
+            if (this.characterNum === 1) {
+                this.setImage('./assets/img/player-boy1-down.png');
+            }
+            else if (this.characterNum === 2) {
+                this.setImage('./assets/img/player-boy2-down.png');
+            }
+            else if (this.characterNum === 3) {
+                this.setImage('./assets/img/player-girl2-down.png');
+            }
+            else if (this.characterNum === 4) {
+                this.setImage('./assets/img/player-girl1-down.png');
+            }
         }
     }
     isInteractingMenu() {
@@ -79,6 +137,9 @@ export default class Player extends GameEntity {
     }
     getUserData() {
         return this.userData;
+    }
+    getCharacterNum() {
+        return this.characterNum;
     }
 }
 //# sourceMappingURL=Player.js.map

@@ -20,9 +20,6 @@ export default class ClassRoom3 extends Room {
         this.questions = [];
         this.computer = new Computer(266, 165.5);
         this.doors.push(new Door('./assets/img/door1.png', 985, 485));
-        this.player.setXPos(990);
-        this.player.setYPos(548);
-        this.player.setImage('./assets/img/player-boy-standing.png');
         this.questions.push(new Question(this.player.getUserData(), 'You see the following post:#“Hey look at Timmy`s head, man he looks horrible! Share this video or we will stop talking to you!” # What should you do? ', 'Report it and help poor Timmy', 'Share it I don`t want to be alone', 'Ignore and let it happen '), new Question(this.player.getUserData(), 'My parents and I have established rules as to what I can do on the Internet when Im home,# but Im at a friend`s house. #Should I go by my parents rules or do whatever my friend does?', 'Go by your parents rules', 'Do whatever your friend does ', 'It doesn`t really matter'));
         console.log('CLASSROOM3');
     }
@@ -36,7 +33,19 @@ export default class ClassRoom3 extends Room {
                     console.log(this.previousScene);
                     this.player.setXPos(334);
                     this.player.setYPos(350);
-                    this.player.setImage('./assets/img/player-boy-standing.png');
+                    const cNum = this.player.getCharacterNum();
+                    if (cNum === 1) {
+                        this.player.setImage('./assets/img/player-boy1-down.png');
+                    }
+                    else if (cNum === 2) {
+                        this.player.setImage('./assets/img/player-boy2-down.png');
+                    }
+                    else if (cNum === 3) {
+                        this.player.setImage('./assets/img/player-girl2-down.png');
+                    }
+                    else if (cNum === 4) {
+                        this.player.setImage('./assets/img/player-girl1-down.png');
+                    }
                     return this.previousScene;
                 }
             }

@@ -25,9 +25,6 @@ export default class ClassRoom2 extends Room {
         this.computer = new Computer(266, 165.5);
         this.collectibles.push(new Hint(this.canvas.width / 2 - 100, this.canvas.height / 2 - 70));
         this.doors.push(new Door('./assets/img/door1.png', 985, 485));
-        this.player.setXPos(990);
-        this.player.setYPos(548);
-        this.player.setImage('./assets/img/player-boy-standing.png');
         this.questions.push(new Question(this.player.getUserData(), 'You are creating an account on your favorite social media.# Before you can access it,#they ask you to accept the general terms of condition!# What do you do?', 'Ask your parents what they think', 'Not read it and accept it', 'Read through everything and decide if you accept or not'), new Question(this.player.getUserData(), 'Which of these files are safe to download?#', 'Game.exe', 'Virus.exe ', 'Trojan.exe'));
         console.log('CLASSROOM2');
     }
@@ -41,7 +38,19 @@ export default class ClassRoom2 extends Room {
                     console.log(this.previousScene);
                     this.player.setXPos(500);
                     this.player.setYPos(350);
-                    this.player.setImage('./assets/img/player-boy-standing.png');
+                    const cNum = this.player.getCharacterNum();
+                    if (cNum === 1) {
+                        this.player.setImage('./assets/img/player-boy1-down.png');
+                    }
+                    else if (cNum === 2) {
+                        this.player.setImage('./assets/img/player-boy2-down.png');
+                    }
+                    else if (cNum === 3) {
+                        this.player.setImage('./assets/img/player-girl2-down.png');
+                    }
+                    else if (cNum === 4) {
+                        this.player.setImage('./assets/img/player-girl1-down.png');
+                    }
                     return this.previousScene;
                 }
             }

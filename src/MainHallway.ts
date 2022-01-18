@@ -30,12 +30,15 @@ export default class MainHallway extends Room {
 
   private pushOnce: boolean = true;
 
+  private textToPresent: string = '';
+
   /**
    * creats a new hallway
    *
    * @param canvas canvas element
+   * @param charaterNum number of character chosen
    */
-  public constructor(canvas: HTMLCanvasElement) {
+  public constructor(canvas: HTMLCanvasElement, charaterNum: number) {
     super(canvas, './assets/img/hallway.png');
     // setting all rooms to not interact
     this.bRoomInteract = false;
@@ -46,10 +49,9 @@ export default class MainHallway extends Room {
     this.setYPos(0);
 
     // creating the new player and sets its position and image
-    this.player = new Player(this.canvas);
+    this.player = new Player(this.canvas, charaterNum);
     this.player.setXPos(532);
     this.player.setYPos(681.5);
-    this.player.setImage('./assets/img/player-boy-up.png');
 
     // reseting the items in the room
     this.collectibles = [];
@@ -113,9 +115,7 @@ export default class MainHallway extends Room {
             }
             return this.bossRoom;
           }
-          console.log(
-            'You cant accsess this room! maybe your not worthy enought (evil laugh)'
-          );
+          this.textToPresent = 'You cant access this room! maybe youre not worthy enough (evil laugh)';
         }
       }
     }
@@ -132,7 +132,7 @@ export default class MainHallway extends Room {
     }
 
     if (this.player.getXPos() >= 1060 && this.player.getYPos() >= 443.5) {
-      if (this.player.getUserData().getScore() > -1) {
+      if (this.player.getUserData().getScore() > 3) {
         if (this.dHallInteract === false) {
           this.diffHall = new DifficultHallway(this.canvas, this, this.player);
           this.dHallInteract = true;
@@ -142,7 +142,7 @@ export default class MainHallway extends Room {
         this.player.setYPos(335);
         return this.diffHall;
       }
-      console.log('Sorry you cant enter here yet you need at least 4 points!');
+      this.textToPresent = 'Sorry you cant enter here yet you need at least 4 points!';
     }
     this.addQuestItems();
     // according to the general checks in room
@@ -204,6 +204,17 @@ export default class MainHallway extends Room {
       box.draw(this.canvas);
     });
 
+    // console.log(textToWrite);
+    this.writeTextToCanvas(
+      this.textToPresent,
+      24 ,
+      this.canvas.width / 2,
+      75,
+      'center',
+      'red'
+    );
+
+    this.textToPresent = '';
     // console.log(this.player.getXPos(), this.player.getYPos());
   }
 }

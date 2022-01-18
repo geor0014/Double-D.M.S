@@ -18,17 +18,17 @@ export default class MainHallway extends Room {
     diffHall;
     backpack;
     pushOnce = true;
-    constructor(canvas) {
+    textToPresent = '';
+    constructor(canvas, charaterNum) {
         super(canvas, './assets/img/hallway.png');
         this.bRoomInteract = false;
         this.eHallInteract = false;
         this.dHallInteract = false;
         this.setXPos(0);
         this.setYPos(0);
-        this.player = new Player(this.canvas);
+        this.player = new Player(this.canvas, charaterNum);
         this.player.setXPos(532);
         this.player.setYPos(681.5);
-        this.player.setImage('./assets/img/player-boy-up.png');
         this.collectibles = [];
         this.npcs = [];
         this.doors = [];
@@ -54,7 +54,7 @@ export default class MainHallway extends Room {
                         }
                         return this.bossRoom;
                     }
-                    console.log('You cant accsess this room! maybe your not worthy enought (evil laugh)');
+                    this.textToPresent = 'You cant access this room! maybe youre not worthy enough (evil laugh)';
                 }
             }
         }
@@ -68,7 +68,7 @@ export default class MainHallway extends Room {
             return this.easyHall;
         }
         if (this.player.getXPos() >= 1060 && this.player.getYPos() >= 443.5) {
-            if (this.player.getUserData().getScore() > -1) {
+            if (this.player.getUserData().getScore() > 3) {
                 if (this.dHallInteract === false) {
                     this.diffHall = new DifficultHallway(this.canvas, this, this.player);
                     this.dHallInteract = true;
@@ -77,7 +77,7 @@ export default class MainHallway extends Room {
                 this.player.setYPos(335);
                 return this.diffHall;
             }
-            console.log('Sorry you cant enter here yet you need at least 4 points!');
+            this.textToPresent = 'Sorry you cant enter here yet you need at least 4 points!';
         }
         this.addQuestItems();
         if (nextScene !== null) {
@@ -111,6 +111,8 @@ export default class MainHallway extends Room {
         this.hitboxes.forEach((box) => {
             box.draw(this.canvas);
         });
+        this.writeTextToCanvas(this.textToPresent, 24, this.canvas.width / 2, 75, 'center', 'red');
+        this.textToPresent = '';
     }
 }
 //# sourceMappingURL=MainHallway.js.map

@@ -283,8 +283,8 @@ export default abstract class Room extends Scene {
       this.writeTextToCanvas(
         this.player.getUserData().getQuests()[0],
         30,
-        482,
-        637,
+        620,
+        647,
         'left',
         'black'
       );
@@ -294,8 +294,8 @@ export default abstract class Room extends Scene {
       this.writeTextToCanvas(
         this.player.getUserData().getQuests()[1],
         30,
-        482,
-        672,
+        620,
+        682,
         'left',
         'black'
       );
@@ -304,8 +304,8 @@ export default abstract class Room extends Scene {
       this.writeTextToCanvas(
         this.player.getUserData().getQuests()[2],
         30,
-        482,
-        704,
+        620,
+        714,
         'left',
         'black'
       );
@@ -333,7 +333,7 @@ export default abstract class Room extends Scene {
       this.canvas.width / 2,
       this.canvas.height - 50,
       'center',
-      'red'
+      'Blue'
     );
 
     this.writeTextToCanvas(
@@ -342,7 +342,7 @@ export default abstract class Room extends Scene {
       this.canvas.width / 2,
       this.canvas.height - 80,
       'center',
-      'red'
+      'Blue'
     );
 
     // DRAWS NPCS
@@ -398,8 +398,21 @@ export default abstract class Room extends Scene {
       // DRAWS QUEST ITEMS
       this.drawQuestItems();
 
-      this.ctx.drawImage(this.hintNumImg, 270, 680, 50, 50);
-      this.ctx.drawImage(this.candyNumImg, 415, 680, 50, 50);
+      this.ctx.drawImage(this.hintNumImg, 400, 670, 50, 50);
+      this.ctx.drawImage(this.candyNumImg, 545, 670, 50, 50);
+
+      const cNum: number = this.player.getCharacterNum();
+      let characterImg: HTMLImageElement = Scene.loadNewImage('');
+      if (cNum === 1) {
+        characterImg = Scene.loadNewImage('./assets/img/boy1Face.png');
+      } else if (cNum === 2) {
+        characterImg = Scene.loadNewImage('./assets/img/boy2Face.png');
+      } else if (cNum === 3) {
+        characterImg = Scene.loadNewImage('./assets/img/girl2Face.png');
+      } else if (cNum === 4) {
+        characterImg = Scene.loadNewImage('./assets/img/girl1Face.png');
+      }
+      this.ctx.drawImage(characterImg, 280, 600, 130, 130);
     }
 
     // this.menu.draw(this.ctx);

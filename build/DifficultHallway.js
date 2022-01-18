@@ -68,10 +68,22 @@ export default class DifficultHallway extends Room {
     }
     update(elapsed) {
         const nextScene = this.generalInteraction();
+        const cNum = this.player.getCharacterNum();
         if (this.player.getXPos() <= 12 && this.player.getYPos() >= 334.5) {
             this.player.setXPos(1060);
             this.player.setYPos(443.5);
-            this.player.setImage('./assets/img/player-boy-left.png');
+            if (cNum === 1) {
+                this.player.setImage('./assets/img/player-boy1-left.png');
+            }
+            else if (cNum === 2) {
+                this.player.setImage('./assets/img/player-boy2-left.png');
+            }
+            else if (cNum === 3) {
+                this.player.setImage('./assets/img/player-girl2-left.png');
+            }
+            else if (cNum === 4) {
+                this.player.setImage('./assets/img/player-girl1-left.png');
+            }
             return this.mainHallway;
         }
         if (this.player.isInteracting()) {
@@ -80,7 +92,18 @@ export default class DifficultHallway extends Room {
                     console.log('interact with door');
                     this.player.setXPos(990);
                     this.player.setYPos(548);
-                    this.player.setImage('./assets/img/player-boy-standing.png');
+                    if (cNum === 1) {
+                        this.player.setImage('./assets/img/player-boy1-down.png');
+                    }
+                    else if (cNum === 2) {
+                        this.player.setImage('./assets/img/player-boy2-down.png');
+                    }
+                    else if (cNum === 3) {
+                        this.player.setImage('./assets/img/player-girl2-down.png');
+                    }
+                    else if (cNum === 4) {
+                        this.player.setImage('./assets/img/player-girl1-down.png');
+                    }
                     this.doorOpen.play();
                     if (i === 0) {
                         if (this.room4Interact === false) {

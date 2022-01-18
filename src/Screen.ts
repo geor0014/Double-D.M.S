@@ -72,4 +72,13 @@ export default abstract class Screen extends Scene {
   public getImage(): CanvasImageSource {
     return this.img;
   }
+
+  /**
+   * Setter for the image
+   *
+   * @param imgSrc - string with the source of the new image
+   */
+  public setImage(imgSrc: string): void {
+    this.img.src = imgSrc;
+  }
 }

@@ -33,9 +33,6 @@ export default class ClassRoom1 extends Room {
         ]));
         this.collectibles.push(new Candy(this.canvas.width / 2, this.canvas.height / 2));
         this.doors.push(new Door('./assets/img/door1.png', 985, 485));
-        this.player.setXPos(990);
-        this.player.setYPos(548);
-        this.player.setImage('./assets/img/player-boy-standing.png');
         this.questions.push(new Question(this.player.getUserData(), 'Congratulations you just won a giveaway!# a Nigerian Prince chose you to be the winner!!#Send him your bank account details and your ID to get 500.000€!!', 'Not pay attention and delete this email/message', 'Send an E-mail to make sure it is real', 'YES, TAKE ALL MY DATA!'));
         this.questions.push(new Question(this.player.getUserData(), 'Someone sent you a link to a YouTube video,# you click on it and suddenly you have a virus on your pc!# What could u have done differently? ', 'Not click on the link', 'Send this cool link to all my friends!', 'start chatting with this person for fun'));
         console.log('CLASSROOM1');
@@ -50,7 +47,19 @@ export default class ClassRoom1 extends Room {
                     console.log(this.previousScene);
                     this.player.setXPos(632);
                     this.player.setYPos(350);
-                    this.player.setImage('./assets/img/player-boy-standing.png');
+                    const cNum = this.player.getCharacterNum();
+                    if (cNum === 1) {
+                        this.player.setImage('./assets/img/player-boy1-down.png');
+                    }
+                    else if (cNum === 2) {
+                        this.player.setImage('./assets/img/player-boy2-down.png');
+                    }
+                    else if (cNum === 3) {
+                        this.player.setImage('./assets/img/player-girl2-down.png');
+                    }
+                    else if (cNum === 4) {
+                        this.player.setImage('./assets/img/player-girl1-down.png');
+                    }
                     return this.previousScene;
                 }
             }

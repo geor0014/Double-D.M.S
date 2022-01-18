@@ -14,21 +14,30 @@ export default class Player extends GameEntity {
 
   private userData: UserData;
 
+  private characterNum: number;
+
   /**
    * Create new player
    *
    * @param canvas a canvas element
+   * @param characterNum number presenting the player choice of a character
    */
-  constructor(canvas: HTMLCanvasElement) {
-    super(
-      './assets/img/player-boy-up.png',
-      canvas.width / 2,
-      canvas.height / 2,
-    );
+  constructor(canvas: HTMLCanvasElement, characterNum: number) {
+    super('', canvas.width / 2, canvas.height / 2);
 
     // creates a new UserData
     this.userData = new UserData();
+    this.characterNum = characterNum;
 
+    if (this.characterNum === 1) {
+      this.setImage('./assets/img/player-boy1-up.png');
+    } else if (this.characterNum === 2) {
+      this.setImage('./assets/img/player-boy2-up.png');
+    } else if (this.characterNum === 3) {
+      this.setImage('./assets/img/player-girl2-up.png');
+    } else if (this.characterNum === 4) {
+      this.setImage('./assets/img/player-girl1-up.png');
+    }
     // this.setYPos(this.getYPos() - this.getImage().height);
     // sets the speed of the player
     this.xVelocity = 3;
@@ -55,22 +64,49 @@ export default class Player extends GameEntity {
       this.getXPos() + this.getImage().width < canvas.width
     ) {
       this.setXPos(this.getXPos() + this.xVelocity);
-      this.setImage('./assets/img/player-boy1-right.png');
       this.walk.play();
+
+      if (this.characterNum === 1) {
+        this.setImage('./assets/img/player-boy1-right.png');
+      } else if (this.characterNum === 2) {
+        this.setImage('./assets/img/player-boy2-right.png');
+      } else if (this.characterNum === 3) {
+        this.setImage('./assets/img/player-girl2-right.png');
+      } else if (this.characterNum === 4) {
+        this.setImage('./assets/img/player-girl1-right.png');
+      }
     }
 
     // Moving left
     if (this.keyboard.isKeyDown(KeyListener.KEY_LEFT) && this.getXPos() > 0) {
       this.setXPos(this.getXPos() - this.xVelocity);
-      this.setImage('./assets/img/player-boy1-left.png');
       this.walk.play();
+
+      if (this.characterNum === 1) {
+        this.setImage('./assets/img/player-boy1-left.png');
+      } else if (this.characterNum === 2) {
+        this.setImage('./assets/img/player-boy2-left.png');
+      } else if (this.characterNum === 3) {
+        this.setImage('./assets/img/player-girl2-left.png');
+      } else if (this.characterNum === 4) {
+        this.setImage('./assets/img/player-girl1-left.png');
+      }
     }
 
     // Moving up
     if (this.keyboard.isKeyDown(KeyListener.KEY_UP) && this.getYPos() > 0) {
       this.setYPos(this.getYPos() - this.yVelocity);
-      this.setImage('./assets/img/player-boy1-up.png');
       this.walk.play();
+
+      if (this.characterNum === 1) {
+        this.setImage('./assets/img/player-boy1-up.png');
+      } else if (this.characterNum === 2) {
+        this.setImage('./assets/img/player-boy2-up.png');
+      } else if (this.characterNum === 3) {
+        this.setImage('./assets/img/player-girl2-up.png');
+      } else if (this.characterNum === 4) {
+        this.setImage('./assets/img/player-girl1-up.png');
+      }
     }
 
     // Moving down
@@ -79,8 +115,17 @@ export default class Player extends GameEntity {
       this.getYPos() + this.getImage().height < canvas.height
     ) {
       this.setYPos(this.getYPos() + this.yVelocity);
-      this.setImage('./assets/img/player-boy1-down.png');
       this.walk.play();
+
+      if (this.characterNum === 1) {
+        this.setImage('./assets/img/player-boy1-down.png');
+      } else if (this.characterNum === 2) {
+        this.setImage('./assets/img/player-boy2-down.png');
+      } else if (this.characterNum === 3) {
+        this.setImage('./assets/img/player-girl2-down.png');
+      } else if (this.characterNum === 4) {
+        this.setImage('./assets/img/player-girl1-down.png');
+      }
     }
   }
 
@@ -164,5 +209,14 @@ export default class Player extends GameEntity {
    */
   public getUserData(): UserData {
     return this.userData;
+  }
+
+  /**
+   * Getter for character number
+   *
+   * @returns number
+   */
+  public getCharacterNum(): number {
+    return this.characterNum;
   }
 }

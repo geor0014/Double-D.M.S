@@ -31,6 +31,8 @@ export default class Question extends MainText {
     this.rightAnswer = rAns;
     this.wrongAnswers.push(wAns1, wAns2);
     this.rAnsPosition = Question.randomNumber(0, 2);
+
+
   }
 
   /**

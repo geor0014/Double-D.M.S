@@ -80,11 +80,6 @@ export default class ClassRoom1 extends Room {
     // creating the door for the classroom
     this.doors.push(new Door('./assets/img/door1.png', 985, 485));
 
-    // setting player starter position and image in the classroom
-    this.player.setXPos(990);
-    this.player.setYPos(548);
-    this.player.setImage('./assets/img/player-boy-standing.png');
-
     // creating questions for this classroom
     this.questions.push(
       new Question(
@@ -130,7 +125,17 @@ export default class ClassRoom1 extends Room {
           console.log(this.previousScene);
           this.player.setXPos(632);
           this.player.setYPos(350);
-          this.player.setImage('./assets/img/player-boy-standing.png');
+          // setting image of player according to the right character chosen
+          const cNum: number = this.player.getCharacterNum();
+          if (cNum === 1) {
+            this.player.setImage('./assets/img/player-boy1-down.png');
+          } else if (cNum === 2) {
+            this.player.setImage('./assets/img/player-boy2-down.png');
+          } else if (cNum === 3) {
+            this.player.setImage('./assets/img/player-girl2-down.png');
+          } else if (cNum === 4) {
+            this.player.setImage('./assets/img/player-girl1-down.png');
+          }
           return this.previousScene;
         }
       }

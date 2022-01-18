@@ -23,5 +23,8 @@ export default class Screen extends Scene {
     getImage() {
         return this.img;
     }
+    setImage(imgSrc) {
+        this.img.src = imgSrc;
+    }
 }
 //# sourceMappingURL=Screen.js.map

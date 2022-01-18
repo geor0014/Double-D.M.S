@@ -2,6 +2,7 @@ import MainHallway from './MainHallway.js';
 import KeyListener from './KeyListener.js';
 import Scene from './Scene.js';
 import Screen from './Screen.js';
+import CharacterPick from './CharacterPick.js';
 
 export default class StartScreen extends Screen {
   private keyListener: KeyListener;
@@ -52,7 +53,7 @@ export default class StartScreen extends Screen {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   public update(elapsed: number): Scene {
     if (this.processInput()) {
-      return new MainHallway(this.canvas);
+      return new CharacterPick(this.canvas);
     }
 
     return null;

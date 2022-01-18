@@ -155,21 +155,21 @@ export default class Room extends Scene {
     }
     drawQuestItems() {
         if (this.player.getUserData().getQuests()[0]) {
-            this.writeTextToCanvas(this.player.getUserData().getQuests()[0], 30, 482, 637, 'left', 'black');
+            this.writeTextToCanvas(this.player.getUserData().getQuests()[0], 30, 620, 647, 'left', 'black');
         }
         if (this.player.getUserData().getQuests()[1]) {
-            this.writeTextToCanvas(this.player.getUserData().getQuests()[1], 30, 482, 672, 'left', 'black');
+            this.writeTextToCanvas(this.player.getUserData().getQuests()[1], 30, 620, 682, 'left', 'black');
         }
         if (this.player.getUserData().getQuests()[2]) {
-            this.writeTextToCanvas(this.player.getUserData().getQuests()[2], 30, 482, 704, 'left', 'black');
+            this.writeTextToCanvas(this.player.getUserData().getQuests()[2], 30, 620, 714, 'left', 'black');
         }
     }
     draw(ctx) {
         ctx.drawImage(this.img, this.xPos, this.yPos);
     }
     render() {
-        this.writeTextToCanvas('press M to hide/unhide menu', 24, this.canvas.width / 2, this.canvas.height - 50, 'center', 'red');
-        this.writeTextToCanvas('press Space to ineract', 24, this.canvas.width / 2, this.canvas.height - 80, 'center', 'red');
+        this.writeTextToCanvas('press M to hide/unhide menu', 24, this.canvas.width / 2, this.canvas.height - 50, 'center', 'Blue');
+        this.writeTextToCanvas('press Space to ineract', 24, this.canvas.width / 2, this.canvas.height - 80, 'center', 'Blue');
         for (let i = 0; i < this.npcs.length; i += 1) {
             this.npcs[i].draw(this.ctx);
         }
@@ -219,8 +219,23 @@ export default class Room extends Scene {
                 this.candyNumImg = Scene.loadNewImage('./assets/img/0.png');
             }
             this.drawQuestItems();
-            this.ctx.drawImage(this.hintNumImg, 270, 680, 50, 50);
-            this.ctx.drawImage(this.candyNumImg, 415, 680, 50, 50);
+            this.ctx.drawImage(this.hintNumImg, 400, 670, 50, 50);
+            this.ctx.drawImage(this.candyNumImg, 545, 670, 50, 50);
+            const cNum = this.player.getCharacterNum();
+            let characterImg = Scene.loadNewImage('');
+            if (cNum === 1) {
+                characterImg = Scene.loadNewImage('./assets/img/boy1Face.png');
+            }
+            else if (cNum === 2) {
+                characterImg = Scene.loadNewImage('./assets/img/boy2Face.png');
+            }
+            else if (cNum === 3) {
+                characterImg = Scene.loadNewImage('./assets/img/girl2Face.png');
+            }
+            else if (cNum === 4) {
+                characterImg = Scene.loadNewImage('./assets/img/girl1Face.png');
+            }
+            this.ctx.drawImage(characterImg, 280, 600, 130, 130);
         }
     }
 }

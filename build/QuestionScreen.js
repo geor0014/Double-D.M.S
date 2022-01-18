@@ -16,8 +16,8 @@ export default class QuestionScreen extends Screen {
         this.nextQ = false;
         this.qCounter = 0;
         this.okPressed = false;
-        this.setXPos(this.canvas.width / 5);
-        this.setYPos(this.canvas.height / 10);
+        this.setXPos(0);
+        this.setYPos(0);
     }
     processInput() {
         if (this.keyboard.isKeyDown(KeyListener.KEY_ESC)) {
