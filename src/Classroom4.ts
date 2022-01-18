@@ -57,12 +57,12 @@ export default class ClassRoom4 extends Room {
     // creating collectibles in the classroom
 
     // creating the door for the classroom
-    this.doors.push(new Door('./assets/img/door1.png', 985, 485));
+    this.doors.push(new Door('./assets/img/door1.png', 912, 400.5));
 
     // setting player starter position and image in the classroom
-    this.player.setXPos(990);
-    this.player.setYPos(548);
-    this.player.setImage('./assets/img/player-boy-standing.png');
+    // this.player.setXPos(990);
+    // this.player.setYPos(548);
+    // this.player.setImage('./assets/img/player-boy-standing.png');
 
     // creating questions for this classroom
     this.questions.push(
@@ -86,8 +86,9 @@ export default class ClassRoom4 extends Room {
         'A random word, number, and symbols (e.g. 1cecr3am!)',
         'A nickname (e.g jumpingjacks)',
         'Your name and the year you were born (e.g. jack2011)',
-      )
+      ),
     );
+    this.insertHitbox(10, 10, 10, 10);
 
     console.log('CLASSROOM4');
   }

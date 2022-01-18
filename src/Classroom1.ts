@@ -70,20 +70,15 @@ export default class ClassRoom1 extends Room {
           'Today we are learning about suspicious links and strangers messeges#'
         ),
         new Dialog('This is very important!#'),
-      ])
+      ]),
     );
     // creating collectibles in the classroom
     this.collectibles.push(
-      new Candy(this.canvas.width / 2, this.canvas.height / 2)
+      new Candy(this.canvas.width / 2, this.canvas.height / 2),
     );
 
     // creating the door for the classroom
-    this.doors.push(new Door('./assets/img/door1.png', 985, 485));
-
-    // setting player starter position and image in the classroom
-    this.player.setXPos(990);
-    this.player.setYPos(548);
-    this.player.setImage('./assets/img/player-boy-standing.png');
+    this.doors.push(new Door('./assets/img/door1.png', 912, 400.5));
 
     // creating questions for this classroom
     this.questions.push(
@@ -104,6 +99,8 @@ export default class ClassRoom1 extends Room {
         'start chatting with this person for fun'
       )
     );
+
+    this.insertHitbox(10, 10, 10, 10);
 
     console.log('CLASSROOM1');
   }

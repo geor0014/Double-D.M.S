@@ -18,6 +18,10 @@ export default class EasyHallway extends Room {
 
   private room3Interact: boolean;
 
+  private bathroomInteractBoy: boolean;
+
+  private bathroomInteractGirl: boolean;
+
   private class1: ClassRoom1;
 
   private class2: ClassRoom2;
@@ -34,7 +38,7 @@ export default class EasyHallway extends Room {
   public constructor(
     canvas: HTMLCanvasElement,
     mainHallway: Room,
-    player: Player
+    player: Player,
   ) {
     super(canvas, './assets/img/easyHallway.png');
     console.log('creating easy hallway');
@@ -43,6 +47,8 @@ export default class EasyHallway extends Room {
     this.room1Interact = false;
     this.room2Interact = false;
     this.room3Interact = false;
+    this.bathroomInteractBoy = false;
+    this.bathroomInteractGirl = false;
 
     // sets previous scene
     this.mainHallway = mainHallway;
@@ -61,60 +67,46 @@ export default class EasyHallway extends Room {
 
     // creating collectibles
     this.collectibles.push(
-      new Hint(this.canvas.width / 3, this.canvas.height / 3)
+      new Hint(this.canvas.width / 3, this.canvas.height / 3),
     );
 
     // creates npcs with their dialogs for this room
     this.npcs.push(
-      new Npc('./assets/img/student-1-back-faced.png', 561, 405, [
+      new Npc('./assets/img/student-1-back-faced.png', 575, 495, [
         new Dialog('Hello, I lost my backpack....#'),
         new Dialog(
-          'Can you please look for it and bring it back to me tomorrow?#'
+          'Can you please look for it and bring it back to me tomorrow?#',
         ),
       ]),
       new Npc(
         './assets/img/student-black-haired-left-faced.png',
-        50,
-        this.canvas.height - 400,
+        195,
+        315,
         [
           new Dialog('There are some things you should never share!#'),
           new Dialog('I hope she will not be bullied#'),
-        ]
+        ],
       ),
       new Npc(
         './assets/img/student-red-right-faced.png',
-        0,
-        this.canvas.height - 400,
+        155,
+        315,
         [
           new Dialog('Did you hear about Jessica?#'),
           new Dialog('Cant believe she shared that picture :O#'),
-        ]
-      )
+        ],
+      ),
     );
 
-    // PLAYER POSITTION UPON ENTERING
-    this.player.setXPos(1055);
-    this.player.setYPos(351.5);
-
     // creats the doors in the hallway
-    this.doors.push(new Door('./assets/img/door1.png', 632, 238.5));
-    this.doors.push(new Door('./assets/img/door1.png', 500, 238.5));
-    this.doors.push(new Door('./assets/img/door1.png', 334, 238.5));
-  }
+    this.doors.push(new Door('./assets/img/door1.png', 632, 228.5));
+    this.doors.push(new Door('./assets/img/door1.png', 450, 228.5));
+    this.doors.push(new Door('./assets/img/door1.png', 280, 228.5));
 
-  /**
-   * Methos to detect the input of the player
-   */
-  public processInput(): void {
-    if (this.player.getYPos() > 267.5 && this.player.getYPos() < 407.5) {
-      this.player.movePlayer(this.canvas);
-      if (this.player.getYPos() <= 267.5) {
-        this.player.setYPos(270);
-      }
-      if (this.player.getYPos() >= 407.5) {
-        this.player.setYPos(406);
-      }
-    }
+    this.doors.push(new Door('./assets/img/boy-bathroom-door.png', 100, 228.5));
+    this.doors.push(new Door('./assets/img/girl-bathroom-door.png', 910, 228.5));
+
+    this.insertHitbox(10, 10, 10, 10);
   }
 
   /**
@@ -130,9 +122,9 @@ export default class EasyHallway extends Room {
     const nextScene: Scene = this.generalInteraction();
 
     // LEAVES EASY HALLWAY
-    if (this.player.getXPos() >= 1060 && this.player.getYPos() >= 309.5) {
-      this.player.setXPos(14);
-      this.player.setYPos(443.5);
+    if (this.player.getXPos() >= 969 && this.player.getYPos() >= 309.5) {
+      this.player.setXPos(163);
+      this.player.setYPos(440);
       this.player.setImage('./assets/img/player-boy-right.png');
       console.log('main halwway return');
       return this.mainHallway;
@@ -145,8 +137,8 @@ export default class EasyHallway extends Room {
         if (this.player.collidesWith(this.doors[i])) {
           console.log('interact with door');
           // setting player starter position and image in the classrooms
-          this.player.setXPos(990);
-          this.player.setYPos(548);
+          this.player.setXPos(911);
+          this.player.setYPos(473);
           this.player.setImage('./assets/img/player-boy-standing.png');
           this.doorOpen.play();
           if (i === 0) {
@@ -156,7 +148,7 @@ export default class EasyHallway extends Room {
                 this.canvas,
                 this,
                 this.player,
-                this.isMenuShowing
+                this.isMenuShowing,
               );
               this.room1Interact = true;
             }

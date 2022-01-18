@@ -64,16 +64,16 @@ export default class ClassRoom2 extends Room {
 
     // creating collectibles in the classroom
     this.collectibles.push(
-      new Hint(this.canvas.width / 2 - 100, this.canvas.height / 2 - 70)
+      new Hint(this.canvas.width / 2 - 100, this.canvas.height / 2 - 70),
     );
 
     // creating the door for the classroom
-    this.doors.push(new Door('./assets/img/door1.png', 985, 485));
+    this.doors.push(new Door('./assets/img/door1.png', 912, 400.5));
 
     // setting player starter position and image in the classroom
-    this.player.setXPos(990);
-    this.player.setYPos(548);
-    this.player.setImage('./assets/img/player-boy-standing.png');
+    // this.player.setXPos(990);
+    // this.player.setYPos(548);
+    // this.player.setImage('./assets/img/player-boy-standing.png');
 
     // creating questions for this classroom
     this.questions.push(
@@ -92,6 +92,8 @@ export default class ClassRoom2 extends Room {
         'Trojan.exe'
       )
     );
+    this.insertHitbox(10, 10, 10, 10);
+
     console.log('CLASSROOM2');
   }
 
