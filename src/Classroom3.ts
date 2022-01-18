@@ -56,10 +56,16 @@ export default class ClassRoom3 extends Room {
     // creating collectibles in the classroom
 
     // creating the door for the classroom
-    this.doors.push(new Door('./assets/img/door1.png', 985, 485));
+    this.doors.push(new Door('./assets/img/door1.png', 912, 390));
 
     // setting player starter position and image in the classroom
+<<<<<<< HEAD
 
+=======
+    // this.player.setXPos(990);
+    // this.player.setYPos(548);
+    // this.player.setImage('./assets/img/player-boy-standing.png');
+>>>>>>> 8a8630a1189db8f7ca7a224c22a6cae82d13d694
 
     // creating questions for this classroom
     this.questions.push(
@@ -78,6 +84,8 @@ export default class ClassRoom3 extends Room {
         'It doesn`t really matter',
       )
     );
+    this.insertHitbox(10, 10, 10, 10);
+
     console.log('CLASSROOM3');
   }
 

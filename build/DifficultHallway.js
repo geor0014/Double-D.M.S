@@ -14,7 +14,7 @@ export default class DifficultHallway extends Room {
     class4;
     class5;
     class6;
-    doll = new QuestItem('doll', './assets/img/doll.png', 1036, 395);
+    doll = new QuestItem('doll', './assets/img/doll.png', 907, 474.5);
     pushOnce = true;
     constructor(canvas, mainHallway, player) {
         super(canvas, './assets/img/difficultHallway.png');
@@ -29,7 +29,7 @@ export default class DifficultHallway extends Room {
         this.doors = [];
         this.setXPos(0);
         this.setYPos(0);
-        this.npcs.push(new Npc('./assets/img/student-grey-hair-back-faced.png', 766, 430, [
+        this.npcs.push(new Npc('./assets/img/student-grey-hair-back-faced.png', 597, 500, [
             new Dialog('I heard there is this weird dude in the bathroom#'),
             new Dialog('I am too scared to go there#'),
         ]), new Npc('./assets/img/student-blue-hair-faced.png', 432, 322, [
@@ -38,20 +38,10 @@ export default class DifficultHallway extends Room {
         ]));
         this.player.setXPos(13);
         this.player.setYPos(335);
-        this.doors.push(new Door('./assets/img/door1.png', 343, 267));
-        this.doors.push(new Door('./assets/img/door1.png', 493, 267));
-        this.doors.push(new Door('./assets/img/door1.png', 688, 267));
-    }
-    processInput() {
-        if (this.player.getYPos() > 292 && this.player.getYPos() < 425.5) {
-            this.player.movePlayer(this.canvas);
-            if (this.player.getYPos() <= 292) {
-                this.player.setYPos(294);
-            }
-            if (this.player.getYPos() >= 425.5) {
-                this.player.setYPos(423);
-            }
-        }
+        this.doors.push(new Door('./assets/img/door1.png', 290, 228.5));
+        this.doors.push(new Door('./assets/img/door1.png', 460, 228.5));
+        this.doors.push(new Door('./assets/img/door1.png', 650, 228.5));
+        this.insertHitbox(10, 10, 10, 10);
     }
     addQuestItems() {
         if (this.pushOnce === true) {
@@ -90,6 +80,7 @@ export default class DifficultHallway extends Room {
             for (let i = 0; i < this.doors.length; i += 1) {
                 if (this.player.collidesWith(this.doors[i])) {
                     console.log('interact with door');
+<<<<<<< HEAD
                     this.player.setXPos(990);
                     this.player.setYPos(548);
                     if (cNum === 1) {
@@ -104,6 +95,11 @@ export default class DifficultHallway extends Room {
                     else if (cNum === 4) {
                         this.player.setImage('./assets/img/player-girl1-down.png');
                     }
+=======
+                    this.player.setXPos(911);
+                    this.player.setYPos(473);
+                    this.player.setImage('./assets/img/player-boy-standing.png');
+>>>>>>> 8a8630a1189db8f7ca7a224c22a6cae82d13d694
                     this.doorOpen.play();
                     if (i === 0) {
                         if (this.room4Interact === false) {

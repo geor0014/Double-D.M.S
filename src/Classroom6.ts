@@ -53,8 +53,16 @@ export default class ClassRoom6 extends Room {
     );
 
     // creating the door for the classroom
-    this.doors.push(new Door('./assets/img/door1.png', 985, 485));
+    this.doors.push(new Door('./assets/img/door1.png', 912, 400.5));
 
+<<<<<<< HEAD
+=======
+    // setting player starter position and image in the classroom
+    // this.player.setXPos(990);
+    // this.player.setYPos(548);
+    // this.player.setImage('./assets/img/player-boy-standing.png');
+
+>>>>>>> 8a8630a1189db8f7ca7a224c22a6cae82d13d694
     // creating questions for this classroom
     this.questions.push(
       new Question(
@@ -79,6 +87,8 @@ export default class ClassRoom6 extends Room {
         'No way, this site is only for kids and teachers#',
       ),
     );
+    this.insertHitbox(10, 10, 10, 10);
+
     console.log('door6');
   }
 

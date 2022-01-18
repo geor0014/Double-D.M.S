@@ -8,6 +8,7 @@ import ClassRoom6 from './Classroom6.js';
 import Dialog from './Dialog.js';
 import Npc from './Npc.js';
 import QuestItem from './QuestItem.js';
+import Hitbox from './Hitbox.js';
 
 export default class DifficultHallway extends Room {
   private mainHallway: Room;
@@ -27,8 +28,8 @@ export default class DifficultHallway extends Room {
   private doll: QuestItem = new QuestItem(
     'doll',
     './assets/img/doll.png',
-    1036,
-    395
+    907,
+    474.5,
   );
 
   private pushOnce: boolean = true;
@@ -71,16 +72,16 @@ export default class DifficultHallway extends Room {
 
     // creates npcs with their dialogs for this room
     this.npcs.push(
-      new Npc('./assets/img/student-grey-hair-back-faced.png', 766, 430, [
+      new Npc('./assets/img/student-grey-hair-back-faced.png', 597, 500, [
         new Dialog('I heard there is this weird dude in the bathroom#'),
         new Dialog('I am too scared to go there#'),
       ]),
       new Npc('./assets/img/student-blue-hair-faced.png', 432, 322, [
         new Dialog('Hey there! Have you seen a teddy bear around here?#'),
         new Dialog(
-          'I lost mine. If you see it, can you bring it to me tomorrow?#'
+          'I lost mine. If you see it, can you bring it to me tomorrow?#',
         ),
-      ])
+      ]),
     );
 
     // PLAYER POSITTION UPON ENTERING
@@ -88,25 +89,13 @@ export default class DifficultHallway extends Room {
     this.player.setYPos(335);
 
     // creats the doors in the hallway
-    this.doors.push(new Door('./assets/img/door1.png', 343, 267));
-    this.doors.push(new Door('./assets/img/door1.png', 493, 267));
-    this.doors.push(new Door('./assets/img/door1.png', 688, 267));
-  }
+    this.doors.push(new Door('./assets/img/door1.png', 290, 228.5));
+    this.doors.push(new Door('./assets/img/door1.png', 460, 228.5));
+    this.doors.push(new Door('./assets/img/door1.png', 650, 228.5));
 
-  /**
-   * Methos to detect the input of the player
-   */
-  public processInput(): void {
-    // WALL COLLISION DETECTION
-    if (this.player.getYPos() > 292 && this.player.getYPos() < 425.5) {
-      this.player.movePlayer(this.canvas);
-      if (this.player.getYPos() <= 292) {
-        this.player.setYPos(294);
-      }
-      if (this.player.getYPos() >= 425.5) {
-        this.player.setYPos(423);
-      }
-    }
+    // HITBOX
+    // this.hitboxes.push(new Hitbox(384, 101.5, 285, 300));
+    this.insertHitbox(10, 10, 10, 10);
   }
 
   private addQuestItems(): void {
@@ -160,6 +149,7 @@ export default class DifficultHallway extends Room {
         if (this.player.collidesWith(this.doors[i])) {
           console.log('interact with door');
           // setting player starter position and image in the classrooms
+<<<<<<< HEAD
           this.player.setXPos(990);
           this.player.setYPos(548);
           // setting image of player according to the right character chosen
@@ -172,6 +162,11 @@ export default class DifficultHallway extends Room {
           } else if (cNum === 4) {
             this.player.setImage('./assets/img/player-girl1-down.png');
           }
+=======
+          this.player.setXPos(911);
+          this.player.setYPos(473);
+          this.player.setImage('./assets/img/player-boy-standing.png');
+>>>>>>> 8a8630a1189db8f7ca7a224c22a6cae82d13d694
           this.doorOpen.play();
           // checking which door
           if (i === 0) {
@@ -244,12 +239,7 @@ export default class DifficultHallway extends Room {
       });
 
     super.render();
+
+    // this.drawHitBoxes();
   }
-  /*
-  public drawRectengles(): void {
-    this.ctx.beginPath();
-    this.ctx.rect(0, 433, 50, 50);
-    this.ctx.stroke();
-  }
-  */
 }

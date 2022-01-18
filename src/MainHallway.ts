@@ -52,6 +52,10 @@ export default class MainHallway extends Room {
     this.player = new Player(this.canvas, charaterNum);
     this.player.setXPos(532);
     this.player.setYPos(681.5);
+<<<<<<< HEAD
+=======
+    this.player.setImage('./assets/img/player-boy1-up.png');
+>>>>>>> 8a8630a1189db8f7ca7a224c22a6cae82d13d694
 
     // reseting the items in the room
     this.collectibles = [];
@@ -60,35 +64,35 @@ export default class MainHallway extends Room {
 
     // creating collectibles
     this.collectibles.push(
-      new Candy(this.canvas.width / 2, this.canvas.height / 2),
-      new Hint(this.canvas.width / 3, this.canvas.height / 1.5)
+      new Candy(312, 276.5),
+      new Hint(this.canvas.width / 3, this.canvas.height / 1.5),
     );
 
     // creating the door
-    this.doors.push(new Door('./assets/img/door1.png', 530, 155));
+    this.doors.push(new Door('./assets/img/boss-room-door-closed.png', 511, 412));
 
     // creating Npc and dialog
     this.npcs.push(
       new Npc(
         './assets/img/teacher-front.png',
-        this.canvas.width / 2,
-        this.canvas.height - 500,
+        782,
+        315.5,
         [
           new Dialog('Heyy how are you today?#'),
           new Dialog('Good luck with your exams!#'),
-        ]
-      )
+        ],
+      ),
     );
 
     this.backpack = new QuestItem(
       'backpack',
       './assets/img/backpack.png',
-      321,
-      210
+      682,
+      318.5,
     );
 
     // HITBOX
-    // this.hitboxes.push(new Hitbox(377, 377, 130, 150));
+    this.hitboxes.push(new Hitbox(384, 101.5, 285, 300));
   }
 
   /**
@@ -120,14 +124,15 @@ export default class MainHallway extends Room {
       }
     }
 
-    if (this.player.getXPos() <= 14 && this.player.getYPos() >= 443.5) {
+    // Entrance for the hallway on the left hand side
+    if (this.player.getXPos() <= 162 && this.player.getYPos() >= 413.5) {
       if (this.eHallInteract === false) {
         this.easyHall = new EasyHallway(this.canvas, this, this.player);
         this.eHallInteract = true;
       }
-      // PLAYER POSITTION UPON ENTERING easy hall
-      this.player.setXPos(1055);
-      this.player.setYPos(351.5);
+      // PLAYER POSITION UPON ENTERING easy hall
+      this.player.setXPos(967);
+      this.player.setYPos(358);
       return this.easyHall;
     }
 
@@ -168,22 +173,6 @@ export default class MainHallway extends Room {
     }
   }
 
-  // HITBOX DETECTION
-  // /**
-  //  *
-  //  */
-  // public processInput(): void {
-  //   const move = true;
-  //   const prevX = this.player.getXPos();
-  //   const prevY = this.player.getYPos();
-
-  //   this.hitboxes.forEach((box) => {
-  //     if (!this.player.collidesWithHitbox(box)) {
-  //       this.player.movePlayer(this.canvas);
-  //     }
-  //   });
-  // }
-
   /**
    * Renders the main hallway
    */
@@ -200,9 +189,7 @@ export default class MainHallway extends Room {
 
     super.render();
 
-    this.hitboxes.forEach((box) => {
-      box.draw(this.canvas);
-    });
+    this.drawHitBoxes();
 
     // console.log(textToWrite);
     this.writeTextToCanvas(

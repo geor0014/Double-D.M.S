@@ -4,6 +4,7 @@ import Candy from './Candy.js';
 import Hint from './Hint.js';
 import DialogScreen from './DialogScreen.js';
 import HintScreen from './HintScreen.js';
+import Hitbox from './Hitbox.js';
 export default class Room extends Scene {
     xPos;
     yPos;
@@ -46,7 +47,28 @@ export default class Room extends Scene {
         this.yPos = newPos;
     }
     processInput() {
-        this.player.movePlayer(this.canvas);
+        const move = true;
+        const prevX = this.player.getXPos();
+        const prevY = this.player.getYPos();
+        this.hitboxes.forEach((box) => {
+            if (!this.player.collidesWithHitbox(box)) {
+                this.player.movePlayer(this.canvas, 'none');
+            }
+            else {
+                if (this.player.rectCollision(box, this.player) === 'left') {
+                    this.player.movePlayer(this.canvas, this.player.rectCollision(box, this.player));
+                }
+                if (this.player.rectCollision(box, this.player) === 'right') {
+                    this.player.movePlayer(this.canvas, this.player.rectCollision(box, this.player));
+                }
+                if (this.player.rectCollision(box, this.player) === 'top') {
+                    this.player.movePlayer(this.canvas, this.player.rectCollision(box, this.player));
+                }
+                if (this.player.rectCollision(box, this.player) === 'bottom') {
+                    this.player.movePlayer(this.canvas, this.player.rectCollision(box, this.player));
+                }
+            }
+        });
     }
     collectCollectibles() {
         this.collectibles.forEach((item, index) => {
@@ -166,6 +188,14 @@ export default class Room extends Scene {
     }
     draw(ctx) {
         ctx.drawImage(this.img, this.xPos, this.yPos);
+    }
+    drawHitBoxes() {
+        this.hitboxes.forEach((box) => {
+            box.draw(this.canvas);
+        });
+    }
+    insertHitbox(x, y, w, h) {
+        this.hitboxes.push(new Hitbox(x, y, w, h));
     }
     render() {
         this.writeTextToCanvas('press M to hide/unhide menu', 24, this.canvas.width / 2, this.canvas.height - 50, 'center', 'Blue');

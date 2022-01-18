@@ -8,6 +8,7 @@ import DifficultHallway from './DifficultHallway.js';
 import Player from './Player.js';
 import BossRoom from './BossRoom.js';
 import Dialog from './Dialog.js';
+import Hitbox from './Hitbox.js';
 import QuestItem from './QuestItem.js';
 export default class MainHallway extends Room {
     bRoomInteract;
@@ -29,16 +30,21 @@ export default class MainHallway extends Room {
         this.player = new Player(this.canvas, charaterNum);
         this.player.setXPos(532);
         this.player.setYPos(681.5);
+<<<<<<< HEAD
+=======
+        this.player.setImage('./assets/img/player-boy1-up.png');
+>>>>>>> 8a8630a1189db8f7ca7a224c22a6cae82d13d694
         this.collectibles = [];
         this.npcs = [];
         this.doors = [];
-        this.collectibles.push(new Candy(this.canvas.width / 2, this.canvas.height / 2), new Hint(this.canvas.width / 3, this.canvas.height / 1.5));
-        this.doors.push(new Door('./assets/img/door1.png', 530, 155));
-        this.npcs.push(new Npc('./assets/img/teacher-front.png', this.canvas.width / 2, this.canvas.height - 500, [
+        this.collectibles.push(new Candy(312, 276.5), new Hint(this.canvas.width / 3, this.canvas.height / 1.5));
+        this.doors.push(new Door('./assets/img/boss-room-door-closed.png', 511, 412));
+        this.npcs.push(new Npc('./assets/img/teacher-front.png', 782, 315.5, [
             new Dialog('Heyy how are you today?#'),
             new Dialog('Good luck with your exams!#'),
         ]));
-        this.backpack = new QuestItem('backpack', './assets/img/backpack.png', 321, 210);
+        this.backpack = new QuestItem('backpack', './assets/img/backpack.png', 682, 318.5);
+        this.hitboxes.push(new Hitbox(384, 101.5, 285, 300));
     }
     update(elapsed) {
         const nextScene = this.generalInteraction();
@@ -58,13 +64,13 @@ export default class MainHallway extends Room {
                 }
             }
         }
-        if (this.player.getXPos() <= 14 && this.player.getYPos() >= 443.5) {
+        if (this.player.getXPos() <= 162 && this.player.getYPos() >= 413.5) {
             if (this.eHallInteract === false) {
                 this.easyHall = new EasyHallway(this.canvas, this, this.player);
                 this.eHallInteract = true;
             }
-            this.player.setXPos(1055);
-            this.player.setYPos(351.5);
+            this.player.setXPos(967);
+            this.player.setYPos(358);
             return this.easyHall;
         }
         if (this.player.getXPos() >= 1060 && this.player.getYPos() >= 443.5) {
@@ -108,11 +114,15 @@ export default class MainHallway extends Room {
                 item.draw(this.ctx);
         });
         super.render();
+<<<<<<< HEAD
         this.hitboxes.forEach((box) => {
             box.draw(this.canvas);
         });
         this.writeTextToCanvas(this.textToPresent, 24, this.canvas.width / 2, 75, 'center', 'red');
         this.textToPresent = '';
+=======
+        this.drawHitBoxes();
+>>>>>>> 8a8630a1189db8f7ca7a224c22a6cae82d13d694
     }
 }
 //# sourceMappingURL=MainHallway.js.map

@@ -120,11 +120,36 @@ export default abstract class Room extends Scene {
     this.yPos = newPos;
   }
 
+  // HITBOX DETECTION AND MOVING THE PLAYER
   /**
-   * Methos to detect the input of the player
+   *
    */
   public processInput(): void {
-    this.player.movePlayer(this.canvas);
+    const move = true;
+    const prevX = this.player.getXPos();
+    const prevY = this.player.getYPos();
+
+    this.hitboxes.forEach((box) => {
+      if (!this.player.collidesWithHitbox(box)) {
+        this.player.movePlayer(this.canvas, 'none');
+      } else {
+        if (this.player.rectCollision(box, this.player) === 'left') {
+          this.player.movePlayer(this.canvas, this.player.rectCollision(box, this.player));
+        }
+
+        if (this.player.rectCollision(box, this.player) === 'right') {
+          this.player.movePlayer(this.canvas, this.player.rectCollision(box, this.player));
+        }
+
+        if (this.player.rectCollision(box, this.player) === 'top') {
+          this.player.movePlayer(this.canvas, this.player.rectCollision(box, this.player));
+        }
+
+        if (this.player.rectCollision(box, this.player) === 'bottom') {
+          this.player.movePlayer(this.canvas, this.player.rectCollision(box, this.player));
+        }
+      }
+    });
   }
 
   /**
@@ -307,7 +332,7 @@ export default abstract class Room extends Scene {
         620,
         714,
         'left',
-        'black'
+        'black',
       );
     }
   }
@@ -322,6 +347,27 @@ export default abstract class Room extends Scene {
   }
 
   /**
+   * Draws hitboxes
+   */
+  protected drawHitBoxes(): void {
+    this.hitboxes.forEach((box) => {
+      box.draw(this.canvas);
+    });
+  }
+
+  /**
+   * Adds a new hitbox to the array
+   *
+   * @param x of the hitbox
+   * @param y of the hitbox
+   * @param w of the hitbox
+   * @param h of the hitbox
+   */
+  protected insertHitbox(x: number, y: number, w: number, h: number): void {
+    this.hitboxes.push(new Hitbox(x, y, w, h));
+  }
+
+  /**
    * Draw all the necessary items to the screen
    */
   public render(): void {
@@ -333,7 +379,11 @@ export default abstract class Room extends Scene {
       this.canvas.width / 2,
       this.canvas.height - 50,
       'center',
+<<<<<<< HEAD
       'Blue'
+=======
+      'red',
+>>>>>>> 8a8630a1189db8f7ca7a224c22a6cae82d13d694
     );
 
     this.writeTextToCanvas(
@@ -342,7 +392,11 @@ export default abstract class Room extends Scene {
       this.canvas.width / 2,
       this.canvas.height - 80,
       'center',
+<<<<<<< HEAD
       'Blue'
+=======
+      'red',
+>>>>>>> 8a8630a1189db8f7ca7a224c22a6cae82d13d694
     );
 
     // DRAWS NPCS

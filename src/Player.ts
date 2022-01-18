@@ -57,11 +57,15 @@ export default class Player extends GameEntity {
    *
    * @param canvas item
    */
-  public movePlayer(canvas: HTMLCanvasElement): void {
+  public movePlayer(canvas: HTMLCanvasElement, collision?: string): void {
     // Moving right
     if (
       this.keyboard.isKeyDown(KeyListener.KEY_RIGHT) &&
-      this.getXPos() + this.getImage().width < canvas.width
+      this.getXPos() + this.getImage().width < canvas.width &&
+      (collision === 'none' ||
+      collision === 'left' ||
+      collision === 'bottom' ||
+      collision === 'top')
     ) {
       this.setXPos(this.getXPos() + this.xVelocity);
       this.walk.play();
@@ -78,7 +82,11 @@ export default class Player extends GameEntity {
     }
 
     // Moving left
-    if (this.keyboard.isKeyDown(KeyListener.KEY_LEFT) && this.getXPos() > 0) {
+    if (this.keyboard.isKeyDown(KeyListener.KEY_LEFT) && this.getXPos() > 0 &&
+    (collision === 'none' ||
+    collision === 'right' ||
+    collision === 'bottom' ||
+    collision === 'top')) {
       this.setXPos(this.getXPos() - this.xVelocity);
       this.walk.play();
 
@@ -94,7 +102,11 @@ export default class Player extends GameEntity {
     }
 
     // Moving up
-    if (this.keyboard.isKeyDown(KeyListener.KEY_UP) && this.getYPos() > 0) {
+    if (this.keyboard.isKeyDown(KeyListener.KEY_UP) && this.getYPos() > 0 &&
+    (collision === 'none' ||
+    collision === 'left' ||
+    collision === 'bottom' ||
+    collision === 'right')) {
       this.setYPos(this.getYPos() - this.yVelocity);
       this.walk.play();
 
@@ -112,7 +124,11 @@ export default class Player extends GameEntity {
     // Moving down
     if (
       this.keyboard.isKeyDown(KeyListener.KEY_DOWN) &&
-      this.getYPos() + this.getImage().height < canvas.height
+      this.getYPos() + this.getImage().height < canvas.height &&
+      (collision === 'none' ||
+      collision === 'left' ||
+      collision === 'right' ||
+      collision === 'top')
     ) {
       this.setYPos(this.getYPos() + this.yVelocity);
       this.walk.play();
@@ -211,6 +227,7 @@ export default class Player extends GameEntity {
     return this.userData;
   }
 
+<<<<<<< HEAD
   /**
    * Getter for character number
    *
@@ -218,5 +235,24 @@ export default class Player extends GameEntity {
    */
   public getCharacterNum(): number {
     return this.characterNum;
+=======
+  public rectCollision(box: Hitbox, player: Player): string {
+    const dx = (box.getXPos() + box.getWidth() / 2) - (player.getXPos() + player.getImage().width / 2);
+    const dy = (box.getYPos() + box.getHeight() / 2) - (player.getYPos() + player.getImage().height / 2);
+    const width = (box.getWidth() + player.getImage().width) / 2;
+    const height = (box.getHeight() + player.getImage().height) / 2;
+    const crossWidth = width * dy;
+    const crossHeight = height * dx;
+    let collision = 'none';
+
+    if(Math.abs(dx)<=width && Math.abs(dy)<=height){
+      if(crossWidth>crossHeight){
+        collision=(crossWidth>(-crossHeight))?'bottom':'left';
+      }else{
+        collision=(crossWidth>-(crossHeight))?'right':'top';
+      }
+    }
+    return (collision);
+>>>>>>> 8a8630a1189db8f7ca7a224c22a6cae82d13d694
   }
 }
