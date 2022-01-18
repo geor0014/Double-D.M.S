@@ -72,6 +72,7 @@ export default class ClassRoom1 extends Room {
                 console.log('cant use the pc at the moment');
             }
         }
+        console.log(`score is ${this.player.getUserData().getScore()}`);
         if (nextScene !== null) {
             return nextScene;
         }

@@ -19,6 +19,8 @@ export default class QuestionScreen extends Screen {
 
   private okPressed: boolean;
 
+  private textToPresent: string;
+
   /**
    * Creates new Question Screen
    *
@@ -53,6 +55,8 @@ export default class QuestionScreen extends Screen {
     // sets the background image position
     this.setXPos(0);
     this.setYPos(0);
+
+    this.textToPresent = 'No answer recieved';
   }
 
   /**
@@ -117,6 +121,7 @@ export default class QuestionScreen extends Screen {
       this.frameCounter === 10
     ) {
       this.qCounter += 1;
+      this.textToPresent = 'No answer recieved';
     }
 
     const userData = this.questions[this.qCounter].getUserData();
@@ -138,9 +143,7 @@ export default class QuestionScreen extends Screen {
       // console.log(`answer Recived ${answerRecived}`);
       if (answerRecived !== 0 && this.okPressed === true) {
         // this.okPressed = false;
-        console.log(
-          'your answer has been registered, please go to the next question >>'
-        );
+        this.textToPresent = 'your answer has been registered, please go to the next question >>';
       }
 
       // check if the answer chosen is correct
@@ -179,16 +182,16 @@ export default class QuestionScreen extends Screen {
       this.writeTextToCanvas(
         `Q num ${this.qCounter + 1} / ${this.questions.length}`,
         24,
-        this.canvas.width / 3,
-        220,
+        this.canvas.width / 5,
+        230,
         'center',
         'Red'
       );
 
       let textToWrite: string = '';
       let j: number = 0;
-      let textHPos: number = this.canvas.height / 3;
-      const textWPos: number = this.canvas.width / 1.9;
+      let textHPos: number = this.canvas.height / 3 + 20;
+      const textWPos: number = this.canvas.width / 5 - 20;
 
       // draws the question itself
       for (let i = 0; i < 3; i += 1) {
@@ -199,7 +202,7 @@ export default class QuestionScreen extends Screen {
           20,
           textWPos,
           textHPos,
-          'center',
+          'left',
           'black'
         );
         textHPos += 50;
@@ -216,7 +219,7 @@ export default class QuestionScreen extends Screen {
         this.writeTextToCanvas(
           textToWrite,
           20,
-          textWPos - 200,
+          this.canvas.width / 5,
           textHPos + 20,
           'left',
           'black'
@@ -244,5 +247,14 @@ export default class QuestionScreen extends Screen {
         'Red'
       );
     }
+
+    this.writeTextToCanvas(
+      this.textToPresent,
+      24 ,
+      this.canvas.width / 2,
+      675,
+      'center',
+      'red'
+    );
   }
 }

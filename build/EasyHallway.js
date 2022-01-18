@@ -6,6 +6,8 @@ import ClassRoom3 from './Classroom3.js';
 import Dialog from './Dialog.js';
 import Npc from './Npc.js';
 import Hint from './Hint.js';
+import Bathroom1 from './Bathroom1.js';
+import Bathroom2 from './Bathroom2.js';
 export default class EasyHallway extends Room {
     mainHallway;
     room1Interact;
@@ -16,6 +18,8 @@ export default class EasyHallway extends Room {
     class1;
     class2;
     class3;
+    bathroom1;
+    bathroom2;
     constructor(canvas, mainHallway, player) {
         super(canvas, './assets/img/easyHallway.png');
         console.log('creating easy hallway');
@@ -45,8 +49,8 @@ export default class EasyHallway extends Room {
         this.doors.push(new Door('./assets/img/door1.png', 632, 228.5));
         this.doors.push(new Door('./assets/img/door1.png', 450, 228.5));
         this.doors.push(new Door('./assets/img/door1.png', 280, 228.5));
-        this.doors.push(new Door('./assets/img/boy-bathroom-door.png', 100, 228.5));
         this.doors.push(new Door('./assets/img/girl-bathroom-door.png', 910, 228.5));
+        this.doors.push(new Door('./assets/img/boy-bathroom-door.png', 100, 228.5));
         this.insertHitbox(10, 10, 10, 10);
     }
     update(elapsed) {
@@ -109,6 +113,24 @@ export default class EasyHallway extends Room {
                             this.room3Interact = true;
                         }
                         return this.class3;
+                    }
+                    if (i === 3) {
+                        this.player.setXPos(911);
+                        this.player.setYPos(350);
+                        if (this.bathroomInteractGirl === false) {
+                            this.bathroom1 = new Bathroom1(this.canvas, this, this.player, this.isMenuShowing);
+                            this.bathroomInteractGirl = true;
+                        }
+                        return this.bathroom1;
+                    }
+                    if (i === 4) {
+                        this.player.setXPos(911);
+                        this.player.setYPos(350);
+                        if (this.bathroomInteractBoy === false) {
+                            this.bathroom2 = new Bathroom2(this.canvas, this, this.player, this.isMenuShowing);
+                            this.bathroomInteractBoy = true;
+                        }
+                        return this.bathroom2;
                     }
                 }
             }

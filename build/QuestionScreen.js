@@ -8,6 +8,7 @@ export default class QuestionScreen extends Screen {
     qCounter;
     frameCounter = 0;
     okPressed;
+    textToPresent;
     constructor(canvas, previousScene, questions) {
         super(canvas, './assets/img/computer-screen.png');
         this.keyboard = new KeyListener();
@@ -18,6 +19,7 @@ export default class QuestionScreen extends Screen {
         this.okPressed = false;
         this.setXPos(0);
         this.setYPos(0);
+        this.textToPresent = 'No answer recieved';
     }
     processInput() {
         if (this.keyboard.isKeyDown(KeyListener.KEY_ESC)) {
@@ -55,6 +57,7 @@ export default class QuestionScreen extends Screen {
             this.qCounter < this.questions.length - 1 &&
             this.frameCounter === 10) {
             this.qCounter += 1;
+            this.textToPresent = 'No answer recieved';
         }
         const userData = this.questions[this.qCounter].getUserData();
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -67,7 +70,7 @@ export default class QuestionScreen extends Screen {
                 answerRecived = this.reciveAnswer();
             }
             if (answerRecived !== 0 && this.okPressed === true) {
-                console.log('your answer has been registered, please go to the next question >>');
+                this.textToPresent = 'your answer has been registered, please go to the next question >>';
             }
             if (answerRecived === this.questions[this.qCounter].getRPos() + 1) {
                 userData.setScore(userData.getScore() + 1);
@@ -87,14 +90,14 @@ export default class QuestionScreen extends Screen {
     render() {
         this.draw(this.ctx);
         if (this.qCounter < this.questions.length) {
-            this.writeTextToCanvas(`Q num ${this.qCounter + 1} / ${this.questions.length}`, 24, this.canvas.width / 3, 220, 'center', 'Red');
+            this.writeTextToCanvas(`Q num ${this.qCounter + 1} / ${this.questions.length}`, 24, this.canvas.width / 5, 230, 'center', 'Red');
             let textToWrite = '';
             let j = 0;
-            let textHPos = this.canvas.height / 3;
-            const textWPos = this.canvas.width / 1.9;
+            let textHPos = this.canvas.height / 3 + 20;
+            const textWPos = this.canvas.width / 5 - 20;
             for (let i = 0; i < 3; i += 1) {
                 textToWrite = this.questions[this.qCounter].getText(i);
-                this.writeTextToCanvas(textToWrite, 20, textWPos, textHPos, 'center', 'black');
+                this.writeTextToCanvas(textToWrite, 20, textWPos, textHPos, 'left', 'black');
                 textHPos += 50;
             }
             for (let i = 0; i <= 2; i += 1) {
@@ -105,7 +108,7 @@ export default class QuestionScreen extends Screen {
                     textToWrite = `${i + 1} ${this.questions[this.qCounter].getWAns(j)}`;
                     j += 1;
                 }
-                this.writeTextToCanvas(textToWrite, 20, textWPos - 200, textHPos + 20, 'left', 'black');
+                this.writeTextToCanvas(textToWrite, 20, this.canvas.width / 5, textHPos + 20, 'left', 'black');
                 textHPos += 50;
             }
         }
@@ -115,6 +118,7 @@ export default class QuestionScreen extends Screen {
         else {
             this.writeTextToCanvas('Next Question >', 24, this.canvas.width / 2 + 100, 600, 'center', 'Red');
         }
+        this.writeTextToCanvas(this.textToPresent, 24, this.canvas.width / 2, 675, 'center', 'red');
     }
 }
 //# sourceMappingURL=QuestionScreen.js.map

@@ -78,23 +78,23 @@ export default class ClassRoom5 extends Room {
       new Question(
         this.player.getUserData(),
         ' Should you use free Anti-Virus?#',
-        'No, since the anti-virus can be a virus!#',
-        'No, since I know what I download!#',
-        'No, since I do not want to use an anti-virus!#',
+        'No, since the anti-virus can be a virus!',
+        'No, since I know what I download!',
+        'No, since I do not want to use an anti-virus!',
       ),
       new Question(
         this.player.getUserData(),
-        'Which of the following is NOT an example of cyberbullying',
-        'Inviting a friend to fight with you in a game#',
-        'Creating a fake profile to humiliate someone#',
-        'Posting or sharing embarrassing photos#',
+        'Which of the following is NOT an example of cyberbullying?#',
+        'Inviting a friend to fight with you in a game',
+        'Creating a fake profile to humiliate someone',
+        'Posting or sharing embarrassing photos',
       ),
       new Question(
         this.player.getUserData(),
         'What is a predator?#',
-        'Someone who uses the internet to do harm to others#',
-        'Someone who shares too much personal information#',
-        'Someone who regularly surfs the web#',
+        'Someone who uses the internet to do harm to others',
+        'Someone who shares too much personal information',
+        'Someone who regularly surfs the web',
       ),
     );
     this.insertHitbox(10, 10, 10, 10);

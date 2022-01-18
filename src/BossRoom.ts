@@ -82,7 +82,7 @@ export default class BossRoom extends Room {
     this.questions.push(
       new Question(
         this.player.getUserData(),
-        'So you finaly made it here...',
+        'So you finaly made it here...#',
         'I am ready to face you!',
         'who are you again?',
         'whatever...'
@@ -103,9 +103,9 @@ export default class BossRoom extends Room {
       ),
       new Question(
         this.player.getUserData(),
-        'Hey kid,# I can make you famous on tiktok very fast and you can make all your friends jealous!# Send me your address and your mother`s credit card to pay!!',
+        'Hey kid, I can make you famous on tiktok# very fast and you can make all your friends jealous!# Send me your address and your mother`s credit card to pay!!#',
         'Ignore and delete the message',
-        'OMG YES, I`ve always wanted to be famous take all my money!',
+        'OMG YES, I`ve always wanted to be famous take my money!',
         'I dont even like tik-tok'
       ),
       new Question(
@@ -113,7 +113,7 @@ export default class BossRoom extends Room {
         'How do you make sure that your data is secure enough?#',
         'Use a different password for different accounts',
         'Use an easy password you can use for every account',
-        'Use different passwords for different accounts which are too long to remember'
+        'Use different passwords which are too long'
       ),
       new Question(
         this.player.getUserData(),
@@ -131,10 +131,10 @@ export default class BossRoom extends Room {
       ),
       new Question(
         this.player.getUserData(),
-        'I`m visiting a site from a company or organization that I`ve heard of.# They want my name and phone number so I can enter a contest.# Is it OK to enter?#',
-        'I should check if it is really them, maybe ask my parents',
+        'I`m visiting a site from a company or organization that I`ve heard #of. They want my name and phone number so I can enter a contest.# Is it OK to enter?#',
+        'I should check if it is really them, and ask my parents',
         'Yeah I know this company I can trust them',
-        'No I should never give out information online for anything!'
+        'No I should never give out information online!'
       ),
       new Question(
         this.player.getUserData(),

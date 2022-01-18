@@ -8,6 +8,8 @@ import ClassRoom3 from './Classroom3.js';
 import Dialog from './Dialog.js';
 import Npc from './Npc.js';
 import Hint from './Hint.js';
+import Bathroom1 from './Bathroom1.js';
+import Bathroom2 from './Bathroom2.js';
 
 export default class EasyHallway extends Room {
   private mainHallway: Room;
@@ -28,6 +30,10 @@ export default class EasyHallway extends Room {
 
   private class3: ClassRoom3;
 
+  private bathroom1: Bathroom1;
+
+  private bathroom2: Bathroom2;
+
   /**
    * Initialises every attribute
    *
@@ -38,7 +44,7 @@ export default class EasyHallway extends Room {
   public constructor(
     canvas: HTMLCanvasElement,
     mainHallway: Room,
-    player: Player,
+    player: Player
   ) {
     super(canvas, './assets/img/easyHallway.png');
     console.log('creating easy hallway');
@@ -67,7 +73,7 @@ export default class EasyHallway extends Room {
 
     // creating collectibles
     this.collectibles.push(
-      new Hint(this.canvas.width / 3, this.canvas.height / 3),
+      new Hint(this.canvas.width / 3, this.canvas.height / 3)
     );
 
     // creates npcs with their dialogs for this room
@@ -75,27 +81,17 @@ export default class EasyHallway extends Room {
       new Npc('./assets/img/student-1-back-faced.png', 575, 495, [
         new Dialog('Hello, I lost my backpack....#'),
         new Dialog(
-          'Can you please look for it and bring it back to me tomorrow?#',
+          'Can you please look for it and bring it back to me tomorrow?#'
         ),
       ]),
-      new Npc(
-        './assets/img/student-black-haired-left-faced.png',
-        195,
-        315,
-        [
-          new Dialog('There are some things you should never share!#'),
-          new Dialog('I hope she will not be bullied#'),
-        ],
-      ),
-      new Npc(
-        './assets/img/student-red-right-faced.png',
-        155,
-        315,
-        [
-          new Dialog('Did you hear about Jessica?#'),
-          new Dialog('Cant believe she shared that picture :O#'),
-        ],
-      ),
+      new Npc('./assets/img/student-black-haired-left-faced.png', 195, 315, [
+        new Dialog('There are some things you should never share!#'),
+        new Dialog('I hope she will not be bullied#'),
+      ]),
+      new Npc('./assets/img/student-red-right-faced.png', 155, 315, [
+        new Dialog('Did you hear about Jessica?#'),
+        new Dialog('Cant believe she shared that picture :O#'),
+      ])
     );
 
     // creats the doors in the hallway
@@ -103,8 +99,8 @@ export default class EasyHallway extends Room {
     this.doors.push(new Door('./assets/img/door1.png', 450, 228.5));
     this.doors.push(new Door('./assets/img/door1.png', 280, 228.5));
 
-    this.doors.push(new Door('./assets/img/boy-bathroom-door.png', 100, 228.5));
     this.doors.push(new Door('./assets/img/girl-bathroom-door.png', 910, 228.5));
+    this.doors.push(new Door('./assets/img/boy-bathroom-door.png', 100, 228.5));
 
     this.insertHitbox(10, 10, 10, 10);
   }
@@ -167,7 +163,7 @@ export default class EasyHallway extends Room {
                 this.canvas,
                 this,
                 this.player,
-                this.isMenuShowing,
+                this.isMenuShowing
               );
               this.room1Interact = true;
             }
@@ -201,6 +197,40 @@ export default class EasyHallway extends Room {
               this.room3Interact = true;
             }
             return this.class3;
+          }
+          // checking which door
+          if (i === 3) {
+            // setting player starter position and image in the classrooms
+            this.player.setXPos(911);
+            this.player.setYPos(350);
+            // if this classroom was previously entered to
+            if (this.bathroomInteractGirl === false) {
+              this.bathroom1 = new Bathroom1(
+                this.canvas,
+                this,
+                this.player,
+                this.isMenuShowing
+              );
+              this.bathroomInteractGirl = true;
+            }
+            return this.bathroom1;
+          }
+          // checking which door
+          if (i === 4) {
+            // setting player starter position and image in the classrooms
+            this.player.setXPos(911);
+            this.player.setYPos(350);
+            // if this classroom was previously entered to
+            if (this.bathroomInteractBoy === false) {
+              this.bathroom2 = new Bathroom2(
+                this.canvas,
+                this,
+                this.player,
+                this.isMenuShowing
+              );
+              this.bathroomInteractBoy = true;
+            }
+            return this.bathroom2;
           }
         }
       }
