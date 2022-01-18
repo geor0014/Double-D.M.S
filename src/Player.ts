@@ -16,6 +16,8 @@ export default class Player extends GameEntity {
 
   private characterNum: number;
 
+  private collision: string = 'none';
+
   /**
    * Create new player
    *
@@ -57,15 +59,15 @@ export default class Player extends GameEntity {
    *
    * @param canvas item
    */
-  public movePlayer(canvas: HTMLCanvasElement, collision?: string): void {
+  public movePlayer(canvas: HTMLCanvasElement): void {
     // Moving right
     if (
       this.keyboard.isKeyDown(KeyListener.KEY_RIGHT) &&
       this.getXPos() + this.getImage().width < canvas.width &&
-      (collision === 'none' ||
-        collision === 'left' ||
-        collision === 'bottom' ||
-        collision === 'top')
+      (this.collision === 'none' ||
+        this.collision === 'left' ||
+        this.collision === 'bottom' ||
+        this.collision === 'top')
     ) {
       this.setXPos(this.getXPos() + this.xVelocity);
       this.walk.play();
@@ -85,10 +87,10 @@ export default class Player extends GameEntity {
     if (
       this.keyboard.isKeyDown(KeyListener.KEY_LEFT) &&
       this.getXPos() > 0 &&
-      (collision === 'none' ||
-        collision === 'right' ||
-        collision === 'bottom' ||
-        collision === 'top')
+      (this.collision === 'none' ||
+        this.collision === 'right' ||
+        this.collision === 'bottom' ||
+        this.collision === 'top')
     ) {
       this.setXPos(this.getXPos() - this.xVelocity);
       this.walk.play();
@@ -108,10 +110,10 @@ export default class Player extends GameEntity {
     if (
       this.keyboard.isKeyDown(KeyListener.KEY_UP) &&
       this.getYPos() > 0 &&
-      (collision === 'none' ||
-        collision === 'left' ||
-        collision === 'bottom' ||
-        collision === 'right')
+      (this.collision === 'none' ||
+        this.collision === 'left' ||
+        this.collision === 'bottom' ||
+        this.collision === 'right')
     ) {
       this.setYPos(this.getYPos() - this.yVelocity);
       this.walk.play();
@@ -131,10 +133,10 @@ export default class Player extends GameEntity {
     if (
       this.keyboard.isKeyDown(KeyListener.KEY_DOWN) &&
       this.getYPos() + this.getImage().height < canvas.height &&
-      (collision === 'none' ||
-        collision === 'left' ||
-        collision === 'right' ||
-        collision === 'top')
+      (this.collision === 'none' ||
+        this.collision === 'left' ||
+        this.collision === 'right' ||
+        this.collision === 'top')
     ) {
       this.setYPos(this.getYPos() + this.yVelocity);
       this.walk.play();
@@ -225,6 +227,24 @@ export default class Player extends GameEntity {
   }
 
   /**
+   * Setter for the velocity
+   *
+   * @param number new velocity
+   */
+  public setXVelocity(number: number): void {
+    this.xVelocity = number;
+  }
+
+  /**
+   * Setter for the velocity
+   *
+   * @param number new velocity
+   */
+  public setYVelocity(number: number): void {
+    this.yVelocity = number;
+  }
+
+  /**
    * getter for user data
    *
    * @returns user data
@@ -242,6 +262,14 @@ export default class Player extends GameEntity {
     return this.characterNum;
   }
 
+  /**
+   * Tells the side of the collision of the player with the hitbox
+   *
+   * @param box hitbox
+   * @param player of the game
+   * @returns a location of the player relative to the box
+   */
+  // eslint-disable-next-line class-methods-use-this
   public rectCollision(box: Hitbox, player: Player): string {
     const dx =
       box.getXPos() +
@@ -265,5 +293,13 @@ export default class Player extends GameEntity {
       }
     }
     return collision;
+  }
+
+  public setCollision(string: string): void {
+    this.collision = string;
+  }
+
+  public getCollision(): string {
+    return this.collision;
   }
 }

@@ -14,7 +14,7 @@ export default class DifficultHallway extends Room {
     class4;
     class5;
     class6;
-    doll = new QuestItem('doll', './assets/img/doll.png', 907, 474.5);
+    doll = new QuestItem('doll', './assets/img/doll.png', 1036, 395);
     pushOnce = true;
     constructor(canvas, mainHallway, player) {
         super(canvas, './assets/img/difficultHallway.png');
@@ -36,8 +36,6 @@ export default class DifficultHallway extends Room {
             new Dialog('Hey there! Have you seen a teddy bear around here?#'),
             new Dialog('I lost mine. If you see it, can you bring it to me tomorrow?#'),
         ]));
-        this.player.setXPos(13);
-        this.player.setYPos(335);
         this.doors.push(new Door('./assets/img/door1.png', 290, 228.5));
         this.doors.push(new Door('./assets/img/door1.png', 460, 228.5));
         this.doors.push(new Door('./assets/img/door1.png', 650, 228.5));
@@ -58,22 +56,10 @@ export default class DifficultHallway extends Room {
     }
     update(elapsed) {
         const nextScene = this.generalInteraction();
-        const cNum = this.player.getCharacterNum();
         if (this.player.getXPos() <= 12 && this.player.getYPos() >= 334.5) {
-            this.player.setXPos(1060);
+            this.player.setXPos(900);
             this.player.setYPos(443.5);
-            if (cNum === 1) {
-                this.player.setImage('./assets/img/player-boy1-left.png');
-            }
-            else if (cNum === 2) {
-                this.player.setImage('./assets/img/player-boy2-left.png');
-            }
-            else if (cNum === 3) {
-                this.player.setImage('./assets/img/player-girl2-left.png');
-            }
-            else if (cNum === 4) {
-                this.player.setImage('./assets/img/player-girl1-left.png');
-            }
+            this.player.setImage('./assets/img/player-boy-left.png');
             return this.mainHallway;
         }
         if (this.player.isInteracting()) {
@@ -82,18 +68,7 @@ export default class DifficultHallway extends Room {
                     console.log('interact with door');
                     this.player.setXPos(911);
                     this.player.setYPos(473);
-                    if (cNum === 1) {
-                        this.player.setImage('./assets/img/player-boy1-down.png');
-                    }
-                    else if (cNum === 2) {
-                        this.player.setImage('./assets/img/player-boy2-down.png');
-                    }
-                    else if (cNum === 3) {
-                        this.player.setImage('./assets/img/player-girl2-down.png');
-                    }
-                    else if (cNum === 4) {
-                        this.player.setImage('./assets/img/player-girl1-down.png');
-                    }
+                    this.player.setImage('./assets/img/player-boy-standing.png');
                     this.doorOpen.play();
                     if (i === 0) {
                         if (this.room4Interact === false) {

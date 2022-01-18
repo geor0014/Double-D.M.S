@@ -87,8 +87,8 @@ export default class MainHallway extends Room {
       318.5,
     );
 
-    // HITBOX
-    this.hitboxes.push(new Hitbox(384, 101.5, 285, 300));
+    // HITBOXS
+    // this.insertHitbox(955, 350.5, 300, 300);
   }
 
   /**
@@ -132,8 +132,9 @@ export default class MainHallway extends Room {
       return this.easyHall;
     }
 
-    if (this.player.getXPos() >= 1060 && this.player.getYPos() >= 443.5) {
-      if (this.player.getUserData().getScore() > 3) {
+    // Entrance for the hallway on the right hand side
+    if (this.player.getXPos() >= 909 && this.player.getYPos() >= 402.5) {
+      if (this.player.getUserData().getScore() > -1) {
         if (this.dHallInteract === false) {
           this.diffHall = new DifficultHallway(this.canvas, this, this.player);
           this.dHallInteract = true;

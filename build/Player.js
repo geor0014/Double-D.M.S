@@ -8,6 +8,7 @@ export default class Player extends GameEntity {
     walk;
     userData;
     characterNum;
+    collision = 'none';
     constructor(canvas, characterNum) {
         super('', canvas.width / 2, canvas.height / 2);
         this.userData = new UserData();
@@ -30,13 +31,13 @@ export default class Player extends GameEntity {
         this.walk = new Audio('./assets/sound/walk.ogg');
         console.log('creating player');
     }
-    movePlayer(canvas, collision) {
+    movePlayer(canvas) {
         if (this.keyboard.isKeyDown(KeyListener.KEY_RIGHT) &&
             this.getXPos() + this.getImage().width < canvas.width &&
-            (collision === 'none' ||
-                collision === 'left' ||
-                collision === 'bottom' ||
-                collision === 'top')) {
+            (this.collision === 'none' ||
+                this.collision === 'left' ||
+                this.collision === 'bottom' ||
+                this.collision === 'top')) {
             this.setXPos(this.getXPos() + this.xVelocity);
             this.walk.play();
             if (this.characterNum === 1) {
@@ -54,10 +55,10 @@ export default class Player extends GameEntity {
         }
         if (this.keyboard.isKeyDown(KeyListener.KEY_LEFT) &&
             this.getXPos() > 0 &&
-            (collision === 'none' ||
-                collision === 'right' ||
-                collision === 'bottom' ||
-                collision === 'top')) {
+            (this.collision === 'none' ||
+                this.collision === 'right' ||
+                this.collision === 'bottom' ||
+                this.collision === 'top')) {
             this.setXPos(this.getXPos() - this.xVelocity);
             this.walk.play();
             if (this.characterNum === 1) {
@@ -75,10 +76,10 @@ export default class Player extends GameEntity {
         }
         if (this.keyboard.isKeyDown(KeyListener.KEY_UP) &&
             this.getYPos() > 0 &&
-            (collision === 'none' ||
-                collision === 'left' ||
-                collision === 'bottom' ||
-                collision === 'right')) {
+            (this.collision === 'none' ||
+                this.collision === 'left' ||
+                this.collision === 'bottom' ||
+                this.collision === 'right')) {
             this.setYPos(this.getYPos() - this.yVelocity);
             this.walk.play();
             if (this.characterNum === 1) {
@@ -96,10 +97,10 @@ export default class Player extends GameEntity {
         }
         if (this.keyboard.isKeyDown(KeyListener.KEY_DOWN) &&
             this.getYPos() + this.getImage().height < canvas.height &&
-            (collision === 'none' ||
-                collision === 'left' ||
-                collision === 'right' ||
-                collision === 'top')) {
+            (this.collision === 'none' ||
+                this.collision === 'left' ||
+                this.collision === 'right' ||
+                this.collision === 'top')) {
             this.setYPos(this.getYPos() + this.yVelocity);
             this.walk.play();
             if (this.characterNum === 1) {
@@ -153,6 +154,12 @@ export default class Player extends GameEntity {
         }
         return false;
     }
+    setXVelocity(number) {
+        this.xVelocity = number;
+    }
+    setYVelocity(number) {
+        this.yVelocity = number;
+    }
     getUserData() {
         return this.userData;
     }
@@ -180,6 +187,12 @@ export default class Player extends GameEntity {
             }
         }
         return collision;
+    }
+    setCollision(string) {
+        this.collision = string;
+    }
+    getCollision() {
+        return this.collision;
     }
 }
 //# sourceMappingURL=Player.js.map
