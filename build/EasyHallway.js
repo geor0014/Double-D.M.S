@@ -51,11 +51,10 @@ export default class EasyHallway extends Room {
     }
     update(elapsed) {
         const nextScene = this.generalInteraction();
-<<<<<<< HEAD
         const cNum = this.player.getCharacterNum();
-        if (this.player.getXPos() >= 1060 && this.player.getYPos() >= 309.5) {
-            this.player.setXPos(14);
-            this.player.setYPos(443.5);
+        if (this.player.getXPos() >= 969 && this.player.getYPos() >= 309.5) {
+            this.player.setXPos(163);
+            this.player.setYPos(440);
             if (cNum === 1) {
                 this.player.setImage('./assets/img/player-boy1-right.png');
             }
@@ -68,12 +67,6 @@ export default class EasyHallway extends Room {
             else if (cNum === 4) {
                 this.player.setImage('./assets/img/player-girl1-right.png');
             }
-=======
-        if (this.player.getXPos() >= 969 && this.player.getYPos() >= 309.5) {
-            this.player.setXPos(163);
-            this.player.setYPos(440);
-            this.player.setImage('./assets/img/player-boy-right.png');
->>>>>>> 8a8630a1189db8f7ca7a224c22a6cae82d13d694
             console.log('main halwway return');
             return this.mainHallway;
         }
@@ -81,9 +74,8 @@ export default class EasyHallway extends Room {
             for (let i = 0; i < this.doors.length; i += 1) {
                 if (this.player.collidesWith(this.doors[i])) {
                     console.log('interact with door');
-<<<<<<< HEAD
-                    this.player.setXPos(990);
-                    this.player.setYPos(548);
+                    this.player.setXPos(911);
+                    this.player.setYPos(473);
                     if (cNum === 1) {
                         this.player.setImage('./assets/img/player-boy1-down.png');
                     }
@@ -96,11 +88,6 @@ export default class EasyHallway extends Room {
                     else if (cNum === 4) {
                         this.player.setImage('./assets/img/player-girl1-down.png');
                     }
-=======
-                    this.player.setXPos(911);
-                    this.player.setYPos(473);
-                    this.player.setImage('./assets/img/player-boy-standing.png');
->>>>>>> 8a8630a1189db8f7ca7a224c22a6cae82d13d694
                     this.doorOpen.play();
                     if (i === 0) {
                         if (this.room1Interact === false) {

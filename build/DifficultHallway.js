@@ -80,9 +80,8 @@ export default class DifficultHallway extends Room {
             for (let i = 0; i < this.doors.length; i += 1) {
                 if (this.player.collidesWith(this.doors[i])) {
                     console.log('interact with door');
-<<<<<<< HEAD
-                    this.player.setXPos(990);
-                    this.player.setYPos(548);
+                    this.player.setXPos(911);
+                    this.player.setYPos(473);
                     if (cNum === 1) {
                         this.player.setImage('./assets/img/player-boy1-down.png');
                     }
@@ -95,11 +94,6 @@ export default class DifficultHallway extends Room {
                     else if (cNum === 4) {
                         this.player.setImage('./assets/img/player-girl1-down.png');
                     }
-=======
-                    this.player.setXPos(911);
-                    this.player.setYPos(473);
-                    this.player.setImage('./assets/img/player-boy-standing.png');
->>>>>>> 8a8630a1189db8f7ca7a224c22a6cae82d13d694
                     this.doorOpen.play();
                     if (i === 0) {
                         if (this.room4Interact === false) {

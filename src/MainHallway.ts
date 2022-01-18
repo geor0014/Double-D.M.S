@@ -52,10 +52,6 @@ export default class MainHallway extends Room {
     this.player = new Player(this.canvas, charaterNum);
     this.player.setXPos(532);
     this.player.setYPos(681.5);
-<<<<<<< HEAD
-=======
-    this.player.setImage('./assets/img/player-boy1-up.png');
->>>>>>> 8a8630a1189db8f7ca7a224c22a6cae82d13d694
 
     // reseting the items in the room
     this.collectibles = [];

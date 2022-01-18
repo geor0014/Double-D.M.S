@@ -148,6 +148,8 @@ export default class BossRoom extends Room {
     // creating a new boss
     this.boss = new Boss();
     this.bossNpc = new Npc('./assets/img/empty-boss.png', 430, 341, []);
+
+    this.insertHitbox(10, 10, 10, 10);
   }
 
   /**

@@ -30,10 +30,6 @@ export default class MainHallway extends Room {
         this.player = new Player(this.canvas, charaterNum);
         this.player.setXPos(532);
         this.player.setYPos(681.5);
-<<<<<<< HEAD
-=======
-        this.player.setImage('./assets/img/player-boy1-up.png');
->>>>>>> 8a8630a1189db8f7ca7a224c22a6cae82d13d694
         this.collectibles = [];
         this.npcs = [];
         this.doors = [];
@@ -114,15 +110,9 @@ export default class MainHallway extends Room {
                 item.draw(this.ctx);
         });
         super.render();
-<<<<<<< HEAD
-        this.hitboxes.forEach((box) => {
-            box.draw(this.canvas);
-        });
+        this.drawHitBoxes();
         this.writeTextToCanvas(this.textToPresent, 24, this.canvas.width / 2, 75, 'center', 'red');
         this.textToPresent = '';
-=======
-        this.drawHitBoxes();
->>>>>>> 8a8630a1189db8f7ca7a224c22a6cae82d13d694
     }
 }
 //# sourceMappingURL=MainHallway.js.map

@@ -78,11 +78,7 @@ export default class ClassRoom1 extends Room {
     );
 
     // creating the door for the classroom
-<<<<<<< HEAD
-    this.doors.push(new Door('./assets/img/door1.png', 985, 485));
-=======
     this.doors.push(new Door('./assets/img/door1.png', 912, 400.5));
->>>>>>> 8a8630a1189db8f7ca7a224c22a6cae82d13d694
 
     // creating questions for this classroom
     this.questions.push(

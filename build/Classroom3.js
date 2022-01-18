@@ -19,11 +19,7 @@ export default class ClassRoom3 extends Room {
         this.doors = [];
         this.questions = [];
         this.computer = new Computer(266, 165.5);
-<<<<<<< HEAD
-        this.doors.push(new Door('./assets/img/door1.png', 985, 485));
-=======
         this.doors.push(new Door('./assets/img/door1.png', 912, 390));
->>>>>>> 8a8630a1189db8f7ca7a224c22a6cae82d13d694
         this.questions.push(new Question(this.player.getUserData(), 'You see the following post:#“Hey look at Timmy`s head, man he looks horrible! Share this video or we will stop talking to you!” # What should you do? ', 'Report it and help poor Timmy', 'Share it I don`t want to be alone', 'Ignore and let it happen '), new Question(this.player.getUserData(), 'My parents and I have established rules as to what I can do on the Internet when Im home,# but Im at a friend`s house. #Should I go by my parents rules or do whatever my friend does?', 'Go by your parents rules', 'Do whatever your friend does ', 'It doesn`t really matter'));
         this.insertHitbox(10, 10, 10, 10);
         console.log('CLASSROOM3');

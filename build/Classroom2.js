@@ -24,11 +24,7 @@ export default class ClassRoom2 extends Room {
         this.questions = [];
         this.computer = new Computer(266, 165.5);
         this.collectibles.push(new Hint(this.canvas.width / 2 - 100, this.canvas.height / 2 - 70));
-<<<<<<< HEAD
-        this.doors.push(new Door('./assets/img/door1.png', 985, 485));
-=======
         this.doors.push(new Door('./assets/img/door1.png', 912, 400.5));
->>>>>>> 8a8630a1189db8f7ca7a224c22a6cae82d13d694
         this.questions.push(new Question(this.player.getUserData(), 'You are creating an account on your favorite social media.# Before you can access it,#they ask you to accept the general terms of condition!# What do you do?', 'Ask your parents what they think', 'Not read it and accept it', 'Read through everything and decide if you accept or not'), new Question(this.player.getUserData(), 'Which of these files are safe to download?#', 'Game.exe', 'Virus.exe ', 'Trojan.exe'));
         this.insertHitbox(10, 10, 10, 10);
         console.log('CLASSROOM2');

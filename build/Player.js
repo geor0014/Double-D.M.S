@@ -52,7 +52,8 @@ export default class Player extends GameEntity {
                 this.setImage('./assets/img/player-girl1-right.png');
             }
         }
-        if (this.keyboard.isKeyDown(KeyListener.KEY_LEFT) && this.getXPos() > 0 &&
+        if (this.keyboard.isKeyDown(KeyListener.KEY_LEFT) &&
+            this.getXPos() > 0 &&
             (collision === 'none' ||
                 collision === 'right' ||
                 collision === 'bottom' ||
@@ -72,7 +73,8 @@ export default class Player extends GameEntity {
                 this.setImage('./assets/img/player-girl1-left.png');
             }
         }
-        if (this.keyboard.isKeyDown(KeyListener.KEY_UP) && this.getYPos() > 0 &&
+        if (this.keyboard.isKeyDown(KeyListener.KEY_UP) &&
+            this.getYPos() > 0 &&
             (collision === 'none' ||
                 collision === 'left' ||
                 collision === 'bottom' ||
@@ -154,13 +156,16 @@ export default class Player extends GameEntity {
     getUserData() {
         return this.userData;
     }
-<<<<<<< HEAD
     getCharacterNum() {
         return this.characterNum;
-=======
+    }
     rectCollision(box, player) {
-        const dx = (box.getXPos() + box.getWidth() / 2) - (player.getXPos() + player.getImage().width / 2);
-        const dy = (box.getYPos() + box.getHeight() / 2) - (player.getYPos() + player.getImage().height / 2);
+        const dx = box.getXPos() +
+            box.getWidth() / 2 -
+            (player.getXPos() + player.getImage().width / 2);
+        const dy = box.getYPos() +
+            box.getHeight() / 2 -
+            (player.getYPos() + player.getImage().height / 2);
         const width = (box.getWidth() + player.getImage().width) / 2;
         const height = (box.getHeight() + player.getImage().height) / 2;
         const crossWidth = width * dy;
@@ -168,14 +173,13 @@ export default class Player extends GameEntity {
         let collision = 'none';
         if (Math.abs(dx) <= width && Math.abs(dy) <= height) {
             if (crossWidth > crossHeight) {
-                collision = (crossWidth > (-crossHeight)) ? 'bottom' : 'left';
+                collision = crossWidth > -crossHeight ? 'bottom' : 'left';
             }
             else {
-                collision = (crossWidth > -(crossHeight)) ? 'right' : 'top';
+                collision = crossWidth > -crossHeight ? 'right' : 'top';
             }
         }
-        return (collision);
->>>>>>> 8a8630a1189db8f7ca7a224c22a6cae82d13d694
+        return collision;
     }
 }
 //# sourceMappingURL=Player.js.map
