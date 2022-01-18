@@ -47,28 +47,7 @@ export default class Room extends Scene {
         this.yPos = newPos;
     }
     processInput() {
-        const move = true;
-        const prevX = this.player.getXPos();
-        const prevY = this.player.getYPos();
-        this.hitboxes.forEach((box) => {
-            if (!this.player.collidesWithHitbox(box)) {
-                this.player.movePlayer(this.canvas, 'none');
-            }
-            else {
-                if (this.player.rectCollision(box, this.player) === 'left') {
-                    this.player.movePlayer(this.canvas, this.player.rectCollision(box, this.player));
-                }
-                if (this.player.rectCollision(box, this.player) === 'right') {
-                    this.player.movePlayer(this.canvas, this.player.rectCollision(box, this.player));
-                }
-                if (this.player.rectCollision(box, this.player) === 'top') {
-                    this.player.movePlayer(this.canvas, this.player.rectCollision(box, this.player));
-                }
-                if (this.player.rectCollision(box, this.player) === 'bottom') {
-                    this.player.movePlayer(this.canvas, this.player.rectCollision(box, this.player));
-                }
-            }
-        });
+        this.player.movePlayer(this.canvas);
     }
     collectCollectibles() {
         this.collectibles.forEach((item, index) => {

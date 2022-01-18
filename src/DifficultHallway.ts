@@ -28,8 +28,8 @@ export default class DifficultHallway extends Room {
   private doll: QuestItem = new QuestItem(
     'doll',
     './assets/img/doll.png',
-    907,
-    474.5,
+    1036,
+    395,
   );
 
   private pushOnce: boolean = true;
@@ -85,8 +85,8 @@ export default class DifficultHallway extends Room {
     );
 
     // PLAYER POSITTION UPON ENTERING
-    this.player.setXPos(13);
-    this.player.setYPos(335);
+    // this.player.setXPos(13);
+    // this.player.setYPos(335);
 
     // creats the doors in the hallway
     this.doors.push(new Door('./assets/img/door1.png', 290, 228.5));
@@ -123,22 +123,12 @@ export default class DifficultHallway extends Room {
   public update(elapsed: number): Scene {
     // calling general checkups from Room class
     const nextScene: Scene = this.generalInteraction();
-    const cNum: number = this.player.getCharacterNum();
 
     // LEAVES DIFFICULT HALLWAY
     if (this.player.getXPos() <= 12 && this.player.getYPos() >= 334.5) {
-      this.player.setXPos(1060);
+      this.player.setXPos(900);
       this.player.setYPos(443.5);
-      // setting image of player according to the right character chosen
-      if (cNum === 1) {
-        this.player.setImage('./assets/img/player-boy1-left.png');
-      } else if (cNum === 2) {
-        this.player.setImage('./assets/img/player-boy2-left.png');
-      } else if (cNum === 3) {
-        this.player.setImage('./assets/img/player-girl2-left.png');
-      } else if (cNum === 4) {
-        this.player.setImage('./assets/img/player-girl1-left.png');
-      }
+      this.player.setImage('./assets/img/player-boy-left.png');
       return this.mainHallway;
     }
 
@@ -151,16 +141,7 @@ export default class DifficultHallway extends Room {
           // setting player starter position and image in the classrooms
           this.player.setXPos(911);
           this.player.setYPos(473);
-          // setting image of player according to the right character chosen
-          if (cNum === 1) {
-            this.player.setImage('./assets/img/player-boy1-down.png');
-          } else if (cNum === 2) {
-            this.player.setImage('./assets/img/player-boy2-down.png');
-          } else if (cNum === 3) {
-            this.player.setImage('./assets/img/player-girl2-down.png');
-          } else if (cNum === 4) {
-            this.player.setImage('./assets/img/player-girl1-down.png');
-          }
+          this.player.setImage('./assets/img/player-boy-standing.png');
           this.doorOpen.play();
           // checking which door
           if (i === 0) {

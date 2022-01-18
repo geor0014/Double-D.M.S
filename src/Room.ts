@@ -120,36 +120,48 @@ export default abstract class Room extends Scene {
     this.yPos = newPos;
   }
 
-  // HITBOX DETECTION AND MOVING THE PLAYER
   /**
-   *
+   * HITBOX DETECTION AND MOVING THE PLAYER
    */
   public processInput(): void {
-    const move = true;
-    const prevX = this.player.getXPos();
-    const prevY = this.player.getYPos();
+    // this.hitboxes.forEach((box) => {
+    //   this.player.setCollision(this.player.rectCollision(box, this.player));
+    //   this.player.movePlayer(this.canvas);
+    // });
 
-    this.hitboxes.forEach((box) => {
-      if (!this.player.collidesWithHitbox(box)) {
-        this.player.movePlayer(this.canvas, 'none');
-      } else {
-        if (this.player.rectCollision(box, this.player) === 'left') {
-          this.player.movePlayer(this.canvas, this.player.rectCollision(box, this.player));
-        }
+    this.player.movePlayer(this.canvas);
 
-        if (this.player.rectCollision(box, this.player) === 'right') {
-          this.player.movePlayer(this.canvas, this.player.rectCollision(box, this.player));
-        }
+    // this.hitboxes.forEach((box) => {
+    //   if (!this.player.collidesWithHitbox(box)) {
+    //     this.player.movePlayer(this.canvas, 'none');
+    //   } else {
+    //     if (this.player.rectCollision(box, this.player) === 'left') {
+    //       this.player.movePlayer(this.canvas, this.player.rectCollision(box, this.player));
+    //     }
 
-        if (this.player.rectCollision(box, this.player) === 'top') {
-          this.player.movePlayer(this.canvas, this.player.rectCollision(box, this.player));
-        }
+    //     if (this.player.rectCollision(box, this.player) === 'right') {
+    //       this.player.movePlayer(this.canvas, this.player.rectCollision(box, this.player));
+    //     }
 
-        if (this.player.rectCollision(box, this.player) === 'bottom') {
-          this.player.movePlayer(this.canvas, this.player.rectCollision(box, this.player));
-        }
-      }
-    });
+    //     if (this.player.rectCollision(box, this.player) === 'top') {
+    //       this.player.movePlayer(this.canvas, this.player.rectCollision(box, this.player));
+    //     }
+
+    //     if (this.player.rectCollision(box, this.player) === 'bottom') {
+    //       this.player.movePlayer(this.canvas, this.player.rectCollision(box, this.player));
+    //     }
+    //   }
+    // });
+    // this.player.movePlayer(this.canvas);
+    // for (let i = 0; i < this.hitboxes.length + 1; i += 1) {
+    //   for (let j = 0; j < i; j += 1) {
+    //     this.player.setCollision(this.player.rectCollision(this.hitboxes[j], this.player));
+    //     if (this.player.getCollision() !== 'none') {
+    //       this.player.movePlayer(this.canvas);
+    //     }
+    //   }
+    // }
+    // console.log(this.hitboxes);
   }
 
   /**
@@ -311,7 +323,7 @@ export default abstract class Room extends Scene {
         620,
         647,
         'left',
-        'black'
+        'black',
       );
     }
 
@@ -322,7 +334,7 @@ export default abstract class Room extends Scene {
         620,
         682,
         'left',
-        'black'
+        'black',
       );
     }
     if (this.player.getUserData().getQuests()[2]) {
@@ -379,7 +391,7 @@ export default abstract class Room extends Scene {
       this.canvas.width / 2,
       this.canvas.height - 50,
       'center',
-      'Blue'
+      'Blue',
     );
 
     this.writeTextToCanvas(
@@ -388,7 +400,7 @@ export default abstract class Room extends Scene {
       this.canvas.width / 2,
       this.canvas.height - 80,
       'center',
-      'Blue'
+      'Blue',
     );
 
     // DRAWS NPCS

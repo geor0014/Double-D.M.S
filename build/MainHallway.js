@@ -8,7 +8,6 @@ import DifficultHallway from './DifficultHallway.js';
 import Player from './Player.js';
 import BossRoom from './BossRoom.js';
 import Dialog from './Dialog.js';
-import Hitbox from './Hitbox.js';
 import QuestItem from './QuestItem.js';
 export default class MainHallway extends Room {
     bRoomInteract;
@@ -40,7 +39,6 @@ export default class MainHallway extends Room {
             new Dialog('Good luck with your exams!#'),
         ]));
         this.backpack = new QuestItem('backpack', './assets/img/backpack.png', 682, 318.5);
-        this.hitboxes.push(new Hitbox(384, 101.5, 285, 300));
     }
     update(elapsed) {
         const nextScene = this.generalInteraction();
@@ -69,7 +67,11 @@ export default class MainHallway extends Room {
             this.player.setYPos(358);
             return this.easyHall;
         }
+<<<<<<< HEAD
         if (this.player.getXPos() >= 1060 && this.player.getYPos() >= 443.5) {
+=======
+        if (this.player.getXPos() >= 909 && this.player.getYPos() >= 402.5) {
+>>>>>>> 9fe35866d4b223fa38a7b0520b341536e39fed5b
             if (this.player.getUserData().getScore() > -1) {
                 if (this.dHallInteract === false) {
                     this.diffHall = new DifficultHallway(this.canvas, this, this.player);
