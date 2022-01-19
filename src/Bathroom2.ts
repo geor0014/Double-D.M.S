@@ -57,7 +57,16 @@ export default class Bathroom2 extends Room {
     // creating the door for the classroom
     this.doors.push(new Door('./assets/img/boy-bathroom-door.png', 912, 265));
 
-    this.insertHitbox(10, 10, 10, 10);
+    this.insertHitbox(910, 435.5, 50, 70, 1);
+    this.insertHitbox(956, 136.5, 10, 242, 1);
+    this.insertHitbox(479, 181.5, 410, 70, 1);
+    this.insertHitbox(909, 298.5, 10, 10, 1);
+    this.insertHitbox(233, 535.5, 630, 10, 1);
+    this.insertHitbox(432, 311.5, 45, 160, 1);
+    this.insertHitbox(336, 180.5, 45, 290, 1);
+    this.insertHitbox(240, 180.5, 45, 290, 1);
+    this.insertHitbox(170, 179.5, 21, 370, 1);
+    this.insertHitbox(188, 122, 720, 10, 1);
 
     console.log('Bathroom1');
   }
@@ -113,6 +122,7 @@ export default class Bathroom2 extends Room {
   public render(): void {
     this.draw(this.ctx);
     super.render();
+    this.drawHitBoxes();
     //console.log(this.player.getXPos(), this.player.getYPos());
   }
 }
