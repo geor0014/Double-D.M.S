@@ -46,7 +46,16 @@ export default class BossRoom extends Room {
         this.music = new Audio('./assets/sound/bossroom.mp3');
         this.music.volume = 0.09;
         setTimeout(() => this.music.play(), 100);
-        this.insertHitbox(10, 10, 10, 10, 1);
+        this.insertHitbox(237, 643, 230, 5, 1);
+        this.insertHitbox(478, 689, 150, 5, 1);
+        this.insertHitbox(231, 295, 5, 290, 1);
+        this.insertHitbox(282, 292, 50, 5, 1);
+        this.insertHitbox(336, 90, 5, 155, 1);
+        this.insertHitbox(379, 90, 400, 5, 1);
+        this.insertHitbox(776, 145, 5, 144, 1);
+        this.insertHitbox(820, 293, 40, 5, 1);
+        this.insertHitbox(860, 342, 5, 250, 1);
+        this.insertHitbox(625, 638, 195, 5, 1);
     }
     update(elapsed) {
         this.gameFrame += 1;
@@ -104,6 +113,7 @@ export default class BossRoom extends Room {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.draw(this.ctx);
         this.boss.draw(this.ctx);
+        this.drawHitBoxes();
         super.render();
     }
 }

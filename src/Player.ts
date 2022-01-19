@@ -18,6 +18,8 @@ export default class Player extends GameEntity {
 
   private collision: string = 'none';
 
+  private walkPath: string;
+
   /**
    * Create new player
    *
@@ -47,10 +49,9 @@ export default class Player extends GameEntity {
     // creates key listener
     this.keyboard = new KeyListener();
 
+    this.walkPath = './assets/sound/walk.ogg';
     // audio of player walking
-    this.walk = new Audio('./assets/sound/walk.ogg');
-
-    console.log('creating player');
+    this.walk = new Audio(this.walkPath);
   }
 
   /**
@@ -301,5 +302,9 @@ export default class Player extends GameEntity {
 
   public getCollision(): string {
     return this.collision;
+  }
+
+  public setWalkPath(path: string): void {
+    this.walkPath = path;
   }
 }
