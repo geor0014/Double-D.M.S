@@ -198,5 +198,8 @@ export default class Player extends GameEntity {
     setWalkPath(path) {
         this.walkPath = path;
     }
+    getWalkPath() {
+        return this.walkPath;
+    }
 }
 //# sourceMappingURL=Player.js.map

@@ -43,6 +43,8 @@ export default class MainHallway extends Room {
             new Dialog('Good luck with your exams!#', ['Thanks!', 'Thank you'], ['', '']),
         ]));
         this.backpack = new QuestItem('backpack', './assets/img/backpack.png', 682, 318.5);
+        this.player.setWalkPath('./assets/sound/stoneWalk.ogg');
+        console.log(this.player.getWalkPath());
         this.insertHitbox(382, 101, 300, 300, 1);
         this.insertHitbox(176, 102, 170, 105, 1);
         this.insertHitbox(150, 260, 50, 200, 1);

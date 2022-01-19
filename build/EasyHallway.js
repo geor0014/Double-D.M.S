@@ -71,7 +71,6 @@ export default class EasyHallway extends Room {
             else if (cNum === 4) {
                 this.player.setImage('./assets/img/player-girl1-right.png');
             }
-            console.log('main halwway return');
             return this.mainHallway;
         }
         if (this.player.isInteracting()) {

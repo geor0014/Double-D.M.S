@@ -307,4 +307,8 @@ export default class Player extends GameEntity {
   public setWalkPath(path: string): void {
     this.walkPath = path;
   }
+
+  public getWalkPath(): string {
+    return this.walkPath;
+  }
 }
