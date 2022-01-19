@@ -29,6 +29,8 @@ export default class BossRoom extends Room {
 
   private endingScreen: boolean = false;
 
+  private music: HTMLAudioElement;
+
   /**
    * creats a new classroom
    *
@@ -143,6 +145,10 @@ export default class BossRoom extends Room {
     // creating a new boss
     this.boss = new Boss();
     this.bossNpc = new Npc('./assets/img/empty-boss.png', 470, 230, []);
+
+    this.music = new Audio('./assets/sound/bossroom.mp3');
+    this.music.volume = 0.09;
+    setTimeout(() => this.music.play(), 100);
 
     this.insertHitbox(10, 10, 10, 10, 1);
   }
