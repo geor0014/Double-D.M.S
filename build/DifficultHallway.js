@@ -14,7 +14,7 @@ export default class DifficultHallway extends Room {
     class4;
     class5;
     class6;
-    doll = new QuestItem('doll', './assets/img/doll.png', 1036, 395);
+    doll = new QuestItem('doll', './assets/img/doll.png', 930, 471.5);
     pushOnce = true;
     constructor(canvas, mainHallway, player) {
         super(canvas, './assets/img/difficultHallway.png');
@@ -56,7 +56,7 @@ export default class DifficultHallway extends Room {
     }
     update(elapsed) {
         const nextScene = this.generalInteraction();
-        if (this.player.getXPos() <= 12 && this.player.getYPos() >= 334.5) {
+        if (this.player.getXPos() <= 100 && this.player.getYPos() >= 334.5) {
             this.player.setXPos(900);
             this.player.setYPos(443.5);
             this.player.setImage('./assets/img/player-boy-left.png');
@@ -68,7 +68,6 @@ export default class DifficultHallway extends Room {
                     console.log('interact with door');
                     this.player.setXPos(911);
                     this.player.setYPos(473);
-                    this.player.setImage('./assets/img/player-boy-standing.png');
                     this.doorOpen.play();
                     if (i === 0) {
                         if (this.room4Interact === false) {

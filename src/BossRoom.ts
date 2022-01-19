@@ -58,14 +58,9 @@ export default class BossRoom extends Room {
     this.doors = [];
     this.questions = [];
 
-    // creating collectibles in the classroom
-
-    // creating the door for the classroom
-    this.doors.push(new Door('./assets/img/door1.png', 677, 297));
-
     // setting player starter position and image in the room
-    this.player.setXPos(566);
-    this.player.setYPos(305);
+    this.player.setXPos(529);
+    this.player.setYPos(639);
     // setting image of player according to the right character chosen
     const cNum: number = this.player.getCharacterNum();
     if (cNum === 1) {
@@ -147,7 +142,7 @@ export default class BossRoom extends Room {
 
     // creating a new boss
     this.boss = new Boss();
-    this.bossNpc = new Npc('./assets/img/empty-boss.png', 430, 341, []);
+    this.bossNpc = new Npc('./assets/img/empty-boss.png', 470, 230, []);
 
     this.insertHitbox(10, 10, 10, 10);
   }
@@ -195,12 +190,6 @@ export default class BossRoom extends Room {
           return this.previousScene;
         }
       }
-
-      // // WITH COMPUTER
-      // if (this.player.collidesWith(this.computer)) {
-      //   // present question screen
-      //   return new QuestionScreen(this.canvas, this, this.questions);
-      // }
     }
 
     // ending screen

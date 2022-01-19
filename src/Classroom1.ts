@@ -55,7 +55,7 @@ export default class ClassRoom1 extends Room {
     this.questions = [];
 
     // creating a new computer in the classroom
-    this.computer = new Computer(266, 165.5);
+    this.computer = new Computer(479, 253);
 
     // sets the NPCs with their dialogs in the classroom
     this.npcs.push(
@@ -70,11 +70,11 @@ export default class ClassRoom1 extends Room {
           'Today we are learning about suspicious links and strangers messeges#'
         ),
         new Dialog('This is very important!#'),
-      ]),
+      ])
     );
     // creating collectibles in the classroom
     this.collectibles.push(
-      new Candy(this.canvas.width / 2, this.canvas.height / 2),
+      new Candy(this.canvas.width / 2, this.canvas.height / 2)
     );
 
     // creating the door for the classroom

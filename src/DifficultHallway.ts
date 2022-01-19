@@ -28,8 +28,8 @@ export default class DifficultHallway extends Room {
   private doll: QuestItem = new QuestItem(
     'doll',
     './assets/img/doll.png',
-    1036,
-    395,
+    930,
+    471.5
   );
 
   private pushOnce: boolean = true;
@@ -79,9 +79,9 @@ export default class DifficultHallway extends Room {
       new Npc('./assets/img/student-blue-hair-faced.png', 432, 322, [
         new Dialog('Hey there! Have you seen a teddy bear around here?#'),
         new Dialog(
-          'I lost mine. If you see it, can you bring it to me tomorrow?#',
+          'I lost mine. If you see it, can you bring it to me tomorrow?#'
         ),
-      ]),
+      ])
     );
 
     // PLAYER POSITTION UPON ENTERING
@@ -125,7 +125,7 @@ export default class DifficultHallway extends Room {
     const nextScene: Scene = this.generalInteraction();
 
     // LEAVES DIFFICULT HALLWAY
-    if (this.player.getXPos() <= 12 && this.player.getYPos() >= 334.5) {
+    if (this.player.getXPos() <= 100 && this.player.getYPos() >= 334.5) {
       this.player.setXPos(900);
       this.player.setYPos(443.5);
       this.player.setImage('./assets/img/player-boy-left.png');
@@ -141,7 +141,6 @@ export default class DifficultHallway extends Room {
           // setting player starter position and image in the classrooms
           this.player.setXPos(911);
           this.player.setYPos(473);
-          this.player.setImage('./assets/img/player-boy-standing.png');
           this.doorOpen.play();
           // checking which door
           if (i === 0) {

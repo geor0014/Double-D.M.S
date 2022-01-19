@@ -47,6 +47,13 @@ export default class Room extends Scene {
         this.yPos = newPos;
     }
     processInput() {
+        let isPlayerColliding = 'none';
+        this.hitboxes.forEach((box) => {
+            if (this.player.rectCollision(box, this.player) !== 'none') {
+                isPlayerColliding = this.player.rectCollision(box, this.player);
+            }
+        });
+        this.player.setCollision(isPlayerColliding);
         this.player.movePlayer(this.canvas);
     }
     collectCollectibles() {
