@@ -107,12 +107,8 @@ export default class MainHallway extends Room {
     this.insertHitbox(149, 560, 50, 205, 1);
     this.insertHitbox(239, 704, 230, 50, 1);
     this.insertHitbox(504, 755, 50, 5, 1);
-<<<<<<< HEAD
-    this.insertHitbox(594, 755, 350, 5, 1);
-=======
     this.insertHitbox(594, 705, 350, 5, 1);
     this.insertHitbox(914, 553, 5, 100, 1);
->>>>>>> b6ad603b955bfafe61db3d37233eab51ed4efb43
   }
 
   /**

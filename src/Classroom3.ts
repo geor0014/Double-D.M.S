@@ -77,7 +77,6 @@ export default class ClassRoom3 extends Room {
         'It doesn`t really matter'
       )
     );
-<<<<<<< HEAD
     this.insertHitbox(143, 78.5, 715, 160, 1);
     this.insertHitbox(864, 13.5, 100, 10, 1);
     this.insertHitbox(909, 77.5, 45, 250, 1);
@@ -90,9 +89,6 @@ export default class ClassRoom3 extends Room {
     this.insertHitbox(475, 455.5, 100, 30, 1);
     this.insertHitbox(242, 524.5, 185, 150, 1);
     this.insertHitbox(152, 720.5, 700, 10, 1);
-=======
-    this.insertHitbox(10, 10, 10, 10, 1);
->>>>>>> b6ad603b955bfafe61db3d37233eab51ed4efb43
 
     console.log('CLASSROOM3');
   }
@@ -117,11 +113,7 @@ export default class ClassRoom3 extends Room {
           console.log('interact with door');
           this.doorClose.play();
           console.log(this.previousScene);
-<<<<<<< HEAD
-          this.player.setXPos(285);
-=======
           this.player.setXPos(280);
->>>>>>> b6ad603b955bfafe61db3d37233eab51ed4efb43
           this.player.setYPos(300);
           // setting image of player according to the right character chosen
           const cNum: number = this.player.getCharacterNum();

@@ -86,7 +86,6 @@ export default class Cafeteria extends Room {
     this.doors.push(new Door('./assets/img/cafeteria-door.png', 907, 362));
 
     // creating the door for the classroom
-<<<<<<< HEAD
     this.insertHitbox(955, 356.5, 10, 160, 1);
     this.insertHitbox(906, 563.5, 45, 100, 1);
     this.insertHitbox(428, 105.5, 600, 115, 1);
@@ -98,9 +97,6 @@ export default class Cafeteria extends Room {
     this.insertHitbox(243, 604.5, 140, 10, 1);
     this.insertHitbox(528, 513.5, 280, 100, 1);
     this.insertHitbox(522, 365.5, 290, 100, 1);
-=======
-    this.insertHitbox(10, 10, 10, 10, 1);
->>>>>>> b6ad603b955bfafe61db3d37233eab51ed4efb43
   }
 
   /**

@@ -27,20 +27,16 @@ export default class Bathroom1 extends Room {
         ]);
         this.collectibles.push(new Candy(this.canvas.width / 2, this.canvas.height / 2));
         this.doors.push(new Door('./assets/img/girl-bathroom-door.png', 912, 265));
-<<<<<<< HEAD
-        this.insertHitbox(910, 435.5, 50, 70);
-        this.insertHitbox(956, 136.5, 10, 242);
-        this.insertHitbox(479, 181.5, 410, 70);
-        this.insertHitbox(909, 298.5, 10, 10);
-        this.insertHitbox(233, 535.5, 630, 10);
-        this.insertHitbox(432, 311.5, 45, 160);
-        this.insertHitbox(336, 180.5, 45, 290);
-        this.insertHitbox(240, 180.5, 45, 290);
-        this.insertHitbox(170, 179.5, 21, 370);
-        this.insertHitbox(188, 122, 720, 10);
-=======
-        this.insertHitbox(10, 10, 10, 10, 1);
->>>>>>> b6ad603b955bfafe61db3d37233eab51ed4efb43
+        this.insertHitbox(910, 435.5, 50, 70, 1);
+        this.insertHitbox(956, 136.5, 10, 242, 1);
+        this.insertHitbox(479, 181.5, 410, 70, 1);
+        this.insertHitbox(909, 298.5, 10, 10, 1);
+        this.insertHitbox(233, 535.5, 630, 10, 1);
+        this.insertHitbox(432, 311.5, 45, 160, 1);
+        this.insertHitbox(336, 180.5, 45, 290, 1);
+        this.insertHitbox(240, 180.5, 45, 290, 1);
+        this.insertHitbox(170, 179.5, 21, 370, 1);
+        this.insertHitbox(188, 122, 720, 10, 1);
         console.log('Bathroom1');
     }
     update(elapsed) {

@@ -28,21 +28,17 @@ export default class Cafeteria extends Room {
         ]);
         this.collectibles.push(new Candy(this.canvas.width / 2, this.canvas.height / 2));
         this.doors.push(new Door('./assets/img/cafeteria-door.png', 907, 362));
-<<<<<<< HEAD
-        this.insertHitbox(955, 356.5, 10, 160);
-        this.insertHitbox(906, 563.5, 45, 100);
-        this.insertHitbox(428, 105.5, 600, 115);
-        this.insertHitbox(864, 274.5, 100, 30);
-        this.insertHitbox(139, 264.5, 330, 100);
-        this.insertHitbox(190, 413.5, 240, 100);
-        this.insertHitbox(164, 559.5, 30, 100);
-        this.insertHitbox(240, 660.5, 630, 10);
-        this.insertHitbox(243, 604.5, 140, 10);
-        this.insertHitbox(528, 513.5, 280, 100);
-        this.insertHitbox(522, 365.5, 290, 100);
-=======
-        this.insertHitbox(10, 10, 10, 10, 1);
->>>>>>> b6ad603b955bfafe61db3d37233eab51ed4efb43
+        this.insertHitbox(955, 356.5, 10, 160, 1);
+        this.insertHitbox(906, 563.5, 45, 100, 1);
+        this.insertHitbox(428, 105.5, 600, 115, 1);
+        this.insertHitbox(864, 274.5, 100, 30, 1);
+        this.insertHitbox(139, 264.5, 330, 100, 1);
+        this.insertHitbox(190, 413.5, 240, 100, 1);
+        this.insertHitbox(164, 559.5, 30, 100, 1);
+        this.insertHitbox(240, 660.5, 630, 10, 1);
+        this.insertHitbox(243, 604.5, 140, 10, 1);
+        this.insertHitbox(528, 513.5, 280, 100, 1);
+        this.insertHitbox(522, 365.5, 290, 100, 1);
     }
     update(elapsed) {
         const nextScene = this.generalInteraction();
