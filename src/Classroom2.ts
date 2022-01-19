@@ -12,19 +12,24 @@ import QuestionScreen from './QuestionScreen.js';
 import QuestItem from './QuestItem.js';
 
 export default class ClassRoom2 extends Room {
+  // Room the player have previously been
   private previousScene: Scene;
 
+  // computer ther player interacts with to asnwer the questions
   private computer: Computer;
 
+  // questions which are displayed on the computer
   private questions: Question[];
 
+  // interaction for the computer
   private pcInteract: boolean = false;
 
+  // teddy which is being used for the quest of the guy with black hair located in the easy hallway
   private teddy: QuestItem = new QuestItem(
     'teddy',
     './assets/img/teddy.png',
     263,
-    580
+    580,
   );
 
   private pushOnce: boolean = true;
@@ -41,7 +46,7 @@ export default class ClassRoom2 extends Room {
     canvas: HTMLCanvasElement,
     previousScene: Scene,
     player: Player,
-    state: boolean
+    state: boolean,
   ) {
     super(canvas, './assets/img/scienceclass.png', state);
 
@@ -64,7 +69,7 @@ export default class ClassRoom2 extends Room {
 
     // creating collectibles in the classroom
     this.collectibles.push(
-      new Hint(this.canvas.width / 2 - 100, this.canvas.height / 2 - 70)
+      new Hint(this.canvas.width / 2 - 100, this.canvas.height / 2 - 70),
     );
 
     // creating the door for the classroom
@@ -79,17 +84,18 @@ export default class ClassRoom2 extends Room {
         'You are creating an account on your favorite social media.# Before you can access it,#they ask you to accept the general terms of condition!# What do you do?',
         'Ask your parents what they think',
         'Not read it and accept it',
-        'Read through everything and decide if you accept'
+        'Read through everything and decide if you accept',
       ),
       new Question(
         this.player.getUserData(),
         'Which of these files are safe to download?#',
         'Game.exe',
         'Virus.exe ',
-        'Trojan.exe'
-      )
+        'Trojan.exe',
+      ),
     );
 
+    // Adds all the hitboxes to the bathroom
     this.insertHitbox(911, 563, 50, 5, 1);
     this.insertHitbox(909, 600, 10, 10, 1);
     this.insertHitbox(147, 658, 750, 5, 1);
@@ -103,7 +109,7 @@ export default class ClassRoom2 extends Room {
     this.insertHitbox(536, 370, 35, 240, 1);
     this.insertHitbox(674, 370, 35, 240, 1);
 
-    console.log('CLASSROOM2');
+    // console.log('CLASSROOM2');
   }
 
   /**
@@ -123,9 +129,9 @@ export default class ClassRoom2 extends Room {
       // WITH DOORS
       for (let i = 0; i < this.doors.length; i += 1) {
         if (this.player.collidesWith(this.doors[i])) {
-          console.log('interact with door');
+          // console.log('interact with door');
           this.doorClose.play();
-          console.log(this.previousScene);
+          // console.log(this.previousScene);
           this.player.setXPos(450);
           this.player.setYPos(300);
           // setting image of player according to the right character chosen
@@ -150,7 +156,7 @@ export default class ClassRoom2 extends Room {
           this.pcInteract = true;
           return new QuestionScreen(this.canvas, this, this.questions);
         }
-        console.log('cant use the pc at the moment');
+        // console.log('cant use the pc at the moment');
       }
     }
 
@@ -192,6 +198,7 @@ export default class ClassRoom2 extends Room {
         if (item.getName() === 'teddy') item.draw(this.ctx);
       });
     this.computer.draw(this.ctx);
+    // calls the render function of the parent aka ROOM
     super.render();
     this.drawHitBoxes();
   }

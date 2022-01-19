@@ -29,7 +29,6 @@ export default class Bathroom2 extends Room {
         this.insertHitbox(240, 180.5, 45, 290, 1);
         this.insertHitbox(170, 179.5, 21, 370, 1);
         this.insertHitbox(188, 122, 720, 10, 1);
-        console.log('Bathroom1');
     }
     update(elapsed) {
         const nextScene = this.generalInteraction();

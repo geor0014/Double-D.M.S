@@ -11,12 +11,16 @@ import Question from './Question.js';
 import QuestionScreen from './QuestionScreen.js';
 
 export default class ClassRoom6 extends Room {
+  // Room the player have previously been
   private previousScene: Scene;
 
+  // computer ther player interacts with to asnwer the questions
   private computer: Computer;
 
+  // questions which are displayed on the computer
   private questions: Question[];
 
+  // interaction for the computer
   private pcInteract: boolean = false;
 
   /**
@@ -31,7 +35,7 @@ export default class ClassRoom6 extends Room {
     canvas: HTMLCanvasElement,
     previousScene: Scene,
     player: Player,
-    state: boolean
+    state: boolean,
   ) {
     super(canvas, './assets/img/artclass.png', state);
     this.previousScene = previousScene;
@@ -49,7 +53,7 @@ export default class ClassRoom6 extends Room {
 
     // creating collectibles in the classroom
     this.collectibles.push(
-      new Candy(this.canvas.width / 4, this.canvas.height / 4)
+      new Candy(this.canvas.width / 4, this.canvas.height / 4),
     );
 
     // creating the door for the classroom
@@ -62,23 +66,25 @@ export default class ClassRoom6 extends Room {
         'You are about to join this amazing new website# all your friends are there.# What information is OK to give online?#',
         'Nickname',
         'Phone number',
-        'Adress'
+        'Adress',
       ),
       new Question(
         this.player.getUserData(),
         'You are having trouble doing an activity on a safe site you use at #school. Your friend offers to help but needs your password.# Would you give your password to them.',
         'No',
         'It depends',
-        'Yes'
+        'Yes',
       ),
       new Question(
         this.player.getUserData(),
         'Your parents want to know what you have been doing on a safe site #you use at school. #Would you let them use your account?',
         'You would let them have a look but while youre there',
         'Yes, they are my parents I trust them',
-        'No way, this site is only for kids and teachers'
-      )
+        'No way, this site is only for kids and teachers',
+      ),
     );
+
+    // Adds all the hitboxes to the bathroom
     this.insertHitbox(911, 590, 50, 5, 1);
     this.insertHitbox(909, 640, 10, 10, 1);
     this.insertHitbox(147, 700, 750, 5, 1);
@@ -91,7 +97,8 @@ export default class ClassRoom6 extends Room {
     this.insertHitbox(434, 363, 35, 240, 1);
     this.insertHitbox(626, 363, 35, 240, 1);
     this.insertHitbox(237, 358, 140, 140, 1);
-    console.log('door6');
+
+    // console.log('door6');
   }
 
   /**
@@ -111,9 +118,9 @@ export default class ClassRoom6 extends Room {
       // WITH DOORS
       for (let i = 0; i < this.doors.length; i += 1) {
         if (this.player.collidesWith(this.doors[i])) {
-          console.log('interact with door');
+          // console.log('interact with door');
           this.doorClose.play();
-          console.log(this.previousScene);
+          // console.log(this.previousScene);
           this.player.setXPos(650);
           this.player.setYPos(300);
           // setting image of player according to the right character chosen
@@ -138,7 +145,7 @@ export default class ClassRoom6 extends Room {
           this.pcInteract = true;
           return new QuestionScreen(this.canvas, this, this.questions);
         }
-        console.log('cant use the pc at the moment');
+        // console.log('cant use the pc at the moment');
       }
     }
 
@@ -157,6 +164,7 @@ export default class ClassRoom6 extends Room {
     this.drawHitBoxes();
 
     this.computer.draw(this.ctx);
+    // calls the render function of the parent aka ROOM
     super.render();
   }
 }

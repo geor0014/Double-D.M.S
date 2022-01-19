@@ -18,10 +18,20 @@ export default class Dialog extends MainText {
     this.replies = replies;
   }
 
+  /**
+   * Getter for the possible answers
+   *
+   * @returns the possible answers
+   */
   public getAnswers():string[] {
     return this.possibleAns;
   }
 
+  /**
+   * Getter for the replies
+   *
+   * @returns the replies
+   */
   public getReplies():string[] {
     return this.replies;
   }

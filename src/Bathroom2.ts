@@ -10,6 +10,7 @@ import Npc from './Npc.js';
 import Dialog from './Dialog.js';
 
 export default class Bathroom2 extends Room {
+  // Room the player have previously been
   private previousScene: Scene;
 
   /**
@@ -24,7 +25,7 @@ export default class Bathroom2 extends Room {
     canvas: HTMLCanvasElement,
     previousScene: Scene,
     player: Player,
-    state: boolean
+    state: boolean,
   ) {
     super(canvas, './assets/img/bathroom2.png', state);
 
@@ -47,16 +48,17 @@ export default class Bathroom2 extends Room {
     this.npcs.push(
       new Npc('./assets/img/green-boy.png', 652, 436, [
         new Dialog('I am escaping class', ['ok', 'Me too'], ['', '']),
-      ])
+      ]),
     );
     // creating collectibles in the classroom
     this.collectibles.push(
-      new Candy(this.canvas.width / 2, this.canvas.height / 2)
+      new Candy(this.canvas.width / 2, this.canvas.height / 2),
     );
 
     // creating the door for the classroom
     this.doors.push(new Door('./assets/img/boy-bathroom-door.png', 912, 265));
 
+    // Adds all the hitboxes to the bathroom
     this.insertHitbox(910, 435.5, 50, 70, 1);
     this.insertHitbox(956, 136.5, 10, 242, 1);
     this.insertHitbox(479, 181.5, 410, 70, 1);
@@ -68,7 +70,7 @@ export default class Bathroom2 extends Room {
     this.insertHitbox(170, 179.5, 21, 370, 1);
     this.insertHitbox(188, 122, 720, 10, 1);
 
-    console.log('Bathroom1');
+    // console.log('Bathroom1');
   }
 
   /**
@@ -121,8 +123,8 @@ export default class Bathroom2 extends Room {
    */
   public render(): void {
     this.draw(this.ctx);
+    // calls the render function of the parent aka ROOM
     super.render();
     this.drawHitBoxes();
-    //console.log(this.player.getXPos(), this.player.getYPos());
   }
 }

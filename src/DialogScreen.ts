@@ -5,6 +5,7 @@ import Room from './Room.js';
 import Dialog from './Dialog.js';
 
 export default class DialogScreen extends Screen {
+  // Keyboardlistener so the game knows
   private keyboard: KeyListener;
 
   private previousScene: Room;

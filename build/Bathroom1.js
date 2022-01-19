@@ -37,7 +37,6 @@ export default class Bathroom1 extends Room {
         this.insertHitbox(240, 180.5, 45, 290, 1);
         this.insertHitbox(170, 179.5, 21, 370, 1);
         this.insertHitbox(188, 122, 720, 10, 1);
-        console.log('Bathroom1');
     }
     update(elapsed) {
         const nextScene = this.generalInteraction();
@@ -65,8 +64,8 @@ export default class Bathroom1 extends Room {
                     return this.previousScene;
                 }
             }
-            if (this.player.collidesWith(this.shadyGuy) &&
-                this.interactShady === false) {
+            if (this.player.collidesWith(this.shadyGuy)
+                && this.interactShady === false) {
                 this.interactShady = true;
                 return new ShadyDialog(this.canvas, this, this.shadyGuy.getDialogs(), this.player.getCharacterNum());
             }

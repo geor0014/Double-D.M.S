@@ -33,16 +33,13 @@ export default class ClassRoom3 extends Room {
         this.insertHitbox(475, 455.5, 100, 30, 1);
         this.insertHitbox(242, 524.5, 185, 150, 1);
         this.insertHitbox(152, 720.5, 700, 10, 1);
-        console.log('CLASSROOM3');
     }
     update(elapsed) {
         const nextScene = this.generalInteraction();
         if (this.player.isInteracting()) {
             for (let i = 0; i < this.doors.length; i += 1) {
                 if (this.player.collidesWith(this.doors[i])) {
-                    console.log('interact with door');
                     this.doorClose.play();
-                    console.log(this.previousScene);
                     this.player.setXPos(280);
                     this.player.setYPos(300);
                     const cNum = this.player.getCharacterNum();
@@ -66,7 +63,6 @@ export default class ClassRoom3 extends Room {
                     this.pcInteract = true;
                     return new QuestionScreen(this.canvas, this, this.questions);
                 }
-                console.log('cant use the pc at the moment');
             }
         }
         if (nextScene !== null) {

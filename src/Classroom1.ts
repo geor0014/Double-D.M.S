@@ -14,12 +14,16 @@ import Npc from './Npc.js';
 import Dialog from './Dialog.js';
 
 export default class ClassRoom1 extends Room {
+  // Room the player have previously been
   private previousScene: Scene;
 
+  // computer ther player interacts with to asnwer the questions
   private computer: Computer;
 
+  // questions which are displayed on the computer
   private questions: Question[];
 
+  // interaction for the computer
   private pcInteract: boolean = false;
 
   /**
@@ -34,7 +38,7 @@ export default class ClassRoom1 extends Room {
     canvas: HTMLCanvasElement,
     previousScene: Scene,
     player: Player,
-    state: boolean
+    state: boolean,
   ) {
     super(canvas, './assets/img/classroom.png', state);
 
@@ -72,7 +76,7 @@ export default class ClassRoom1 extends Room {
     );
     // creating collectibles in the classroom
     this.collectibles.push(
-      new Candy(this.canvas.width / 2, this.canvas.height / 2)
+      new Candy(this.canvas.width / 2, this.canvas.height / 2),
     );
 
     // creating the door for the classroom
@@ -85,8 +89,8 @@ export default class ClassRoom1 extends Room {
         'Congratulations you just won a giveaway!# a Nigerian Prince chose you to be the winner!!#Send him your bank account details and your ID to get 500.000€!!',
         'Not pay attention and delete this email/message',
         'Send an E-mail to make sure it is real',
-        'YES, TAKE ALL MY DATA!'
-      )
+        'YES, TAKE ALL MY DATA!',
+      ),
     );
     this.questions.push(
       new Question(
@@ -94,10 +98,11 @@ export default class ClassRoom1 extends Room {
         'Someone sent you a link to a YouTube video,# you click on it and suddenly you have a virus on your pc!# What could u have done differently? ',
         'Not click on the link',
         'Send this cool link to all my friends!',
-        'start chatting with this person for fun'
-      )
+        'start chatting with this person for fun',
+      ),
     );
 
+    // Adds all the hitboxes to the bathroom
     this.insertHitbox(911, 563, 50, 5, 1);
     this.insertHitbox(909, 600, 10, 10, 1);
     this.insertHitbox(147, 658, 750, 5, 1);
@@ -112,7 +117,7 @@ export default class ClassRoom1 extends Room {
     this.insertHitbox(674, 313, 35, 270, 1);
     this.insertHitbox(774, 313, 35, 270, 1);
 
-    console.log('CLASSROOM1');
+    // console.log('CLASSROOM1');
   }
 
   /**
@@ -132,9 +137,9 @@ export default class ClassRoom1 extends Room {
       // WITH DOORS
       for (let i = 0; i < this.doors.length; i += 1) {
         if (this.player.collidesWith(this.doors[i])) {
-          console.log('interact with door');
+          // console.log('interact with door');
           this.doorClose.play();
-          console.log(this.previousScene);
+          // console.log(this.previousScene);
           this.player.setXPos(632);
           this.player.setYPos(300);
           // setting image of player according to the right character chosen
@@ -159,10 +164,10 @@ export default class ClassRoom1 extends Room {
           this.pcInteract = true;
           return new QuestionScreen(this.canvas, this, this.questions);
         }
-        console.log('cant use the pc at the moment');
+        // console.log('cant use the pc at the moment');
       }
     }
-    console.log(`score is ${this.player.getUserData().getScore()}`);
+    // console.log(`score is ${this.player.getUserData().getScore()}`);
     // according to the general checks in room
     if (nextScene !== null) {
       return nextScene;
@@ -176,6 +181,7 @@ export default class ClassRoom1 extends Room {
   public render(): void {
     this.draw(this.ctx);
     this.computer.draw(this.ctx);
+    // calls the render function of the parent aka ROOM
     super.render();
     this.drawHitBoxes();
     console.log(this.player.getXPos(), this.player.getYPos());

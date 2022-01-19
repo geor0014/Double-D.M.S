@@ -4,19 +4,22 @@ import Scene from './Scene.js';
 
 import Player from './Player.js';
 
-import Candy from './Candy.js';
 import Computer from './Computer.js';
 
 import Question from './Question.js';
 import QuestionScreen from './QuestionScreen.js';
 
 export default class ClassRoom4 extends Room {
+  // Room the player have previously been
   private previousScene: Scene;
 
+  // computer ther player interacts with to asnwer the questions
   private computer: Computer;
 
+  // questions which are displayed on the computer
   private questions: Question[];
 
+  // interaction for the computer
   private pcInteract: boolean = false;
 
   /**
@@ -31,7 +34,7 @@ export default class ClassRoom4 extends Room {
     canvas: HTMLCanvasElement,
     previousScene: Scene,
     player: Player,
-    state: boolean
+    state: boolean,
   ) {
     super(canvas, './assets/img/scienceclass.png', state);
 
@@ -66,24 +69,25 @@ export default class ClassRoom4 extends Room {
         'I met someone in a chat room who wants to get together. #They live nearby. Should I go?',
         'I should ask my parent about this and decide with them',
         'Yes, it is always nice to have a new friend!',
-        'Talking to people online is wrong!'
+        'Talking to people online is wrong!',
       ),
       new Question(
         this.player.getUserData(),
         'Hey man! I just lost my account data for my Fortnite account# Do you think you could send me your password and username# so I can play with yours because all my skins are gone :((',
         'Report that person',
         'Send them wrong data',
-        'Send password and username since you feel bad for them'
+        'Send password and username since you feel bad for them',
       ),
       new Question(
         this.player.getUserData(),
         'You need to create a password for a website.# What should you use?#',
         'A random word, number, and symbols (e.g. 1cecr3am!)',
         'A nickname (e.g jumpingjacks)',
-        'Your name and the year you were born (e.g. jack2011)'
-      )
+        'Your name and the year you were born (e.g. jack2011)',
+      ),
     );
 
+    // Adds all the hitboxes to the bathroom
     this.insertHitbox(911, 563, 50, 5, 1);
     this.insertHitbox(909, 600, 10, 10, 1);
     this.insertHitbox(147, 658, 750, 5, 1);
@@ -97,7 +101,7 @@ export default class ClassRoom4 extends Room {
     this.insertHitbox(536, 370, 35, 240, 1);
     this.insertHitbox(674, 370, 35, 240, 1);
 
-    console.log('CLASSROOM4');
+    // console.log('CLASSROOM4');
   }
 
   /**
@@ -117,9 +121,9 @@ export default class ClassRoom4 extends Room {
       // WITH DOORS
       for (let i = 0; i < this.doors.length; i += 1) {
         if (this.player.collidesWith(this.doors[i])) {
-          console.log('interact with door');
+          // console.log('interact with door');
           this.doorClose.play();
-          console.log(this.previousScene);
+          // console.log(this.previousScene);
           this.player.setXPos(290);
           this.player.setYPos(300);
           // setting image of player according to the right character chosen
@@ -144,7 +148,7 @@ export default class ClassRoom4 extends Room {
           this.pcInteract = true;
           return new QuestionScreen(this.canvas, this, this.questions);
         }
-        console.log('cant use the pc at the moment');
+        // console.log('cant use the pc at the moment');
       }
     }
 
@@ -163,6 +167,7 @@ export default class ClassRoom4 extends Room {
     this.drawHitBoxes();
 
     this.computer.draw(this.ctx);
+    // calls the render function of the parent aka ROOM
     super.render();
   }
 }

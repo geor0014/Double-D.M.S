@@ -7,7 +7,7 @@ export default class Computer extends GameEntity {
    * @param xPos number
    * @param yPos number
    */
-  constructor(xPos: number, yPos: number) {
+  public constructor(xPos: number, yPos: number) {
     super('./assets/img/computer.png', xPos, yPos);
   }
 }

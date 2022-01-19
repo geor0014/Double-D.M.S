@@ -11,8 +11,10 @@ import Dialog from './Dialog.js';
 import HintBuyDialog from './HintBuyDialog.js';
 
 export default class Cafeteria extends Room {
+  // Room the player have previously been
   private previousScene: Scene;
 
+  // NPC for the lunchlady
   private lunchLady: Npc;
 
   /**
@@ -27,7 +29,7 @@ export default class Cafeteria extends Room {
     canvas: HTMLCanvasElement,
     previousScene: Scene,
     player: Player,
-    state: boolean
+    state: boolean,
   ) {
     super(canvas, './assets/img/diningroom.png', state);
 
@@ -52,7 +54,7 @@ export default class Cafeteria extends Room {
         new Dialog(
           'This is some delicious food they have here#',
           ['I know right!', 'I guess..'],
-          ['I am excited for today', 'Happy bithday btw!']
+          ['I am excited for today', 'Happy bithday btw!'],
         ),
         new Dialog('I love french fries, how about you?#', ['Meh..', 'LOVE THEM'], ['oh shame..', 'I KNOW THEY ARE THE BEST']),
       ]),
@@ -60,32 +62,32 @@ export default class Cafeteria extends Room {
         new Dialog(
           'Hurry up, everyone, class starts in 10 minutes!!#',
           ['Dont feel like it..', 'Better go!'],
-          ['', '']
+          ['', ''],
         ),
-      ])
+      ]),
     );
 
     this.lunchLady = new Npc('./assets/img/lunch-lady.png', 300, 500, [
       new Dialog(
         'Good day!# we have some special treats today!#',
         ['ohh delicious', 'I am starving'],
-        ['I hope so, I worked hard on this', 'You should eat something']
+        ['I hope so, I worked hard on this', 'You should eat something'],
       ),
       new Dialog(
         'I can trade you some candy for hints#',
         ['Yes please', 'No thank you'],
-        ['There you go', 'Okay maybe later']
+        ['There you go', 'Okay maybe later'],
       ),
     ]);
 
     // creating collectibles in the classroom
     this.collectibles.push(
-      new Candy(this.canvas.width / 2, this.canvas.height / 2)
+      new Candy(this.canvas.width / 2, this.canvas.height / 2),
     );
 
     this.doors.push(new Door('./assets/img/cafeteria-door.png', 907, 362));
 
-    // creating the door for the classroom
+    // Adds all the hitboxes to the bathroom
     this.insertHitbox(955, 356.5, 10, 160, 1);
     this.insertHitbox(906, 563.5, 45, 100, 1);
     this.insertHitbox(428, 105.5, 600, 115, 1);
@@ -142,7 +144,7 @@ export default class Cafeteria extends Room {
           this.canvas,
           this,
           this.lunchLady.getDialogs(),
-          this.player.getUserData()
+          this.player.getUserData(),
         );
       }
     }
@@ -160,8 +162,8 @@ export default class Cafeteria extends Room {
   public render(): void {
     this.draw(this.ctx);
     this.lunchLady.draw(this.ctx);
+    // calls the render function of the parent aka ROOM
     super.render();
     this.drawHitBoxes();
-    //console.log(this.player.getXPos(), this.player.getYPos());
   }
 }

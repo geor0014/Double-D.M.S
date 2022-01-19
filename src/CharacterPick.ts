@@ -1,12 +1,13 @@
-import MainHallway from './MainHallway.js';
 import Screen from './Screen.js';
 import KeyListener from './KeyListener.js';
 import Scene from './Scene.js';
 import ParentsScreen from './ParentsScreen.js';
 
 export default class CharacterPick extends Screen {
+  // Keyboardlistener to check if a key got pressed or not
   private keyListener: KeyListener;
 
+  // number of the character the player chose
   private characterNum: number;
 
   /**
@@ -24,7 +25,6 @@ export default class CharacterPick extends Screen {
     // sets backgroung image position
     this.setXPos(0);
     this.setYPos(0);
-    // console.log(this.getImage().width, this.getImage().height);
   }
 
   /**
@@ -116,7 +116,7 @@ export default class CharacterPick extends Screen {
       this.canvas.width / 2,
       this.canvas.height - 50,
       'center',
-      'white'
+      'white',
     );
   }
 }

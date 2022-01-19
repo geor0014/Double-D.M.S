@@ -1,16 +1,20 @@
 export default class Boss {
+  // image of the boss
   private bossImg: HTMLImageElement;
 
+  // the width of the boss image
   private spriteWidth: number;
 
+  // the height of the boss image
   private spriteHeight: number;
 
+  // frame so the image knows what to show
   private frameY: number = 0;
 
   /**
    * Creates a new Boss
    */
-  constructor() {
+  public constructor() {
     this.bossImg = new Image();
     this.bossImg.src = './assets/img/boss.png';
 
@@ -23,7 +27,7 @@ export default class Boss {
    *
    * @param newFrame number of frame
    */
-  setFrameY(newFrame: number): void {
+  public setFrameY(newFrame: number): void {
     this.frameY = newFrame;
   }
 
@@ -44,7 +48,7 @@ export default class Boss {
       470,
       230,
       this.spriteWidth + 30,
-      this.spriteHeight + 30
+      this.spriteHeight + 30,
     );
   }
 }
