@@ -43,8 +43,8 @@ export default class ClassRoom4 extends Room {
                     console.log('interact with door');
                     this.doorClose.play();
                     console.log(this.previousScene);
-                    this.player.setXPos(343);
-                    this.player.setYPos(350);
+                    this.player.setXPos(290);
+                    this.player.setYPos(300);
                     const cNum = this.player.getCharacterNum();
                     if (cNum === 1) {
                         this.player.setImage('./assets/img/player-boy1-down.png');

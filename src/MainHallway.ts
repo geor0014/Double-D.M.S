@@ -65,7 +65,7 @@ export default class MainHallway extends Room {
 
     // creating collectibles
     this.collectibles.push(
-      new Candy(312, 276.5),
+      new Candy(312, 376.5),
       new Hint(this.canvas.width / 3, this.canvas.height / 1.5)
     );
 
@@ -133,7 +133,7 @@ export default class MainHallway extends Room {
       // WITH DOORS
       // for (let i = 0; i < this.doors.length; i += 1) {
       if (this.player.collidesWith(this.doors[0])) {
-        if (this.player.getUserData().getScore() > -1) {
+        if (this.player.getUserData().getScore() > 12) {
           console.log('interact with door');
           this.doorOpen.play();
           if (this.bRoomInteract === false) {
@@ -174,7 +174,7 @@ export default class MainHallway extends Room {
 
     // Entrance for the hallway on the right hand side
     if (this.player.getXPos() >= 909 && this.player.getYPos() >= 402.5) {
-      if (this.player.getUserData().getScore() > -1) {
+      if (this.player.getUserData().getScore() > 3) {
         if (this.dHallInteract === false) {
           this.diffHall = new DifficultHallway(this.canvas, this, this.player);
           this.dHallInteract = true;

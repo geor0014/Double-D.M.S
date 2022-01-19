@@ -86,7 +86,17 @@ export default class Cafeteria extends Room {
     this.doors.push(new Door('./assets/img/cafeteria-door.png', 907, 362));
 
     // creating the door for the classroom
-    this.insertHitbox(10, 10, 10, 10, 1);
+    this.insertHitbox(955, 356.5, 10, 160, 1);
+    this.insertHitbox(906, 563.5, 45, 100, 1);
+    this.insertHitbox(428, 105.5, 600, 115, 1);
+    this.insertHitbox(864, 274.5, 100, 30, 1);
+    this.insertHitbox(139, 264.5, 330, 100, 1);
+    this.insertHitbox(190, 413.5, 240, 100, 1);
+    this.insertHitbox(164, 559.5, 30, 100, 1);
+    this.insertHitbox(240, 660.5, 630, 10, 1);
+    this.insertHitbox(243, 604.5, 140, 10, 1);
+    this.insertHitbox(528, 513.5, 280, 100, 1);
+    this.insertHitbox(522, 365.5, 290, 100, 1);
   }
 
   /**
@@ -109,8 +119,8 @@ export default class Cafeteria extends Room {
           console.log('interact with door');
           this.doorClose.play();
           console.log(this.previousScene);
-          this.player.setXPos(291);
-          this.player.setYPos(361);
+          this.player.setXPos(284);
+          this.player.setYPos(250);
           // setting image of player according to the right character chosen
           const cNum: number = this.player.getCharacterNum();
           if (cNum === 1) {
@@ -151,6 +161,7 @@ export default class Cafeteria extends Room {
     this.draw(this.ctx);
     this.lunchLady.draw(this.ctx);
     super.render();
+    this.drawHitBoxes();
     //console.log(this.player.getXPos(), this.player.getYPos());
   }
 }

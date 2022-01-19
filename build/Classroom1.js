@@ -35,7 +35,19 @@ export default class ClassRoom1 extends Room {
         this.doors.push(new Door('./assets/img/door1.png', 912, 400.5));
         this.questions.push(new Question(this.player.getUserData(), 'Congratulations you just won a giveaway!# a Nigerian Prince chose you to be the winner!!#Send him your bank account details and your ID to get 500.000€!!', 'Not pay attention and delete this email/message', 'Send an E-mail to make sure it is real', 'YES, TAKE ALL MY DATA!'));
         this.questions.push(new Question(this.player.getUserData(), 'Someone sent you a link to a YouTube video,# you click on it and suddenly you have a virus on your pc!# What could u have done differently? ', 'Not click on the link', 'Send this cool link to all my friends!', 'start chatting with this person for fun'));
-        this.insertHitbox(10, 10, 10, 10, 1);
+        this.insertHitbox(911, 563, 50, 5, 1);
+        this.insertHitbox(909, 600, 10, 10, 1);
+        this.insertHitbox(147, 658, 750, 5, 1);
+        this.insertHitbox(194, 107, 5, 500, 1);
+        this.insertHitbox(245, 107, 650, 5, 1);
+        this.insertHitbox(908, 165, 5, 205, 1);
+        this.insertHitbox(953, 359, 5, 150, 1);
+        this.insertHitbox(905, 410, 20, 5, 1);
+        this.insertHitbox(242, 169, 620, 5, 1);
+        this.insertHitbox(286, 313, 35, 270, 1);
+        this.insertHitbox(386, 313, 35, 270, 1);
+        this.insertHitbox(674, 313, 35, 270, 1);
+        this.insertHitbox(774, 313, 35, 270, 1);
         console.log('CLASSROOM1');
     }
     update(elapsed) {
@@ -47,7 +59,7 @@ export default class ClassRoom1 extends Room {
                     this.doorClose.play();
                     console.log(this.previousScene);
                     this.player.setXPos(632);
-                    this.player.setYPos(350);
+                    this.player.setYPos(300);
                     const cNum = this.player.getCharacterNum();
                     if (cNum === 1) {
                         this.player.setImage('./assets/img/player-boy1-down.png');
@@ -82,6 +94,7 @@ export default class ClassRoom1 extends Room {
         this.draw(this.ctx);
         this.computer.draw(this.ctx);
         super.render();
+        this.drawHitBoxes();
         console.log(this.player.getXPos(), this.player.getYPos());
     }
 }

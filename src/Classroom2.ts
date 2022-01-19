@@ -89,7 +89,19 @@ export default class ClassRoom2 extends Room {
         'Trojan.exe'
       )
     );
-    this.insertHitbox(10, 10, 10, 10, 1);
+
+    this.insertHitbox(911, 563, 50, 5, 1);
+    this.insertHitbox(909, 600, 10, 10, 1);
+    this.insertHitbox(147, 658, 750, 5, 1);
+    this.insertHitbox(194, 107, 5, 500, 1);
+    this.insertHitbox(245, 107, 650, 5, 1);
+    this.insertHitbox(908, 165, 5, 205, 1);
+    this.insertHitbox(953, 359, 5, 150, 1);
+    this.insertHitbox(905, 410, 20, 5, 1);
+    this.insertHitbox(242, 169, 620, 5, 1);
+    this.insertHitbox(380, 370, 35, 240, 1);
+    this.insertHitbox(536, 370, 35, 240, 1);
+    this.insertHitbox(674, 370, 35, 240, 1);
 
     console.log('CLASSROOM2');
   }
@@ -114,8 +126,8 @@ export default class ClassRoom2 extends Room {
           console.log('interact with door');
           this.doorClose.play();
           console.log(this.previousScene);
-          this.player.setXPos(500);
-          this.player.setYPos(350);
+          this.player.setXPos(450);
+          this.player.setYPos(300);
           // setting image of player according to the right character chosen
           const cNum: number = this.player.getCharacterNum();
           if (cNum === 1) {
@@ -181,5 +193,6 @@ export default class ClassRoom2 extends Room {
       });
     this.computer.draw(this.ctx);
     super.render();
+    this.drawHitBoxes();
   }
 }
