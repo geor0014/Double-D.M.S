@@ -59,16 +59,10 @@ export default class ClassRoom5 extends Room {
 
     // sets the NPCs with their dialogs in the classroom
     this.npcs.push(
-<<<<<<< HEAD
       new Npc('./assets/img/teacher-blonde-hair-front-faced.png', 714, 198, [
         new Dialog('You should take a break sometimes#', ['Yes Im tired', 'I am okay'], ['Studying can be hard', 'good to know!']),
         new Dialog('The cafeteria has great food!#', ['Ill check it out!', 'I am hungry..'], ['', '']),
       ]),
-=======
-      new Npc('./assets/img/teacher-blonde-hair-front-faced.png', 714, 298, [
-        new Dialog('Welcome to class!#'),
-      ])
->>>>>>> 6d7fd59dd15f6a8b2b7d9a9a1c4ef5a6c9b1cdad
     );
 
     // creating collectibles in the classroom

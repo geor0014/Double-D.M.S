@@ -118,8 +118,7 @@ export default class Bathroom1 extends Room {
       // With Shady Guy
       if (this.player.collidesWith(this.shadyGuy) && this.interactShady === false) {
         this.interactShady = true;
-        return new ShadyDialog(this.canvas, this, this.shadyGuy.getDialogs(),
-         this.player.getCharacterNum());
+        return new ShadyDialog(this.canvas, this, this.shadyGuy.getDialogs(),this.player.getCharacterNum());
       }
     }
     // according to the general checks in room

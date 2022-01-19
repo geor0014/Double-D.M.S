@@ -73,15 +73,11 @@ export default class MainHallway extends Room {
     this.doors.push(
       new Door('./assets/img/boss-room-door-closed.png', 511, 412)
     );
-<<<<<<< HEAD
-=======
     this.doors.push(new Door('./assets/img/cafeteria-door.png', 284, 160));
->>>>>>> 6d7fd59dd15f6a8b2b7d9a9a1c4ef5a6c9b1cdad
 
     // creating Npc and dialog
     this.npcs.push(
       new Npc('./assets/img/teacher-front.png', 782, 315.5, [
-<<<<<<< HEAD
         new Dialog(
           'Heyy how are you today?#',
           ['Good Thank you!', 'Excited for my birthday!'],
@@ -92,10 +88,6 @@ export default class MainHallway extends Room {
           ['Thanks!', 'Thank you'],
           ['', '']
         ),
-=======
-        new Dialog('Heyy how are you today?#'),
-        new Dialog('Good luck with your exams!#'),
->>>>>>> 6d7fd59dd15f6a8b2b7d9a9a1c4ef5a6c9b1cdad
       ])
     );
 
@@ -128,24 +120,22 @@ export default class MainHallway extends Room {
   public update(elapsed: number): Scene {
     const nextScene: Scene = this.generalInteraction();
 
+    if (this.player.getUserData().getScore() > 12) {
+      this.doors[0].setImage('./assets/img/boss-room-door-opened.png');
+    }
     // console.log(this.player.getXPos(), this.player.getYPos());
     if (this.player.isInteracting()) {
       // WITH DOORS
       // for (let i = 0; i < this.doors.length; i += 1) {
       if (this.player.collidesWith(this.doors[0])) {
-        if (this.player.getUserData().getScore() > -1) {
+        if (this.player.getUserData().getScore() > 12) {
           console.log('interact with door');
           this.doorOpen.play();
           if (this.bRoomInteract === false) {
             this.bossRoom = new BossRoom(this.canvas, this, this.player);
             this.bRoomInteract = true;
           }
-<<<<<<< HEAD
-          this.textToPresent =
-            'You cant access this room! maybe youre not worthy enough (evil laugh)';
-=======
           return this.bossRoom;
->>>>>>> 6d7fd59dd15f6a8b2b7d9a9a1c4ef5a6c9b1cdad
         }
         this.textToPresent =
           'You cant access this room! maybe youre not worthy enough (evil laugh)';

@@ -44,15 +44,11 @@ export default class Bathroom2 extends Room {
     this.doors = [];
 
     // sets the NPCs with their dialogs in the classroom
-<<<<<<< HEAD
-
-=======
     this.npcs.push(
       new Npc('./assets/img/student-orange-hair-back-faced.png', 652, 436, [
-        new Dialog('....'),
+        new Dialog('....', ['' , ''], ['', '']),
       ])
     );
->>>>>>> 6d7fd59dd15f6a8b2b7d9a9a1c4ef5a6c9b1cdad
     // creating collectibles in the classroom
     this.collectibles.push(
       new Candy(this.canvas.width / 2, this.canvas.height / 2)

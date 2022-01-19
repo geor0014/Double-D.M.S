@@ -1,6 +1,8 @@
 import Door from './Door.js';
 import Room from './Room.js';
 import Candy from './Candy.js';
+import Npc from './Npc.js';
+import Dialog from './Dialog.js';
 export default class Bathroom2 extends Room {
     previousScene;
     constructor(canvas, previousScene, player, state) {
@@ -12,12 +14,9 @@ export default class Bathroom2 extends Room {
         this.collectibles = [];
         this.npcs = [];
         this.doors = [];
-<<<<<<< HEAD
-=======
         this.npcs.push(new Npc('./assets/img/student-orange-hair-back-faced.png', 652, 436, [
-            new Dialog('....'),
+            new Dialog('....', ['', ''], ['', '']),
         ]));
->>>>>>> 6d7fd59dd15f6a8b2b7d9a9a1c4ef5a6c9b1cdad
         this.collectibles.push(new Candy(this.canvas.width / 2, this.canvas.height / 2));
         this.doors.push(new Door('./assets/img/boy-bathroom-door.png', 912, 265));
         this.insertHitbox(10, 10, 10, 10);

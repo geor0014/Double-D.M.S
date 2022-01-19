@@ -55,21 +55,19 @@ export default class MainHallway extends Room {
     }
     update(elapsed) {
         const nextScene = this.generalInteraction();
+        if (this.player.getUserData().getScore() > 12) {
+            this.doors[0].setImage('./assets/img/boss-room-door-opened.png');
+        }
         if (this.player.isInteracting()) {
             if (this.player.collidesWith(this.doors[0])) {
-                if (this.player.getUserData().getScore() > -1) {
+                if (this.player.getUserData().getScore() > 12) {
                     console.log('interact with door');
                     this.doorOpen.play();
                     if (this.bRoomInteract === false) {
                         this.bossRoom = new BossRoom(this.canvas, this, this.player);
                         this.bRoomInteract = true;
                     }
-<<<<<<< HEAD
-                    this.textToPresent =
-                        'You cant access this room! maybe youre not worthy enough (evil laugh)';
-=======
                     return this.bossRoom;
->>>>>>> 6d7fd59dd15f6a8b2b7d9a9a1c4ef5a6c9b1cdad
                 }
                 this.textToPresent =
                     'You cant access this room! maybe youre not worthy enough (evil laugh)';
