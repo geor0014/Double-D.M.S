@@ -17,7 +17,7 @@ export default class Bathroom1 extends Room {
         this.shadyGuy = new Npc('./assets/img/ShadyGuySide.png', this.canvas.width / 2, 400, []);
         this.collectibles.push(new Candy(this.canvas.width / 2, this.canvas.height / 2));
         this.doors.push(new Door('./assets/img/girl-bathroom-door.png', 912, 265));
-        this.insertHitbox(10, 10, 10, 10);
+        this.insertHitbox(10, 10, 10, 10, 1);
         console.log('Bathroom1');
     }
     update(elapsed) {

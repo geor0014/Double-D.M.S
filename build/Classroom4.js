@@ -21,7 +21,19 @@ export default class ClassRoom4 extends Room {
         this.computer = new Computer(479, 253);
         this.doors.push(new Door('./assets/img/door1.png', 912, 400.5));
         this.questions.push(new Question(this.player.getUserData(), 'I met someone in a chat room who wants to get together. #They live nearby. Should I go?', 'I should ask my parent about this and decide with them', 'Yes, it is always nice to have a new friend!', 'Talking to people online is wrong!'), new Question(this.player.getUserData(), 'Hey man! I just lost my account data for my Fortnite account# Do you think you could send me your password and username# so I can play with yours because all my skins are gone :((', 'Report that person', 'Send them wrong data', 'Send password and username since you feel bad for them'), new Question(this.player.getUserData(), 'You need to create a password for a website.# What should you use?#', 'A random word, number, and symbols (e.g. 1cecr3am!)', 'A nickname (e.g jumpingjacks)', 'Your name and the year you were born (e.g. jack2011)'));
-        this.insertHitbox(10, 10, 10, 10);
+        this.insertHitbox(911, 563, 50, 5, 1);
+        this.insertHitbox(909, 600, 10, 10, 1);
+        this.insertHitbox(147, 658, 750, 5, 1);
+        this.insertHitbox(194, 107, 5, 500, 1);
+        this.insertHitbox(245, 107, 650, 5, 1);
+        this.insertHitbox(908, 165, 5, 205, 1);
+        this.insertHitbox(953, 359, 5, 150, 1);
+        this.insertHitbox(905, 410, 20, 5, 1);
+        this.insertHitbox(242, 169, 620, 5, 1);
+        this.insertHitbox(286, 313, 35, 270, 1);
+        this.insertHitbox(386, 313, 35, 270, 1);
+        this.insertHitbox(674, 313, 35, 270, 1);
+        this.insertHitbox(774, 313, 35, 270, 1);
         console.log('CLASSROOM4');
     }
     update(elapsed) {
@@ -65,6 +77,7 @@ export default class ClassRoom4 extends Room {
     }
     render() {
         this.draw(this.ctx);
+        this.drawHitBoxes();
         this.computer.draw(this.ctx);
         super.render();
     }

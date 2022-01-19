@@ -50,7 +50,7 @@ export default class Bathroom1 extends Room {
       './assets/img/ShadyGuySide.png',
       this.canvas.width / 2,
       400,
-      [],
+      []
     );
 
     // creating collectibles in the classroom
@@ -61,7 +61,7 @@ export default class Bathroom1 extends Room {
     // creating the door for the classroom
     this.doors.push(new Door('./assets/img/girl-bathroom-door.png', 912, 265));
 
-    this.insertHitbox(10, 10, 10, 10);
+    this.insertHitbox(10, 10, 10, 10, 1);
 
     console.log('Bathroom1');
   }

@@ -100,7 +100,7 @@ export default class ClassRoom1 extends Room {
       )
     );
 
-    this.insertHitbox(10, 10, 10, 10);
+    this.insertHitbox(10, 10, 10, 10, 1);
 
     console.log('CLASSROOM1');
   }

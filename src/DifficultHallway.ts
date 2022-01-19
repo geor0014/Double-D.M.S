@@ -76,7 +76,7 @@ export default class DifficultHallway extends Room {
         new Dialog('I heard there is this weird dude in the bathroom#'),
         new Dialog('I am too scared to go there#'),
       ]),
-      new Npc('./assets/img/student-blue-hair-faced.png', 432, 322, [
+      new Npc('./assets/img/student-blue-hair-faced.png', 556, 323, [
         new Dialog('Hey there! Have you seen a teddy bear around here?#'),
         new Dialog(
           'I lost mine. If you see it, can you bring it to me tomorrow?#'
@@ -94,8 +94,16 @@ export default class DifficultHallway extends Room {
     this.doors.push(new Door('./assets/img/door1.png', 650, 228.5));
 
     // HITBOX
-    // this.hitboxes.push(new Hitbox(384, 101.5, 285, 300));
-    this.insertHitbox(10, 10, 10, 10);
+    this.insertHitbox(105, 305, 150, 5, 1);
+    this.insertHitbox(276, 176, 5, 90, 1);
+    this.insertHitbox(323, 202, 650, 5, 1);
+    this.insertHitbox(1002, 212, 5, 400, 1);
+    this.insertHitbox(144, 551, 810, 5, 1);
+    this.insertHitbox(99, 453, 41, 5, 1);
+    this.insertHitbox(140, 490, 5, 5, 1);
+    this.insertHitbox(854, 254, 5, 50, 1);
+    this.insertHitbox(889, 345, 50, 5, 1);
+    this.insertHitbox(320, 246, 500, 5, 1);
   }
 
   private addQuestItems(): void {
@@ -214,6 +222,6 @@ export default class DifficultHallway extends Room {
 
     super.render();
 
-    // this.drawHitBoxes();
+    this.drawHitBoxes();
   }
 }

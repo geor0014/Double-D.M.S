@@ -89,7 +89,7 @@ export default class ClassRoom2 extends Room {
         'Trojan.exe'
       )
     );
-    this.insertHitbox(10, 10, 10, 10);
+    this.insertHitbox(10, 10, 10, 10, 1);
 
     console.log('CLASSROOM2');
   }

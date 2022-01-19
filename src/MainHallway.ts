@@ -91,15 +91,16 @@ export default class MainHallway extends Room {
     );
 
     // HITBOXS
-    this.insertHitbox(382, 101, 300, 300);
-    this.insertHitbox(176, 102, 170, 105);
-    this.insertHitbox(150, 260, 50, 200);
-    this.insertHitbox(920, 265, 50, 180);
-    this.insertHitbox(728, 114, 220, 105);
-    this.insertHitbox(149, 560, 50, 205);
-    this.insertHitbox(239, 704, 230, 50);
-    this.insertHitbox(504, 755, 50, 5);
-    this.insertHitbox(594, 755, 350, 5);
+    this.insertHitbox(382, 101, 300, 300, 1);
+    this.insertHitbox(176, 102, 170, 105, 1);
+    this.insertHitbox(150, 260, 50, 200, 1);
+    this.insertHitbox(920, 265, 50, 180, 1);
+    this.insertHitbox(728, 114, 220, 105, 1);
+    this.insertHitbox(149, 560, 50, 205, 1);
+    this.insertHitbox(239, 704, 230, 50, 1);
+    this.insertHitbox(504, 755, 50, 5, 1);
+    this.insertHitbox(594, 705, 350, 5, 1);
+    this.insertHitbox(914, 553, 5, 100, 1);
   }
 
   /**

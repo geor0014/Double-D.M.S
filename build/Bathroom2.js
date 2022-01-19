@@ -19,7 +19,7 @@ export default class Bathroom2 extends Room {
         ]));
         this.collectibles.push(new Candy(this.canvas.width / 2, this.canvas.height / 2));
         this.doors.push(new Door('./assets/img/boy-bathroom-door.png', 912, 265));
-        this.insertHitbox(10, 10, 10, 10);
+        this.insertHitbox(10, 10, 10, 10, 1);
         console.log('Bathroom1');
     }
     update(elapsed) {

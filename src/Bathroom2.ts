@@ -57,7 +57,7 @@ export default class Bathroom2 extends Room {
     // creating the door for the classroom
     this.doors.push(new Door('./assets/img/boy-bathroom-door.png', 912, 265));
 
-    this.insertHitbox(10, 10, 10, 10);
+    this.insertHitbox(10, 10, 10, 10, 1);
 
     console.log('Bathroom1');
   }
