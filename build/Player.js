@@ -10,6 +10,7 @@ export default class Player extends GameEntity {
     characterNum;
     collision = 'none';
     walkPath;
+    hintSound = new Audio('./assets/sound/hint.wav');
     constructor(canvas, characterNum) {
         super('', canvas.width / 2, canvas.height / 2);
         this.userData = new UserData();
@@ -126,6 +127,7 @@ export default class Player extends GameEntity {
     }
     isReadingHint() {
         if (this.keyboard.isKeyDown(KeyListener.KEY_H)) {
+            this.hintSound.play();
             return true;
         }
         return false;
