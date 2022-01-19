@@ -20,6 +20,8 @@ export default class Bathroom1 extends Room {
   // Boolean to interact with Shady Guy
   private interactShady: boolean;
 
+  private shadyGuyTheme: HTMLAudioElement;
+
   /**
    * creats a new classroom
    *
@@ -108,7 +110,15 @@ export default class Bathroom1 extends Room {
     this.insertHitbox(170, 179.5, 21, 370, 1);
     this.insertHitbox(188, 122, 720, 10, 1);
 
+<<<<<<< HEAD
     // console.log('Bathroom1');
+=======
+    this.shadyGuyTheme = new Audio('./assets/sound/shady.wav');
+    this.shadyGuyTheme.volume = 0.2;
+    setTimeout(() => this.shadyGuyTheme.play(), 100);
+
+    console.log('Bathroom1');
+>>>>>>> 624c617eee45909de495c38be067c3aeeaf7c3f5
   }
 
   /**
@@ -144,6 +154,7 @@ export default class Bathroom1 extends Room {
           } else if (cNum === 4) {
             this.player.setImage('./assets/img/player-girl1-down.png');
           }
+          this.shadyGuyTheme.pause();
           return this.previousScene;
         }
       }

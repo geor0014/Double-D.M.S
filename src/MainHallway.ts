@@ -98,6 +98,10 @@ export default class MainHallway extends Room {
       318.5
     );
 
+    this.player.setWalkPath('./assets/sound/stoneWalk.ogg');
+
+    console.log(this.player.getWalkPath());
+
     // HITBOXS
     this.insertHitbox(382, 101, 300, 300, 1);
     this.insertHitbox(176, 102, 170, 105, 1);

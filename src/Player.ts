@@ -20,6 +20,8 @@ export default class Player extends GameEntity {
 
   private walkPath: string;
 
+  private hintSound: HTMLAudioElement = new Audio('./assets/sound/hint.wav');
+
   /**
    * Create new player
    *
@@ -173,6 +175,7 @@ export default class Player extends GameEntity {
    */
   public isReadingHint(): boolean {
     if (this.keyboard.isKeyDown(KeyListener.KEY_H)) {
+      this.hintSound.play();
       return true;
     }
     return false;
@@ -306,5 +309,9 @@ export default class Player extends GameEntity {
 
   public setWalkPath(path: string): void {
     this.walkPath = path;
+  }
+
+  public getWalkPath(): string {
+    return this.walkPath;
   }
 }
