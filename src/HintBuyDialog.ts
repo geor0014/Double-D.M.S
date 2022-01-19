@@ -3,7 +3,7 @@ import Screen from './Screen.js';
 import Scene from './Scene.js';
 import Room from './Room.js';
 import Dialog from './Dialog.js';
-import SadEnding from './SadEnding.js';
+import UserData from './UserData.js';
 
 export default class CandyBuyDialog extends Screen {
   private keyboard: KeyListener;
@@ -22,9 +22,7 @@ export default class CandyBuyDialog extends Screen {
 
   private textToPresent: string;
 
-  private HintAmount: number;
-
-  private CandyAmount: number;
+  private userData: UserData;
 
   /**
    * Creates new Dialog screen
@@ -32,17 +30,15 @@ export default class CandyBuyDialog extends Screen {
    * @param canvas passes the canvas to Screen
    * @param previousScene rerturns player to previous screen
    * @param dialogs an array of dialogs string
-   * @param hintAmount number of hints
-   * @param candyAmount number of hints
+   * @param userData user data
    */
   constructor(
     canvas: HTMLCanvasElement,
     previousScene: Room,
     dialogs: Dialog[],
-    hintAmount: number,
-    candyAmount: number,
+    userData: UserData,
   ) {
-    super(canvas, './assets/img/dialogscreen-Shady.png');
+    super(canvas, './assets/img/lunch-lady-dialog.png');
 
     // sets keylistener
     this.keyboard = new KeyListener();
@@ -67,7 +63,7 @@ export default class CandyBuyDialog extends Screen {
 
     this.textToPresent = '...';
 
-    // this.characterNum = characterNum;
+    this.userData = userData;
   }
 
   /**
@@ -119,6 +115,8 @@ export default class CandyBuyDialog extends Screen {
    * @returns previous Scene
    */
   public update(elapsed: number): Scene {
+    const candyAmount : number = this.userData.getCandyAmount();
+    const hintAmount: number = this.userData.getHintAmount();
     // clears canvas
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
@@ -147,9 +145,14 @@ export default class CandyBuyDialog extends Screen {
       if (answerRecived !== 0 && this.okPressed === true) {
         if (this.dCounter === this.dialogs.length - 1) {
           if (answerRecived === 1) {
-            // return new SadEnding(this.canvas, this.characterNum);
+            if (this.userData.getCandyAmount() > 1) {
+              this.userData.setCandyAmount(candyAmount - 2);
+              this.userData.setHintAmount(hintAmount + 1);
+              this.textToPresent = `${this.dialogs[this.dCounter].getReplies()[0]}`;
+            } else {
+              this.textToPresent = 'You dont have enough candy, 2 candy for 1 hint';
+            }
           }
-          this.textToPresent = `${this.dialogs[this.dCounter].getReplies()[1]}`;
         } else if (answerRecived === 1) {
           this.textToPresent = `${this.dialogs[this.dCounter].getReplies()[0]}`;
         } else {

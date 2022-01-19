@@ -419,6 +419,8 @@ export default abstract class Room extends Scene {
         this.hintNumImg = Scene.loadNewImage('./assets/img/10.png');
       } else if (this.player.getUserData().getHintAmount() === 0) {
         this.hintNumImg = Scene.loadNewImage('./assets/img/0.png');
+      } else {
+        this.hintNumImg = Scene.loadNewImage('./assets/img/10.png');
       }
 
       // DRAWS CANDY
@@ -444,6 +446,8 @@ export default abstract class Room extends Scene {
         this.candyNumImg = Scene.loadNewImage('./assets/img/10.png');
       } else if (this.player.getUserData().getCandyAmount() === 0) {
         this.candyNumImg = Scene.loadNewImage('./assets/img/0.png');
+      } else {
+        this.candyNumImg = Scene.loadNewImage('./assets/img/10.png');
       }
 
       // DRAWS QUEST ITEMS

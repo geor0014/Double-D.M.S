@@ -14,8 +14,8 @@ export default class Bathroom2 extends Room {
         this.collectibles = [];
         this.npcs = [];
         this.doors = [];
-        this.npcs.push(new Npc('./assets/img/student-orange-hair-back-faced.png', 652, 436, [
-            new Dialog('....', ['', ''], ['', '']),
+        this.npcs.push(new Npc('./assets/img/green-boy.png', 652, 436, [
+            new Dialog('I am escaping class', ['ok', 'Me too'], ['', '']),
         ]));
         this.collectibles.push(new Candy(this.canvas.width / 2, this.canvas.height / 2));
         this.doors.push(new Door('./assets/img/boy-bathroom-door.png', 912, 265));

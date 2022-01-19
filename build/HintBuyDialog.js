@@ -9,10 +9,9 @@ export default class CandyBuyDialog extends Screen {
     frameCounter = 0;
     okPressed;
     textToPresent;
-    HintAmount;
-    CandyAmount;
-    constructor(canvas, previousScene, dialogs, hintAmount, candyAmount) {
-        super(canvas, './assets/img/dialogscreen-Shady.png');
+    userData;
+    constructor(canvas, previousScene, dialogs, userData) {
+        super(canvas, './assets/img/lunch-lady-dialog.png');
         this.keyboard = new KeyListener();
         this.previousScene = previousScene;
         this.dialogs = dialogs;
@@ -22,6 +21,7 @@ export default class CandyBuyDialog extends Screen {
         this.setXPos(0);
         this.setYPos(0);
         this.textToPresent = '...';
+        this.userData = userData;
     }
     reciveAnswer() {
         if (this.keyboard.isKeyDown(KeyListener.KEY_1)) {
@@ -50,6 +50,8 @@ export default class CandyBuyDialog extends Screen {
         }
     }
     update(elapsed) {
+        const candyAmount = this.userData.getCandyAmount();
+        const hintAmount = this.userData.getHintAmount();
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         if (this.processInput()) {
             return this.previousScene;
@@ -69,8 +71,15 @@ export default class CandyBuyDialog extends Screen {
             if (answerRecived !== 0 && this.okPressed === true) {
                 if (this.dCounter === this.dialogs.length - 1) {
                     if (answerRecived === 1) {
+                        if (this.userData.getCandyAmount() > 1) {
+                            this.userData.setCandyAmount(candyAmount - 2);
+                            this.userData.setHintAmount(hintAmount + 1);
+                            this.textToPresent = `${this.dialogs[this.dCounter].getReplies()[0]}`;
+                        }
+                        else {
+                            this.textToPresent = 'You dont have enough candy, 2 candy for 1 hint';
+                        }
                     }
-                    this.textToPresent = `${this.dialogs[this.dCounter].getReplies()[1]}`;
                 }
                 else if (answerRecived === 1) {
                     this.textToPresent = `${this.dialogs[this.dCounter].getReplies()[0]}`;

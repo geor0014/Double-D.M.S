@@ -3,8 +3,10 @@ import Room from './Room.js';
 import Candy from './Candy.js';
 import Npc from './Npc.js';
 import Dialog from './Dialog.js';
+import HintBuyDialog from './HintBuyDialog.js';
 export default class Cafeteria extends Room {
     previousScene;
+    lunchLady;
     constructor(canvas, previousScene, player, state) {
         super(canvas, './assets/img/diningroom.png', state);
         this.previousScene = previousScene;
@@ -14,15 +16,16 @@ export default class Cafeteria extends Room {
         this.collectibles = [];
         this.npcs = [];
         this.doors = [];
-        this.npcs.push(new Npc('./assets/img/student-orange-hair-back-faced.png', 652, 436, [
-            new Dialog('Hello, this is some delicious food they have here#', ['', ''], ['', '']),
-            new Dialog('I love french fries, how about you?#', ['', ''], ['', '']),
-        ]), new Npc('./assets/img/teacher-blonde-hair-front-faced.png', 714, 298, [
-            new Dialog('Hurry up, everyone, class starts in 10 minutes!!#', ['', ''], ['', '']),
-        ]), new Npc('./assets/img/lunch-lady.png', 300, 500, [
-            new Dialog('Good day!# we have some special treats today!#', ['ohh delicious', 'I am starving'], ['I hope so I worked hard on this', 'You should eat something']),
-            new Dialog('I can trade you some candy for hints#', ['Yes please', 'No thank you'], ['There you go', 'Okay maybe later']),
+        this.npcs.push(new Npc('./assets/img/ginger-girl.png', 652, 436, [
+            new Dialog('This is some delicious food they have here#', ['I know right!', 'I guess..'], ['I am excited for today', 'Happy bithday btw!']),
+            new Dialog('I love french fries, how about you?#', ['Meh..', 'LOVE THEM'], ['oh shame..', 'I KNOW THEY ARE THE BEST']),
+        ]), new Npc('./assets/img/green-girl.png', 714, 298, [
+            new Dialog('Hurry up, everyone, class starts in 10 minutes!!#', ['Dont feel like it..', 'Better go!'], ['', '']),
         ]));
+        this.lunchLady = new Npc('./assets/img/lunch-lady.png', 300, 500, [
+            new Dialog('Good day!# we have some special treats today!#', ['ohh delicious', 'I am starving'], ['I hope so, I worked hard on this', 'You should eat something']),
+            new Dialog('I can trade you some candy for hints#', ['Yes please', 'No thank you'], ['There you go', 'Okay maybe later']),
+        ]);
         this.collectibles.push(new Candy(this.canvas.width / 2, this.canvas.height / 2));
         this.doors.push(new Door('./assets/img/cafeteria-door.png', 907, 362));
         this.insertHitbox(10, 10, 10, 10);
@@ -53,6 +56,9 @@ export default class Cafeteria extends Room {
                     return this.previousScene;
                 }
             }
+            if (this.player.collidesWith(this.lunchLady)) {
+                return new HintBuyDialog(this.canvas, this, this.lunchLady.getDialogs(), this.player.getUserData());
+            }
         }
         console.log(`score is ${this.player.getUserData().getScore()}`);
         if (nextScene !== null) {
@@ -62,6 +68,7 @@ export default class Cafeteria extends Room {
     }
     render() {
         this.draw(this.ctx);
+        this.lunchLady.draw(this.ctx);
         super.render();
     }
 }

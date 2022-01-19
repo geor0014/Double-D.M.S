@@ -10,7 +10,7 @@ export default class ClassRoom6 extends Room {
     questions;
     pcInteract = false;
     constructor(canvas, previousScene, player, state) {
-        super(canvas, './assets/img/classroom.png', state);
+        super(canvas, './assets/img/artclass.png', state);
         this.previousScene = previousScene;
         this.player = player;
         this.setXPos(0);

@@ -33,7 +33,7 @@ export default class ClassRoom6 extends Room {
     player: Player,
     state: boolean
   ) {
-    super(canvas, './assets/img/classroom.png', state);
+    super(canvas, './assets/img/artclass.png', state);
     this.previousScene = previousScene;
 
     this.player = player;
