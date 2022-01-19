@@ -323,7 +323,7 @@ export default abstract class Room extends Scene {
         620,
         647,
         'left',
-        'black',
+        'black'
       );
     }
 
@@ -334,7 +334,7 @@ export default abstract class Room extends Scene {
         620,
         682,
         'left',
-        'black',
+        'black'
       );
     }
     if (this.player.getUserData().getQuests()[2]) {
@@ -344,7 +344,7 @@ export default abstract class Room extends Scene {
         620,
         714,
         'left',
-        'black',
+        'black'
       );
     }
   }
@@ -391,7 +391,7 @@ export default abstract class Room extends Scene {
       this.canvas.width / 2,
       this.canvas.height - 50,
       'center',
-      'Blue',
+      'Blue'
     );
 
     this.writeTextToCanvas(
@@ -400,7 +400,7 @@ export default abstract class Room extends Scene {
       this.canvas.width / 2,
       this.canvas.height - 80,
       'center',
-      'Blue',
+      'Blue'
     );
 
     // DRAWS NPCS
@@ -435,7 +435,17 @@ export default abstract class Room extends Scene {
         this.hintNumImg = Scene.loadNewImage('./assets/img/4.png');
       } else if (this.player.getUserData().getHintAmount() === 5) {
         this.hintNumImg = Scene.loadNewImage('./assets/img/5.png');
-      } else {
+      } else if (this.player.getUserData().getHintAmount() === 6) {
+        this.hintNumImg = Scene.loadNewImage('./assets/img/6.png');
+      } else if (this.player.getUserData().getHintAmount() === 7) {
+        this.hintNumImg = Scene.loadNewImage('./assets/img/7.png');
+      } else if (this.player.getUserData().getHintAmount() === 8) {
+        this.hintNumImg = Scene.loadNewImage('./assets/img/8.png');
+      } else if (this.player.getUserData().getHintAmount() === 9) {
+        this.hintNumImg = Scene.loadNewImage('./assets/img/9.png');
+      } else if (this.player.getUserData().getHintAmount() === 10) {
+        this.hintNumImg = Scene.loadNewImage('./assets/img/10.png');
+      } else if (this.player.getUserData().getHintAmount() === 0) {
         this.hintNumImg = Scene.loadNewImage('./assets/img/0.png');
       }
 
@@ -450,9 +460,20 @@ export default abstract class Room extends Scene {
         this.candyNumImg = Scene.loadNewImage('./assets/img/4.png');
       } else if (this.player.getUserData().getCandyAmount() === 5) {
         this.candyNumImg = Scene.loadNewImage('./assets/img/5.png');
-      } else {
+      } else if (this.player.getUserData().getCandyAmount() === 6) {
+        this.candyNumImg = Scene.loadNewImage('./assets/img/6.png');
+      } else if (this.player.getUserData().getCandyAmount() === 7) {
+        this.candyNumImg = Scene.loadNewImage('./assets/img/7.png');
+      } else if (this.player.getUserData().getCandyAmount() === 8) {
+        this.candyNumImg = Scene.loadNewImage('./assets/img/8.png');
+      } else if (this.player.getUserData().getCandyAmount() === 9) {
+        this.candyNumImg = Scene.loadNewImage('./assets/img/9.png');
+      } else if (this.player.getUserData().getCandyAmount() === 10) {
+        this.candyNumImg = Scene.loadNewImage('./assets/img/10.png');
+      } else if (this.player.getUserData().getCandyAmount() === 0) {
         this.candyNumImg = Scene.loadNewImage('./assets/img/0.png');
       }
+
       // DRAWS QUEST ITEMS
       this.drawQuestItems();
 

@@ -44,20 +44,7 @@ export default class Bathroom2 extends Room {
     this.doors = [];
 
     // sets the NPCs with their dialogs in the classroom
-    this.npcs.push(
-      new Npc('./assets/img/student-orange-hair-back-faced.png', 652, 436, [
-        new Dialog('Hey, listen...have you seen a doll?#'),
-        new Dialog('My little sister lost hers and I am trying to find it.#'),
-        new Dialog('If you see it, bring it to me tomorrow, okay?#'),
-        new Dialog('Class is over, gotta go now. See you tomorrow!#'),
-      ]),
-      new Npc('./assets/img/teacher-blonde-hair-front-faced.png', 714, 298, [
-        new Dialog(
-          'Today we are learning about suspicious links and strangers messeges#'
-        ),
-        new Dialog('This is very important!#'),
-      ]),
-    );
+
     // creating collectibles in the classroom
     this.collectibles.push(
       new Candy(this.canvas.width / 2, this.canvas.height / 2),

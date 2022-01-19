@@ -7,6 +7,8 @@ export default class DialogScreen extends Screen {
     nextD;
     dCounter;
     frameCounter = 0;
+    okPressed;
+    textToPresent;
     constructor(canvas, previousScene, dialogs) {
         super(canvas, './assets/img/dialogscreen.png');
         this.keyboard = new KeyListener();
@@ -14,8 +16,21 @@ export default class DialogScreen extends Screen {
         this.dialogs = dialogs;
         this.nextD = false;
         this.dCounter = 0;
+        this.okPressed = false;
         this.setXPos(0);
         this.setYPos(0);
+        this.textToPresent = '...';
+    }
+    reciveAnswer() {
+        if (this.keyboard.isKeyDown(KeyListener.KEY_1)) {
+            this.okPressed = true;
+            return 1;
+        }
+        if (this.keyboard.isKeyDown(KeyListener.KEY_2)) {
+            this.okPressed = true;
+            return 2;
+        }
+        return 0;
     }
     processInput() {
         if (this.keyboard.isKeyDown(KeyListener.KEY_ESC)) {
@@ -42,11 +57,28 @@ export default class DialogScreen extends Screen {
             this.dCounter < this.dialogs.length - 1 &&
             this.frameCounter === 10) {
             this.dCounter += 1;
+            this.textToPresent = '...';
+        }
+        let answerRecived = 0;
+        if (this.frameCounter % 10 === 0) {
+            if (this.okPressed === false) {
+                answerRecived = this.reciveAnswer();
+            }
+            if (answerRecived !== 0 && this.okPressed === true) {
+                if (answerRecived === 1) {
+                    this.textToPresent = `${this.dialogs[this.dCounter].getReplies()[0]}`;
+                }
+                else {
+                    this.textToPresent = `${this.dialogs[this.dCounter].getReplies()[1]}`;
+                }
+            }
+            answerRecived = 0;
         }
         if (this.frameCounter === 10) {
             this.frameCounter = 0;
         }
         this.frameCounter += 1;
+        this.okPressed = false;
         return null;
     }
     draw(ctx) {
@@ -64,13 +96,19 @@ export default class DialogScreen extends Screen {
                 this.writeTextToCanvas(textToWrite, 30, textWPos + 150, textHPos, 'center', 'black');
                 textHPos += 50;
             }
+            for (let j = 0; j < 2; j += 1) {
+                textToWrite = `${j + 1} ${this.dialogs[this.dCounter].getAnswers()[j]}`;
+                this.writeTextToCanvas(textToWrite, 24, this.canvas.width / 5, textHPos + 20, 'left', 'black');
+                textHPos += 50;
+            }
         }
         if (this.dCounter === this.dialogs.length - 1) {
             this.writeTextToCanvas('press ESC to leave', 24, this.canvas.width / 2 + 200, 420, 'center', 'Grey');
         }
         else {
-            this.writeTextToCanvas('Next - right arrow >>', 24, this.canvas.width / 2 + 200, 420, 'center', 'Grey');
+            this.writeTextToCanvas('Next - right arrow ->', 24, this.canvas.width / 2 + 200, 420, 'center', 'Grey');
         }
+        this.writeTextToCanvas(this.textToPresent, 30, this.canvas.width / 3, this.canvas.height / 4, 'center', 'red');
     }
 }
 //# sourceMappingURL=DialogScreen.js.map

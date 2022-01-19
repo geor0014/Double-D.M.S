@@ -17,6 +17,10 @@ export default class DialogScreen extends Screen {
 
   private frameCounter: number = 0;
 
+  private okPressed: boolean;
+
+  private textToPresent: string;
+
   /**
    * Creates new Dialog screen
    *
@@ -27,7 +31,7 @@ export default class DialogScreen extends Screen {
   constructor(
     canvas: HTMLCanvasElement,
     previousScene: Room,
-    dialogs: Dialog[],
+    dialogs: Dialog[]
   ) {
     super(canvas, './assets/img/dialogscreen.png');
 
@@ -46,9 +50,31 @@ export default class DialogScreen extends Screen {
     // counter which dialog is presented
     this.dCounter = 0;
 
+    this.okPressed = false;
+
     // sets the background image position
     this.setXPos(0);
     this.setYPos(0);
+
+    this.textToPresent = '...';
+  }
+
+  /**
+   * checks if player chose an answer
+   *
+   * @returns number pressed
+   */
+  public reciveAnswer(): number {
+    if (this.keyboard.isKeyDown(KeyListener.KEY_1)) {
+      this.okPressed = true;
+      return 1;
+    }
+
+    if (this.keyboard.isKeyDown(KeyListener.KEY_2)) {
+      this.okPressed = true;
+      return 2;
+    }
+    return 0;
   }
 
   /**
@@ -98,6 +124,25 @@ export default class DialogScreen extends Screen {
       this.frameCounter === 10
     ) {
       this.dCounter += 1;
+      this.textToPresent = '...';
+    }
+    // checks if answer was registered and player pressed ok with frame count
+    let answerRecived = 0;
+    if (this.frameCounter % 10 === 0) {
+      if (this.okPressed === false) {
+        answerRecived = this.reciveAnswer();
+      }
+      // console.log(`answer Recived ${answerRecived}`);
+      if (answerRecived !== 0 && this.okPressed === true) {
+        // this.okPressed = false;
+        if (answerRecived === 1) {
+          this.textToPresent = `${this.dialogs[this.dCounter].getReplies()[0]}`;
+        } else {
+          this.textToPresent = `${this.dialogs[this.dCounter].getReplies()[1]}`;
+        }
+      }
+
+      answerRecived = 0;
     }
 
     // resets the frame counter after it got to 10
@@ -106,6 +151,7 @@ export default class DialogScreen extends Screen {
     }
 
     this.frameCounter += 1;
+    this.okPressed = false;
     return null;
   }
 
@@ -131,7 +177,7 @@ export default class DialogScreen extends Screen {
         this.canvas.width / 2,
         420,
         'center',
-        'Grey',
+        'Grey'
       );
 
       let textToWrite: string = '';
@@ -153,6 +199,19 @@ export default class DialogScreen extends Screen {
         );
         textHPos += 50;
       }
+
+      for (let j = 0; j < 2; j += 1) {
+        textToWrite = `${j + 1} ${this.dialogs[this.dCounter].getAnswers()[j]}`;
+        this.writeTextToCanvas(
+          textToWrite,
+          24,
+          this.canvas.width / 5,
+          textHPos + 20,
+          'left',
+          'black'
+        );
+        textHPos += 50;
+      }
     }
 
     // either shows for the next or how to quit
@@ -163,17 +222,25 @@ export default class DialogScreen extends Screen {
         this.canvas.width / 2 + 200,
         420,
         'center',
-        'Grey',
+        'Grey'
       );
     } else {
       this.writeTextToCanvas(
-        'Next - right arrow >>',
+        'Next - right arrow ->',
         24,
         this.canvas.width / 2 + 200,
         420,
         'center',
-        'Grey',
+        'Grey'
       );
     }
+    this.writeTextToCanvas(
+      this.textToPresent,
+      30,
+      this.canvas.width / 3,
+      this.canvas.height / 4,
+      'center',
+      'red'
+    );
   }
 }

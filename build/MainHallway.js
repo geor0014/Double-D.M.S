@@ -35,8 +35,8 @@ export default class MainHallway extends Room {
         this.collectibles.push(new Candy(312, 276.5), new Hint(this.canvas.width / 3, this.canvas.height / 1.5));
         this.doors.push(new Door('./assets/img/boss-room-door-closed.png', 511, 412));
         this.npcs.push(new Npc('./assets/img/teacher-front.png', 782, 315.5, [
-            new Dialog('Heyy how are you today?#'),
-            new Dialog('Good luck with your exams!#'),
+            new Dialog('Heyy how are you today?#', ['Good Thank you!', 'Excited for my birthday!'], ['Glad to hear that', 'Happy Birthday!']),
+            new Dialog('Good luck with your exams!#', ['Thanks!', 'Thank you'], ['', '']),
         ]));
         this.backpack = new QuestItem('backpack', './assets/img/backpack.png', 682, 318.5);
     }
@@ -54,7 +54,8 @@ export default class MainHallway extends Room {
                         }
                         return this.bossRoom;
                     }
-                    this.textToPresent = 'You cant access this room! maybe youre not worthy enough (evil laugh)';
+                    this.textToPresent =
+                        'You cant access this room! maybe youre not worthy enough (evil laugh)';
                 }
             }
         }
@@ -77,7 +78,8 @@ export default class MainHallway extends Room {
                 this.player.setYPos(335);
                 return this.diffHall;
             }
-            this.textToPresent = 'Sorry you cant enter here yet you need at least 4 points!';
+            this.textToPresent =
+                'Sorry you cant enter here yet you need at least 4 points!';
         }
         this.addQuestItems();
         if (nextScene !== null) {

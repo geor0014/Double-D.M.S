@@ -8,11 +8,14 @@ import Candy from './Candy.js';
 
 import Npc from './Npc.js';
 import Dialog from './Dialog.js';
+import ShadyDialog from './ShadyDialog.js';
 
 export default class Bathroom1 extends Room {
   private previousScene: Scene;
 
   private shadyGuy: Npc;
+
+  private interactShady: boolean;
 
   /**
    * creats a new classroom
@@ -40,6 +43,9 @@ export default class Bathroom1 extends Room {
     this.setXPos(0);
     this.setYPos(0);
 
+    // reseting the interaction
+    this.interactShady = false;
+
     // resets the items in the room
     this.collectibles = [];
     this.npcs = [];
@@ -50,7 +56,13 @@ export default class Bathroom1 extends Room {
       './assets/img/ShadyGuySide.png',
       this.canvas.width / 2,
       400,
-      [],
+      [
+        new Dialog('Hey kid..#', ['What are you doing in the bathroom?', 'Hello??'], ['He..He..', 'You are braver than most..']),
+        new Dialog('I heard its your birthday today..#', ['It is!', 'How did you know this?'], ['Happy Birthday...', 'I know EVERYTHING!']),
+        new Dialog('I can give you some candy if you want#', ['Yay candy!', 'I dont want anything from you!'], ['hahaha', 'Why not I am pretty nice']),
+        new Dialog('OR I can give you a PHONE!!#', ['Really?!', 'I shouldnt be talking to you'], ['Yes!', 'Come on I know you want the phone!']),
+        new Dialog('What do you chose?#', ['The phone', 'Nothing..'], ['Here you go... Ill call you', 'Fine whatever..']),
+      ],
     );
 
     // creating collectibles in the classroom
@@ -102,6 +114,13 @@ export default class Bathroom1 extends Room {
           return this.previousScene;
         }
       }
+
+      // With Shady Guy
+      if (this.player.collidesWith(this.shadyGuy) && this.interactShady === false) {
+        this.interactShady = true;
+        return new ShadyDialog(this.canvas, this, this.shadyGuy.getDialogs(),
+         this.player.getCharacterNum());
+      }
     }
     // according to the general checks in room
     if (nextScene !== null) {
@@ -117,6 +136,6 @@ export default class Bathroom1 extends Room {
     this.draw(this.ctx);
     this.shadyGuy.draw(this.ctx);
     super.render();
-    //console.log(this.player.getXPos(), this.player.getYPos());
+    // console.log(this.player.getXPos(), this.player.getYPos());
   }
 }

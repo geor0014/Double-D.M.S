@@ -75,7 +75,6 @@ export default class QuestionScreen extends Screen {
             if (answerRecived === this.questions[this.qCounter].getRPos() + 1) {
                 userData.setScore(userData.getScore() + 1);
             }
-            answerRecived = 0;
         }
         if (this.frameCounter === 10) {
             this.frameCounter = 0;
@@ -116,7 +115,7 @@ export default class QuestionScreen extends Screen {
             this.writeTextToCanvas('press ESC to leave', 24, this.canvas.width / 2 + 100, 600, 'center', 'Red');
         }
         else {
-            this.writeTextToCanvas('Next Question >', 24, this.canvas.width / 2 + 100, 600, 'center', 'Red');
+            this.writeTextToCanvas('Next Question right arrow ->', 24, this.canvas.width / 2 + 100, 600, 'center', 'Red');
         }
         this.writeTextToCanvas(this.textToPresent, 24, this.canvas.width / 2, 675, 'center', 'red');
     }

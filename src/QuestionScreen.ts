@@ -151,7 +151,7 @@ export default class QuestionScreen extends Screen {
         // console.log('right answer selected');
         userData.setScore(userData.getScore() + 1);
       }
-      answerRecived = 0;
+      // answerRecived = 0;
     }
 
     // resets the frame counter after it got to 10
@@ -239,7 +239,7 @@ export default class QuestionScreen extends Screen {
       );
     } else {
       this.writeTextToCanvas(
-        'Next Question >',
+        'Next Question right arrow ->',
         24,
         this.canvas.width / 2 + 100,
         600,

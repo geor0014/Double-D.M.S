@@ -206,7 +206,22 @@ export default class Room extends Scene {
             else if (this.player.getUserData().getHintAmount() === 5) {
                 this.hintNumImg = Scene.loadNewImage('./assets/img/5.png');
             }
-            else {
+            else if (this.player.getUserData().getHintAmount() === 6) {
+                this.hintNumImg = Scene.loadNewImage('./assets/img/6.png');
+            }
+            else if (this.player.getUserData().getHintAmount() === 7) {
+                this.hintNumImg = Scene.loadNewImage('./assets/img/7.png');
+            }
+            else if (this.player.getUserData().getHintAmount() === 8) {
+                this.hintNumImg = Scene.loadNewImage('./assets/img/8.png');
+            }
+            else if (this.player.getUserData().getHintAmount() === 9) {
+                this.hintNumImg = Scene.loadNewImage('./assets/img/9.png');
+            }
+            else if (this.player.getUserData().getHintAmount() === 10) {
+                this.hintNumImg = Scene.loadNewImage('./assets/img/10.png');
+            }
+            else if (this.player.getUserData().getHintAmount() === 0) {
                 this.hintNumImg = Scene.loadNewImage('./assets/img/0.png');
             }
             if (this.player.getUserData().getCandyAmount() === 1) {
@@ -224,7 +239,22 @@ export default class Room extends Scene {
             else if (this.player.getUserData().getCandyAmount() === 5) {
                 this.candyNumImg = Scene.loadNewImage('./assets/img/5.png');
             }
-            else {
+            else if (this.player.getUserData().getCandyAmount() === 6) {
+                this.candyNumImg = Scene.loadNewImage('./assets/img/6.png');
+            }
+            else if (this.player.getUserData().getCandyAmount() === 7) {
+                this.candyNumImg = Scene.loadNewImage('./assets/img/7.png');
+            }
+            else if (this.player.getUserData().getCandyAmount() === 8) {
+                this.candyNumImg = Scene.loadNewImage('./assets/img/8.png');
+            }
+            else if (this.player.getUserData().getCandyAmount() === 9) {
+                this.candyNumImg = Scene.loadNewImage('./assets/img/9.png');
+            }
+            else if (this.player.getUserData().getCandyAmount() === 10) {
+                this.candyNumImg = Scene.loadNewImage('./assets/img/10.png');
+            }
+            else if (this.player.getUserData().getCandyAmount() === 0) {
                 this.candyNumImg = Scene.loadNewImage('./assets/img/0.png');
             }
             this.drawQuestItems();

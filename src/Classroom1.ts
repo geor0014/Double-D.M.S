@@ -60,16 +60,14 @@ export default class ClassRoom1 extends Room {
     // sets the NPCs with their dialogs in the classroom
     this.npcs.push(
       new Npc('./assets/img/student-orange-hair-back-faced.png', 652, 436, [
-        new Dialog('Hey, listen...have you seen a doll?#'),
-        new Dialog('My little sister lost hers and I am trying to find it.#'),
-        new Dialog('If you see it, bring it to me tomorrow, okay?#'),
-        new Dialog('Class is over, gotta go now. See you tomorrow!#'),
+        new Dialog('Hey, listen...have you seen a doll?#', ['No..', 'You play with dolls?'], ['Oh...', 'not nice!']),
+        new Dialog('My little sister lost hers and I am trying to find it.#', ['oh..', 'I can help you find it'], ['I am sad for her', 'Thank you!']),
+        new Dialog('If you see it, bring it to me tomorrow, okay?#', ['ok!', 'will do!'], ['Great!', 'Thanks']),
+        new Dialog('Class is over, gotta go now. See you tomorrow!#', ['Bye Bye', 'Take care!'], ['', '']),
       ]),
       new Npc('./assets/img/teacher-blonde-hair-front-faced.png', 714, 298, [
-        new Dialog(
-          'Today we are learning about suspicious links and strangers messeges#'
-        ),
-        new Dialog('This is very important!#'),
+        new Dialog('Today we are learning about suspicious links and strangers messeges#', ['ok', 'umm..okay?'], [':)', '^__^']),
+        new Dialog('This is very important!#', ['I guess..', 'Sure is!'], ['', '']),
       ]),
     );
     // creating collectibles in the classroom

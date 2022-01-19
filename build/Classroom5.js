@@ -23,8 +23,8 @@ export default class ClassRoom5 extends Room {
         this.questions = [];
         this.computer = new Computer(266, 165.5);
         this.npcs.push(new Npc('./assets/img/teacher-blonde-hair-front-faced.png', 714, 198, [
-            new Dialog('Welcome to class!#'),
-            new Dialog('Did you see my bag anywhere?#'),
+            new Dialog('You should take a break sometimes#', ['Yes Im tired', 'I am okay'], ['Studying can be hard', 'good to know!']),
+            new Dialog('The cafeteria has great food!#', ['Ill check it out!', 'I am hungry..'], ['', '']),
         ]));
         this.collectibles.push(new Hint(this.canvas.width / 1.5, this.canvas.height / 3));
         this.doors.push(new Door('./assets/img/door1.png', 912, 400.5));

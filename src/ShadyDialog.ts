@@ -3,6 +3,7 @@ import Screen from './Screen.js';
 import Scene from './Scene.js';
 import Room from './Room.js';
 import Dialog from './Dialog.js';
+import SadEnding from './SadEnding.js';
 
 export default class ShadyDialog extends Screen {
   private keyboard: KeyListener;
@@ -17,17 +18,25 @@ export default class ShadyDialog extends Screen {
 
   private frameCounter: number = 0;
 
+  private okPressed: boolean;
+
+  private textToPresent: string;
+
+  private characterNum: number;
+
   /**
    * Creates new Dialog screen
    *
    * @param canvas passes the canvas to Screen
    * @param previousScene rerturns player to previous screen
    * @param dialogs an array of dialogs string
+   * @param characterNum number of character
    */
   constructor(
     canvas: HTMLCanvasElement,
     previousScene: Room,
     dialogs: Dialog[],
+    characterNum:number
   ) {
     super(canvas, './assets/img/dialogscreen-Shady.png');
 
@@ -46,9 +55,33 @@ export default class ShadyDialog extends Screen {
     // counter which dialog is presented
     this.dCounter = 0;
 
+    this.okPressed = false;
+
     // sets the background image position
     this.setXPos(0);
     this.setYPos(0);
+
+    this.textToPresent = '...';
+
+    this.characterNum = characterNum;
+  }
+
+  /**
+   * checks if player chose an answer
+   *
+   * @returns number pressed
+   */
+  public reciveAnswer(): number {
+    if (this.keyboard.isKeyDown(KeyListener.KEY_1)) {
+      this.okPressed = true;
+      return 1;
+    }
+
+    if (this.keyboard.isKeyDown(KeyListener.KEY_2)) {
+      this.okPressed = true;
+      return 2;
+    }
+    return 0;
   }
 
   /**
@@ -95,17 +128,40 @@ export default class ShadyDialog extends Screen {
     if (
       this.nextD &&
       this.dCounter < this.dialogs.length - 1 &&
-      this.frameCounter === 10
+      this.frameCounter === 15
     ) {
       this.dCounter += 1;
+      this.textToPresent = '...';
+    }
+    // checks if answer was registered and player pressed ok with frame count
+    let answerRecived = 0;
+    if (this.frameCounter % 15 === 0) {
+      if (this.okPressed === false) {
+        answerRecived = this.reciveAnswer();
+      }
+      // console.log(`answer Recived ${answerRecived}`);
+      if (answerRecived !== 0 && this.okPressed === true) {
+        if (this.dCounter === this.dialogs.length - 1) {
+          if (answerRecived === 1) {
+            return new SadEnding(this.canvas, this.characterNum);
+          }
+          this.textToPresent = `${this.dialogs[this.dCounter].getReplies()[1]}`;
+        } else if (answerRecived === 1) {
+          this.textToPresent = `${this.dialogs[this.dCounter].getReplies()[0]}`;
+        } else {
+          this.textToPresent = `${this.dialogs[this.dCounter].getReplies()[1]}`;
+        }
+      }
+      answerRecived = 0;
     }
 
     // resets the frame counter after it got to 10
-    if (this.frameCounter === 10) {
+    if (this.frameCounter === 15) {
       this.frameCounter = 0;
     }
 
     this.frameCounter += 1;
+    this.okPressed = false;
     return null;
   }
 
@@ -131,7 +187,7 @@ export default class ShadyDialog extends Screen {
         this.canvas.width / 2,
         420,
         'center',
-        'Grey',
+        'Grey'
       );
 
       let textToWrite: string = '';
@@ -153,6 +209,19 @@ export default class ShadyDialog extends Screen {
         );
         textHPos += 50;
       }
+
+      for (let j = 0; j < 2; j += 1) {
+        textToWrite = `${j + 1} ${this.dialogs[this.dCounter].getAnswers()[j]}`;
+        this.writeTextToCanvas(
+          textToWrite,
+          24,
+          this.canvas.width / 5,
+          textHPos + 20,
+          'left',
+          'black'
+        );
+        textHPos += 50;
+      }
     }
 
     // either shows for the next or how to quit
@@ -163,17 +232,25 @@ export default class ShadyDialog extends Screen {
         this.canvas.width / 2 + 200,
         420,
         'center',
-        'Grey',
+        'Grey'
       );
     } else {
       this.writeTextToCanvas(
-        'Next - right arrow >>',
+        'Next - right arrow ->',
         24,
         this.canvas.width / 2 + 200,
         420,
         'center',
-        'Grey',
+        'Grey'
       );
     }
+    this.writeTextToCanvas(
+      this.textToPresent,
+      30,
+      this.canvas.width / 3,
+      this.canvas.height / 4,
+      'center',
+      'red'
+    );
   }
 }
