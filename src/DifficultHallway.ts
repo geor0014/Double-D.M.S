@@ -84,7 +84,7 @@ export default class DifficultHallway extends Room {
           ['', '']
         ),
       ]),
-      new Npc('./assets/img/student-blue-hair-faced.png', 432, 322, [
+      new Npc('./assets/img/student-blue-hair-faced.png', 532, 300, [
         new Dialog(
           'Hey there! Have you seen a teddy bear around here?#',
           ['No..', 'Dont think so...'],

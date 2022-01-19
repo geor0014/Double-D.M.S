@@ -59,7 +59,7 @@ export default class ClassRoom5 extends Room {
 
     // sets the NPCs with their dialogs in the classroom
     this.npcs.push(
-      new Npc('./assets/img/teacher-blonde-hair-front-faced.png', 714, 198, [
+      new Npc('./assets/img/teacher-blonde-hair-front-faced.png', 600, 250, [
         new Dialog('You should take a break sometimes#', ['Yes Im tired', 'I am okay'], ['Studying can be hard', 'good to know!']),
         new Dialog('The cafeteria has great food!#', ['Ill check it out!', 'I am hungry..'], ['', '']),
       ]),
@@ -134,8 +134,8 @@ export default class ClassRoom5 extends Room {
           console.log('interact with door');
           this.doorClose.play();
           console.log(this.previousScene);
-          this.player.setXPos(493);
-          this.player.setYPos(350);
+          this.player.setXPos(460);
+          this.player.setYPos(300);
           // setting image of player according to the right character chosen
           const cNum: number = this.player.getCharacterNum();
           if (cNum === 1) {

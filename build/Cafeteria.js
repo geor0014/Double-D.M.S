@@ -38,8 +38,8 @@ export default class Cafeteria extends Room {
                     console.log('interact with door');
                     this.doorClose.play();
                     console.log(this.previousScene);
-                    this.player.setXPos(291);
-                    this.player.setYPos(361);
+                    this.player.setXPos(284);
+                    this.player.setYPos(250);
                     const cNum = this.player.getCharacterNum();
                     if (cNum === 1) {
                         this.player.setImage('./assets/img/player-boy1-down.png');

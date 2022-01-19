@@ -124,7 +124,7 @@ export default class ClassRoom1 extends Room {
           this.doorClose.play();
           console.log(this.previousScene);
           this.player.setXPos(632);
-          this.player.setYPos(350);
+          this.player.setYPos(300);
           // setting image of player according to the right character chosen
           const cNum: number = this.player.getCharacterNum();
           if (cNum === 1) {

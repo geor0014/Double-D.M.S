@@ -35,7 +35,7 @@ export default class MainHallway extends Room {
         this.collectibles = [];
         this.npcs = [];
         this.doors = [];
-        this.collectibles.push(new Candy(312, 276.5), new Hint(this.canvas.width / 3, this.canvas.height / 1.5));
+        this.collectibles.push(new Candy(312, 376.5), new Hint(this.canvas.width / 3, this.canvas.height / 1.5));
         this.doors.push(new Door('./assets/img/boss-room-door-closed.png', 511, 412));
         this.doors.push(new Door('./assets/img/cafeteria-door.png', 284, 160));
         this.npcs.push(new Npc('./assets/img/teacher-front.png', 782, 315.5, [
@@ -61,7 +61,7 @@ export default class MainHallway extends Room {
         }
         if (this.player.isInteracting()) {
             if (this.player.collidesWith(this.doors[0])) {
-                if (this.player.getUserData().getScore() > -1) {
+                if (this.player.getUserData().getScore() > 12) {
                     console.log('interact with door');
                     this.doorOpen.play();
                     if (this.bRoomInteract === false) {
@@ -94,7 +94,7 @@ export default class MainHallway extends Room {
             return this.easyHall;
         }
         if (this.player.getXPos() >= 909 && this.player.getYPos() >= 402.5) {
-            if (this.player.getUserData().getScore() > -1) {
+            if (this.player.getUserData().getScore() > 3) {
                 if (this.dHallInteract === false) {
                     this.diffHall = new DifficultHallway(this.canvas, this, this.player);
                     this.dHallInteract = true;
