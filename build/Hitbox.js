@@ -26,7 +26,7 @@ export default class Hitbox {
     draw(canvas) {
         const ctx2 = canvas.getContext('2d');
         ctx2.beginPath();
-        ctx2.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+        ctx2.fillStyle = 'rgba(255, 255, 255, 0)';
         ctx2.fillRect(this.x, this.y, this.width, this.height);
         ctx2.stroke();
     }

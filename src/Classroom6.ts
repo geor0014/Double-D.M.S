@@ -45,7 +45,7 @@ export default class ClassRoom6 extends Room {
     this.npcs = [];
     this.doors = [];
     this.questions = [];
-    this.computer = new Computer(479, 253);
+    this.computer = new Computer(480, 282);
 
     // creating collectibles in the classroom
     this.collectibles.push(
@@ -79,19 +79,18 @@ export default class ClassRoom6 extends Room {
         'No way, this site is only for kids and teachers'
       )
     );
-    this.insertHitbox(911, 563, 50, 5, 1);
-    this.insertHitbox(909, 600, 10, 10, 1);
-    this.insertHitbox(147, 658, 750, 5, 1);
-    this.insertHitbox(194, 107, 5, 500, 1);
-    this.insertHitbox(245, 107, 650, 5, 1);
+    this.insertHitbox(911, 590, 50, 5, 1);
+    this.insertHitbox(909, 640, 10, 10, 1);
+    this.insertHitbox(147, 700, 750, 5, 1);
+    this.insertHitbox(194, 147, 5, 500, 1);
+    this.insertHitbox(245, 244, 620, 5, 1);
     this.insertHitbox(908, 165, 5, 205, 1);
-    this.insertHitbox(953, 359, 5, 150, 1);
+    this.insertHitbox(953, 359, 5, 180, 1);
     this.insertHitbox(905, 410, 20, 5, 1);
-    this.insertHitbox(242, 169, 620, 5, 1);
-    this.insertHitbox(286, 313, 35, 270, 1);
-    this.insertHitbox(386, 313, 35, 270, 1);
-    this.insertHitbox(674, 313, 35, 270, 1);
-    this.insertHitbox(774, 313, 35, 270, 1);
+    this.insertHitbox(242, 119, 620, 5, 1);
+    this.insertHitbox(434, 363, 35, 240, 1);
+    this.insertHitbox(626, 363, 35, 240, 1);
+    this.insertHitbox(237, 358, 140, 140, 1);
     console.log('door6');
   }
 

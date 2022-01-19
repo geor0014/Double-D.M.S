@@ -9,6 +9,7 @@ export default class Player extends GameEntity {
     userData;
     characterNum;
     collision = 'none';
+    walkPath;
     constructor(canvas, characterNum) {
         super('', canvas.width / 2, canvas.height / 2);
         this.userData = new UserData();
@@ -28,8 +29,8 @@ export default class Player extends GameEntity {
         this.xVelocity = 3;
         this.yVelocity = 3;
         this.keyboard = new KeyListener();
-        this.walk = new Audio('./assets/sound/walk.ogg');
-        console.log('creating player');
+        this.walkPath = './assets/sound/walk.ogg';
+        this.walk = new Audio(this.walkPath);
     }
     movePlayer(canvas) {
         if (this.keyboard.isKeyDown(KeyListener.KEY_RIGHT) &&
@@ -193,6 +194,9 @@ export default class Player extends GameEntity {
     }
     getCollision() {
         return this.collision;
+    }
+    setWalkPath(path) {
+        this.walkPath = path;
     }
 }
 //# sourceMappingURL=Player.js.map
