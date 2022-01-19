@@ -347,8 +347,14 @@ export default abstract class Room extends Scene {
    * @param w of the hitbox
    * @param h of the hitbox
    */
-  protected insertHitbox(x: number, y: number, w: number, h: number): void {
-    this.hitboxes.push(new Hitbox(x, y, w, h));
+  protected insertHitbox(
+    x: number,
+    y: number,
+    w: number,
+    h: number,
+    opacity: number
+  ): void {
+    this.hitboxes.push(new Hitbox(x, y, w, h, opacity));
   }
 
   /**
@@ -419,6 +425,8 @@ export default abstract class Room extends Scene {
         this.hintNumImg = Scene.loadNewImage('./assets/img/10.png');
       } else if (this.player.getUserData().getHintAmount() === 0) {
         this.hintNumImg = Scene.loadNewImage('./assets/img/0.png');
+      } else {
+        this.hintNumImg = Scene.loadNewImage('./assets/img/10.png');
       }
 
       // DRAWS CANDY
@@ -444,6 +452,8 @@ export default abstract class Room extends Scene {
         this.candyNumImg = Scene.loadNewImage('./assets/img/10.png');
       } else if (this.player.getUserData().getCandyAmount() === 0) {
         this.candyNumImg = Scene.loadNewImage('./assets/img/0.png');
+      } else {
+        this.candyNumImg = Scene.loadNewImage('./assets/img/10.png');
       }
 
       // DRAWS QUEST ITEMS

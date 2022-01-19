@@ -35,6 +35,7 @@ export default class ClassRoom1 extends Room {
         this.doors.push(new Door('./assets/img/door1.png', 912, 400.5));
         this.questions.push(new Question(this.player.getUserData(), 'Congratulations you just won a giveaway!# a Nigerian Prince chose you to be the winner!!#Send him your bank account details and your ID to get 500.000€!!', 'Not pay attention and delete this email/message', 'Send an E-mail to make sure it is real', 'YES, TAKE ALL MY DATA!'));
         this.questions.push(new Question(this.player.getUserData(), 'Someone sent you a link to a YouTube video,# you click on it and suddenly you have a virus on your pc!# What could u have done differently? ', 'Not click on the link', 'Send this cool link to all my friends!', 'start chatting with this person for fun'));
+<<<<<<< HEAD
         this.insertHitbox(911, 563, 50, 5);
         this.insertHitbox(909, 600, 10, 10);
         this.insertHitbox(147, 658, 750, 5);
@@ -48,6 +49,9 @@ export default class ClassRoom1 extends Room {
         this.insertHitbox(386, 313, 35, 270);
         this.insertHitbox(674, 313, 35, 270);
         this.insertHitbox(774, 313, 35, 270);
+=======
+        this.insertHitbox(10, 10, 10, 10, 1);
+>>>>>>> b6ad603b955bfafe61db3d37233eab51ed4efb43
         console.log('CLASSROOM1');
     }
     update(elapsed) {

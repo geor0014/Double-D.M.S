@@ -59,7 +59,7 @@ export default class ClassRoom5 extends Room {
 
     // sets the NPCs with their dialogs in the classroom
     this.npcs.push(
-      new Npc('./assets/img/teacher-blonde-hair-front-faced.png', 714, 198, [
+      new Npc('./assets/img/teacher-blonde-hair-front-faced.png', 600, 250, [
         new Dialog('You should take a break sometimes#', ['Yes Im tired', 'I am okay'], ['Studying can be hard', 'good to know!']),
         new Dialog('The cafeteria has great food!#', ['Ill check it out!', 'I am hungry..'], ['', '']),
       ]),
@@ -97,8 +97,20 @@ export default class ClassRoom5 extends Room {
         'Someone who regularly surfs the web'
       )
     );
-    this.insertHitbox(10, 10, 10, 10);
 
+    this.insertHitbox(911, 563, 50, 5, 1);
+    this.insertHitbox(909, 600, 10, 10, 1);
+    this.insertHitbox(147, 658, 750, 5, 1);
+    this.insertHitbox(194, 107, 5, 500, 1);
+    this.insertHitbox(245, 107, 650, 5, 1);
+    this.insertHitbox(908, 165, 5, 205, 1);
+    this.insertHitbox(953, 359, 5, 150, 1);
+    this.insertHitbox(905, 410, 20, 5, 1);
+    this.insertHitbox(242, 169, 620, 5, 1);
+    this.insertHitbox(286, 313, 35, 270, 1);
+    this.insertHitbox(386, 313, 35, 270, 1);
+    this.insertHitbox(674, 313, 35, 270, 1);
+    this.insertHitbox(774, 313, 35, 270, 1);
     console.log('CLASSROOM5');
   }
 
@@ -122,8 +134,8 @@ export default class ClassRoom5 extends Room {
           console.log('interact with door');
           this.doorClose.play();
           console.log(this.previousScene);
-          this.player.setXPos(493);
-          this.player.setYPos(350);
+          this.player.setXPos(460);
+          this.player.setYPos(300);
           // setting image of player according to the right character chosen
           const cNum: number = this.player.getCharacterNum();
           if (cNum === 1) {
@@ -162,6 +174,8 @@ export default class ClassRoom5 extends Room {
    */
   public render(): void {
     this.draw(this.ctx);
+    this.drawHitBoxes();
+
     this.computer.draw(this.ctx);
     super.render();
   }

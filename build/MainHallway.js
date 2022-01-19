@@ -35,7 +35,7 @@ export default class MainHallway extends Room {
         this.collectibles = [];
         this.npcs = [];
         this.doors = [];
-        this.collectibles.push(new Candy(312, 276.5), new Hint(this.canvas.width / 3, this.canvas.height / 1.5));
+        this.collectibles.push(new Candy(312, 376.5), new Hint(this.canvas.width / 3, this.canvas.height / 1.5));
         this.doors.push(new Door('./assets/img/boss-room-door-closed.png', 511, 412));
         this.doors.push(new Door('./assets/img/cafeteria-door.png', 284, 160));
         this.npcs.push(new Npc('./assets/img/teacher-front.png', 782, 315.5, [
@@ -43,15 +43,16 @@ export default class MainHallway extends Room {
             new Dialog('Good luck with your exams!#', ['Thanks!', 'Thank you'], ['', '']),
         ]));
         this.backpack = new QuestItem('backpack', './assets/img/backpack.png', 682, 318.5);
-        this.insertHitbox(382, 101, 300, 300);
-        this.insertHitbox(176, 102, 170, 105);
-        this.insertHitbox(150, 260, 50, 200);
-        this.insertHitbox(920, 265, 50, 180);
-        this.insertHitbox(728, 114, 220, 105);
-        this.insertHitbox(149, 560, 50, 205);
-        this.insertHitbox(239, 704, 230, 50);
-        this.insertHitbox(504, 755, 50, 5);
-        this.insertHitbox(594, 755, 350, 5);
+        this.insertHitbox(382, 101, 300, 300, 1);
+        this.insertHitbox(176, 102, 170, 105, 1);
+        this.insertHitbox(150, 260, 50, 200, 1);
+        this.insertHitbox(920, 265, 50, 180, 1);
+        this.insertHitbox(728, 114, 220, 105, 1);
+        this.insertHitbox(149, 560, 50, 205, 1);
+        this.insertHitbox(239, 704, 230, 50, 1);
+        this.insertHitbox(504, 755, 50, 5, 1);
+        this.insertHitbox(594, 705, 350, 5, 1);
+        this.insertHitbox(914, 553, 5, 100, 1);
     }
     update(elapsed) {
         const nextScene = this.generalInteraction();
@@ -93,7 +94,7 @@ export default class MainHallway extends Room {
             return this.easyHall;
         }
         if (this.player.getXPos() >= 909 && this.player.getYPos() >= 402.5) {
-            if (this.player.getUserData().getScore() > -1) {
+            if (this.player.getUserData().getScore() > 3) {
                 if (this.dHallInteract === false) {
                     this.diffHall = new DifficultHallway(this.canvas, this, this.player);
                     this.dHallInteract = true;

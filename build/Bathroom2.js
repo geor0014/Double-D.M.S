@@ -14,11 +14,12 @@ export default class Bathroom2 extends Room {
         this.collectibles = [];
         this.npcs = [];
         this.doors = [];
-        this.npcs.push(new Npc('./assets/img/student-orange-hair-back-faced.png', 652, 436, [
-            new Dialog('....', ['', ''], ['', '']),
+        this.npcs.push(new Npc('./assets/img/green-boy.png', 652, 436, [
+            new Dialog('I am escaping class', ['ok', 'Me too'], ['', '']),
         ]));
         this.collectibles.push(new Candy(this.canvas.width / 2, this.canvas.height / 2));
         this.doors.push(new Door('./assets/img/boy-bathroom-door.png', 912, 265));
+<<<<<<< HEAD
         this.insertHitbox(910, 435.5, 50, 70);
         this.insertHitbox(956, 136.5, 10, 242);
         this.insertHitbox(479, 181.5, 410, 70);
@@ -29,6 +30,9 @@ export default class Bathroom2 extends Room {
         this.insertHitbox(240, 180.5, 45, 290);
         this.insertHitbox(170, 179.5, 21, 370);
         this.insertHitbox(188, 122, 720, 10);
+=======
+        this.insertHitbox(10, 10, 10, 10, 1);
+>>>>>>> b6ad603b955bfafe61db3d37233eab51ed4efb43
         console.log('Bathroom1');
     }
     update(elapsed) {

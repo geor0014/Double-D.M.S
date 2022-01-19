@@ -32,14 +32,23 @@ export default class DifficultHallway extends Room {
         this.npcs.push(new Npc('./assets/img/student-grey-hair-back-faced.png', 597, 500, [
             new Dialog('I heard there is this weird dude in the bathroom#', ['really?', 'oh no...'], ['YES!', 'He is creepy..']),
             new Dialog('I am too scared to go there#', ['Me too!', 'Ill go!'], ['', '']),
-        ]), new Npc('./assets/img/student-blue-hair-faced.png', 432, 322, [
+        ]), new Npc('./assets/img/student-blue-hair-faced.png', 532, 300, [
             new Dialog('Hey there! Have you seen a teddy bear around here?#', ['No..', 'Dont think so...'], ['Oh...', 'oh...']),
             new Dialog('I lost mine. If you see it, can you bring it to me tomorrow?#', ['Sure!', 'Yeah why not'], ['', '']),
         ]));
         this.doors.push(new Door('./assets/img/door1.png', 290, 228.5));
         this.doors.push(new Door('./assets/img/door1.png', 460, 228.5));
         this.doors.push(new Door('./assets/img/door1.png', 650, 228.5));
-        this.insertHitbox(10, 10, 10, 10);
+        this.insertHitbox(105, 305, 150, 5, 1);
+        this.insertHitbox(276, 176, 5, 90, 1);
+        this.insertHitbox(323, 202, 650, 5, 1);
+        this.insertHitbox(1002, 212, 5, 400, 1);
+        this.insertHitbox(144, 551, 810, 5, 1);
+        this.insertHitbox(99, 453, 41, 5, 1);
+        this.insertHitbox(140, 490, 5, 5, 1);
+        this.insertHitbox(854, 254, 5, 50, 1);
+        this.insertHitbox(889, 345, 50, 5, 1);
+        this.insertHitbox(320, 246, 500, 5, 1);
     }
     addQuestItems() {
         if (this.pushOnce === true) {
@@ -134,6 +143,7 @@ export default class DifficultHallway extends Room {
                 item.draw(this.ctx);
         });
         super.render();
+        this.drawHitBoxes();
     }
 }
 //# sourceMappingURL=DifficultHallway.js.map

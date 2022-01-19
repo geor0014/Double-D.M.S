@@ -126,6 +126,7 @@ export default class EasyHallway extends Room {
     );
     this.doors.push(new Door('./assets/img/boy-bathroom-door.png', 100, 228.5));
 
+<<<<<<< HEAD
     this.insertHitbox(49, 245, 1000, 10, 1);
     this.insertHitbox(144, 548.5, 1000, 10, 1);
     this.insertHitbox(957, 304, 50, 10, 1);
@@ -137,6 +138,9 @@ export default class EasyHallway extends Room {
     this.insertHitbox(813, 307.5, 97, 10, 1);
     this.insertHitbox(390, 314.5, 30, 30, 1);
     this.insertHitbox(772, 314.5, 30, 30, 1);
+=======
+    this.insertHitbox(10, 10, 10, 10, 1);
+>>>>>>> b6ad603b955bfafe61db3d37233eab51ed4efb43
   }
 
   /**

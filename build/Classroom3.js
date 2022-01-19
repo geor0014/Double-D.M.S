@@ -21,6 +21,7 @@ export default class ClassRoom3 extends Room {
         this.computer = new Computer(495, 455);
         this.doors.push(new Door('./assets/img/door1.png', 912, 390));
         this.questions.push(new Question(this.player.getUserData(), 'You see the following post:#“Hey look at Timmy`s head, man he looks horrible! #Share this video or we will stop talking to you!” What will you do? ', 'Report it and help poor Timmy', 'Share it I don`t want to be alone', 'Ignore and let it happen '), new Question(this.player.getUserData(), 'My parents and I have established rules as to what I can do #on the Internet when Im home, but Im at a friend`s house. #Should I go by my parents rules or do whatever my friend does?', 'Go by your parents rules', 'Do whatever your friend does ', 'It doesn`t really matter'));
+<<<<<<< HEAD
         this.insertHitbox(143, 78.5, 715, 160);
         this.insertHitbox(864, 13.5, 100, 10);
         this.insertHitbox(909, 77.5, 45, 250);
@@ -33,6 +34,9 @@ export default class ClassRoom3 extends Room {
         this.insertHitbox(475, 455.5, 100, 30);
         this.insertHitbox(242, 524.5, 185, 150);
         this.insertHitbox(152, 720.5, 700, 10);
+=======
+        this.insertHitbox(10, 10, 10, 10, 1);
+>>>>>>> b6ad603b955bfafe61db3d37233eab51ed4efb43
         console.log('CLASSROOM3');
     }
     update(elapsed) {
@@ -43,7 +47,11 @@ export default class ClassRoom3 extends Room {
                     console.log('interact with door');
                     this.doorClose.play();
                     console.log(this.previousScene);
+<<<<<<< HEAD
                     this.player.setXPos(285);
+=======
+                    this.player.setXPos(280);
+>>>>>>> b6ad603b955bfafe61db3d37233eab51ed4efb43
                     this.player.setYPos(300);
                     const cNum = this.player.getCharacterNum();
                     if (cNum === 1) {

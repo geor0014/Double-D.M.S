@@ -33,7 +33,7 @@ export default class ClassRoom6 extends Room {
     player: Player,
     state: boolean
   ) {
-    super(canvas, './assets/img/classroom.png', state);
+    super(canvas, './assets/img/artclass.png', state);
     this.previousScene = previousScene;
 
     this.player = player;
@@ -45,7 +45,7 @@ export default class ClassRoom6 extends Room {
     this.npcs = [];
     this.doors = [];
     this.questions = [];
-    this.computer = new Computer(479, 253);
+    this.computer = new Computer(480, 282);
 
     // creating collectibles in the classroom
     this.collectibles.push(
@@ -79,8 +79,18 @@ export default class ClassRoom6 extends Room {
         'No way, this site is only for kids and teachers'
       )
     );
-    this.insertHitbox(10, 10, 10, 10);
-
+    this.insertHitbox(911, 590, 50, 5, 1);
+    this.insertHitbox(909, 640, 10, 10, 1);
+    this.insertHitbox(147, 700, 750, 5, 1);
+    this.insertHitbox(194, 147, 5, 500, 1);
+    this.insertHitbox(245, 244, 620, 5, 1);
+    this.insertHitbox(908, 165, 5, 205, 1);
+    this.insertHitbox(953, 359, 5, 180, 1);
+    this.insertHitbox(905, 410, 20, 5, 1);
+    this.insertHitbox(242, 119, 620, 5, 1);
+    this.insertHitbox(434, 363, 35, 240, 1);
+    this.insertHitbox(626, 363, 35, 240, 1);
+    this.insertHitbox(237, 358, 140, 140, 1);
     console.log('door6');
   }
 
@@ -104,8 +114,8 @@ export default class ClassRoom6 extends Room {
           console.log('interact with door');
           this.doorClose.play();
           console.log(this.previousScene);
-          this.player.setXPos(688);
-          this.player.setYPos(350);
+          this.player.setXPos(650);
+          this.player.setYPos(300);
           // setting image of player according to the right character chosen
           const cNum: number = this.player.getCharacterNum();
           if (cNum === 1) {
@@ -144,6 +154,8 @@ export default class ClassRoom6 extends Room {
    */
   public render(): void {
     this.draw(this.ctx);
+    this.drawHitBoxes();
+
     this.computer.draw(this.ctx);
     super.render();
   }

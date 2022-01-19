@@ -26,6 +26,7 @@ export default class ClassRoom2 extends Room {
         this.collectibles.push(new Hint(this.canvas.width / 2 - 100, this.canvas.height / 2 - 70));
         this.doors.push(new Door('./assets/img/door1.png', 912, 400.5));
         this.questions.push(new Question(this.player.getUserData(), 'You are creating an account on your favorite social media.# Before you can access it,#they ask you to accept the general terms of condition!# What do you do?', 'Ask your parents what they think', 'Not read it and accept it', 'Read through everything and decide if you accept'), new Question(this.player.getUserData(), 'Which of these files are safe to download?#', 'Game.exe', 'Virus.exe ', 'Trojan.exe'));
+<<<<<<< HEAD
         this.insertHitbox(911, 563, 50, 5);
         this.insertHitbox(909, 600, 10, 10);
         this.insertHitbox(147, 658, 750, 5);
@@ -38,6 +39,9 @@ export default class ClassRoom2 extends Room {
         this.insertHitbox(380, 370, 35, 240);
         this.insertHitbox(536, 370, 35, 240);
         this.insertHitbox(674, 370, 35, 240);
+=======
+        this.insertHitbox(10, 10, 10, 10, 1);
+>>>>>>> b6ad603b955bfafe61db3d37233eab51ed4efb43
         console.log('CLASSROOM2');
     }
     update(elapsed) {
@@ -48,7 +52,11 @@ export default class ClassRoom2 extends Room {
                     console.log('interact with door');
                     this.doorClose.play();
                     console.log(this.previousScene);
+<<<<<<< HEAD
                     this.player.setXPos(454);
+=======
+                    this.player.setXPos(450);
+>>>>>>> b6ad603b955bfafe61db3d37233eab51ed4efb43
                     this.player.setYPos(300);
                     const cNum = this.player.getCharacterNum();
                     if (cNum === 1) {

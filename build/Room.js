@@ -180,8 +180,8 @@ export default class Room extends Scene {
             box.draw(this.canvas);
         });
     }
-    insertHitbox(x, y, w, h) {
-        this.hitboxes.push(new Hitbox(x, y, w, h));
+    insertHitbox(x, y, w, h, opacity) {
+        this.hitboxes.push(new Hitbox(x, y, w, h, opacity));
     }
     render() {
         this.writeTextToCanvas('press M to hide/unhide menu', 24, this.canvas.width / 2, this.canvas.height - 50, 'center', 'Blue');
@@ -231,6 +231,9 @@ export default class Room extends Scene {
             else if (this.player.getUserData().getHintAmount() === 0) {
                 this.hintNumImg = Scene.loadNewImage('./assets/img/0.png');
             }
+            else {
+                this.hintNumImg = Scene.loadNewImage('./assets/img/10.png');
+            }
             if (this.player.getUserData().getCandyAmount() === 1) {
                 this.candyNumImg = Scene.loadNewImage('./assets/img/1.png');
             }
@@ -263,6 +266,9 @@ export default class Room extends Scene {
             }
             else if (this.player.getUserData().getCandyAmount() === 0) {
                 this.candyNumImg = Scene.loadNewImage('./assets/img/0.png');
+            }
+            else {
+                this.candyNumImg = Scene.loadNewImage('./assets/img/10.png');
             }
             this.drawQuestItems();
             this.ctx.drawImage(this.hintNumImg, 400, 670, 50, 50);

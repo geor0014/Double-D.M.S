@@ -45,8 +45,8 @@ export default class Bathroom2 extends Room {
 
     // sets the NPCs with their dialogs in the classroom
     this.npcs.push(
-      new Npc('./assets/img/student-orange-hair-back-faced.png', 652, 436, [
-        new Dialog('....', ['' , ''], ['', '']),
+      new Npc('./assets/img/green-boy.png', 652, 436, [
+        new Dialog('I am escaping class', ['ok', 'Me too'], ['', '']),
       ])
     );
     // creating collectibles in the classroom
@@ -57,6 +57,7 @@ export default class Bathroom2 extends Room {
     // creating the door for the classroom
     this.doors.push(new Door('./assets/img/boy-bathroom-door.png', 912, 265));
 
+<<<<<<< HEAD
     this.insertHitbox(910, 435.5, 50, 70, 1);
     this.insertHitbox(956, 136.5, 10, 242, 1);
     this.insertHitbox(479, 181.5, 410, 70, 1);
@@ -67,6 +68,9 @@ export default class Bathroom2 extends Room {
     this.insertHitbox(240, 180.5, 45, 290, 1);
     this.insertHitbox(170, 179.5, 21, 370, 1);
     this.insertHitbox(188, 122, 720, 10, 1);
+=======
+    this.insertHitbox(10, 10, 10, 10, 1);
+>>>>>>> b6ad603b955bfafe61db3d37233eab51ed4efb43
 
     console.log('Bathroom1');
   }
