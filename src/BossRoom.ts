@@ -194,7 +194,7 @@ export default class BossRoom extends Room {
 
     // ending screen
     if (this.endingScreen) {
-      if (this.player.getUserData().getScore() > 1) {
+      if (this.player.getUserData().getScore() > 17) {
         return new HappyEnding(this.canvas, this.player.getCharacterNum());
       }
       return new SadEnding(this.canvas, this.player.getCharacterNum());

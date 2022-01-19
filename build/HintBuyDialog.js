@@ -1,6 +1,6 @@
 import KeyListener from './KeyListener.js';
 import Screen from './Screen.js';
-export default class DialogScreen extends Screen {
+export default class CandyBuyDialog extends Screen {
     keyboard;
     previousScene;
     dialogs;
@@ -9,8 +9,10 @@ export default class DialogScreen extends Screen {
     frameCounter = 0;
     okPressed;
     textToPresent;
-    constructor(canvas, previousScene, dialogs) {
-        super(canvas, './assets/img/dialogscreen.png');
+    HintAmount;
+    CandyAmount;
+    constructor(canvas, previousScene, dialogs, hintAmount, candyAmount) {
+        super(canvas, './assets/img/dialogscreen-Shady.png');
         this.keyboard = new KeyListener();
         this.previousScene = previousScene;
         this.dialogs = dialogs;
@@ -55,17 +57,22 @@ export default class DialogScreen extends Screen {
         this.moveBetweenDialogs();
         if (this.nextD &&
             this.dCounter < this.dialogs.length - 1 &&
-            this.frameCounter === 10) {
+            this.frameCounter === 15) {
             this.dCounter += 1;
             this.textToPresent = '...';
         }
         let answerRecived = 0;
-        if (this.frameCounter % 10 === 0) {
+        if (this.frameCounter % 15 === 0) {
             if (this.okPressed === false) {
                 answerRecived = this.reciveAnswer();
             }
             if (answerRecived !== 0 && this.okPressed === true) {
-                if (answerRecived === 1) {
+                if (this.dCounter === this.dialogs.length - 1) {
+                    if (answerRecived === 1) {
+                    }
+                    this.textToPresent = `${this.dialogs[this.dCounter].getReplies()[1]}`;
+                }
+                else if (answerRecived === 1) {
                     this.textToPresent = `${this.dialogs[this.dCounter].getReplies()[0]}`;
                 }
                 else {
@@ -74,7 +81,7 @@ export default class DialogScreen extends Screen {
             }
             answerRecived = 0;
         }
-        if (this.frameCounter === 10) {
+        if (this.frameCounter === 15) {
             this.frameCounter = 0;
         }
         this.frameCounter += 1;
@@ -111,4 +118,4 @@ export default class DialogScreen extends Screen {
         this.writeTextToCanvas(this.textToPresent, 30, this.canvas.width / 3, this.canvas.height / 4, 'center', 'red');
     }
 }
-//# sourceMappingURL=DialogScreen.js.map
+//# sourceMappingURL=HintBuyDialog.js.map

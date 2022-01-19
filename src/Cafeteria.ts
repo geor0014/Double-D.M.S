@@ -46,12 +46,16 @@ export default class Cafeteria extends Room {
     // sets the NPCs with their dialogs in the classroom
     this.npcs.push(
       new Npc('./assets/img/student-orange-hair-back-faced.png', 652, 436, [
-        new Dialog('Hello, this is some delicious food they have here#'),
-        new Dialog('I love french fries, how about you?#'),
+        new Dialog('Hello, this is some delicious food they have here#', ['' , ''], ['', '']),
+        new Dialog('I love french fries, how about you?#', ['' , ''], ['', '']),
       ]),
       new Npc('./assets/img/teacher-blonde-hair-front-faced.png', 714, 298, [
-        new Dialog('Hurry up, everyone, class starts in 10 minutes!!#'),
-      ])
+        new Dialog('Hurry up, everyone, class starts in 10 minutes!!#', ['' , ''], ['', '']),
+      ]),
+      new Npc('./assets/img/lunch-lady.png', 300, 500, [
+        new Dialog('Good day!# we have some special treats today!#', ['ohh delicious', 'I am starving'], ['I hope so I worked hard on this', 'You should eat something']),
+        new Dialog('I can trade you some candy for hints#', ['Yes please', 'No thank you'], ['There you go', 'Okay maybe later']),
+      ]),
     );
     // creating collectibles in the classroom
     this.collectibles.push(

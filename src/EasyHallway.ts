@@ -79,18 +79,40 @@ export default class EasyHallway extends Room {
     // creates npcs with their dialogs for this room
     this.npcs.push(
       new Npc('./assets/img/student-1-back-faced.png', 575, 495, [
-        new Dialog('Hello, I lost my backpack....#'),
         new Dialog(
-          'Can you please look for it and bring it back to me tomorrow?#'
+          'Hello, I lost my backpack....#',
+          ['really?', 'oh no'],
+          ['yes..', 'all my things are there']
+        ),
+        new Dialog(
+          'Can you please look for it and bring it back to me tomorrow?#',
+          ['Sure!', 'okay'],
+          ['', '']
         ),
       ]),
       new Npc('./assets/img/student-black-haired-left-faced.png', 195, 315, [
-        new Dialog('There are some things you should never share!#'),
-        new Dialog('I hope she will not be bullied#'),
+        new Dialog(
+          'There are some things you should never share!#',
+          ['I know that', 'ok..'],
+          ['Good!', 'I am scared']
+        ),
+        new Dialog(
+          'I hope she will not be bullied#',
+          ['Me too!', '...'],
+          ['', '']
+        ),
       ]),
       new Npc('./assets/img/student-red-right-faced.png', 155, 315, [
-        new Dialog('Did you hear about Jessica?#'),
-        new Dialog('Cant believe she shared that picture :O#'),
+        new Dialog(
+          'Did you hear about Jessica?#',
+          ['No..', 'What happaned?'],
+          ['How not?', 'The picture!']
+        ),
+        new Dialog(
+          'Cant believe she shared that picture :O#',
+          ['Didnt see it', '...'],
+          ['', '']
+        ),
       ])
     );
 

@@ -3,8 +3,9 @@ import Screen from './Screen.js';
 import Scene from './Scene.js';
 import Room from './Room.js';
 import Dialog from './Dialog.js';
+import SadEnding from './SadEnding.js';
 
-export default class DialogScreen extends Screen {
+export default class CandyBuyDialog extends Screen {
   private keyboard: KeyListener;
 
   private previousScene: Room;
@@ -21,19 +22,27 @@ export default class DialogScreen extends Screen {
 
   private textToPresent: string;
 
+  private HintAmount: number;
+
+  private CandyAmount: number;
+
   /**
    * Creates new Dialog screen
    *
    * @param canvas passes the canvas to Screen
    * @param previousScene rerturns player to previous screen
    * @param dialogs an array of dialogs string
+   * @param hintAmount number of hints
+   * @param candyAmount number of hints
    */
   constructor(
     canvas: HTMLCanvasElement,
     previousScene: Room,
-    dialogs: Dialog[]
+    dialogs: Dialog[],
+    hintAmount: number,
+    candyAmount: number,
   ) {
-    super(canvas, './assets/img/dialogscreen.png');
+    super(canvas, './assets/img/dialogscreen-Shady.png');
 
     // sets keylistener
     this.keyboard = new KeyListener();
@@ -57,6 +66,8 @@ export default class DialogScreen extends Screen {
     this.setYPos(0);
 
     this.textToPresent = '...';
+
+    // this.characterNum = characterNum;
   }
 
   /**
@@ -121,32 +132,35 @@ export default class DialogScreen extends Screen {
     if (
       this.nextD &&
       this.dCounter < this.dialogs.length - 1 &&
-      this.frameCounter === 10
+      this.frameCounter === 15
     ) {
       this.dCounter += 1;
       this.textToPresent = '...';
     }
     // checks if answer was registered and player pressed ok with frame count
     let answerRecived = 0;
-    if (this.frameCounter % 10 === 0) {
+    if (this.frameCounter % 15 === 0) {
       if (this.okPressed === false) {
         answerRecived = this.reciveAnswer();
       }
       // console.log(`answer Recived ${answerRecived}`);
       if (answerRecived !== 0 && this.okPressed === true) {
-        // this.okPressed = false;
-        if (answerRecived === 1) {
+        if (this.dCounter === this.dialogs.length - 1) {
+          if (answerRecived === 1) {
+            // return new SadEnding(this.canvas, this.characterNum);
+          }
+          this.textToPresent = `${this.dialogs[this.dCounter].getReplies()[1]}`;
+        } else if (answerRecived === 1) {
           this.textToPresent = `${this.dialogs[this.dCounter].getReplies()[0]}`;
         } else {
           this.textToPresent = `${this.dialogs[this.dCounter].getReplies()[1]}`;
         }
       }
-
       answerRecived = 0;
     }
 
     // resets the frame counter after it got to 10
-    if (this.frameCounter === 10) {
+    if (this.frameCounter === 15) {
       this.frameCounter = 0;
     }
 

@@ -78,8 +78,16 @@ export default class MainHallway extends Room {
     // creating Npc and dialog
     this.npcs.push(
       new Npc('./assets/img/teacher-front.png', 782, 315.5, [
-        new Dialog('Heyy how are you today?#'),
-        new Dialog('Good luck with your exams!#'),
+        new Dialog(
+          'Heyy how are you today?#',
+          ['Good Thank you!', 'Excited for my birthday!'],
+          ['Glad to hear that', 'Happy Birthday!']
+        ),
+        new Dialog(
+          'Good luck with your exams!#',
+          ['Thanks!', 'Thank you'],
+          ['', '']
+        ),
       ])
     );
 
@@ -113,12 +121,15 @@ export default class MainHallway extends Room {
   public update(elapsed: number): Scene {
     const nextScene: Scene = this.generalInteraction();
 
+    if (this.player.getUserData().getScore() > 12) {
+      this.doors[0].setImage('./assets/img/boss-room-door-opened.png');
+    }
     // console.log(this.player.getXPos(), this.player.getYPos());
     if (this.player.isInteracting()) {
       // WITH DOORS
       // for (let i = 0; i < this.doors.length; i += 1) {
       if (this.player.collidesWith(this.doors[0])) {
-        if (this.player.getUserData().getScore() > -1) {
+        if (this.player.getUserData().getScore() > 12) {
           console.log('interact with door');
           this.doorOpen.play();
           if (this.bRoomInteract === false) {

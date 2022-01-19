@@ -30,11 +30,11 @@ export default class DifficultHallway extends Room {
         this.setXPos(0);
         this.setYPos(0);
         this.npcs.push(new Npc('./assets/img/student-grey-hair-back-faced.png', 597, 500, [
-            new Dialog('I heard there is this weird dude in the bathroom#'),
-            new Dialog('I am too scared to go there#'),
-        ]), new Npc('./assets/img/student-blue-hair-faced.png', 556, 323, [
-            new Dialog('Hey there! Have you seen a teddy bear around here?#'),
-            new Dialog('I lost mine. If you see it, can you bring it to me tomorrow?#'),
+            new Dialog('I heard there is this weird dude in the bathroom#', ['really?', 'oh no...'], ['YES!', 'He is creepy..']),
+            new Dialog('I am too scared to go there#', ['Me too!', 'Ill go!'], ['', '']),
+        ]), new Npc('./assets/img/student-blue-hair-faced.png', 432, 322, [
+            new Dialog('Hey there! Have you seen a teddy bear around here?#', ['No..', 'Dont think so...'], ['Oh...', 'oh...']),
+            new Dialog('I lost mine. If you see it, can you bring it to me tomorrow?#', ['Sure!', 'Yeah why not'], ['', '']),
         ]));
         this.doors.push(new Door('./assets/img/door1.png', 290, 228.5));
         this.doors.push(new Door('./assets/img/door1.png', 460, 228.5));
@@ -65,10 +65,23 @@ export default class DifficultHallway extends Room {
     }
     update(elapsed) {
         const nextScene = this.generalInteraction();
+        const cNum = this.player.getCharacterNum();
         if (this.player.getXPos() <= 100 && this.player.getYPos() >= 334.5) {
             this.player.setXPos(900);
             this.player.setYPos(443.5);
-            this.player.setImage('./assets/img/player-boy-left.png');
+            if (cNum === 1) {
+                this.player.setImage('./assets/img/player-boy1-left.png');
+            }
+            else if (cNum === 2) {
+                this.player.setImage('./assets/img/player-boy2-left.png');
+            }
+            else if (cNum === 3) {
+                this.player.setImage('./assets/img/player-girl2-left.png');
+            }
+            else if (cNum === 4) {
+                this.player.setImage('./assets/img/player-girl1-left.png');
+            }
+            console.log('main halwway return');
             return this.mainHallway;
         }
         if (this.player.isInteracting()) {
@@ -77,6 +90,18 @@ export default class DifficultHallway extends Room {
                     console.log('interact with door');
                     this.player.setXPos(911);
                     this.player.setYPos(473);
+                    if (cNum === 1) {
+                        this.player.setImage('./assets/img/player-boy1-down.png');
+                    }
+                    else if (cNum === 2) {
+                        this.player.setImage('./assets/img/player-boy2-down.png');
+                    }
+                    else if (cNum === 3) {
+                        this.player.setImage('./assets/img/player-girl2-down.png');
+                    }
+                    else if (cNum === 4) {
+                        this.player.setImage('./assets/img/player-girl1-down.png');
+                    }
                     this.doorOpen.play();
                     if (i === 0) {
                         if (this.room4Interact === false) {
