@@ -347,8 +347,14 @@ export default abstract class Room extends Scene {
    * @param w of the hitbox
    * @param h of the hitbox
    */
-  protected insertHitbox(x: number, y: number, w: number, h: number): void {
-    this.hitboxes.push(new Hitbox(x, y, w, h));
+  protected insertHitbox(
+    x: number,
+    y: number,
+    w: number,
+    h: number,
+    opacity: number
+  ): void {
+    this.hitboxes.push(new Hitbox(x, y, w, h, opacity));
   }
 
   /**

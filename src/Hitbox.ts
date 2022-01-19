@@ -7,6 +7,8 @@ export default class Hitbox {
 
   private height: number;
 
+  private opacity: number;
+
   /**
    *
    * @param x number
@@ -14,11 +16,12 @@ export default class Hitbox {
    * @param w number
    * @param h number
    */
-  constructor(x: number, y: number, w: number, h: number) {
+  constructor(x: number, y: number, w: number, h: number, opacity: number) {
     this.x = x;
     this.y = y;
     this.width = w;
     this.height = h;
+    this.opacity = opacity;
   }
 
   /**
@@ -65,7 +68,7 @@ export default class Hitbox {
   public draw(canvas: HTMLCanvasElement): void {
     const ctx2 = canvas.getContext('2d');
     ctx2.beginPath();
-    ctx2.fillStyle = 'rgba(255, 255, 255, 1)';
+    ctx2.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
     ctx2.fillRect(this.x, this.y, this.width, this.height);
     ctx2.stroke();
   }

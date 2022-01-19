@@ -51,7 +51,7 @@ export default class EasyHallway extends Room {
         this.doors.push(new Door('./assets/img/door1.png', 280, 228.5));
         this.doors.push(new Door('./assets/img/girl-bathroom-door.png', 910, 228.5));
         this.doors.push(new Door('./assets/img/boy-bathroom-door.png', 100, 228.5));
-        this.insertHitbox(10, 10, 10, 10);
+        this.insertHitbox(10, 10, 10, 10, 1);
     }
     update(elapsed) {
         const nextScene = this.generalInteraction();

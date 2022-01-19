@@ -180,8 +180,8 @@ export default class Room extends Scene {
             box.draw(this.canvas);
         });
     }
-    insertHitbox(x, y, w, h) {
-        this.hitboxes.push(new Hitbox(x, y, w, h));
+    insertHitbox(x, y, w, h, opacity) {
+        this.hitboxes.push(new Hitbox(x, y, w, h, opacity));
     }
     render() {
         this.writeTextToCanvas('press M to hide/unhide menu', 24, this.canvas.width / 2, this.canvas.height - 50, 'center', 'Blue');

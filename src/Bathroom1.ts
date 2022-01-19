@@ -57,12 +57,32 @@ export default class Bathroom1 extends Room {
       this.canvas.width / 2,
       400,
       [
-        new Dialog('Hey kid..#', ['What are you doing in the bathroom?', 'Hello??'], ['He..He..', 'You are braver than most..']),
-        new Dialog('I heard its your birthday today..#', ['It is!', 'How did you know this?'], ['Happy Birthday...', 'I know EVERYTHING!']),
-        new Dialog('I can give you some candy if you want#', ['Yay candy!', 'I dont want anything from you!'], ['hahaha', 'Why not I am pretty nice']),
-        new Dialog('OR I can give you a PHONE!!#', ['Really?!', 'I shouldnt be talking to you'], ['Yes!', 'Come on I know you want the phone!']),
-        new Dialog('What do you chose?#', ['The phone', 'Nothing..'], ['Here you go... Ill call you', 'Fine whatever..']),
-      ],
+        new Dialog(
+          'Hey kid..#',
+          ['What are you doing in the bathroom?', 'Hello??'],
+          ['He..He..', 'You are braver than most..']
+        ),
+        new Dialog(
+          'I heard its your birthday today..#',
+          ['It is!', 'How did you know this?'],
+          ['Happy Birthday...', 'I know EVERYTHING!']
+        ),
+        new Dialog(
+          'I can give you some candy if you want#',
+          ['Yay candy!', 'I dont want anything from you!'],
+          ['hahaha', 'Why not I am pretty nice']
+        ),
+        new Dialog(
+          'OR I can give you a PHONE!!#',
+          ['Really?!', 'I shouldnt be talking to you'],
+          ['Yes!', 'Come on I know you want the phone!']
+        ),
+        new Dialog(
+          'What do you chose?#',
+          ['The phone', 'Nothing..'],
+          ['Here you go... Ill call you', 'Fine whatever..']
+        ),
+      ]
     );
 
     // creating collectibles in the classroom
@@ -73,7 +93,7 @@ export default class Bathroom1 extends Room {
     // creating the door for the classroom
     this.doors.push(new Door('./assets/img/girl-bathroom-door.png', 912, 265));
 
-    this.insertHitbox(10, 10, 10, 10);
+    this.insertHitbox(10, 10, 10, 10, 1);
 
     console.log('Bathroom1');
   }
@@ -116,9 +136,17 @@ export default class Bathroom1 extends Room {
       }
 
       // With Shady Guy
-      if (this.player.collidesWith(this.shadyGuy) && this.interactShady === false) {
+      if (
+        this.player.collidesWith(this.shadyGuy) &&
+        this.interactShady === false
+      ) {
         this.interactShady = true;
-        return new ShadyDialog(this.canvas, this, this.shadyGuy.getDialogs(),this.player.getCharacterNum());
+        return new ShadyDialog(
+          this.canvas,
+          this,
+          this.shadyGuy.getDialogs(),
+          this.player.getCharacterNum()
+        );
       }
     }
     // according to the general checks in room

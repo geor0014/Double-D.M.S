@@ -27,7 +27,7 @@ export default class Bathroom1 extends Room {
         ]);
         this.collectibles.push(new Candy(this.canvas.width / 2, this.canvas.height / 2));
         this.doors.push(new Door('./assets/img/girl-bathroom-door.png', 912, 265));
-        this.insertHitbox(10, 10, 10, 10);
+        this.insertHitbox(10, 10, 10, 10, 1);
         console.log('Bathroom1');
     }
     update(elapsed) {
@@ -56,7 +56,8 @@ export default class Bathroom1 extends Room {
                     return this.previousScene;
                 }
             }
-            if (this.player.collidesWith(this.shadyGuy) && this.interactShady === false) {
+            if (this.player.collidesWith(this.shadyGuy) &&
+                this.interactShady === false) {
                 this.interactShady = true;
                 return new ShadyDialog(this.canvas, this, this.shadyGuy.getDialogs(), this.player.getCharacterNum());
             }

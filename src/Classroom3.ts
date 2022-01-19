@@ -77,7 +77,7 @@ export default class ClassRoom3 extends Room {
         'It doesn`t really matter'
       )
     );
-    this.insertHitbox(10, 10, 10, 10);
+    this.insertHitbox(10, 10, 10, 10, 1);
 
     console.log('CLASSROOM3');
   }

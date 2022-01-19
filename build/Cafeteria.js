@@ -28,7 +28,7 @@ export default class Cafeteria extends Room {
         ]);
         this.collectibles.push(new Candy(this.canvas.width / 2, this.canvas.height / 2));
         this.doors.push(new Door('./assets/img/cafeteria-door.png', 907, 362));
-        this.insertHitbox(10, 10, 10, 10);
+        this.insertHitbox(10, 10, 10, 10, 1);
     }
     update(elapsed) {
         const nextScene = this.generalInteraction();
