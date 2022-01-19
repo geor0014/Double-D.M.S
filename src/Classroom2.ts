@@ -60,11 +60,11 @@ export default class ClassRoom2 extends Room {
     this.npcs = [];
     this.doors = [];
     this.questions = [];
-    this.computer = new Computer(266, 165.5);
+    this.computer = new Computer(476, 247);
 
     // creating collectibles in the classroom
     this.collectibles.push(
-      new Hint(this.canvas.width / 2 - 100, this.canvas.height / 2 - 70),
+      new Hint(this.canvas.width / 2 - 100, this.canvas.height / 2 - 70)
     );
 
     // creating the door for the classroom

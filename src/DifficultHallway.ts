@@ -28,8 +28,13 @@ export default class DifficultHallway extends Room {
   private doll: QuestItem = new QuestItem(
     'doll',
     './assets/img/doll.png',
+<<<<<<< HEAD
     1036,
     395
+=======
+    930,
+    471.5
+>>>>>>> 6d7fd59dd15f6a8b2b7d9a9a1c4ef5a6c9b1cdad
   );
 
   private pushOnce: boolean = true;
@@ -91,9 +96,13 @@ export default class DifficultHallway extends Room {
           ['Oh...', 'oh...']
         ),
         new Dialog(
+<<<<<<< HEAD
           'I lost mine. If you see it, can you bring it to me tomorrow?#',
           ['Sure!', 'Yeah why not'],
           ['', '']
+=======
+          'I lost mine. If you see it, can you bring it to me tomorrow?#'
+>>>>>>> 6d7fd59dd15f6a8b2b7d9a9a1c4ef5a6c9b1cdad
         ),
       ])
     );
@@ -140,7 +149,7 @@ export default class DifficultHallway extends Room {
     const cNum: number = this.player.getCharacterNum();
 
     // LEAVES DIFFICULT HALLWAY
-    if (this.player.getXPos() <= 12 && this.player.getYPos() >= 334.5) {
+    if (this.player.getXPos() <= 100 && this.player.getYPos() >= 334.5) {
       this.player.setXPos(900);
       this.player.setYPos(443.5);
       // setting image of player according to the right character chosen
@@ -166,6 +175,7 @@ export default class DifficultHallway extends Room {
           // setting player starter position and image in the classrooms
           this.player.setXPos(911);
           this.player.setYPos(473);
+<<<<<<< HEAD
           // setting image of player according to the right character chosen
           if (cNum === 1) {
             this.player.setImage('./assets/img/player-boy1-down.png');
@@ -176,6 +186,8 @@ export default class DifficultHallway extends Room {
           } else if (cNum === 4) {
             this.player.setImage('./assets/img/player-girl1-down.png');
           }
+=======
+>>>>>>> 6d7fd59dd15f6a8b2b7d9a9a1c4ef5a6c9b1cdad
           this.doorOpen.play();
           // checking which door
           if (i === 0) {

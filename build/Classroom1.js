@@ -21,7 +21,7 @@ export default class ClassRoom1 extends Room {
         this.npcs = [];
         this.doors = [];
         this.questions = [];
-        this.computer = new Computer(266, 165.5);
+        this.computer = new Computer(479, 253);
         this.npcs.push(new Npc('./assets/img/student-orange-hair-back-faced.png', 652, 436, [
             new Dialog('Hey, listen...have you seen a doll?#', ['No..', 'You play with dolls?'], ['Oh...', 'not nice!']),
             new Dialog('My little sister lost hers and I am trying to find it.#', ['oh..', 'I can help you find it'], ['I am sad for her', 'Thank you!']),

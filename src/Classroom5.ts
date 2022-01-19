@@ -34,7 +34,7 @@ export default class ClassRoom5 extends Room {
     canvas: HTMLCanvasElement,
     previousScene: Scene,
     player: Player,
-    state: boolean,
+    state: boolean
   ) {
     super(canvas, './assets/img/classroom.png', state);
 
@@ -55,19 +55,25 @@ export default class ClassRoom5 extends Room {
     this.questions = [];
 
     // creating a new computer in the classroom
-    this.computer = new Computer(266, 165.5);
+    this.computer = new Computer(479, 253);
 
     // sets the NPCs with their dialogs in the classroom
     this.npcs.push(
+<<<<<<< HEAD
       new Npc('./assets/img/teacher-blonde-hair-front-faced.png', 714, 198, [
         new Dialog('You should take a break sometimes#', ['Yes Im tired', 'I am okay'], ['Studying can be hard', 'good to know!']),
         new Dialog('The cafeteria has great food!#', ['Ill check it out!', 'I am hungry..'], ['', '']),
       ]),
+=======
+      new Npc('./assets/img/teacher-blonde-hair-front-faced.png', 714, 298, [
+        new Dialog('Welcome to class!#'),
+      ])
+>>>>>>> 6d7fd59dd15f6a8b2b7d9a9a1c4ef5a6c9b1cdad
     );
 
     // creating collectibles in the classroom
     this.collectibles.push(
-      new Hint(this.canvas.width / 1.5, this.canvas.height / 3),
+      new Hint(this.canvas.width / 1.5, this.canvas.height / 3)
     );
 
     // creating the door for the classroom
@@ -80,22 +86,22 @@ export default class ClassRoom5 extends Room {
         ' Should you use free Anti-Virus?#',
         'No, since the anti-virus can be a virus!',
         'No, since I know what I download!',
-        'No, since I do not want to use an anti-virus!',
+        'No, since I do not want to use an anti-virus!'
       ),
       new Question(
         this.player.getUserData(),
         'Which of the following is NOT an example of cyberbullying?#',
         'Inviting a friend to fight with you in a game',
         'Creating a fake profile to humiliate someone',
-        'Posting or sharing embarrassing photos',
+        'Posting or sharing embarrassing photos'
       ),
       new Question(
         this.player.getUserData(),
         'What is a predator?#',
         'Someone who uses the internet to do harm to others',
         'Someone who shares too much personal information',
-        'Someone who regularly surfs the web',
-      ),
+        'Someone who regularly surfs the web'
+      )
     );
     this.insertHitbox(10, 10, 10, 10);
 

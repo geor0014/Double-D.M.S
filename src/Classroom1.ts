@@ -55,7 +55,7 @@ export default class ClassRoom1 extends Room {
     this.questions = [];
 
     // creating a new computer in the classroom
-    this.computer = new Computer(266, 165.5);
+    this.computer = new Computer(479, 253);
 
     // sets the NPCs with their dialogs in the classroom
     this.npcs.push(
@@ -66,13 +66,21 @@ export default class ClassRoom1 extends Room {
         new Dialog('Class is over, gotta go now. See you tomorrow!#', ['Bye Bye', 'Take care!'], ['', '']),
       ]),
       new Npc('./assets/img/teacher-blonde-hair-front-faced.png', 714, 298, [
+<<<<<<< HEAD
         new Dialog('Today we are learning about suspicious links and strangers messeges#', ['ok', 'umm..okay?'], [':)', '^__^']),
         new Dialog('This is very important!#', ['I guess..', 'Sure is!'], ['', '']),
       ]),
+=======
+        new Dialog(
+          'Today we are learning about suspicious links and strangers messeges#'
+        ),
+        new Dialog('This is very important!#'),
+      ])
+>>>>>>> 6d7fd59dd15f6a8b2b7d9a9a1c4ef5a6c9b1cdad
     );
     // creating collectibles in the classroom
     this.collectibles.push(
-      new Candy(this.canvas.width / 2, this.canvas.height / 2),
+      new Candy(this.canvas.width / 2, this.canvas.height / 2)
     );
 
     // creating the door for the classroom

@@ -124,44 +124,16 @@ export default abstract class Room extends Scene {
    * HITBOX DETECTION AND MOVING THE PLAYER
    */
   public processInput(): void {
-    // this.hitboxes.forEach((box) => {
-    //   this.player.setCollision(this.player.rectCollision(box, this.player));
-    //   this.player.movePlayer(this.canvas);
-    // });
+    let isPlayerColliding: string = 'none';
+
+    this.hitboxes.forEach((box) => {
+      if (this.player.rectCollision(box, this.player) !== 'none') {
+        isPlayerColliding = this.player.rectCollision(box, this.player);
+      }
+    });
+    this.player.setCollision(isPlayerColliding);
 
     this.player.movePlayer(this.canvas);
-
-    // this.hitboxes.forEach((box) => {
-    //   if (!this.player.collidesWithHitbox(box)) {
-    //     this.player.movePlayer(this.canvas, 'none');
-    //   } else {
-    //     if (this.player.rectCollision(box, this.player) === 'left') {
-    //       this.player.movePlayer(this.canvas, this.player.rectCollision(box, this.player));
-    //     }
-
-    //     if (this.player.rectCollision(box, this.player) === 'right') {
-    //       this.player.movePlayer(this.canvas, this.player.rectCollision(box, this.player));
-    //     }
-
-    //     if (this.player.rectCollision(box, this.player) === 'top') {
-    //       this.player.movePlayer(this.canvas, this.player.rectCollision(box, this.player));
-    //     }
-
-    //     if (this.player.rectCollision(box, this.player) === 'bottom') {
-    //       this.player.movePlayer(this.canvas, this.player.rectCollision(box, this.player));
-    //     }
-    //   }
-    // });
-    // this.player.movePlayer(this.canvas);
-    // for (let i = 0; i < this.hitboxes.length + 1; i += 1) {
-    //   for (let j = 0; j < i; j += 1) {
-    //     this.player.setCollision(this.player.rectCollision(this.hitboxes[j], this.player));
-    //     if (this.player.getCollision() !== 'none') {
-    //       this.player.movePlayer(this.canvas);
-    //     }
-    //   }
-    // }
-    // console.log(this.hitboxes);
   }
 
   /**

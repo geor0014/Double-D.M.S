@@ -1,10 +1,12 @@
 import Door from './Door.js';
 import Room from './Room.js';
 import Candy from './Candy.js';
-export default class Bathroom2 extends Room {
+import Npc from './Npc.js';
+import Dialog from './Dialog.js';
+export default class Cafeteria extends Room {
     previousScene;
     constructor(canvas, previousScene, player, state) {
-        super(canvas, './assets/img/bathroom2.png', state);
+        super(canvas, './assets/img/diningroom.png', state);
         this.previousScene = previousScene;
         this.player = player;
         this.setXPos(0);
@@ -12,16 +14,15 @@ export default class Bathroom2 extends Room {
         this.collectibles = [];
         this.npcs = [];
         this.doors = [];
-<<<<<<< HEAD
-=======
         this.npcs.push(new Npc('./assets/img/student-orange-hair-back-faced.png', 652, 436, [
-            new Dialog('....'),
+            new Dialog('Hello, this is some delicious food they have here#'),
+            new Dialog('I love french fries, how about you?#'),
+        ]), new Npc('./assets/img/teacher-blonde-hair-front-faced.png', 714, 298, [
+            new Dialog('Hurry up, everyone, class starts in 10 minutes!!#'),
         ]));
->>>>>>> 6d7fd59dd15f6a8b2b7d9a9a1c4ef5a6c9b1cdad
         this.collectibles.push(new Candy(this.canvas.width / 2, this.canvas.height / 2));
-        this.doors.push(new Door('./assets/img/boy-bathroom-door.png', 912, 265));
+        this.doors.push(new Door('./assets/img/cafeteria-door.png', 907, 362));
         this.insertHitbox(10, 10, 10, 10);
-        console.log('Bathroom1');
     }
     update(elapsed) {
         const nextScene = this.generalInteraction();
@@ -31,8 +32,8 @@ export default class Bathroom2 extends Room {
                     console.log('interact with door');
                     this.doorClose.play();
                     console.log(this.previousScene);
-                    this.player.setXPos(100);
-                    this.player.setYPos(300);
+                    this.player.setXPos(291);
+                    this.player.setYPos(361);
                     const cNum = this.player.getCharacterNum();
                     if (cNum === 1) {
                         this.player.setImage('./assets/img/player-boy1-down.png');
@@ -61,4 +62,4 @@ export default class Bathroom2 extends Room {
         super.render();
     }
 }
-//# sourceMappingURL=Bathroom2.js.map
+//# sourceMappingURL=Cafeteria.js.map

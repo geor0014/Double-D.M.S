@@ -12,6 +12,7 @@ import BossRoom from './BossRoom.js';
 import Dialog from './Dialog.js';
 import Hitbox from './Hitbox.js';
 import QuestItem from './QuestItem.js';
+import Cafeteria from './Cafeteria.js';
 
 export default class MainHallway extends Room {
   private bRoomInteract: boolean;
@@ -31,6 +32,10 @@ export default class MainHallway extends Room {
   private pushOnce: boolean = true;
 
   private textToPresent: string = '';
+
+  private cafeteriaBool: boolean = false;
+
+  private cafeteria: Cafeteria;
 
   /**
    * creats a new hallway
@@ -68,10 +73,15 @@ export default class MainHallway extends Room {
     this.doors.push(
       new Door('./assets/img/boss-room-door-closed.png', 511, 412)
     );
+<<<<<<< HEAD
+=======
+    this.doors.push(new Door('./assets/img/cafeteria-door.png', 284, 160));
+>>>>>>> 6d7fd59dd15f6a8b2b7d9a9a1c4ef5a6c9b1cdad
 
     // creating Npc and dialog
     this.npcs.push(
       new Npc('./assets/img/teacher-front.png', 782, 315.5, [
+<<<<<<< HEAD
         new Dialog(
           'Heyy how are you today?#',
           ['Good Thank you!', 'Excited for my birthday!'],
@@ -82,6 +92,10 @@ export default class MainHallway extends Room {
           ['Thanks!', 'Thank you'],
           ['', '']
         ),
+=======
+        new Dialog('Heyy how are you today?#'),
+        new Dialog('Good luck with your exams!#'),
+>>>>>>> 6d7fd59dd15f6a8b2b7d9a9a1c4ef5a6c9b1cdad
       ])
     );
 
@@ -93,7 +107,15 @@ export default class MainHallway extends Room {
     );
 
     // HITBOXS
-    // this.insertHitbox(955, 350.5, 300, 300);
+    this.insertHitbox(382, 101, 300, 300);
+    this.insertHitbox(176, 102, 170, 105);
+    this.insertHitbox(150, 260, 50, 200);
+    this.insertHitbox(920, 265, 50, 180);
+    this.insertHitbox(728, 114, 220, 105);
+    this.insertHitbox(149, 560, 50, 205);
+    this.insertHitbox(239, 704, 230, 50);
+    this.insertHitbox(504, 755, 50, 5);
+    this.insertHitbox(594, 755, 350, 5);
   }
 
   /**
@@ -109,21 +131,38 @@ export default class MainHallway extends Room {
     // console.log(this.player.getXPos(), this.player.getYPos());
     if (this.player.isInteracting()) {
       // WITH DOORS
-      for (let i = 0; i < this.doors.length; i += 1) {
-        if (this.player.collidesWith(this.doors[i])) {
-          if (this.player.getUserData().getScore() > -1) {
-            console.log('interact with door');
-            this.doorOpen.play();
-            if (this.bRoomInteract === false) {
-              this.bossRoom = new BossRoom(this.canvas, this, this.player);
-              this.bRoomInteract = true;
-            }
-            return this.bossRoom;
+      // for (let i = 0; i < this.doors.length; i += 1) {
+      if (this.player.collidesWith(this.doors[0])) {
+        if (this.player.getUserData().getScore() > -1) {
+          console.log('interact with door');
+          this.doorOpen.play();
+          if (this.bRoomInteract === false) {
+            this.bossRoom = new BossRoom(this.canvas, this, this.player);
+            this.bRoomInteract = true;
           }
+<<<<<<< HEAD
           this.textToPresent =
             'You cant access this room! maybe youre not worthy enough (evil laugh)';
+=======
+          return this.bossRoom;
+>>>>>>> 6d7fd59dd15f6a8b2b7d9a9a1c4ef5a6c9b1cdad
         }
+        this.textToPresent =
+          'You cant access this room! maybe youre not worthy enough (evil laugh)';
+        // WITH CAFETERIA
+      } else if (this.player.collidesWith(this.doors[1])) {
+        this.doorOpen.play();
+        if (this.cafeteriaBool === false) {
+          this.cafeteria = new Cafeteria(this.canvas, this, this.player, false);
+          this.cafeteriaBool = true;
+        }
+
+        // sets player position when entering
+        this.player.setXPos(896);
+        this.player.setYPos(481);
+        return this.cafeteria;
       }
+      // }
     }
 
     // Entrance for the hallway on the left hand side
@@ -146,7 +185,7 @@ export default class MainHallway extends Room {
           this.dHallInteract = true;
         }
         // PLAYER POSITTION UPON ENTERING difficult hall
-        this.player.setXPos(13);
+        this.player.setXPos(101);
         this.player.setYPos(335);
         return this.diffHall;
       }

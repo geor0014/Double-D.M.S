@@ -5,19 +5,12 @@ import Scene from './Scene.js';
 import Player from './Player.js';
 
 import Candy from './Candy.js';
-import Computer from './Computer.js';
 
-import Question from './Question.js';
-import QuestionScreen from './QuestionScreen.js';
+import Npc from './Npc.js';
+import Dialog from './Dialog.js';
 
-export default class ClassRoom4 extends Room {
+export default class Cafeteria extends Room {
   private previousScene: Scene;
-
-  private computer: Computer;
-
-  private questions: Question[];
-
-  private pcInteract: boolean = false;
 
   /**
    * creats a new classroom
@@ -33,7 +26,7 @@ export default class ClassRoom4 extends Room {
     player: Player,
     state: boolean
   ) {
-    super(canvas, './assets/img/classroom.png', state);
+    super(canvas, './assets/img/diningroom.png', state);
 
     // sets the previous scene to return to
     this.previousScene = previousScene;
@@ -49,43 +42,26 @@ export default class ClassRoom4 extends Room {
     this.collectibles = [];
     this.npcs = [];
     this.doors = [];
-    this.questions = [];
 
-    // creating a new computer in the classroom
-    this.computer = new Computer(479, 253);
-
+    // sets the NPCs with their dialogs in the classroom
+    this.npcs.push(
+      new Npc('./assets/img/student-orange-hair-back-faced.png', 652, 436, [
+        new Dialog('Hello, this is some delicious food they have here#'),
+        new Dialog('I love french fries, how about you?#'),
+      ]),
+      new Npc('./assets/img/teacher-blonde-hair-front-faced.png', 714, 298, [
+        new Dialog('Hurry up, everyone, class starts in 10 minutes!!#'),
+      ])
+    );
     // creating collectibles in the classroom
+    this.collectibles.push(
+      new Candy(this.canvas.width / 2, this.canvas.height / 2)
+    );
+
+    this.doors.push(new Door('./assets/img/cafeteria-door.png', 907, 362));
 
     // creating the door for the classroom
-    this.doors.push(new Door('./assets/img/door1.png', 912, 400.5));
-
-    // creating questions for this classroom
-    this.questions.push(
-      new Question(
-        this.player.getUserData(),
-        'I met someone in a chat room who wants to get together. #They live nearby. Should I go?',
-        'I should ask my parent about this and decide with them',
-        'Yes, it is always nice to have a new friend!',
-        'Talking to people online is wrong!'
-      ),
-      new Question(
-        this.player.getUserData(),
-        'Hey man! I just lost my account data for my Fortnite account# Do you think you could send me your password and username# so I can play with yours because all my skins are gone :((',
-        'Report that person',
-        'Send them wrong data',
-        'Send password and username since you feel bad for them'
-      ),
-      new Question(
-        this.player.getUserData(),
-        'You need to create a password for a website.# What should you use?#',
-        'A random word, number, and symbols (e.g. 1cecr3am!)',
-        'A nickname (e.g jumpingjacks)',
-        'Your name and the year you were born (e.g. jack2011)'
-      )
-    );
     this.insertHitbox(10, 10, 10, 10);
-
-    console.log('CLASSROOM4');
   }
 
   /**
@@ -108,8 +84,8 @@ export default class ClassRoom4 extends Room {
           console.log('interact with door');
           this.doorClose.play();
           console.log(this.previousScene);
-          this.player.setXPos(343);
-          this.player.setYPos(350);
+          this.player.setXPos(291);
+          this.player.setYPos(361);
           // setting image of player according to the right character chosen
           const cNum: number = this.player.getCharacterNum();
           if (cNum === 1) {
@@ -124,18 +100,8 @@ export default class ClassRoom4 extends Room {
           return this.previousScene;
         }
       }
-
-      // WITH COMPUTER
-      if (this.player.collidesWith(this.computer)) {
-        if (this.pcInteract === false) {
-          // present question screen
-          this.pcInteract = true;
-          return new QuestionScreen(this.canvas, this, this.questions);
-        }
-        console.log('cant use the pc at the moment');
-      }
     }
-
+    console.log(`score is ${this.player.getUserData().getScore()}`);
     // according to the general checks in room
     if (nextScene !== null) {
       return nextScene;
@@ -148,7 +114,7 @@ export default class ClassRoom4 extends Room {
    */
   public render(): void {
     this.draw(this.ctx);
-    this.computer.draw(this.ctx);
     super.render();
+    //console.log(this.player.getXPos(), this.player.getYPos());
   }
 }
