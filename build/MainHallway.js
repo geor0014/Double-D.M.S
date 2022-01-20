@@ -76,7 +76,7 @@ export default class MainHallway extends Room {
             else if (this.player.collidesWith(this.getDoors()[1])) {
                 this.getDoorOpen().play();
                 if (this.cafeteriaBool === false) {
-                    this.cafeteria = new Cafeteria(this.canvas, this, this.player, false);
+                    this.cafeteria = new Cafeteria(this.canvas, this, this.player);
                     this.cafeteriaBool = true;
                 }
                 this.player.setXPos(896);

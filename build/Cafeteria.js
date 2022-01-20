@@ -8,8 +8,8 @@ export default class Cafeteria extends Room {
     previousScene;
     lunchLady;
     staggerFrame = 8;
-    constructor(canvas, previousScene, player, state) {
-        super(canvas, './assets/img/diningroom.png', state);
+    constructor(canvas, previousScene, player) {
+        super(canvas, './assets/img/diningroom.png');
         this.previousScene = previousScene;
         this.player = player;
         this.setXPos(0);

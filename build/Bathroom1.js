@@ -9,8 +9,8 @@ export default class Bathroom1 extends Room {
     shadyGuy;
     interactShady;
     shadyGuyTheme;
-    constructor(canvas, previousScene, player, state) {
-        super(canvas, './assets/img/bathroom1.png', state);
+    constructor(canvas, previousScene, player) {
+        super(canvas, './assets/img/bathroom1.png');
         this.previousScene = previousScene;
         this.player = player;
         this.setXPos(0);

@@ -127,7 +127,11 @@ export default class EasyHallway extends Room {
                         this.player.setXPos(911);
                         this.player.setYPos(350);
                         if (this.bathroomInteractGirl === false) {
+<<<<<<< HEAD
                             this.bathroom1 = new Bathroom1(this.canvas, this, this.player, this.getIsMenuShowing());
+=======
+                            this.bathroom1 = new Bathroom1(this.canvas, this, this.player);
+>>>>>>> 94d127c88628048f55eeb4d0adacea3af800c500
                             this.bathroomInteractGirl = true;
                         }
                         return this.bathroom1;
@@ -136,7 +140,11 @@ export default class EasyHallway extends Room {
                         this.player.setXPos(911);
                         this.player.setYPos(350);
                         if (this.bathroomInteractBoy === false) {
+<<<<<<< HEAD
                             this.bathroom2 = new Bathroom2(this.canvas, this, this.player, this.getIsMenuShowing());
+=======
+                            this.bathroom2 = new Bathroom2(this.canvas, this, this.player);
+>>>>>>> 94d127c88628048f55eeb4d0adacea3af800c500
                             this.bathroomInteractBoy = true;
                         }
                         return this.bathroom2;

@@ -5,8 +5,8 @@ import Npc from './Npc.js';
 import Dialog from './Dialog.js';
 export default class Bathroom2 extends Room {
     previousScene;
-    constructor(canvas, previousScene, player, state) {
-        super(canvas, './assets/img/bathroom2.png', state);
+    constructor(canvas, previousScene, player) {
+        super(canvas, './assets/img/bathroom2.png');
         this.previousScene = previousScene;
         this.player = player;
         this.setXPos(0);

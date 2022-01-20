@@ -12,7 +12,7 @@ export default class Npc extends GameEntity {
   private starHeight: number = 97;
 
   // image width of every star
-  private starWdth: number = 100;
+  private starWidth: number = 100;
 
   // frame for every star
   private frameX: number = 0;
@@ -27,13 +27,14 @@ export default class Npc extends GameEntity {
    * @param xPos X position
    * @param yPos Y position
    * @param dialogs dialogs of this Npc - STRING ARRAY
+   * @param hasQuest used to determine if npc has star
    */
-  constructor(
+  public constructor(
     imageSrc: string,
     xPos: number,
     yPos: number,
     dialogs: Dialog[],
-    hasQuest?: boolean
+    hasQuest?: boolean,
   ) {
     super(imageSrc, xPos, yPos);
     this.dialogs = dialogs;
@@ -76,14 +77,14 @@ export default class Npc extends GameEntity {
     // this.ctx.drawImage(image, sx, sy, sw, sh, dx, dy, dw, dh);
     ctx.drawImage(
       this.questSign,
-      this.frameX * this.starWdth,
+      this.frameX * this.starWidth,
       0,
-      this.starWdth,
+      this.starWidth,
       this.starHeight,
       x,
       y,
-      this.starWdth - 65,
-      this.starHeight - 65
+      this.starWidth - 65,
+      this.starHeight - 65,
     );
   }
 

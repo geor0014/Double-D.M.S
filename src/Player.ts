@@ -81,9 +81,9 @@ export default class Player extends GameEntity {
       this.keyboard.isKeyDown(KeyListener.KEY_RIGHT)
       && this.getXPos() + this.getImage().width < canvas.width
       && (this.collision === 'none'
-      || this.collision === 'left'
-      || this.collision === 'bottom'
-      || this.collision === 'top')
+        || this.collision === 'left'
+        || this.collision === 'bottom'
+        || this.collision === 'top')
     ) {
       this.setXPos(this.getXPos() + this.xVelocity);
       this.walk.play();
@@ -105,9 +105,9 @@ export default class Player extends GameEntity {
       this.keyboard.isKeyDown(KeyListener.KEY_LEFT)
       && this.getXPos() > 0
       && (this.collision === 'none'
-      || this.collision === 'right'
-      || this.collision === 'bottom'
-      || this.collision === 'top')
+        || this.collision === 'right'
+        || this.collision === 'bottom'
+        || this.collision === 'top')
     ) {
       this.setXPos(this.getXPos() - this.xVelocity);
       this.walk.play();
@@ -129,9 +129,9 @@ export default class Player extends GameEntity {
       this.keyboard.isKeyDown(KeyListener.KEY_UP)
       && this.getYPos() > 0
       && (this.collision === 'none'
-      || this.collision === 'left'
-      || this.collision === 'bottom'
-      || this.collision === 'right')
+        || this.collision === 'left'
+        || this.collision === 'bottom'
+        || this.collision === 'right')
     ) {
       this.setYPos(this.getYPos() - this.yVelocity);
       this.walk.play();
@@ -153,9 +153,9 @@ export default class Player extends GameEntity {
       this.keyboard.isKeyDown(KeyListener.KEY_DOWN)
       && this.getYPos() + this.getImage().height < canvas.height
       && (this.collision === 'none'
-      || this.collision === 'left'
-      || this.collision === 'right'
-      || this.collision === 'top')
+        || this.collision === 'left'
+        || this.collision === 'right'
+        || this.collision === 'top')
     ) {
       this.setYPos(this.getYPos() + this.yVelocity);
       this.walk.play();
@@ -249,42 +249,6 @@ export default class Player extends GameEntity {
   }
 
   /**
-   * Setter for the velocity
-   *
-   * @param number new velocity
-   */
-  public setXVelocity(number: number): void {
-    this.xVelocity = number;
-  }
-
-  /**
-   * Setter for the velocity
-   *
-   * @param number new velocity
-   */
-  public setYVelocity(number: number): void {
-    this.yVelocity = number;
-  }
-
-  /**
-   * getter for user data
-   *
-   * @returns user data
-   */
-  public getUserData(): UserData {
-    return this.userData;
-  }
-
-  /**
-   * Getter for character number
-   *
-   * @returns number
-   */
-  public getCharacterNum(): number {
-    return this.characterNum;
-  }
-
-  /**
    * Tells the side of the collision of the player with the hitbox
    *
    * @param box hitbox
@@ -347,5 +311,23 @@ export default class Player extends GameEntity {
    */
   public getWalkPath(): string {
     return this.walkPath;
+  }
+
+  /**
+   * getter for user data
+   *
+   * @returns user data
+   */
+  public getUserData(): UserData {
+    return this.userData;
+  }
+
+  /**
+   * Getter for character number
+   *
+   * @returns number
+   */
+  public getCharacterNum(): number {
+    return this.characterNum;
   }
 }

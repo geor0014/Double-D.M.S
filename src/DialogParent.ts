@@ -1,5 +1,4 @@
 import InteractiveScreen from './InteractiveScreen.js';
-import Scene from './Scene.js';
 import Room from './Room.js';
 import Dialog from './Dialog.js';
 

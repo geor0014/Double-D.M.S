@@ -25,9 +25,8 @@ export default class Bathroom2 extends Room {
     canvas: HTMLCanvasElement,
     previousScene: Scene,
     player: Player,
-    state: boolean
   ) {
-    super(canvas, './assets/img/bathroom2.png', state);
+    super(canvas, './assets/img/bathroom2.png');
 
     // sets the previous scene to return to
     this.previousScene = previousScene;

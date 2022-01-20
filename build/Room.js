@@ -23,7 +23,7 @@ export default class Room extends Scene {
     frameX = 0;
     frameY = 0;
     gameFrame = 0;
-    constructor(canvas, imgSrc, state = false) {
+    constructor(canvas, imgSrc) {
         super(canvas);
         this.img = new Image();
         this.img.src = imgSrc;
@@ -32,18 +32,6 @@ export default class Room extends Scene {
         this.menu = new Menu(this.canvas.width / 3 - 100, 600);
         this.isMenuShowing = false;
         this.hitboxes = [];
-    }
-    getXPos() {
-        return this.xPos;
-    }
-    setXPos(newPos) {
-        this.xPos = newPos;
-    }
-    getYPos() {
-        return this.yPos;
-    }
-    setYPos(newPos) {
-        this.yPos = newPos;
     }
     processInput() {
         let isPlayerColliding = 'none';
@@ -288,6 +276,7 @@ export default class Room extends Scene {
             this.ctx.drawImage(characterImg, 280, 600, 130, 130);
         }
     }
+<<<<<<< HEAD
     getCollectibles() {
         return this.collectibles;
     }
@@ -332,6 +321,19 @@ export default class Room extends Scene {
     }
     setGameFrame(gameframe) {
         this.gameFrame = gameframe;
+=======
+    getXPos() {
+        return this.xPos;
+    }
+    setXPos(newPos) {
+        this.xPos = newPos;
+    }
+    getYPos() {
+        return this.yPos;
+    }
+    setYPos(newPos) {
+        this.yPos = newPos;
+>>>>>>> 94d127c88628048f55eeb4d0adacea3af800c500
     }
 }
 //# sourceMappingURL=Room.js.map

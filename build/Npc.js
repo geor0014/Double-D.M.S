@@ -3,7 +3,7 @@ export default class Npc extends GameEntity {
     dialogs;
     questSign;
     starHeight = 97;
-    starWdth = 100;
+    starWidth = 100;
     frameX = 0;
     hasQuest;
     constructor(imageSrc, xPos, yPos, dialogs, hasQuest) {
@@ -23,7 +23,7 @@ export default class Npc extends GameEntity {
         }
     }
     drawStar(ctx, x, y) {
-        ctx.drawImage(this.questSign, this.frameX * this.starWdth, 0, this.starWdth, this.starHeight, x, y, this.starWdth - 65, this.starHeight - 65);
+        ctx.drawImage(this.questSign, this.frameX * this.starWidth, 0, this.starWidth, this.starHeight, x, y, this.starWidth - 65, this.starHeight - 65);
     }
     setFrameX(newFrame) {
         this.frameX = newFrame;
