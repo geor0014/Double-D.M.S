@@ -72,7 +72,7 @@ export default abstract class Classroom extends Room {
    *
    * @returns previous scene
    */
-   public getPreviousScene(): Scene {
+  public getPreviousScene(): Scene {
     return this.previousScene;
   }
 

@@ -26,7 +26,7 @@ export default class ClassRoom1 extends Classroom {
     canvas: HTMLCanvasElement,
     previousScene: Scene,
     player: Player,
-    state: boolean
+    state: boolean,
   ) {
     super(canvas, previousScene, player, state, './assets/img/classroom.png');
 
@@ -39,40 +39,40 @@ export default class ClassRoom1 extends Classroom {
         new Dialog(
           'Hey, listen...have you seen a doll?#',
           ['No..', 'You play with dolls?'],
-          ['Oh...', 'not nice!']
+          ['Oh...', 'not nice!'],
         ),
         new Dialog(
           'My little sister lost hers and I am trying to find it.#',
           ['oh..', 'I can help you find it'],
-          ['I am sad for her', 'Thank you!']
+          ['I am sad for her', 'Thank you!'],
         ),
         new Dialog(
           'If you see it, bring it to me tomorrow, okay?#',
           ['ok!', 'will do!'],
-          ['Great!', 'Thanks']
+          ['Great!', 'Thanks'],
         ),
         new Dialog(
           'Class is over, gotta go now. See you tomorrow!#',
           ['Bye Bye', 'Take care!'],
-          ['', '']
+          ['', ''],
         ),
       ]),
       new Npc('./assets/img/BlondeHairTeacherFrontFacing.png', 714, 298, [
         new Dialog(
           'Today we are learning about suspicious links and strangers messeges#',
           ['ok', 'umm..okay?'],
-          [':)', '^__^']
+          [':)', '^__^'],
         ),
         new Dialog(
           'This is very important!#',
           ['I guess..', 'Sure is!'],
-          ['', '']
+          ['', ''],
         ),
-      ])
+      ]),
     );
     // creating collectibles in the classroom
     this.collectibles.push(
-      new Candy(this.canvas.width / 2, this.canvas.height / 2)
+      new Candy(this.canvas.width / 2, this.canvas.height / 2),
     );
 
     // creating the door for the classroom

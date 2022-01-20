@@ -27,7 +27,7 @@ export default class ClassRoom5 extends Classroom {
     canvas: HTMLCanvasElement,
     previousScene: Scene,
     player: Player,
-    state: boolean
+    state: boolean,
   ) {
     super(canvas, previousScene, player, state, './assets/img/classroom.png');
 
@@ -40,19 +40,19 @@ export default class ClassRoom5 extends Classroom {
         new Dialog(
           'You should take a break sometimes#',
           ['Yes Im tired', 'I am okay'],
-          ['Studying can be hard', 'good to know!']
+          ['Studying can be hard', 'good to know!'],
         ),
         new Dialog(
           'The cafeteria has great food!#',
           ['Ill check it out!', 'I am hungry..'],
-          ['', '']
+          ['', ''],
         ),
-      ])
+      ]),
     );
 
     // creating collectibles in the classroom
     this.collectibles.push(
-      new Hint(this.canvas.width / 1.5, this.canvas.height / 3)
+      new Hint(this.canvas.width / 1.5, this.canvas.height / 3),
     );
 
     // creating the door for the classroom
@@ -152,19 +152,4 @@ export default class ClassRoom5 extends Classroom {
     }
     return null;
   }
-<<<<<<< HEAD
-
-  /**
-   * draws items to screen
-   */
-  public render(): void {
-    this.draw(this.ctx);
-    this.drawHitBoxes();
-    this.computer.draw(this.ctx);
-
-    // calls the render function of the parent aka ROOM
-    super.render();
-  }
-=======
->>>>>>> a87c5cbdcb5f3184a6d1e2273a08f06b5157e9a8
 }

@@ -22,7 +22,7 @@ export default class ClassRoom3 extends Classroom {
     canvas: HTMLCanvasElement,
     previousScene: Scene,
     player: Player,
-    state: boolean
+    state: boolean,
   ) {
     super(canvas, previousScene, player, state, './assets/img/library.png');
 

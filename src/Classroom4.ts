@@ -22,7 +22,7 @@ export default class ClassRoom4 extends Classroom {
     canvas: HTMLCanvasElement,
     previousScene: Scene,
     player: Player,
-    state: boolean
+    state: boolean,
   ) {
     super(canvas, previousScene, player, state, './assets/img/scienceClass.png');
 
@@ -125,19 +125,4 @@ export default class ClassRoom4 extends Classroom {
     }
     return null;
   }
-<<<<<<< HEAD
-
-  /**
-   * draws items to screen
-   */
-  public render(): void {
-    this.draw(this.ctx);
-    this.drawHitBoxes();
-    this.computer.draw(this.ctx);
-
-    // calls the render function of the parent aka ROOM
-    super.render();
-  }
-=======
->>>>>>> a87c5cbdcb5f3184a6d1e2273a08f06b5157e9a8
 }

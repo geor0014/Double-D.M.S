@@ -80,15 +80,8 @@ export default class MainHallway extends Room {
     );
 
     // creating the door
-<<<<<<< HEAD
-    this.doors.push(
-      new Door('./assets/img/boss-room-door-closed.png', 511, 412),
-    );
-    this.doors.push(new Door('./assets/img/cafeteria-door.png', 284, 160));
-=======
     this.doors.push(new Door('./assets/img/bossRoomDoorClosed.png', 511, 412));
     this.doors.push(new Door('./assets/img/cafeteriaDoor.png', 284, 160));
->>>>>>> a87c5cbdcb5f3184a6d1e2273a08f06b5157e9a8
 
     // creating Npc and dialog
     this.npcs.push(
@@ -151,14 +144,9 @@ export default class MainHallway extends Room {
       // WITH DOORS
       // for (let i = 0; i < this.doors.length; i += 1) {
       if (this.player.collidesWith(this.doors[0])) {
-<<<<<<< HEAD
         if (this.player.getUserData().getScore() > 12) {
           // console.log('interact with door');
 
-=======
-        if (this.player.getUserData().getScore() > -1) {
-          console.log('interact with door');
->>>>>>> a87c5cbdcb5f3184a6d1e2273a08f06b5157e9a8
           this.doorOpen.play();
           if (this.bRoomInteract === false) {
             this.bossRoom = new BossRoom(this.canvas, this, this.player);

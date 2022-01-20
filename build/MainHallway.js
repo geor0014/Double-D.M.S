@@ -62,12 +62,7 @@ export default class MainHallway extends Room {
         }
         if (this.player.isInteracting()) {
             if (this.player.collidesWith(this.doors[0])) {
-<<<<<<< HEAD
                 if (this.player.getUserData().getScore() > 12) {
-=======
-                if (this.player.getUserData().getScore() > -1) {
-                    console.log('interact with door');
->>>>>>> a87c5cbdcb5f3184a6d1e2273a08f06b5157e9a8
                     this.doorOpen.play();
                     if (this.bRoomInteract === false) {
                         this.bossRoom = new BossRoom(this.canvas, this, this.player);
