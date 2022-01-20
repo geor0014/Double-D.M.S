@@ -27,6 +27,7 @@ export default class Npc extends GameEntity {
    * @param xPos X position
    * @param yPos Y position
    * @param dialogs dialogs of this Npc - STRING ARRAY
+   * @param hasQuest boolean
    */
   constructor(
     imageSrc: string,
