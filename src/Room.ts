@@ -72,7 +72,7 @@ export default abstract class Room extends Scene {
     canvas: HTMLCanvasElement,
     imgSrc: string,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    state: boolean = false
+    // state: boolean = false
   ) {
     super(canvas);
 
@@ -102,42 +102,6 @@ export default abstract class Room extends Scene {
 
     // hit boxes
     this.hitboxes = [];
-  }
-
-  /**
-   * getter for x position
-   *
-   * @returns xPos
-   */
-  public getXPos(): number {
-    return this.xPos;
-  }
-
-  /**
-   * setter for x position
-   *
-   * @param newPos new Xposition
-   */
-  public setXPos(newPos: number): void {
-    this.xPos = newPos;
-  }
-
-  /**
-   * getter for y position
-   *
-   * @returns y position
-   */
-  public getYPos(): number {
-    return this.yPos;
-  }
-
-  /**
-   * setter for y position
-   *
-   * @param newPos new Y Position
-   */
-  public setYPos(newPos: number): void {
-    this.yPos = newPos;
   }
 
   /**
@@ -510,5 +474,41 @@ export default abstract class Room extends Scene {
     }
 
     // this.menu.draw(this.ctx);
+  }
+
+  /**
+   * getter for x position
+   *
+   * @returns xPos
+   */
+  public getXPos(): number {
+    return this.xPos;
+  }
+
+  /**
+   * setter for x position
+   *
+   * @param newPos new Xposition
+   */
+  public setXPos(newPos: number): void {
+    this.xPos = newPos;
+  }
+
+  /**
+   * getter for y position
+   *
+   * @returns y position
+   */
+  public getYPos(): number {
+    return this.yPos;
+  }
+
+  /**
+   * setter for y position
+   *
+   * @param newPos new Y Position
+   */
+  public setYPos(newPos: number): void {
+    this.yPos = newPos;
   }
 }

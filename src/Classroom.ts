@@ -36,7 +36,7 @@ export default abstract class Classroom extends Room {
     state: boolean,
     imageSrc: string,
   ) {
-    super(canvas, imageSrc, state);
+    super(canvas, imageSrc);
 
     // sets the previous scene to return to
     this.previousScene = previousScene;

@@ -264,8 +264,7 @@ export default class EasyHallway extends Room {
               this.bathroom1 = new Bathroom1(
                 this.canvas,
                 this,
-                this.player,
-                this.isMenuShowing
+                this.player
               );
               this.bathroomInteractGirl = true;
             }
@@ -282,7 +281,6 @@ export default class EasyHallway extends Room {
                 this.canvas,
                 this,
                 this.player,
-                this.isMenuShowing
               );
               this.bathroomInteractBoy = true;
             }

@@ -32,9 +32,8 @@ export default class Cafeteria extends Room {
     canvas: HTMLCanvasElement,
     previousScene: Scene,
     player: Player,
-    state: boolean
   ) {
-    super(canvas, './assets/img/diningroom.png', state);
+    super(canvas, './assets/img/diningroom.png');
 
     // sets the previous scene to return to
     this.previousScene = previousScene;

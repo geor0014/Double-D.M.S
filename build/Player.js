@@ -156,18 +156,6 @@ export default class Player extends GameEntity {
         }
         return false;
     }
-    setXVelocity(number) {
-        this.xVelocity = number;
-    }
-    setYVelocity(number) {
-        this.yVelocity = number;
-    }
-    getUserData() {
-        return this.userData;
-    }
-    getCharacterNum() {
-        return this.characterNum;
-    }
     rectCollision(box, player) {
         const dx = box.getXPos() + box.getWidth() / 2 - (player.getXPos() + player.getImage().width / 2);
         const dy = box.getYPos() + box.getHeight() / 2 - (player.getYPos() + player.getImage().height / 2);
@@ -197,6 +185,12 @@ export default class Player extends GameEntity {
     }
     getWalkPath() {
         return this.walkPath;
+    }
+    getUserData() {
+        return this.userData;
+    }
+    getCharacterNum() {
+        return this.characterNum;
     }
 }
 //# sourceMappingURL=Player.js.map
