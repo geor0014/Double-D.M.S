@@ -35,7 +35,7 @@ export default class ClassRoom6 extends Room {
     canvas: HTMLCanvasElement,
     previousScene: Scene,
     player: Player,
-    state: boolean,
+    state: boolean
   ) {
     super(canvas, './assets/img/artclass.png', state);
     this.previousScene = previousScene;
@@ -53,7 +53,7 @@ export default class ClassRoom6 extends Room {
 
     // creating collectibles in the classroom
     this.collectibles.push(
-      new Candy(this.canvas.width / 4, this.canvas.height / 4),
+      new Candy(this.canvas.width / 4, this.canvas.height / 4)
     );
 
     // creating the door for the classroom
@@ -66,22 +66,22 @@ export default class ClassRoom6 extends Room {
         'You are about to join this amazing new website# all your friends are there.# What information is OK to give online?#',
         'Nickname',
         'Phone number',
-        'Adress',
+        'Adress'
       ),
       new Question(
         this.player.getUserData(),
         'You are having trouble doing an activity on a safe site you use at #school. Your friend offers to help but needs your password.# Would you give your password to them.',
         'No',
         'It depends',
-        'Yes',
+        'Yes'
       ),
       new Question(
         this.player.getUserData(),
         'Your parents want to know what you have been doing on a safe site #you use at school. #Would you let them use your account?',
         'You would let them have a look but while youre there',
         'Yes, they are my parents I trust them',
-        'No way, this site is only for kids and teachers',
-      ),
+        'No way, this site is only for kids and teachers'
+      )
     );
 
     // Adds all the hitboxes to the bathroom
@@ -126,13 +126,13 @@ export default class ClassRoom6 extends Room {
           // setting image of player according to the right character chosen
           const cNum: number = this.player.getCharacterNum();
           if (cNum === 1) {
-            this.player.setImage('./assets/img/player-boy1-down.png');
+            this.player.setImage('./assets/img/PlayerBoy1Down.png');
           } else if (cNum === 2) {
-            this.player.setImage('./assets/img/player-boy2-down.png');
+            this.player.setImage('./assets/img/playerBoy2Down.png');
           } else if (cNum === 3) {
-            this.player.setImage('./assets/img/player-girl2-down.png');
+            this.player.setImage('./assets/img/playerGirl2Down.png');
           } else if (cNum === 4) {
-            this.player.setImage('./assets/img/player-girl1-down.png');
+            this.player.setImage('./assets/img/playerGirl1Down.png');
           }
           return this.previousScene;
         }

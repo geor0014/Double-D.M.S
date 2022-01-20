@@ -38,7 +38,7 @@ export default class ClassRoom1 extends Room {
     canvas: HTMLCanvasElement,
     previousScene: Scene,
     player: Player,
-    state: boolean,
+    state: boolean
   ) {
     super(canvas, './assets/img/classroom.png', state);
 
@@ -63,20 +63,44 @@ export default class ClassRoom1 extends Room {
 
     // sets the NPCs with their dialogs in the classroom
     this.npcs.push(
-      new Npc('./assets/img/student-orange-hair-back-faced.png', 652, 436, [
-        new Dialog('Hey, listen...have you seen a doll?#', ['No..', 'You play with dolls?'], ['Oh...', 'not nice!']),
-        new Dialog('My little sister lost hers and I am trying to find it.#', ['oh..', 'I can help you find it'], ['I am sad for her', 'Thank you!']),
-        new Dialog('If you see it, bring it to me tomorrow, okay?#', ['ok!', 'will do!'], ['Great!', 'Thanks']),
-        new Dialog('Class is over, gotta go now. See you tomorrow!#', ['Bye Bye', 'Take care!'], ['', '']),
+      new Npc('./assets/img/OrangeHairStudentBackFacing.png', 652, 436, [
+        new Dialog(
+          'Hey, listen...have you seen a doll?#',
+          ['No..', 'You play with dolls?'],
+          ['Oh...', 'not nice!']
+        ),
+        new Dialog(
+          'My little sister lost hers and I am trying to find it.#',
+          ['oh..', 'I can help you find it'],
+          ['I am sad for her', 'Thank you!']
+        ),
+        new Dialog(
+          'If you see it, bring it to me tomorrow, okay?#',
+          ['ok!', 'will do!'],
+          ['Great!', 'Thanks']
+        ),
+        new Dialog(
+          'Class is over, gotta go now. See you tomorrow!#',
+          ['Bye Bye', 'Take care!'],
+          ['', '']
+        ),
       ]),
-      new Npc('./assets/img/teacher-blonde-hair-front-faced.png', 714, 298, [
-        new Dialog('Today we are learning about suspicious links and strangers messeges#', ['ok', 'umm..okay?'], [':)', '^__^']),
-        new Dialog('This is very important!#', ['I guess..', 'Sure is!'], ['', '']),
-      ]),
+      new Npc('./assets/img/BlondeHairTeacherFrontFacing.png', 714, 298, [
+        new Dialog(
+          'Today we are learning about suspicious links and strangers messeges#',
+          ['ok', 'umm..okay?'],
+          [':)', '^__^']
+        ),
+        new Dialog(
+          'This is very important!#',
+          ['I guess..', 'Sure is!'],
+          ['', '']
+        ),
+      ])
     );
     // creating collectibles in the classroom
     this.collectibles.push(
-      new Candy(this.canvas.width / 2, this.canvas.height / 2),
+      new Candy(this.canvas.width / 2, this.canvas.height / 2)
     );
 
     // creating the door for the classroom
@@ -89,8 +113,8 @@ export default class ClassRoom1 extends Room {
         'Congratulations you just won a giveaway!# a Nigerian Prince chose you to be the winner!!#Send him your bank account details and your ID to get 500.000€!!',
         'Not pay attention and delete this email/message',
         'Send an E-mail to make sure it is real',
-        'YES, TAKE ALL MY DATA!',
-      ),
+        'YES, TAKE ALL MY DATA!'
+      )
     );
     this.questions.push(
       new Question(
@@ -98,8 +122,8 @@ export default class ClassRoom1 extends Room {
         'Someone sent you a link to a YouTube video,# you click on it and suddenly you have a virus on your pc!# What could u have done differently? ',
         'Not click on the link',
         'Send this cool link to all my friends!',
-        'start chatting with this person for fun',
-      ),
+        'start chatting with this person for fun'
+      )
     );
 
     // Adds all the hitboxes to the bathroom
@@ -145,13 +169,13 @@ export default class ClassRoom1 extends Room {
           // setting image of player according to the right character chosen
           const cNum: number = this.player.getCharacterNum();
           if (cNum === 1) {
-            this.player.setImage('./assets/img/player-boy1-down.png');
+            this.player.setImage('./assets/img/PlayerBoy1Down.png');
           } else if (cNum === 2) {
-            this.player.setImage('./assets/img/player-boy2-down.png');
+            this.player.setImage('./assets/img/playerBoy2Down.png');
           } else if (cNum === 3) {
-            this.player.setImage('./assets/img/player-girl2-down.png');
+            this.player.setImage('./assets/img/playerGirl2Down.png');
           } else if (cNum === 4) {
-            this.player.setImage('./assets/img/player-girl1-down.png');
+            this.player.setImage('./assets/img/playerGirl1Down.png');
           }
           return this.previousScene;
         }

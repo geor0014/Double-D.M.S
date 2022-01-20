@@ -2,45 +2,49 @@ import Screen from './Screen.js';
 import KeyListener from './KeyListener.js';
 import StartScreen from './StartScreen.js';
 export default class HappyEnding extends Screen {
-    keyListener;
-    characterNum;
-    constructor(canvas, characterNum) {
-        super(canvas, '');
-        this.characterNum = characterNum;
-        this.keyListener = new KeyListener();
-        this.setXPos(0);
-        this.setYPos(0);
+  keyListener;
+  characterNum;
+  constructor(canvas, characterNum) {
+    super(canvas, '');
+    this.characterNum = characterNum;
+    this.keyListener = new KeyListener();
+    this.setXPos(0);
+    this.setYPos(0);
+  }
+  processInput() {
+    if (this.keyListener.isKeyDown(KeyListener.KEY_SPACE)) {
+      return true;
     }
-    processInput() {
-        if (this.keyListener.isKeyDown(KeyListener.KEY_SPACE)) {
-            return true;
-        }
-        return false;
+    return false;
+  }
+  update(elapsed) {
+    if (this.characterNum === 1) {
+      this.setImage('./assets/img/happyEndingBoy1.png');
+    } else if (this.characterNum === 2) {
+      this.setImage('./assets/img/happyEndingBoy2.png');
+    } else if (this.characterNum === 3) {
+      this.setImage('./assets/img/happyEndingGirl2.png');
+    } else if (this.characterNum === 4) {
+      this.setImage('./assets/img/happyEndingGirl1.png');
     }
-    update(elapsed) {
-        if (this.characterNum === 1) {
-            this.setImage('./assets/img/HappyEndingBoy1.png');
-        }
-        else if (this.characterNum === 2) {
-            this.setImage('./assets/img/HappyEndingBoy2.png');
-        }
-        else if (this.characterNum === 3) {
-            this.setImage('./assets/img/HappyEndingGirl2.png');
-        }
-        else if (this.characterNum === 4) {
-            this.setImage('./assets/img/HappyEndingGirl1.png');
-        }
-        if (this.processInput()) {
-            return new StartScreen(this.canvas);
-        }
-        return null;
+    if (this.processInput()) {
+      return new StartScreen(this.canvas);
     }
-    draw(ctx) {
-        ctx.drawImage(this.getImage(), this.getXPos(), this.getYPos());
-    }
-    render() {
-        this.draw(this.ctx);
-        this.writeTextToCanvas('press SPACE to Start Again :)', 24, this.canvas.width / 2, this.canvas.height - 50, 'center', 'white');
-    }
+    return null;
+  }
+  draw(ctx) {
+    ctx.drawImage(this.getImage(), this.getXPos(), this.getYPos());
+  }
+  render() {
+    this.draw(this.ctx);
+    this.writeTextToCanvas(
+      'press SPACE to Start Again :)',
+      24,
+      this.canvas.width / 2,
+      this.canvas.height - 50,
+      'center',
+      'white',
+    );
+  }
 }
 //# sourceMappingURL=HappyEnding.js.map

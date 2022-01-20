@@ -33,7 +33,7 @@ export default class QuestionScreen extends Screen {
     previousScene: Room,
     questions: Question[]
   ) {
-    super(canvas, './assets/img/computer-screen.png');
+    super(canvas, './assets/img/computerScreen.png');
 
     // sets keylistener
     this.keyboard = new KeyListener();
@@ -143,7 +143,8 @@ export default class QuestionScreen extends Screen {
       // console.log(`answer Recived ${answerRecived}`);
       if (answerRecived !== 0 && this.okPressed === true) {
         // this.okPressed = false;
-        this.textToPresent = 'your answer has been registered, please go to the next question >>';
+        this.textToPresent =
+          'your answer has been registered, please go to the next question >>';
       }
 
       // check if the answer chosen is correct
@@ -250,7 +251,7 @@ export default class QuestionScreen extends Screen {
 
     this.writeTextToCanvas(
       this.textToPresent,
-      24 ,
+      24,
       this.canvas.width / 2,
       675,
       'center',

@@ -36,9 +36,9 @@ export default class ShadyDialog extends Screen {
     canvas: HTMLCanvasElement,
     previousScene: Room,
     dialogs: Dialog[],
-    characterNum:number
+    characterNum: number
   ) {
-    super(canvas, './assets/img/dialogscreen-Shady.png');
+    super(canvas, './assets/img/dialogScreenShadyGuy.png');
 
     // sets keylistener
     this.keyboard = new KeyListener();
