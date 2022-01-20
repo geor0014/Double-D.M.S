@@ -90,7 +90,7 @@ export default class QuestionScreen extends InteractiveScreen {
           this.setImage('./assets/img/computerScreen3.png');
         }
         this.setTextToPresent(
-          'your answer has been registered, please go to the next question >>'
+          'your answer has been registered',
         );
 
         // check if the answer chosen is correct
@@ -179,7 +179,7 @@ export default class QuestionScreen extends InteractiveScreen {
       this.writeTextToCanvas(
         'press ESC to leave',
         24,
-        this.canvas.width / 2 + 100,
+        this.canvas.width / 2 + 50,
         600,
         'center',
         'Red'
@@ -188,7 +188,7 @@ export default class QuestionScreen extends InteractiveScreen {
       this.writeTextToCanvas(
         'Next Question right arrow ->',
         24,
-        this.canvas.width / 2 + 100,
+        this.canvas.width / 2 + 50,
         600,
         'center',
         'Red'

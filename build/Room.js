@@ -276,7 +276,6 @@ export default class Room extends Scene {
             this.ctx.drawImage(characterImg, 280, 600, 130, 130);
         }
     }
-<<<<<<< HEAD
     getCollectibles() {
         return this.collectibles;
     }
@@ -321,7 +320,7 @@ export default class Room extends Scene {
     }
     setGameFrame(gameframe) {
         this.gameFrame = gameframe;
-=======
+    }
     getXPos() {
         return this.xPos;
     }
@@ -333,7 +332,6 @@ export default class Room extends Scene {
     }
     setYPos(newPos) {
         this.yPos = newPos;
->>>>>>> 94d127c88628048f55eeb4d0adacea3af800c500
     }
 }
 //# sourceMappingURL=Room.js.map

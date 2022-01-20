@@ -82,7 +82,7 @@ export default class DifficultHallway extends Room {
     // creates npcs with their dialogs for this room
     this.getNpcs().push(
       new Npc(
-        './assets/img/purpleBoy.png',
+        './assets/img/snobbyGirl1.png',
         532,
         300,
         [

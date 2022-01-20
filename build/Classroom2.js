@@ -6,7 +6,7 @@ import QuestionScreen from './QuestionScreen.js';
 import QuestItem from './QuestItem.js';
 import Classroom from './Classroom.js';
 export default class ClassRoom2 extends Classroom {
-    teddy = new QuestItem('teddy', './assets/img/teddy.png', 263, 580);
+    teddy = new QuestItem('teddy', './assets/img/teddy.png', 263, 480);
     pushOnce = true;
     constructor(canvas, previousScene, player, state) {
         super(canvas, previousScene, player, state, './assets/img/scienceClass.png');

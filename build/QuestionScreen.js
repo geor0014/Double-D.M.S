@@ -47,7 +47,7 @@ export default class QuestionScreen extends InteractiveScreen {
                 else {
                     this.setImage('./assets/img/computerScreen3.png');
                 }
-                this.setTextToPresent('your answer has been registered, please go to the next question >>');
+                this.setTextToPresent('your answer has been registered');
                 if (answerRecived ===
                     this.questions[this.getTCounter()].getRPos() + 1) {
                     userData.setScore(userData.getScore() + 1);
@@ -86,10 +86,10 @@ export default class QuestionScreen extends InteractiveScreen {
             }
         }
         if (this.getTCounter() === this.questions.length - 1) {
-            this.writeTextToCanvas('press ESC to leave', 24, this.canvas.width / 2 + 100, 600, 'center', 'Red');
+            this.writeTextToCanvas('press ESC to leave', 24, this.canvas.width / 2 + 50, 600, 'center', 'Red');
         }
         else {
-            this.writeTextToCanvas('Next Question right arrow ->', 24, this.canvas.width / 2 + 100, 600, 'center', 'Red');
+            this.writeTextToCanvas('Next Question right arrow ->', 24, this.canvas.width / 2 + 50, 600, 'center', 'Red');
         }
         this.writeTextToCanvas(this.getTextToPresent(), 24, this.canvas.width / 2, 675, 'center', 'red');
     }

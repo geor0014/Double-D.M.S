@@ -17,7 +17,7 @@ export default class ClassRoom2 extends Classroom {
     'teddy',
     './assets/img/teddy.png',
     263,
-    580,
+    480,
   );
 
   private pushOnce: boolean = true;

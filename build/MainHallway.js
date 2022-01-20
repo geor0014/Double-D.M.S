@@ -57,12 +57,12 @@ export default class MainHallway extends Room {
     }
     update(elapsed) {
         const nextScene = this.generalInteraction();
-        if (this.player.getUserData().getScore() > -1) {
+        if (this.player.getUserData().getScore() > 12) {
             this.getDoors()[0].setImage('./assets/img/bossRoomDoorOpened.png');
         }
         if (this.player.isInteracting()) {
             if (this.player.collidesWith(this.getDoors()[0])) {
-                if (this.player.getUserData().getScore() < 12) {
+                if (this.player.getUserData().getScore() > 12) {
                     this.getDoorOpen().play();
                     if (this.bRoomInteract === false) {
                         this.bossRoom = new BossRoom(this.canvas, this, this.player);
@@ -94,7 +94,7 @@ export default class MainHallway extends Room {
             return this.easyHall;
         }
         if (this.player.getXPos() >= 909 && this.player.getYPos() >= 402.5) {
-            if (this.player.getUserData().getScore() < 3) {
+            if (this.player.getUserData().getScore() > 3) {
                 if (this.dHallInteract === false) {
                     this.diffHall = new DifficultHallway(this.canvas, this, this.player);
                     this.dHallInteract = true;

@@ -71,12 +71,6 @@ export default abstract class Room extends Scene {
   public constructor(
     canvas: HTMLCanvasElement,
     imgSrc: string,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-<<<<<<< HEAD
-    state: boolean = false,
-=======
-    // state: boolean = false
->>>>>>> 94d127c88628048f55eeb4d0adacea3af800c500
   ) {
     super(canvas);
 
@@ -480,7 +474,6 @@ export default abstract class Room extends Scene {
   }
 
   /**
-<<<<<<< HEAD
    * Getter for collectibles array
    *
    * @returns collectibles array
@@ -613,7 +606,10 @@ export default abstract class Room extends Scene {
    */
   setGameFrame(gameframe: number): void {
     this.gameFrame = gameframe;
-=======
+
+  }
+
+  /**
    * getter for x position
    *
    * @returns xPos
@@ -647,6 +643,5 @@ export default abstract class Room extends Scene {
    */
   public setYPos(newPos: number): void {
     this.yPos = newPos;
->>>>>>> 94d127c88628048f55eeb4d0adacea3af800c500
   }
 }
