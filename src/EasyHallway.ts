@@ -93,7 +93,7 @@ export default class EasyHallway extends Room {
     // creates npcs with their dialogs for this room
     this.npcs.push(
       new Npc(
-        './assets/img/student1BackFacing.png',
+        './assets/img/blondeGirlUp.png',
         575,
         495,
         [
@@ -110,7 +110,7 @@ export default class EasyHallway extends Room {
         ],
         true
       ),
-      new Npc('./assets/img/blackHairStudentLeftFacing.png', 195, 315, [
+      new Npc('./assets/img/whiteHairBoy.png', 195, 315, [
         new Dialog(
           'There are some things you should never share!#',
           ['I know that', 'ok..'],
@@ -122,7 +122,7 @@ export default class EasyHallway extends Room {
           ['', '']
         ),
       ]),
-      new Npc('./assets/img/redHairStudentRightFacing.png', 155, 315, [
+      new Npc('./assets/img/ponytailGirl.png', 155, 315, [
         new Dialog(
           'Did you hear about Jessica?#',
           ['No..', 'What happaned?'],

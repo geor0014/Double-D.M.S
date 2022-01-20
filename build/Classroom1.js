@@ -11,12 +11,12 @@ export default class ClassRoom1 extends Classroom {
     constructor(canvas, previousScene, player, state) {
         super(canvas, previousScene, player, state, './assets/img/classroom.png');
         this.setComputer(new Computer(479, 253));
-        this.npcs.push(new Npc('./assets/img/OrangeHairStudentBackFacing.png', 652, 436, [
+        this.npcs.push(new Npc('./assets/img/redHairBoyUp.png', 652, 436, [
             new Dialog('Hey, listen...have you seen a doll?#', ['No..', 'You play with dolls?'], ['Oh...', 'not nice!']),
             new Dialog('My little sister lost hers and I am trying to find it.#', ['oh..', 'I can help you find it'], ['I am sad for her', 'Thank you!']),
             new Dialog('If you see it, bring it to me tomorrow, okay?#', ['ok!', 'will do!'], ['Great!', 'Thanks']),
             new Dialog('Class is over, gotta go now. See you tomorrow!#', ['Bye Bye', 'Take care!'], ['', '']),
-        ], true), new Npc('./assets/img/BlondeHairTeacherFrontFacing.png', 714, 298, [
+        ], true), new Npc('./assets/img/teacherFemaleScience.png', 614, 215, [
             new Dialog('Today we are learning about suspicious links and strangers messeges#', ['ok', 'umm..okay?'], [':)', '^__^']),
             new Dialog('This is very important!#', ['I guess..', 'Sure is!'], ['', '']),
         ]));

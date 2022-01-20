@@ -82,7 +82,7 @@ export default class DifficultHallway extends Room {
     // creates npcs with their dialogs for this room
     this.npcs.push(
       new Npc(
-        './assets/img/BlueHairStudentFrontFacing.png',
+        './assets/img/purpleBoy.png',
         532,
         300,
         [
@@ -99,7 +99,7 @@ export default class DifficultHallway extends Room {
         ],
         true
       ),
-      new Npc('./assets/img/greyHairStudentBackFacing.png', 597, 500, [
+      new Npc('./assets/img/pinkLadyUp.png', 597, 500, [
         new Dialog(
           'I heard there is this weird dude in the bathroom#',
           ['really?', 'oh no...'],

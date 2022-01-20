@@ -30,10 +30,10 @@ export default class DifficultHallway extends Room {
         this.doors = [];
         this.setXPos(0);
         this.setYPos(0);
-        this.npcs.push(new Npc('./assets/img/BlueHairStudentFrontFacing.png', 532, 300, [
+        this.npcs.push(new Npc('./assets/img/purpleBoy.png', 532, 300, [
             new Dialog('Hey there! Have you seen a teddy bear around here?#', ['No..', 'Dont think so...'], ['Oh...', 'oh...']),
             new Dialog('I lost mine. If you see it, can you bring it to me tomorrow?#', ['Sure!', 'Yeah why not'], ['', '']),
-        ], true), new Npc('./assets/img/greyHairStudentBackFacing.png', 597, 500, [
+        ], true), new Npc('./assets/img/pinkLadyUp.png', 597, 500, [
             new Dialog('I heard there is this weird dude in the bathroom#', ['really?', 'oh no...'], ['YES!', 'He is creepy..']),
             new Dialog('I am too scared to go there#', ['Me too!', 'Ill go!'], ['', '']),
         ]));

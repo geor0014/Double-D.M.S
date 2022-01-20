@@ -85,7 +85,7 @@ export default class MainHallway extends Room {
 
     // creating Npc and dialog
     this.npcs.push(
-      new Npc('./assets/img/teacherFrontFacing.png', 782, 315.5, [
+      new Npc('./assets/img/teacherMale.png', 782, 315.5, [
         new Dialog(
           'Heyy how are you today?#',
           ['Good Thank you!', 'Excited for my birthday!'],

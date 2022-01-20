@@ -39,7 +39,7 @@ export default class ClassRoom1 extends Classroom {
     // sets the NPCs with their dialogs in the classroom
     this.npcs.push(
       new Npc(
-        './assets/img/OrangeHairStudentBackFacing.png',
+        './assets/img/redHairBoyUp.png',
         652,
         436,
         [
@@ -66,7 +66,7 @@ export default class ClassRoom1 extends Classroom {
         ],
         true
       ),
-      new Npc('./assets/img/BlondeHairTeacherFrontFacing.png', 714, 298, [
+      new Npc('./assets/img/teacherFemaleScience.png', 614, 215, [
         new Dialog(
           'Today we are learning about suspicious links and strangers messeges#',
           ['ok', 'umm..okay?'],

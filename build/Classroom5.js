@@ -10,7 +10,7 @@ export default class ClassRoom5 extends Classroom {
     constructor(canvas, previousScene, player, state) {
         super(canvas, previousScene, player, state, './assets/img/classroom.png');
         this.setComputer(new Computer(479, 253));
-        this.npcs.push(new Npc('./assets/img/BlondeHairTeacherFrontFacing.png', 600, 250, [
+        this.npcs.push(new Npc('./assets/img/teacherFemaleGlasses.png', 600, 250, [
             new Dialog('You should take a break sometimes#', ['Yes Im tired', 'I am okay'], ['Studying can be hard', 'good to know!']),
             new Dialog('The cafeteria has great food!#', ['Ill check it out!', 'I am hungry..'], ['', '']),
         ]));

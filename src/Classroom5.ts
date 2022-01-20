@@ -36,7 +36,7 @@ export default class ClassRoom5 extends Classroom {
 
     // sets the NPCs with their dialogs in the classroom
     this.npcs.push(
-      new Npc('./assets/img/BlondeHairTeacherFrontFacing.png', 600, 250, [
+      new Npc('./assets/img/teacherFemaleGlasses.png', 600, 250, [
         new Dialog(
           'You should take a break sometimes#',
           ['Yes Im tired', 'I am okay'],

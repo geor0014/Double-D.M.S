@@ -38,7 +38,7 @@ export default class MainHallway extends Room {
         this.collectibles.push(new Candy(312, 376.5), new Hint(this.canvas.width / 3, this.canvas.height / 1.5));
         this.doors.push(new Door('./assets/img/bossRoomDoorClosed.png', 511, 412));
         this.doors.push(new Door('./assets/img/cafeteriaDoor.png', 284, 160));
-        this.npcs.push(new Npc('./assets/img/teacherFrontFacing.png', 782, 315.5, [
+        this.npcs.push(new Npc('./assets/img/teacherMale.png', 782, 315.5, [
             new Dialog('Heyy how are you today?#', ['Good Thank you!', 'Excited for my birthday!'], ['Glad to hear that', 'Happy Birthday!']),
             new Dialog('Good luck with your exams!#', ['Thanks!', 'Thank you'], ['', '']),
         ]));
