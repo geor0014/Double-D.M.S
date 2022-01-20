@@ -5,6 +5,38 @@ export default class CandyBuyDialog extends DialogParent {
         super(canvas, previousScene, dialogs, './assets/img/lunchLadyDialog.png');
         this.userData = userData;
     }
+<<<<<<< HEAD
+=======
+    reciveAnswer() {
+        if (this.keyboard.isKeyDown(KeyListener.KEY_1)) {
+            this.okPressed = true;
+            return 1;
+        }
+        if (this.keyboard.isKeyDown(KeyListener.KEY_2)) {
+            this.okPressed = true;
+            return 2;
+        }
+        return 0;
+    }
+    processInput() {
+        if (this.keyboard.isKeyDown(KeyListener.KEY_ESC)) {
+            return true;
+        }
+        return false;
+    }
+    moveBetweenDialogs() {
+        if (this.keyboard.isKeyDown(KeyListener.KEY_RIGHT)) {
+<<<<<<< HEAD
+            console.log('right pressed');
+=======
+>>>>>>> 86bdae84640bc8b1b180d6742262bc797e494dac
+            this.nextD = true;
+        }
+        else {
+            this.nextD = false;
+        }
+    }
+>>>>>>> e78397f7aa896ee55f34988fdebd5e4d6fde0af9
     update(elapsed) {
         const candyAmount = this.userData.getCandyAmount();
         const hintAmount = this.userData.getHintAmount();
@@ -12,12 +44,27 @@ export default class CandyBuyDialog extends DialogParent {
         if (this.processInput()) {
             return this.getPreviousScene();
         }
+<<<<<<< HEAD
         this.moveBetweenInteractions();
         if (this.getNextText()
             && this.getTCounter() < this.getDialogs().length - 1
             && this.getFrameCounter() === 15) {
             this.setTCounter(this.getTCounter() + 1);
             this.setTextToPresent('...');
+=======
+        this.moveBetweenDialogs();
+<<<<<<< HEAD
+        if (this.nextD &&
+            this.dCounter < this.dialogs.length - 1 &&
+            this.frameCounter === 15) {
+=======
+        if (this.nextD
+            && this.dCounter < this.dialogs.length - 1
+            && this.frameCounter === 15) {
+>>>>>>> 86bdae84640bc8b1b180d6742262bc797e494dac
+            this.dCounter += 1;
+            this.textToPresent = '...';
+>>>>>>> e78397f7aa896ee55f34988fdebd5e4d6fde0af9
         }
         let answerRecived = 0;
         if (this.getFrameCounter() % 15 === 0) {

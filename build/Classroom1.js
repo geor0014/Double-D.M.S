@@ -6,10 +6,29 @@ import Question from './Question.js';
 import QuestionScreen from './QuestionScreen.js';
 import Npc from './Npc.js';
 import Dialog from './Dialog.js';
+<<<<<<< HEAD
+export default class ClassRoom1 extends Room {
+    previousScene;
+    computer;
+    questions;
+    pcInteract = false;
+    constructor(canvas, previousScene, player, state) {
+        super(canvas, './assets/img/classroom.png', state);
+        this.previousScene = previousScene;
+        this.player = player;
+        this.setXPos(0);
+        this.setYPos(0);
+        this.collectibles = [];
+        this.npcs = [];
+        this.doors = [];
+        this.questions = [];
+        this.computer = new Computer(479, 253);
+=======
 export default class ClassRoom1 extends Classroom {
     constructor(canvas, previousScene, player, state) {
         super(canvas, previousScene, player, state, './assets/img/classroom.png');
         this.setComputer(new Computer(479, 253));
+>>>>>>> 86bdae84640bc8b1b180d6742262bc797e494dac
         this.npcs.push(new Npc('./assets/img/OrangeHairStudentBackFacing.png', 652, 436, [
             new Dialog('Hey, listen...have you seen a doll?#', ['No..', 'You play with dolls?'], ['Oh...', 'not nice!']),
             new Dialog('My little sister lost hers and I am trying to find it.#', ['oh..', 'I can help you find it'], ['I am sad for her', 'Thank you!']),
@@ -21,7 +40,12 @@ export default class ClassRoom1 extends Classroom {
         ]));
         this.collectibles.push(new Candy(this.canvas.width / 2, this.canvas.height / 2));
         this.doors.push(new Door('./assets/img/door1.png', 912, 400.5));
+<<<<<<< HEAD
+        this.questions.push(new Question(this.player.getUserData(), 'Congratulations you just won a giveaway!# a Nigerian Prince chose you to be the winner!!#Send him your bank account details and your ID to get 500.000€!!', 'Not pay attention and delete this email/message', 'Send an E-mail to make sure it is real', 'YES, TAKE ALL MY DATA!'));
+        this.questions.push(new Question(this.player.getUserData(), 'Someone sent you a link to a YouTube video,# you click on it and suddenly you have a virus on your pc!# What could u have done differently? ', 'Not click on the link', 'Send this cool link to all my friends!', 'start chatting with this person for fun'));
+=======
         this.setQuestions([new Question(this.player.getUserData(), 'Congratulations you just won a giveaway!# a Nigerian Prince chose you to be the winner!!#Send him your bank account details and your ID to get 500.000€!!', 'Not pay attention and delete this email/message', 'Send an E-mail to make sure it is real', 'YES, TAKE ALL MY DATA!'), new Question(this.player.getUserData(), 'Someone sent you a link to a YouTube video,# you click on it and suddenly you have a virus on your pc!# What could u have done differently? ', 'Not click on the link', 'Send this cool link to all my friends!', 'start chatting with this person for fun')]);
+>>>>>>> 86bdae84640bc8b1b180d6742262bc797e494dac
         this.insertHitbox(911, 563, 50, 5, 1);
         this.insertHitbox(909, 600, 10, 10, 1);
         this.insertHitbox(147, 658, 750, 5, 1);
@@ -57,6 +81,15 @@ export default class ClassRoom1 extends Classroom {
                     else if (cNum === 4) {
                         this.player.setImage('./assets/img/playerGirl1Down.png');
                     }
+<<<<<<< HEAD
+                    return this.previousScene;
+                }
+            }
+            if (this.player.collidesWith(this.computer)) {
+                if (this.pcInteract === false) {
+                    this.pcInteract = true;
+                    return new QuestionScreen(this.canvas, this, this.questions);
+=======
                     return this.getPreviousScene();
                 }
             }
@@ -64,6 +97,7 @@ export default class ClassRoom1 extends Classroom {
                 if (this.getPcInteract() === false) {
                     this.setPcInteract(true);
                     return new QuestionScreen(this.canvas, this, this.getQuestions());
+>>>>>>> 86bdae84640bc8b1b180d6742262bc797e494dac
                 }
             }
         }
@@ -71,6 +105,16 @@ export default class ClassRoom1 extends Classroom {
             return nextScene;
         }
         return null;
+<<<<<<< HEAD
+    }
+    render() {
+        this.draw(this.ctx);
+        this.computer.draw(this.ctx);
+        super.render();
+        this.drawHitBoxes();
+        console.log(this.player.getXPos(), this.player.getYPos());
+=======
+>>>>>>> 86bdae84640bc8b1b180d6742262bc797e494dac
     }
 }
 //# sourceMappingURL=Classroom1.js.map
