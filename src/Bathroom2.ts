@@ -46,7 +46,7 @@ export default class Bathroom2 extends Room {
     // sets the NPCs with their dialogs in the classroom
     this.getNpcs().push(
       new Npc('./assets/img/purpleBoy.png', 652, 436, [
-        new Dialog('I am escaping class#', ['ok', 'Me too'], ['', '']),
+        new Dialog('I am escaping class#', ['ok', 'Me too'], ['I guess..', 'Yay!']),
       ])
     );
     // creating collectibles in the classroom
