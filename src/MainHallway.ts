@@ -133,7 +133,7 @@ export default class MainHallway extends Room {
       // WITH DOORS
       // for (let i = 0; i < this.doors.length; i += 1) {
       if (this.player.collidesWith(this.doors[0])) {
-        if (this.player.getUserData().getScore() > 12) {
+        if (this.player.getUserData().getScore() > -1) {
           console.log('interact with door');
           this.doorOpen.play();
           if (this.bRoomInteract === false) {

@@ -1,5 +1,4 @@
 import Door from './Door.js';
-import Room from './Room.js';
 
 import Scene from './Scene.js';
 import Player from './Player.js';
@@ -10,20 +9,9 @@ import Computer from './Computer.js';
 import Question from './Question.js';
 import QuestionScreen from './QuestionScreen.js';
 import QuestItem from './QuestItem.js';
+import Classroom from './Classroom.js';
 
-export default class ClassRoom2 extends Room {
-  // Room the player have previously been
-  private previousScene: Scene;
-
-  // computer ther player interacts with to asnwer the questions
-  private computer: Computer;
-
-  // questions which are displayed on the computer
-  private questions: Question[];
-
-  // interaction for the computer
-  private pcInteract: boolean = false;
-
+export default class ClassRoom2 extends Classroom {
   // teddy which is being used for the quest of the guy with black hair located in the easy hallway
   private teddy: QuestItem = new QuestItem(
     'teddy',
@@ -48,24 +36,10 @@ export default class ClassRoom2 extends Room {
     player: Player,
     state: boolean,
   ) {
-    super(canvas, './assets/img/scienceclass.png', state);
+    super(canvas, previousScene, player, state,'./assets/img/scienceclass.png');
 
-    // sets the previous scene to return to
-    this.previousScene = previousScene;
-
-    // sets the player
-    this.player = player;
-
-    // sets the background image position
-    this.setXPos(0);
-    this.setYPos(0);
-
-    // resets the items in the room
-    this.collectibles = [];
-    this.npcs = [];
-    this.doors = [];
-    this.questions = [];
-    this.computer = new Computer(476, 247);
+    // creating a new computer in the classroom
+    this.setComputer(new Computer(476, 247));
 
     // creating collectibles in the classroom
     this.collectibles.push(
@@ -78,22 +52,19 @@ export default class ClassRoom2 extends Room {
     // setting player starter position and image in the classroom
 
     // creating questions for this classroom
-    this.questions.push(
-      new Question(
-        this.player.getUserData(),
-        'You are creating an account on your favorite social media.# Before you can access it,#they ask you to accept the general terms of condition!# What do you do?',
-        'Ask your parents what they think',
-        'Not read it and accept it',
-        'Read through everything and decide if you accept',
-      ),
-      new Question(
-        this.player.getUserData(),
-        'Which of these files are safe to download?#',
-        'Game.exe',
-        'Virus.exe ',
-        'Trojan.exe',
-      ),
-    );
+    this.setQuestions([new Question(
+      this.player.getUserData(),
+      'You are creating an account on your favorite social media.# Before you can access it,#they ask you to accept the general terms of condition!# What do you do?',
+      'Ask your parents what they think',
+      'Not read it and accept it',
+      'Read through everything and decide if you accept',
+    ), new Question(
+      this.player.getUserData(),
+      'Which of these files are safe to download?#',
+      'Game.exe',
+      'Virus.exe ',
+      'Trojan.exe',
+    )]);
 
     // Adds all the hitboxes to the bathroom
     this.insertHitbox(911, 563, 50, 5, 1);
@@ -145,21 +116,20 @@ export default class ClassRoom2 extends Room {
           } else if (cNum === 4) {
             this.player.setImage('./assets/img/player-girl1-down.png');
           }
-          return this.previousScene;
+          return this.getPreviousScene();
         }
       }
 
       // WITH COMPUTER
-      if (this.player.collidesWith(this.computer)) {
-        if (this.pcInteract === false) {
+      if (this.player.collidesWith(this.getComputer())) {
+        if (this.getPcInteract() === false) {
           // present question screen
-          this.pcInteract = true;
-          return new QuestionScreen(this.canvas, this, this.questions);
+          this.setPcInteract(true);
+          return new QuestionScreen(this.canvas, this, this.getQuestions());
         }
         // console.log('cant use the pc at the moment');
       }
     }
-
     this.addQuestItems();
 
     // according to the general checks in room
@@ -188,8 +158,7 @@ export default class ClassRoom2 extends Room {
    * draws items to screen
    */
   public render(): void {
-    this.draw(this.ctx);
-
+    super.render();
     // DRAWS QUESTITEMS
     this.player
       .getUserData()
@@ -197,9 +166,5 @@ export default class ClassRoom2 extends Room {
       .forEach((item) => {
         if (item.getName() === 'teddy') item.draw(this.ctx);
       });
-    this.computer.draw(this.ctx);
-    // calls the render function of the parent aka ROOM
-    super.render();
-    this.drawHitBoxes();
   }
 }

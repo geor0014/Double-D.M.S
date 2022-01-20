@@ -1,5 +1,4 @@
 import Door from './Door.js';
-import Room from './Room.js';
 import Scene from './Scene.js';
 
 import Player from './Player.js';
@@ -9,20 +8,9 @@ import Computer from './Computer.js';
 
 import Question from './Question.js';
 import QuestionScreen from './QuestionScreen.js';
+import Classroom from './Classroom.js';
 
-export default class ClassRoom6 extends Room {
-  // Room the player have previously been
-  private previousScene: Scene;
-
-  // computer ther player interacts with to asnwer the questions
-  private computer: Computer;
-
-  // questions which are displayed on the computer
-  private questions: Question[];
-
-  // interaction for the computer
-  private pcInteract: boolean = false;
-
+export default class ClassRoom6 extends Classroom {
   /**
    * creats a new classroom
    *
@@ -37,19 +25,10 @@ export default class ClassRoom6 extends Room {
     player: Player,
     state: boolean,
   ) {
-    super(canvas, './assets/img/artclass.png', state);
-    this.previousScene = previousScene;
+    super(canvas, previousScene, player, state, './assets/img/artclass.png');
 
-    this.player = player;
-
-    this.setXPos(0);
-    this.setYPos(0);
-
-    this.collectibles = [];
-    this.npcs = [];
-    this.doors = [];
-    this.questions = [];
-    this.computer = new Computer(480, 282);
+    // creating a new computer in the classroom
+    this.setComputer(new Computer(480, 282));
 
     // creating collectibles in the classroom
     this.collectibles.push(
@@ -60,29 +39,25 @@ export default class ClassRoom6 extends Room {
     this.doors.push(new Door('./assets/img/door1.png', 912, 400.5));
 
     // creating questions for this classroom
-    this.questions.push(
-      new Question(
-        this.player.getUserData(),
-        'You are about to join this amazing new website# all your friends are there.# What information is OK to give online?#',
-        'Nickname',
-        'Phone number',
-        'Adress',
-      ),
-      new Question(
-        this.player.getUserData(),
-        'You are having trouble doing an activity on a safe site you use at #school. Your friend offers to help but needs your password.# Would you give your password to them.',
-        'No',
-        'It depends',
-        'Yes',
-      ),
-      new Question(
-        this.player.getUserData(),
-        'Your parents want to know what you have been doing on a safe site #you use at school. #Would you let them use your account?',
-        'You would let them have a look but while youre there',
-        'Yes, they are my parents I trust them',
-        'No way, this site is only for kids and teachers',
-      ),
-    );
+    this.setQuestions([new Question(
+      this.player.getUserData(),
+      'You are about to join this amazing new website# all your friends are there.# What information is OK to give online?#',
+      'Nickname',
+      'Phone number',
+      'Adress',
+    ), new Question(
+      this.player.getUserData(),
+      'You are having trouble doing an activity on a safe site you use at #school. Your friend offers to help but needs your password.# Would you give your password to them.',
+      'No',
+      'It depends',
+      'Yes',
+    ), new Question(
+      this.player.getUserData(),
+      'Your parents want to know what you have been doing on a safe site #you use at school. #Would you let them use your account?',
+      'You would let them have a look but while youre there',
+      'Yes, they are my parents I trust them',
+      'No way, this site is only for kids and teachers',
+    )]);
 
     // Adds all the hitboxes to the bathroom
     this.insertHitbox(911, 590, 50, 5, 1);
@@ -134,16 +109,16 @@ export default class ClassRoom6 extends Room {
           } else if (cNum === 4) {
             this.player.setImage('./assets/img/player-girl1-down.png');
           }
-          return this.previousScene;
+          return this.getPreviousScene();
         }
       }
 
       // WITH COMPUTER
-      if (this.player.collidesWith(this.computer)) {
-        if (this.pcInteract === false) {
+      if (this.player.collidesWith(this.getComputer())) {
+        if (this.getPcInteract() === false) {
           // present question screen
-          this.pcInteract = true;
-          return new QuestionScreen(this.canvas, this, this.questions);
+          this.setPcInteract(true);
+          return new QuestionScreen(this.canvas, this, this.getQuestions());
         }
         // console.log('cant use the pc at the moment');
       }
@@ -154,17 +129,5 @@ export default class ClassRoom6 extends Room {
       return nextScene;
     }
     return null;
-  }
-
-  /**
-   * draws items to screen
-   */
-  public render(): void {
-    this.draw(this.ctx);
-    this.drawHitBoxes();
-
-    this.computer.draw(this.ctx);
-    // calls the render function of the parent aka ROOM
-    super.render();
   }
 }
