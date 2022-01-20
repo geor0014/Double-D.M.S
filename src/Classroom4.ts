@@ -24,27 +24,7 @@ export default class ClassRoom4 extends Classroom {
     player: Player,
     state: boolean
   ) {
-<<<<<<< HEAD
-    super(canvas, previousScene, player, state, './assets/img/scienceclass.png');
-=======
-    super(canvas, './assets/img/scienceClass.png', state);
-
-    // sets the previous scene to return to
-    this.previousScene = previousScene;
-
-    // sets the player
-    this.player = player;
-
-    // sets the background image position
-    this.setXPos(0);
-    this.setYPos(0);
-
-    // resets the items in the room
-    this.collectibles = [];
-    this.npcs = [];
-    this.doors = [];
-    this.questions = [];
->>>>>>> 01bdef0fc671997649d82b5999211bbc6f9586e1
+    super(canvas, previousScene, player, state, './assets/img/scienceClass.png');
 
     // creating a new computer in the classroom
     this.setComputer(new Computer(479, 253));
@@ -53,7 +33,6 @@ export default class ClassRoom4 extends Classroom {
     this.doors.push(new Door('./assets/img/door1.png', 912, 400.5));
 
     // creating questions for this classroom
-<<<<<<< HEAD
     this.setQuestions([new Question(
       this.player.getUserData(),
       'I met someone in a chat room who wants to get together. #They live nearby. Should I go?',
@@ -73,31 +52,6 @@ export default class ClassRoom4 extends Classroom {
       'A nickname (e.g jumpingjacks)',
       'Your name and the year you were born (e.g. jack2011)',
     )]);
-=======
-    this.questions.push(
-      new Question(
-        this.player.getUserData(),
-        'I met someone in a chat room who wants to get together. #They live nearby. Should I go?',
-        'I should ask my parent about this and decide with them',
-        'Yes, it is always nice to have a new friend!',
-        'Talking to people online is wrong!'
-      ),
-      new Question(
-        this.player.getUserData(),
-        'Hey man! I just lost my account data for my Fortnite account# Do you think you could send me your password and username# so I can play with yours because all my skins are gone :((',
-        'Report that person',
-        'Send them wrong data',
-        'Send password and username since you feel bad for them'
-      ),
-      new Question(
-        this.player.getUserData(),
-        'You need to create a password for a website.# What should you use?#',
-        'A random word, number, and symbols (e.g. 1cecr3am!)',
-        'A nickname (e.g jumpingjacks)',
-        'Your name and the year you were born (e.g. jack2011)'
-      )
-    );
->>>>>>> 01bdef0fc671997649d82b5999211bbc6f9586e1
 
     // Adds all the hitboxes to the bathroom
     this.insertHitbox(911, 563, 50, 5, 1);

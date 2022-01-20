@@ -35,7 +35,6 @@ export default class ClassRoom3 extends Classroom {
     // setting player starter position and image in the classroom
 
     // creating questions for this classroom
-<<<<<<< HEAD
     this.setQuestions([new Question(
       this.player.getUserData(),
       'You see the following post:#“Hey look at Timmy`s head, man he looks horrible! #Share this video or we will stop talking to you!” What will you do? ',
@@ -49,24 +48,6 @@ export default class ClassRoom3 extends Classroom {
       'Do whatever your friend does ',
       'It doesn`t really matter',
     )]);
-=======
-    this.questions.push(
-      new Question(
-        this.player.getUserData(),
-        'You see the following post:#“Hey look at Timmy`s head, man he looks horrible! #Share this video or we will stop talking to you!” What will you do? ',
-        'Report it and help poor Timmy',
-        'Share it I don`t want to be alone',
-        'Ignore and let it happen '
-      ),
-      new Question(
-        this.player.getUserData(),
-        'My parents and I have established rules as to what I can do #on the Internet when Im home, but Im at a friend`s house. #Should I go by my parents rules or do whatever my friend does?',
-        'Go by your parents rules',
-        'Do whatever your friend does ',
-        'It doesn`t really matter'
-      )
-    );
->>>>>>> 01bdef0fc671997649d82b5999211bbc6f9586e1
 
     // Adds all the hitboxes to the bathroom
     this.insertHitbox(143, 78.5, 715, 160, 1);

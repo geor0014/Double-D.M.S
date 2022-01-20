@@ -36,17 +36,7 @@ export default class ClassRoom2 extends Classroom {
     player: Player,
     state: boolean
   ) {
-<<<<<<< HEAD
-    super(canvas, previousScene, player, state,'./assets/img/scienceclass.png');
-=======
-    super(canvas, './assets/img/scienceClass.png', state);
-
-    // sets the previous scene to return to
-    this.previousScene = previousScene;
-
-    // sets the player
-    this.player = player;
->>>>>>> 01bdef0fc671997649d82b5999211bbc6f9586e1
+    super(canvas, previousScene, player, state,'./assets/img/scienceClass.png');
 
     // creating a new computer in the classroom
     this.setComputer(new Computer(476, 247));
@@ -62,7 +52,6 @@ export default class ClassRoom2 extends Classroom {
     // setting player starter position and image in the classroom
 
     // creating questions for this classroom
-<<<<<<< HEAD
     this.setQuestions([new Question(
       this.player.getUserData(),
       'You are creating an account on your favorite social media.# Before you can access it,#they ask you to accept the general terms of condition!# What do you do?',
@@ -76,24 +65,6 @@ export default class ClassRoom2 extends Classroom {
       'Virus.exe ',
       'Trojan.exe',
     )]);
-=======
-    this.questions.push(
-      new Question(
-        this.player.getUserData(),
-        'You are creating an account on your favorite social media.# Before you can access it,#they ask you to accept the general terms of condition!# What do you do?',
-        'Ask your parents what they think',
-        'Not read it and accept it',
-        'Read through everything and decide if you accept'
-      ),
-      new Question(
-        this.player.getUserData(),
-        'Which of these files are safe to download?#',
-        'Game.exe',
-        'Virus.exe ',
-        'Trojan.exe'
-      )
-    );
->>>>>>> 01bdef0fc671997649d82b5999211bbc6f9586e1
 
     // Adds all the hitboxes to the bathroom
     this.insertHitbox(911, 563, 50, 5, 1);

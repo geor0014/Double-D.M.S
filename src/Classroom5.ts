@@ -59,7 +59,6 @@ export default class ClassRoom5 extends Classroom {
     this.doors.push(new Door('./assets/img/door1.png', 912, 400.5));
 
     // creating questions for this classroom
-<<<<<<< HEAD
     this.setQuestions([new Question(
       this.player.getUserData(),
       ' Should you use free Anti-Virus?#',
@@ -79,31 +78,6 @@ export default class ClassRoom5 extends Classroom {
       'Someone who shares too much personal information',
       'Someone who regularly surfs the web',
     )]);
-=======
-    this.questions.push(
-      new Question(
-        this.player.getUserData(),
-        ' Should you use free Anti-Virus?#',
-        'No, since the anti-virus can be a virus!',
-        'No, since I know what I download!',
-        'No, since I do not want to use an anti-virus!'
-      ),
-      new Question(
-        this.player.getUserData(),
-        'Which of the following is NOT an example of cyberbullying?#',
-        'Inviting a friend to fight with you in a game',
-        'Creating a fake profile to humiliate someone',
-        'Posting or sharing embarrassing photos'
-      ),
-      new Question(
-        this.player.getUserData(),
-        'What is a predator?#',
-        'Someone who uses the internet to do harm to others',
-        'Someone who shares too much personal information',
-        'Someone who regularly surfs the web'
-      )
-    );
->>>>>>> 01bdef0fc671997649d82b5999211bbc6f9586e1
 
     // Adds all the hitboxes to the bathroom
     this.insertHitbox(911, 563, 50, 5, 1);
