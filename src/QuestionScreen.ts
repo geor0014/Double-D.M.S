@@ -1,33 +1,11 @@
-import KeyListener from './KeyListener.js';
-import Screen from './Screen.js';
 import Scene from './Scene.js';
 import Room from './Room.js';
 import Question from './Question.js';
+import InteractiveScreen from './InteractiveScreen.js';
 
-export default class QuestionScreen extends Screen {
-  // Keyboardlistener to check if a key got pressed or not
-  private keyboard: KeyListener;
-
-  // Room the player have previously been
-  private previousScene: Room;
-
-  // questions displayed on the screen
+export default class QuestionScreen extends InteractiveScreen {
+   // questions displayed on the screen
   private questions: Question[];
-
-  // next question which should show up
-  private nextQ: boolean;
-
-  // counter to show what question is being doisplayed
-  private qCounter: number;
-
-  // counter for the frames
-  private frameCounter: number = 0;
-
-  // checkup if the key got pressed successfully
-  private okPressed: boolean;
-
-  // text which should show up next
-  private textToPresent: string;
 
   /**
    * Creates new Question Screen
@@ -41,80 +19,12 @@ export default class QuestionScreen extends Screen {
     previousScene: Room,
     questions: Question[],
   ) {
-    super(canvas, './assets/img/computerScreen.png');
-
-    // sets keylistener
-    this.keyboard = new KeyListener();
-
-    // sets the previous scene to rturn to
-    this.previousScene = previousScene;
+    super(canvas, previousScene, './assets/img/computerScreen.png');
 
     // sets the questions
     this.questions = questions;
 
-    // if needed to move to the next question
-    this.nextQ = false;
-
-    // sets the counter to 0
-    this.qCounter = 0;
-
-    // sets the check up boolean
-    this.okPressed = false;
-
-    // sets the background image position
-    this.setXPos(0);
-    this.setYPos(0);
-
-    // sets the text to display
-    this.textToPresent = 'No answer recieved';
-  }
-
-  /**
-   * Checks if player wants to exit the dialog screen
-   *
-   * @returns if player pressed space key
-   */
-  public processInput(): boolean {
-    if (this.keyboard.isKeyDown(KeyListener.KEY_ESC)) {
-      return true;
-    }
-    return false;
-  }
-
-  /**
-   * changes if player wants to read next question
-   */
-  public moveBetweenQuestions(): void {
-    if (this.keyboard.isKeyDown(KeyListener.KEY_RIGHT)) {
-      // console.log('right pressed');
-
-      this.nextQ = true;
-    } else {
-      this.nextQ = false;
-    }
-  }
-
-  /**
-   * checks if player chose an answer
-   *
-   * @returns number pressed
-   */
-  public reciveAnswer(): number {
-    if (this.keyboard.isKeyDown(KeyListener.KEY_1)) {
-      this.okPressed = true;
-      return 1;
-    }
-
-    if (this.keyboard.isKeyDown(KeyListener.KEY_2)) {
-      this.okPressed = true;
-      return 2;
-    }
-
-    if (this.keyboard.isKeyDown(KeyListener.KEY_3)) {
-      this.okPressed = true;
-      return 3;
-    }
-    return 0;
+    this.setTextToPresent('No answer recieved');
   }
 
   /**
@@ -126,17 +36,17 @@ export default class QuestionScreen extends Screen {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   public update(elapsed: number): Scene {
     // checks if player moved to next question
-    this.moveBetweenQuestions();
+    this.moveBetweenInteractions();
     if (
-      this.nextQ
-      && this.qCounter < this.questions.length - 1
-      && this.frameCounter === 10
+      this.getNextText() &&
+      this.getTCounter() < this.questions.length - 1 &&
+      this.getFrameCounter() === 10
     ) {
-      this.qCounter += 1;
-      this.textToPresent = 'No answer recieved';
+      this.setTCounter( this.getTCounter() + 1);
+      this.setTextToPresent('No answer recieved');
     }
 
-    const userData = this.questions[this.qCounter].getUserData();
+    const userData = this.questions[this.getTCounter()].getUserData();
     // console.log(` frame counter ${this.frameCounter}`);
 
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -145,48 +55,36 @@ export default class QuestionScreen extends Screen {
 
     // if player wants to exit the dialog
     if (this.processInput()) {
-      return this.previousScene;
+      return this.getPreviousScene();
     }
 
     // checks if answer was registered and player pressed ok with frame count
     let answerRecived = 0;
-    if (this.frameCounter % 10 === 0) {
-      if (this.okPressed === false) {
+    if (this.getFrameCounter() % 10 === 0) {
+      if (this.getOkPressed() === false) {
         answerRecived = this.reciveAnswer();
       }
-      // console.log(`answer Recived ${answerRecived}`)
-
-      if (answerRecived !== 0 && this.okPressed === true) {
+      // console.log(`answer Recived ${answerRecived}`);
+      if (answerRecived !== 0 && this.getOkPressed() === true) {
         // this.okPressed = false;
-        this.textToPresent =
-          'your answer has been registered, please go to the next question >>';
+        this.setTextToPresent('your answer has been registered, please go to the next question >>');
       }
 
       // check if the answer chosen is correct
-      if (answerRecived === this.questions[this.qCounter].getRPos() + 1) {
-        // console.log('right answer selected')
-
+      if (answerRecived === this.questions[this.getTCounter()].getRPos() + 1) {
+        // console.log('right answer selected');
         userData.setScore(userData.getScore() + 1);
       }
       // answerRecived = 0;
     }
 
     // resets the frame counter after it got to 10
-    if (this.frameCounter === 10) {
-      this.frameCounter = 0;
+    if (this.getFrameCounter() === 10) {
+      this.setFrameCounter(0);
     }
-    this.frameCounter += 1;
-    this.okPressed = false;
+    this.setFrameCounter(this.getFrameCounter() + 1);
+    this.setOkPressed(false);
     return null;
-  }
-
-  /**
-   * Draw the room
-   *
-   * @param ctx of the canvas
-   */
-  public draw(ctx: CanvasRenderingContext2D): void {
-    ctx.drawImage(this.getImage(), this.getXPos(), this.getYPos());
   }
 
   /**
@@ -195,9 +93,9 @@ export default class QuestionScreen extends Screen {
   public render(): void {
     this.draw(this.ctx);
     // draws the questions counter and how many left
-    if (this.qCounter < this.questions.length) {
+    if (this.getTCounter() < this.questions.length) {
       this.writeTextToCanvas(
-        `Q num ${this.qCounter + 1} / ${this.questions.length}`,
+        `Q num ${this.getTCounter() + 1} / ${this.questions.length}`,
         24,
         this.canvas.width / 5,
         230,
@@ -212,7 +110,7 @@ export default class QuestionScreen extends Screen {
 
       // draws the question itself
       for (let i = 0; i < 3; i += 1) {
-        textToWrite = this.questions[this.qCounter].getText(i);
+        textToWrite = this.questions[this.getTCounter()].getText(i);
         // console.log(textToWrite);
 
         this.writeTextToCanvas(
@@ -228,10 +126,10 @@ export default class QuestionScreen extends Screen {
 
       // draws possible answers
       for (let i = 0; i <= 2; i += 1) {
-        if (this.questions[this.qCounter].getRPos() === i) {
-          textToWrite = `${i + 1} ${this.questions[this.qCounter].getRAns()}`;
+        if (this.questions[this.getTCounter()].getRPos() === i) {
+          textToWrite = `${i + 1} ${this.questions[this.getTCounter()].getRAns()}`;
         } else if (j <= 1) {
-          textToWrite = `${i + 1} ${this.questions[this.qCounter].getWAns(j)}`;
+          textToWrite = `${i + 1} ${this.questions[this.getTCounter()].getWAns(j)}`;
           j += 1;
         }
         this.writeTextToCanvas(
@@ -246,7 +144,7 @@ export default class QuestionScreen extends Screen {
       }
     }
     // either shows for the next or how to quit
-    if (this.qCounter === this.questions.length - 1) {
+    if (this.getTCounter() === this.questions.length - 1) {
       this.writeTextToCanvas(
         'press ESC to leave',
         24,
@@ -267,7 +165,7 @@ export default class QuestionScreen extends Screen {
     }
 
     this.writeTextToCanvas(
-      this.textToPresent,
+      this.getTextToPresent(),
       24,
       this.canvas.width / 2,
       675,

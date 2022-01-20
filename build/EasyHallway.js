@@ -20,6 +20,7 @@ export default class EasyHallway extends Room {
     class3;
     bathroom1;
     bathroom2;
+    staggerFrame = 8;
     constructor(canvas, mainHallway, player) {
         super(canvas, './assets/img/easyHallway.png');
         this.room1Interact = false;
@@ -38,7 +39,7 @@ export default class EasyHallway extends Room {
         this.npcs.push(new Npc('./assets/img/student1BackFacing.png', 575, 495, [
             new Dialog('Hello, I lost my backpack....#', ['really?', 'oh no'], ['yes..', 'all my things are there']),
             new Dialog('Can you please look for it and bring it back to me tomorrow?#', ['Sure!', 'okay'], ['', '']),
-        ]), new Npc('./assets/img/blackHairStudentLeftFacing.png', 195, 315, [
+        ], true), new Npc('./assets/img/blackHairStudentLeftFacing.png', 195, 315, [
             new Dialog('There are some things you should never share!#', ['I know that', 'ok..'], ['Good!', 'I am scared']),
             new Dialog('I hope she will not be bullied#', ['Me too!', '...'], ['', '']),
         ]), new Npc('./assets/img/redHairStudentRightFacing.png', 155, 315, [
@@ -65,6 +66,7 @@ export default class EasyHallway extends Room {
     update(elapsed) {
         const nextScene = this.generalInteraction();
         const cNum = this.player.getCharacterNum();
+        this.renderStars();
         if (this.player.getXPos() >= 969 && this.player.getYPos() >= 309.5) {
             this.player.setXPos(163);
             this.player.setYPos(440);
@@ -151,6 +153,18 @@ export default class EasyHallway extends Room {
         this.draw(this.ctx);
         super.render();
         this.drawHitBoxes();
+    }
+    renderStars() {
+        this.gameFrame += 1;
+        if (this.gameFrame % this.staggerFrame === 0) {
+            if (this.frameX < 9) {
+                this.frameX += 1;
+            }
+            else {
+                this.frameX = 0;
+            }
+        }
+        this.npcs[0].setFrameX(this.frameX);
     }
 }
 //# sourceMappingURL=EasyHallway.js.map

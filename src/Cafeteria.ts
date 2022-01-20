@@ -17,6 +17,9 @@ export default class Cafeteria extends Room {
   // NPC for the lunchlady
   private lunchLady: Npc;
 
+  // set frames
+  private staggerFrame = 8;
+
   /**
    * creats a new classroom
    *
@@ -71,22 +74,28 @@ export default class Cafeteria extends Room {
       ])
     );
 
-    this.lunchLady = new Npc('./assets/img/lunchLady.png', 300, 500, [
-      new Dialog(
-        'Good day!# we have some special treats today!#',
-        ['ohh delicious', 'I am starving'],
-        ['I hope so, I worked hard on this', 'You should eat something']
-      ),
-      new Dialog(
-        'I can trade you some candy for hints#',
-        ['Yes please', 'No thank you'],
-        ['There you go', 'Okay maybe later']
-      ),
-    ]);
+    this.lunchLady = new Npc(
+      './assets/img/lunchLady.png',
+      300,
+      500,
+      [
+        new Dialog(
+          'Good day!# we have some special treats today!#',
+          ['ohh delicious', 'I am starving'],
+          ['I hope so, I worked hard on this', 'You should eat something']
+        ),
+        new Dialog(
+          'I can trade you some candy for hints#',
+          ['Yes please', 'No thank you'],
+          ['There you go', 'Okay maybe later']
+        ),
+      ],
+      true
+    );
 
     // creating collectibles in the classroom
     this.collectibles.push(
-      new Candy(this.canvas.width / 2, this.canvas.height / 2)
+      new Candy(this.canvas.width / 2, this.canvas.height / 3)
     );
 
     this.doors.push(new Door('./assets/img/cafeteriaDoor.png', 907, 362));
@@ -116,6 +125,9 @@ export default class Cafeteria extends Room {
   public update(elapsed: number): Scene {
     // calling general checkups from Room class
     const nextScene: Scene = this.generalInteraction();
+
+    // renders stars
+    this.renderStars();
 
     // Checking if the player is interacting with items
     if (this.player.isInteracting()) {
@@ -172,5 +184,19 @@ export default class Cafeteria extends Room {
     // calls the render function of the parent aka ROOM
     super.render();
     this.drawHitBoxes();
+  }
+
+  private renderStars(): void {
+    // STAR RENDERING
+    this.gameFrame += 1;
+    if (this.gameFrame % this.staggerFrame === 0) {
+      if (this.frameX < 9) {
+        this.frameX += 1;
+      } else {
+        this.frameX = 0;
+      }
+    }
+    // passes the frame to the NPC class
+    this.lunchLady.setFrameX(this.frameX);
   }
 }

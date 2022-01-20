@@ -10,8 +10,6 @@ export default class BossRoom extends Room {
     questions;
     boss;
     bossNpc;
-    frameY = 0;
-    gameFrame = 0;
     staggerFrame = 11;
     endingScreen = false;
     music;

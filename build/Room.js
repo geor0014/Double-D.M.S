@@ -20,6 +20,9 @@ export default class Room extends Scene {
     doorOpen;
     doorClose;
     hitboxes;
+    frameX = 0;
+    frameY = 0;
+    gameFrame = 0;
     constructor(canvas, imgSrc, state = false) {
         super(canvas);
         this.img = new Image();
@@ -61,8 +64,8 @@ export default class Room extends Scene {
     }
     generalInteraction() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        if (this.player.isReadingHint()
-            && this.player.getUserData().getHintAmount() > 0) {
+        if (this.player.isReadingHint() &&
+            this.player.getUserData().getHintAmount() > 0) {
             this.player
                 .getUserData()
                 .setHintAmount(this.player.getUserData().getHintAmount() - 1);
@@ -91,7 +94,8 @@ export default class Room extends Scene {
                             this.player.getUserData().getQuests().push('Find backpack');
                             this.npcs.splice(i, 1);
                         }
-                        if (str.getText(0) === 'Hey there! Have you seen a teddy bear around here?') {
+                        if (str.getText(0) ===
+                            'Hey there! Have you seen a teddy bear around here?') {
                             this.player.getUserData().getQuests().push('Look for Teddy');
                             this.npcs.splice(i, 1);
                         }
