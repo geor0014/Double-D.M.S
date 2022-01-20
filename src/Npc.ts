@@ -88,7 +88,7 @@ export default class Npc extends GameEntity {
   }
 
   /**
-   * Sets the Y frame
+   * Sets the X frame
    *
    * @param newFrame number of frame
    */

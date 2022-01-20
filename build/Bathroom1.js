@@ -16,9 +16,9 @@ export default class Bathroom1 extends Room {
         this.setXPos(0);
         this.setYPos(0);
         this.interactShady = false;
-        this.collectibles = [];
-        this.npcs = [];
-        this.doors = [];
+        this.setCollectibles([]);
+        this.setNpcs([]);
+        this.setDoors([]);
         this.shadyGuy = new Npc('./assets/img/ShadyGuySide.png', this.canvas.width / 2, 400, [
             new Dialog('Hey kid..#', ['What are you doing in the bathroom?', 'Hello??'], ['He..He..', 'You are braver than most..']),
             new Dialog('I heard its your birthday today..#', ['It is!', 'How did you know this?'], ['Happy Birthday...', 'I know EVERYTHING!']),
@@ -26,8 +26,8 @@ export default class Bathroom1 extends Room {
             new Dialog('OR I can give you a PHONE!!#', ['Really?!', 'I shouldnt be talking to you'], ['Yes!', 'Come on I know you want the phone!']),
             new Dialog('What do you chose?#', ['The phone', 'Nothing..'], ['Here you go... Ill call you', 'Fine whatever..']),
         ]);
-        this.collectibles.push(new Candy(this.canvas.width / 2, this.canvas.height / 2));
-        this.doors.push(new Door('./assets/img/girlBathroomDoor.png', 912, 265));
+        this.getCollectibles().push(new Candy(this.canvas.width / 2, this.canvas.height / 2));
+        this.getDoors().push(new Door('./assets/img/girlBathroomDoor.png', 912, 265));
         this.insertHitbox(910, 435.5, 50, 70, 1);
         this.insertHitbox(956, 136.5, 10, 242, 1);
         this.insertHitbox(479, 181.5, 410, 70, 1);
@@ -45,9 +45,9 @@ export default class Bathroom1 extends Room {
     update(elapsed) {
         const nextScene = this.generalInteraction();
         if (this.player.isInteracting()) {
-            for (let i = 0; i < this.doors.length; i += 1) {
-                if (this.player.collidesWith(this.doors[i])) {
-                    this.doorClose.play();
+            for (let i = 0; i < this.getDoors().length; i += 1) {
+                if (this.player.collidesWith(this.getDoors()[i])) {
+                    this.getDoorClose().play();
                     this.player.setXPos(910);
                     this.player.setYPos(300);
                     const cNum = this.player.getCharacterNum();

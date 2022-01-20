@@ -14,10 +14,10 @@ export default class Cafeteria extends Room {
         this.player = player;
         this.setXPos(0);
         this.setYPos(0);
-        this.collectibles = [];
-        this.npcs = [];
-        this.doors = [];
-        this.npcs.push(new Npc('./assets/img/gingerGirl.png', 652, 436, [
+        this.setCollectibles([]);
+        this.setNpcs([]);
+        this.setDoors([]);
+        this.getNpcs().push(new Npc('./assets/img/gingerGirl.png', 652, 436, [
             new Dialog('This is some delicious food they have here#', ['I know right!', 'I guess..'], ['I am excited for today', 'Happy bithday btw!']),
             new Dialog('I love french fries, how about you?#', ['Meh..', 'LOVE THEM'], ['oh shame..', 'I KNOW THEY ARE THE BEST']),
         ]), new Npc('./assets/img/greenGirl.png', 714, 298, [
@@ -27,8 +27,8 @@ export default class Cafeteria extends Room {
             new Dialog('Good day!# we have some special treats today!#', ['ohh delicious', 'I am starving'], ['I hope so, I worked hard on this', 'You should eat something']),
             new Dialog('I can trade you some candy for hints#', ['Yes please', 'No thank you'], ['There you go', 'Okay maybe later']),
         ], true);
-        this.collectibles.push(new Candy(this.canvas.width / 2, this.canvas.height / 3));
-        this.doors.push(new Door('./assets/img/cafeteriaDoor.png', 907, 362));
+        this.getCollectibles().push(new Candy(this.canvas.width / 2, this.canvas.height / 3));
+        this.getDoors().push(new Door('./assets/img/cafeteriaDoor.png', 907, 362));
         this.insertHitbox(955, 356.5, 10, 160, 1);
         this.insertHitbox(906, 563.5, 45, 100, 1);
         this.insertHitbox(428, 105.5, 600, 115, 1);
@@ -45,9 +45,9 @@ export default class Cafeteria extends Room {
         const nextScene = this.generalInteraction();
         this.renderStars();
         if (this.player.isInteracting()) {
-            for (let i = 0; i < this.doors.length; i += 1) {
-                if (this.player.collidesWith(this.doors[i])) {
-                    this.doorClose.play();
+            for (let i = 0; i < this.getDoors().length; i += 1) {
+                if (this.player.collidesWith(this.getDoors()[i])) {
+                    this.getDoorClose().play();
                     this.player.setXPos(284);
                     this.player.setYPos(250);
                     const cNum = this.player.getCharacterNum();
@@ -82,16 +82,16 @@ export default class Cafeteria extends Room {
         this.drawHitBoxes();
     }
     renderStars() {
-        this.gameFrame += 1;
-        if (this.gameFrame % this.staggerFrame === 0) {
-            if (this.frameX < 9) {
-                this.frameX += 1;
+        this.setGameFrame(this.getGameFrame() + 1);
+        if (this.getGameFrame() % this.staggerFrame === 0) {
+            if (this.getFrameX() < 9) {
+                this.setFrameX(this.getFrameX() + 1);
             }
             else {
-                this.frameX = 0;
+                this.setFrameX(0);
             }
         }
-        this.lunchLady.setFrameX(this.frameX);
+        this.lunchLady.setFrameX(this.getFrameX());
     }
 }
 //# sourceMappingURL=Cafeteria.js.map

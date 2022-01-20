@@ -25,21 +25,21 @@ export default class DifficultHallway extends Room {
         this.pushOnce = true;
         this.mainHallway = mainHallway;
         this.player = player;
-        this.collectibles = [];
-        this.npcs = [];
-        this.doors = [];
+        this.setCollectibles([]);
+        this.setNpcs([]);
+        this.setDoors([]);
         this.setXPos(0);
         this.setYPos(0);
-        this.npcs.push(new Npc('./assets/img/purpleBoy.png', 532, 300, [
+        this.getNpcs().push(new Npc('./assets/img/purpleBoy.png', 532, 300, [
             new Dialog('Hey there! Have you seen a teddy bear around here?#', ['No..', 'Dont think so...'], ['Oh...', 'oh...']),
             new Dialog('I lost mine. If you see it, can you bring it to me tomorrow?#', ['Sure!', 'Yeah why not'], ['', '']),
         ], true), new Npc('./assets/img/pinkLadyUp.png', 597, 500, [
             new Dialog('I heard there is this weird dude in the bathroom#', ['really?', 'oh no...'], ['YES!', 'He is creepy..']),
             new Dialog('I am too scared to go there#', ['Me too!', 'Ill go!'], ['', '']),
         ]));
-        this.doors.push(new Door('./assets/img/door1.png', 290, 228.5));
-        this.doors.push(new Door('./assets/img/door1.png', 460, 228.5));
-        this.doors.push(new Door('./assets/img/door1.png', 650, 228.5));
+        this.getDoors().push(new Door('./assets/img/door1.png', 290, 228.5));
+        this.getDoors().push(new Door('./assets/img/door1.png', 460, 228.5));
+        this.getDoors().push(new Door('./assets/img/door1.png', 650, 228.5));
         this.doll = new QuestItem('doll', './assets/img/doll.png', 930, 471.5);
         this.insertHitbox(105, 305, 150, 5, 1);
         this.insertHitbox(276, 176, 5, 90, 1);
@@ -51,7 +51,7 @@ export default class DifficultHallway extends Room {
         this.insertHitbox(854, 254, 5, 50, 1);
         this.insertHitbox(889, 345, 50, 5, 1);
         this.insertHitbox(320, 246, 500, 5, 1);
-        console.log(this.npcs);
+        console.log(this.getNpcs());
     }
     addQuestItems() {
         if (this.pushOnce === true) {
@@ -88,8 +88,8 @@ export default class DifficultHallway extends Room {
             return this.mainHallway;
         }
         if (this.player.isInteracting()) {
-            for (let i = 0; i < this.doors.length; i += 1) {
-                if (this.player.collidesWith(this.doors[i])) {
+            for (let i = 0; i < this.getDoors().length; i += 1) {
+                if (this.player.collidesWith(this.getDoors()[i])) {
                     this.player.setXPos(911);
                     this.player.setYPos(473);
                     if (cNum === 1) {
@@ -104,24 +104,24 @@ export default class DifficultHallway extends Room {
                     else if (cNum === 4) {
                         this.player.setImage('./assets/img/playerGirl1Down.png');
                     }
-                    this.doorOpen.play();
+                    this.getDoorOpen().play();
                     if (i === 0) {
                         if (this.room4Interact === false) {
-                            this.class4 = new ClassRoom4(this.canvas, this, this.player, this.isMenuShowing);
+                            this.class4 = new ClassRoom4(this.canvas, this, this.player, this.getIsMenuShowing());
                             this.room4Interact = true;
                         }
                         return this.class4;
                     }
                     if (i === 1) {
                         if (this.room5Interact === false) {
-                            this.class5 = new ClassRoom5(this.canvas, this, this.player, this.isMenuShowing);
+                            this.class5 = new ClassRoom5(this.canvas, this, this.player, this.getIsMenuShowing());
                             this.room5Interact = true;
                         }
                         return this.class5;
                     }
                     if (i === 2) {
                         if (this.room6Interact === false) {
-                            this.class6 = new ClassRoom6(this.canvas, this, this.player, this.isMenuShowing);
+                            this.class6 = new ClassRoom6(this.canvas, this, this.player, this.getIsMenuShowing());
                             this.room6Interact = true;
                         }
                         return this.class6;
@@ -148,16 +148,16 @@ export default class DifficultHallway extends Room {
         this.drawHitBoxes();
     }
     renderStars() {
-        this.gameFrame += 1;
-        if (this.gameFrame % this.staggerFrame === 0) {
-            if (this.frameX < 9) {
-                this.frameX += 1;
+        this.setGameFrame(this.getGameFrame() + 1);
+        if (this.getGameFrame() % this.staggerFrame === 0) {
+            if (this.getFrameX() < 9) {
+                this.setFrameX(this.getFrameX() + 1);
             }
             else {
-                this.frameX = 0;
+                this.setFrameX(0);
             }
         }
-        this.npcs[0].setFrameX(this.frameX);
+        this.getNpcs()[0].setFrameX(this.getFrameX());
     }
 }
 //# sourceMappingURL=DifficultHallway.js.map

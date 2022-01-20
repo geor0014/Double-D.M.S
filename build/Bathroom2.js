@@ -11,14 +11,14 @@ export default class Bathroom2 extends Room {
         this.player = player;
         this.setXPos(0);
         this.setYPos(0);
-        this.collectibles = [];
-        this.npcs = [];
-        this.doors = [];
-        this.npcs.push(new Npc('./assets/img/greenBoy.png', 652, 436, [
+        this.setCollectibles([]);
+        this.setNpcs([]);
+        this.setDoors([]);
+        this.getNpcs().push(new Npc('./assets/img/greenBoy.png', 652, 436, [
             new Dialog('I am escaping class#', ['ok', 'Me too'], ['', '']),
         ]));
-        this.collectibles.push(new Candy(this.canvas.width / 2, this.canvas.height / 2));
-        this.doors.push(new Door('./assets/img/boyBathroomDoor.png', 912, 265));
+        this.getCollectibles().push(new Candy(this.canvas.width / 2, this.canvas.height / 2));
+        this.getDoors().push(new Door('./assets/img/boyBathroomDoor.png', 912, 265));
         this.insertHitbox(910, 435.5, 50, 70, 1);
         this.insertHitbox(956, 136.5, 10, 242, 1);
         this.insertHitbox(479, 181.5, 410, 70, 1);
@@ -33,9 +33,9 @@ export default class Bathroom2 extends Room {
     update(elapsed) {
         const nextScene = this.generalInteraction();
         if (this.player.isInteracting()) {
-            for (let i = 0; i < this.doors.length; i += 1) {
-                if (this.player.collidesWith(this.doors[i])) {
-                    this.doorClose.play();
+            for (let i = 0; i < this.getDoors().length; i += 1) {
+                if (this.player.collidesWith(this.getDoors()[i])) {
+                    this.getDoorClose().play();
                     this.player.setXPos(100);
                     this.player.setYPos(300);
                     const cNum = this.player.getCharacterNum();

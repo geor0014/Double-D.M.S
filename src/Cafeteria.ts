@@ -47,12 +47,12 @@ export default class Cafeteria extends Room {
     this.setYPos(0);
 
     // resets the items in the room
-    this.collectibles = [];
-    this.npcs = [];
-    this.doors = [];
+    this.setCollectibles([]);
+    this.setNpcs([]);
+    this.setDoors([]);
 
     // sets the NPCs with their dialogs in the classroom
-    this.npcs.push(
+    this.getNpcs().push(
       new Npc('./assets/img/gingerGirl.png', 652, 436, [
         new Dialog(
           'This is some delicious food they have here#',
@@ -94,11 +94,11 @@ export default class Cafeteria extends Room {
     );
 
     // creating collectibles in the classroom
-    this.collectibles.push(
+    this.getCollectibles().push(
       new Candy(this.canvas.width / 2, this.canvas.height / 3)
     );
 
-    this.doors.push(new Door('./assets/img/cafeteriaDoor.png', 907, 362));
+    this.getDoors().push(new Door('./assets/img/cafeteriaDoor.png', 907, 362));
 
     // Adds all the hitboxes to the bathroom
     this.insertHitbox(955, 356.5, 10, 160, 1);
@@ -132,10 +132,10 @@ export default class Cafeteria extends Room {
     // Checking if the player is interacting with items
     if (this.player.isInteracting()) {
       // WITH DOORS
-      for (let i = 0; i < this.doors.length; i += 1) {
-        if (this.player.collidesWith(this.doors[i])) {
+      for (let i = 0; i < this.getDoors().length; i += 1) {
+        if (this.player.collidesWith(this.getDoors()[i])) {
           // console.log('interact with door');
-          this.doorClose.play();
+          this.getDoorClose().play();
           // console.log(this.previousScene);
 
           this.player.setXPos(284);
@@ -188,15 +188,15 @@ export default class Cafeteria extends Room {
 
   private renderStars(): void {
     // STAR RENDERING
-    this.gameFrame += 1;
-    if (this.gameFrame % this.staggerFrame === 0) {
-      if (this.frameX < 9) {
-        this.frameX += 1;
+    this.setGameFrame(this.getGameFrame() + 1);
+    if (this.getGameFrame() % this.staggerFrame === 0) {
+      if (this.getFrameX() < 9) {
+        this.setFrameX(this.getFrameX() + 1);
       } else {
-        this.frameX = 0;
+        this.setFrameX(0);
       }
     }
     // passes the frame to the NPC class
-    this.lunchLady.setFrameX(this.frameX);
+    this.lunchLady.setFrameX(this.getFrameX());
   }
 }

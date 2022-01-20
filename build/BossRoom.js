@@ -19,9 +19,9 @@ export default class BossRoom extends Room {
         this.player = player;
         this.setXPos(0);
         this.setYPos(0);
-        this.collectibles = [];
-        this.npcs = [];
-        this.doors = [];
+        this.setCollectibles([]);
+        this.setNpcs([]);
+        this.setDoors([]);
         this.questions = [];
         this.player.setXPos(529);
         this.player.setYPos(639);
@@ -56,16 +56,16 @@ export default class BossRoom extends Room {
         this.insertHitbox(625, 638, 195, 5, 1);
     }
     update(elapsed) {
-        this.gameFrame += 1;
+        this.setGameFrame(this.getGameFrame() + 1);
         const nextScene = this.generalInteraction();
         if (this.player.isInteracting()) {
             if (this.player.collidesWith(this.bossNpc)) {
                 this.endingScreen = true;
                 return new QuestionScreen(this.canvas, this, this.questions);
             }
-            for (let i = 0; i < this.doors.length; i += 1) {
-                if (this.player.collidesWith(this.doors[i])) {
-                    this.doorClose.play();
+            for (let i = 0; i < this.getDoors().length; i += 1) {
+                if (this.player.collidesWith(this.getDoors()[i])) {
+                    this.getDoorClose().play();
                     this.player.setXPos(521);
                     this.player.setYPos(235);
                     const cNum = this.player.getCharacterNum();
@@ -91,14 +91,14 @@ export default class BossRoom extends Room {
             }
             return new SadEnding(this.canvas, this.player.getCharacterNum());
         }
-        if (this.gameFrame % this.staggerFrame === 0) {
-            if (this.frameY < 3) {
-                this.frameY += 1;
+        if (this.getGameFrame() % this.staggerFrame === 0) {
+            if (this.getFrameY() < 3) {
+                this.setFrameY(this.getFrameY() + 1);
             }
             else {
-                this.frameY = 0;
+                this.setFrameY(0);
             }
-            this.boss.setFrameY(this.frameY);
+            this.boss.setFrameY(this.getFrameY());
         }
         if (nextScene !== null) {
             return nextScene;

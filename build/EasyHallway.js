@@ -30,13 +30,13 @@ export default class EasyHallway extends Room {
         this.bathroomInteractGirl = false;
         this.mainHallway = mainHallway;
         this.player = player;
-        this.collectibles = [];
-        this.npcs = [];
-        this.doors = [];
+        this.setCollectibles([]);
+        this.setNpcs([]);
+        this.setDoors([]);
         this.setXPos(0);
         this.setYPos(0);
-        this.collectibles.push(new Hint(this.canvas.width / 3, this.canvas.height / 3));
-        this.npcs.push(new Npc('./assets/img/blondeGirlUp.png', 575, 495, [
+        this.getCollectibles().push(new Hint(this.canvas.width / 3, this.canvas.height / 3));
+        this.getNpcs().push(new Npc('./assets/img/blondeGirlUp.png', 575, 495, [
             new Dialog('Hello, I lost my backpack....#', ['really?', 'oh no'], ['yes..', 'all my things are there']),
             new Dialog('Can you please look for it and bring it back to me tomorrow?#', ['Sure!', 'okay'], ['', '']),
         ], true), new Npc('./assets/img/whiteHairBoy.png', 195, 315, [
@@ -46,11 +46,11 @@ export default class EasyHallway extends Room {
             new Dialog('Did you hear about Jessica?#', ['No..', 'What happaned?'], ['How not?', 'The picture!']),
             new Dialog('Cant believe she shared that picture :O#', ['Didnt see it', '...'], ['', '']),
         ]));
-        this.doors.push(new Door('./assets/img/door1.png', 632, 228.5));
-        this.doors.push(new Door('./assets/img/door1.png', 450, 228.5));
-        this.doors.push(new Door('./assets/img/door1.png', 280, 228.5));
-        this.doors.push(new Door('./assets/img/girlBathroomDoor.png', 910, 228.5));
-        this.doors.push(new Door('./assets/img/boyBathroomDoor.png', 100, 228.5));
+        this.getDoors().push(new Door('./assets/img/door1.png', 632, 228.5));
+        this.getDoors().push(new Door('./assets/img/door1.png', 450, 228.5));
+        this.getDoors().push(new Door('./assets/img/door1.png', 280, 228.5));
+        this.getDoors().push(new Door('./assets/img/girlBathroomDoor.png', 910, 228.5));
+        this.getDoors().push(new Door('./assets/img/boyBathroomDoor.png', 100, 228.5));
         this.insertHitbox(49, 245, 1000, 10, 1);
         this.insertHitbox(144, 548.5, 1000, 10, 1);
         this.insertHitbox(957, 304, 50, 10, 1);
@@ -85,8 +85,8 @@ export default class EasyHallway extends Room {
             return this.mainHallway;
         }
         if (this.player.isInteracting()) {
-            for (let i = 0; i < this.doors.length; i += 1) {
-                if (this.player.collidesWith(this.doors[i])) {
+            for (let i = 0; i < this.getDoors().length; i += 1) {
+                if (this.player.collidesWith(this.getDoors()[i])) {
                     this.player.setXPos(911);
                     this.player.setYPos(473);
                     if (cNum === 1) {
@@ -101,24 +101,24 @@ export default class EasyHallway extends Room {
                     else if (cNum === 4) {
                         this.player.setImage('./assets/img/playerGirl1Down.png');
                     }
-                    this.doorOpen.play();
+                    this.getDoorOpen().play();
                     if (i === 0) {
                         if (this.room1Interact === false) {
-                            this.class1 = new ClassRoom1(this.canvas, this, this.player, this.isMenuShowing);
+                            this.class1 = new ClassRoom1(this.canvas, this, this.player, this.getIsMenuShowing());
                             this.room1Interact = true;
                         }
                         return this.class1;
                     }
                     if (i === 1) {
                         if (this.room2Interact === false) {
-                            this.class2 = new ClassRoom2(this.canvas, this, this.player, this.isMenuShowing);
+                            this.class2 = new ClassRoom2(this.canvas, this, this.player, this.getIsMenuShowing());
                             this.room2Interact = true;
                         }
                         return this.class2;
                     }
                     if (i === 2) {
                         if (this.room3Interact === false) {
-                            this.class3 = new ClassRoom3(this.canvas, this, this.player, this.isMenuShowing);
+                            this.class3 = new ClassRoom3(this.canvas, this, this.player, this.getIsMenuShowing());
                             this.room3Interact = true;
                         }
                         return this.class3;
@@ -127,7 +127,7 @@ export default class EasyHallway extends Room {
                         this.player.setXPos(911);
                         this.player.setYPos(350);
                         if (this.bathroomInteractGirl === false) {
-                            this.bathroom1 = new Bathroom1(this.canvas, this, this.player, this.isMenuShowing);
+                            this.bathroom1 = new Bathroom1(this.canvas, this, this.player, this.getIsMenuShowing());
                             this.bathroomInteractGirl = true;
                         }
                         return this.bathroom1;
@@ -136,7 +136,7 @@ export default class EasyHallway extends Room {
                         this.player.setXPos(911);
                         this.player.setYPos(350);
                         if (this.bathroomInteractBoy === false) {
-                            this.bathroom2 = new Bathroom2(this.canvas, this, this.player, this.isMenuShowing);
+                            this.bathroom2 = new Bathroom2(this.canvas, this, this.player, this.getIsMenuShowing());
                             this.bathroomInteractBoy = true;
                         }
                         return this.bathroom2;
@@ -155,16 +155,16 @@ export default class EasyHallway extends Room {
         this.drawHitBoxes();
     }
     renderStars() {
-        this.gameFrame += 1;
-        if (this.gameFrame % this.staggerFrame === 0) {
-            if (this.frameX < 9) {
-                this.frameX += 1;
+        this.setGameFrame(this.getGameFrame() + 1);
+        if (this.getGameFrame() % this.staggerFrame === 0) {
+            if (this.getFrameX() < 9) {
+                this.setFrameX(this.getFrameX() + 1);
             }
             else {
-                this.frameX = 0;
+                this.setFrameX(0);
             }
         }
-        this.npcs[0].setFrameX(this.frameX);
+        this.getNpcs()[0].setFrameX(this.getFrameX());
     }
 }
 //# sourceMappingURL=EasyHallway.js.map

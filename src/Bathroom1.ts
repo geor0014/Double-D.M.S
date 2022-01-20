@@ -53,9 +53,9 @@ export default class Bathroom1 extends Room {
     this.interactShady = false;
 
     // resets the items in the room
-    this.collectibles = [];
-    this.npcs = [];
-    this.doors = [];
+    this.setCollectibles([]);
+    this.setNpcs([]);
+    this.setDoors([]);
 
     // sets the NPCs with their dialogs in the classroom
     this.shadyGuy = new Npc(
@@ -92,12 +92,12 @@ export default class Bathroom1 extends Room {
     );
 
     // creating collectibles in the classroom
-    this.collectibles.push(
+    this.getCollectibles().push(
       new Candy(this.canvas.width / 2, this.canvas.height / 2)
     );
 
     // creating the door for the classroom
-    this.doors.push(new Door('./assets/img/girlBathroomDoor.png', 912, 265));
+    this.getDoors().push(new Door('./assets/img/girlBathroomDoor.png', 912, 265));
 
     // Adds all the hitboxes to the bathroom
     this.insertHitbox(910, 435.5, 50, 70, 1);
@@ -134,11 +134,11 @@ export default class Bathroom1 extends Room {
     // Checking if the player is interacting with items
     if (this.player.isInteracting()) {
       // WITH DOORS
-      for (let i = 0; i < this.doors.length; i += 1) {
-        if (this.player.collidesWith(this.doors[i])) {
+      for (let i = 0; i < this.getDoors().length; i += 1) {
+        if (this.player.collidesWith(this.getDoors()[i])) {
           // console.log('interact with door');
 
-          this.doorClose.play();
+          this.getDoorClose().play();
           // console.log(this.previousScene);
 
           this.player.setXPos(910);

@@ -13,8 +13,8 @@ export default class ClassRoom6 extends Classroom {
         this.ambiance.volume = 0.1;
         setTimeout(() => this.ambiance.play(), 1000);
         this.setComputer(new Computer(480, 282));
-        this.collectibles.push(new Candy(this.canvas.width / 4, this.canvas.height / 4));
-        this.doors.push(new Door('./assets/img/door1.png', 912, 400.5));
+        this.getCollectibles().push(new Candy(this.canvas.width / 4, this.canvas.height / 4));
+        this.getDoors().push(new Door('./assets/img/door1.png', 912, 400.5));
         this.setQuestions([
             new Question(this.player.getUserData(), 'You are about to join this amazing new website# all your friends are there.# What information is OK to give online?#', 'Nickname', 'Phone number', 'Adress'),
             new Question(this.player.getUserData(), 'You are having trouble doing an activity on a safe site you use at #school. Your friend offers to help but needs your password.# Would you give your password to them.', 'No', 'It depends', 'Yes'),
@@ -36,9 +36,9 @@ export default class ClassRoom6 extends Classroom {
     update(elapsed) {
         const nextScene = this.generalInteraction();
         if (this.player.isInteracting()) {
-            for (let i = 0; i < this.doors.length; i += 1) {
-                if (this.player.collidesWith(this.doors[i])) {
-                    this.doorClose.play();
+            for (let i = 0; i < this.getDoors().length; i += 1) {
+                if (this.player.collidesWith(this.getDoors()[i])) {
+                    this.getDoorClose().play();
                     this.player.setXPos(650);
                     this.player.setYPos(300);
                     const cNum = this.player.getCharacterNum();

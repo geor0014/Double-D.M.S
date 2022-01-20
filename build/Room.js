@@ -64,8 +64,8 @@ export default class Room extends Scene {
     }
     generalInteraction() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        if (this.player.isReadingHint() &&
-            this.player.getUserData().getHintAmount() > 0) {
+        if (this.player.isReadingHint()
+            && this.player.getUserData().getHintAmount() > 0) {
             this.player
                 .getUserData()
                 .setHintAmount(this.player.getUserData().getHintAmount() - 1);
@@ -94,8 +94,7 @@ export default class Room extends Scene {
                             this.player.getUserData().getQuests().push('Find backpack');
                             this.npcs.splice(i, 1);
                         }
-                        if (str.getText(0) ===
-                            'Hey there! Have you seen a teddy bear around here?') {
+                        if (str.getText(0) === 'Hey there! Have you seen a teddy bear around here?') {
                             this.player.getUserData().getQuests().push('Look for Teddy');
                             this.npcs.splice(i, 1);
                         }
@@ -288,6 +287,51 @@ export default class Room extends Scene {
             }
             this.ctx.drawImage(characterImg, 280, 600, 130, 130);
         }
+    }
+    getCollectibles() {
+        return this.collectibles;
+    }
+    setCollectibles(arrayColl) {
+        this.collectibles = arrayColl;
+    }
+    getNpcs() {
+        return this.npcs;
+    }
+    setNpcs(arrayNpc) {
+        this.npcs = arrayNpc;
+    }
+    getDoors() {
+        return this.doors;
+    }
+    setDoors(arrayDoor) {
+        this.doors = arrayDoor;
+    }
+    getIsMenuShowing() {
+        return this.isMenuShowing;
+    }
+    getDoorOpen() {
+        return this.doorOpen;
+    }
+    getDoorClose() {
+        return this.doorClose;
+    }
+    getFrameX() {
+        return this.frameX;
+    }
+    setFrameX(frame) {
+        this.frameX = frame;
+    }
+    getFrameY() {
+        return this.frameY;
+    }
+    setFrameY(frame) {
+        this.frameY = frame;
+    }
+    getGameFrame() {
+        return this.gameFrame;
+    }
+    setGameFrame(gameframe) {
+        this.gameFrame = gameframe;
     }
 }
 //# sourceMappingURL=Room.js.map

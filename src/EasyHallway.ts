@@ -77,21 +77,21 @@ export default class EasyHallway extends Room {
     this.player = player;
 
     // resets the items in the room
-    this.collectibles = [];
-    this.npcs = [];
-    this.doors = [];
+    this.setCollectibles([]);
+    this.setNpcs([]);
+    this.setDoors([]);
 
     // sets the background image position
     this.setXPos(0);
     this.setYPos(0);
 
     // creating collectibles
-    this.collectibles.push(
+    this.getCollectibles().push(
       new Hint(this.canvas.width / 3, this.canvas.height / 3)
     );
 
     // creates npcs with their dialogs for this room
-    this.npcs.push(
+    this.getNpcs().push(
       new Npc(
         './assets/img/blondeGirlUp.png',
         575,
@@ -137,12 +137,12 @@ export default class EasyHallway extends Room {
     );
 
     // creats the doors in the hallway
-    this.doors.push(new Door('./assets/img/door1.png', 632, 228.5));
-    this.doors.push(new Door('./assets/img/door1.png', 450, 228.5));
-    this.doors.push(new Door('./assets/img/door1.png', 280, 228.5));
+    this.getDoors().push(new Door('./assets/img/door1.png', 632, 228.5));
+    this.getDoors().push(new Door('./assets/img/door1.png', 450, 228.5));
+    this.getDoors().push(new Door('./assets/img/door1.png', 280, 228.5));
 
-    this.doors.push(new Door('./assets/img/girlBathroomDoor.png', 910, 228.5));
-    this.doors.push(new Door('./assets/img/boyBathroomDoor.png', 100, 228.5));
+    this.getDoors().push(new Door('./assets/img/girlBathroomDoor.png', 910, 228.5));
+    this.getDoors().push(new Door('./assets/img/boyBathroomDoor.png', 100, 228.5));
 
     // Adds all the hitboxes to the bathroom
     this.insertHitbox(49, 245, 1000, 10, 1);
@@ -194,8 +194,8 @@ export default class EasyHallway extends Room {
     // INTERACTIONS
     if (this.player.isInteracting()) {
       // WITH DOORS
-      for (let i = 0; i < this.doors.length; i += 1) {
-        if (this.player.collidesWith(this.doors[i])) {
+      for (let i = 0; i < this.getDoors().length; i += 1) {
+        if (this.player.collidesWith(this.getDoors()[i])) {
           // console.log('interact with door');
 
           // setting player starter position and image in the classrooms
@@ -211,7 +211,7 @@ export default class EasyHallway extends Room {
           } else if (cNum === 4) {
             this.player.setImage('./assets/img/playerGirl1Down.png');
           }
-          this.doorOpen.play();
+          this.getDoorOpen().play();
           if (i === 0) {
             // if this classroom was previously entered to
             if (this.room1Interact === false) {
@@ -219,7 +219,7 @@ export default class EasyHallway extends Room {
                 this.canvas,
                 this,
                 this.player,
-                this.isMenuShowing
+                this.getIsMenuShowing(),
               );
               this.room1Interact = true;
             }
@@ -233,7 +233,7 @@ export default class EasyHallway extends Room {
                 this.canvas,
                 this,
                 this.player,
-                this.isMenuShowing
+                this.getIsMenuShowing(),
               );
               this.room2Interact = true;
             }
@@ -248,7 +248,7 @@ export default class EasyHallway extends Room {
                 this.canvas,
                 this,
                 this.player,
-                this.isMenuShowing
+                this.getIsMenuShowing(),
               );
               this.room3Interact = true;
             }
@@ -265,7 +265,7 @@ export default class EasyHallway extends Room {
                 this.canvas,
                 this,
                 this.player,
-                this.isMenuShowing
+                this.getIsMenuShowing()
               );
               this.bathroomInteractGirl = true;
             }
@@ -282,7 +282,7 @@ export default class EasyHallway extends Room {
                 this.canvas,
                 this,
                 this.player,
-                this.isMenuShowing
+                this.getIsMenuShowing(),
               );
               this.bathroomInteractBoy = true;
             }
@@ -311,16 +311,16 @@ export default class EasyHallway extends Room {
   }
 
   private renderStars() {
-    this.gameFrame += 1;
+    this.setGameFrame(this.getGameFrame() + 1);
     // STAR RENDERING
-    if (this.gameFrame % this.staggerFrame === 0) {
-      if (this.frameX < 9) {
-        this.frameX += 1;
+    if (this.getGameFrame() % this.staggerFrame === 0) {
+      if (this.getFrameX() < 9) {
+        this.setFrameX(this.getFrameX() + 1);
       } else {
-        this.frameX = 0;
+        this.setFrameX(0);
       }
     }
     // passes the frame to the NPC class
-    this.npcs[0].setFrameX(this.frameX);
+    this.getNpcs()[0].setFrameX(this.getFrameX());
   }
 }

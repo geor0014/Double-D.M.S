@@ -32,13 +32,13 @@ export default class MainHallway extends Room {
         this.player = new Player(this.canvas, charaterNum);
         this.player.setXPos(532);
         this.player.setYPos(681.5);
-        this.collectibles = [];
-        this.npcs = [];
-        this.doors = [];
-        this.collectibles.push(new Candy(312, 376.5), new Hint(this.canvas.width / 3, this.canvas.height / 1.5));
-        this.doors.push(new Door('./assets/img/bossRoomDoorClosed.png', 511, 412));
-        this.doors.push(new Door('./assets/img/cafeteriaDoor.png', 284, 160));
-        this.npcs.push(new Npc('./assets/img/teacherMale.png', 782, 315.5, [
+        this.setCollectibles([]);
+        this.setNpcs([]);
+        this.setDoors([]);
+        this.getCollectibles().push(new Candy(312, 376.5), new Hint(this.canvas.width / 3, this.canvas.height / 1.5));
+        this.getDoors().push(new Door('./assets/img/bossRoomDoorClosed.png', 511, 412));
+        this.getDoors().push(new Door('./assets/img/cafeteriaDoor.png', 284, 160));
+        this.getNpcs().push(new Npc('./assets/img/teacherMale.png', 782, 315.5, [
             new Dialog('Heyy how are you today?#', ['Good Thank you!', 'Excited for my birthday!'], ['Glad to hear that', 'Happy Birthday!']),
             new Dialog('Good luck with your exams!#', ['Thanks!', 'Thank you'], ['', '']),
         ]));
@@ -58,12 +58,12 @@ export default class MainHallway extends Room {
     update(elapsed) {
         const nextScene = this.generalInteraction();
         if (this.player.getUserData().getScore() > -1) {
-            this.doors[0].setImage('./assets/img/bossRoomDoorOpened.png');
+            this.getDoors()[0].setImage('./assets/img/bossRoomDoorOpened.png');
         }
         if (this.player.isInteracting()) {
-            if (this.player.collidesWith(this.doors[0])) {
+            if (this.player.collidesWith(this.getDoors()[0])) {
                 if (this.player.getUserData().getScore() < 12) {
-                    this.doorOpen.play();
+                    this.getDoorOpen().play();
                     if (this.bRoomInteract === false) {
                         this.bossRoom = new BossRoom(this.canvas, this, this.player);
                         this.bRoomInteract = true;
@@ -73,8 +73,8 @@ export default class MainHallway extends Room {
                 this.textToPresent =
                     'You cant access this room! maybe youre not worthy enough (evil laugh)';
             }
-            else if (this.player.collidesWith(this.doors[1])) {
-                this.doorOpen.play();
+            else if (this.player.collidesWith(this.getDoors()[1])) {
+                this.getDoorOpen().play();
                 if (this.cafeteriaBool === false) {
                     this.cafeteria = new Cafeteria(this.canvas, this, this.player, false);
                     this.cafeteriaBool = true;

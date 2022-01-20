@@ -11,7 +11,7 @@ export default class ClassRoom1 extends Classroom {
     constructor(canvas, previousScene, player, state) {
         super(canvas, previousScene, player, state, './assets/img/classroom.png');
         this.setComputer(new Computer(479, 253));
-        this.npcs.push(new Npc('./assets/img/redHairBoyUp.png', 652, 436, [
+        this.getNpcs().push(new Npc('./assets/img/redHairBoyUp.png', 652, 436, [
             new Dialog('Hey, listen...have you seen a doll?#', ['No..', 'You play with dolls?'], ['Oh...', 'not nice!']),
             new Dialog('My little sister lost hers and I am trying to find it.#', ['oh..', 'I can help you find it'], ['I am sad for her', 'Thank you!']),
             new Dialog('If you see it, bring it to me tomorrow, okay?#', ['ok!', 'will do!'], ['Great!', 'Thanks']),
@@ -20,8 +20,8 @@ export default class ClassRoom1 extends Classroom {
             new Dialog('Today we are learning about suspicious links and strangers messeges#', ['ok', 'umm..okay?'], [':)', '^__^']),
             new Dialog('This is very important!#', ['I guess..', 'Sure is!'], ['', '']),
         ]));
-        this.collectibles.push(new Candy(this.canvas.width / 2, this.canvas.height / 2));
-        this.doors.push(new Door('./assets/img/door1.png', 912, 400.5));
+        this.getCollectibles().push(new Candy(this.canvas.width / 2, this.canvas.height / 2));
+        this.getDoors().push(new Door('./assets/img/door1.png', 912, 400.5));
         this.setQuestions([
             new Question(this.player.getUserData(), 'Congratulations you just won a giveaway!# a Nigerian Prince chose you to be the winner!!#Send him your bank account details and your ID to get 500.000€!!', 'Not pay attention and delete this email/message', 'Send an E-mail to make sure it is real', 'YES, TAKE ALL MY DATA!'),
             new Question(this.player.getUserData(), 'Someone sent you a link to a YouTube video,# you click on it and suddenly you have a virus on your pc!# What could u have done differently? ', 'Not click on the link', 'Send this cool link to all my friends!', 'start chatting with this person for fun'),
@@ -44,9 +44,9 @@ export default class ClassRoom1 extends Classroom {
         const nextScene = this.generalInteraction();
         this.renderStars();
         if (this.player.isInteracting()) {
-            for (let i = 0; i < this.doors.length; i += 1) {
-                if (this.player.collidesWith(this.doors[i])) {
-                    this.doorClose.play();
+            for (let i = 0; i < this.getDoors().length; i += 1) {
+                if (this.player.collidesWith(this.getDoors()[i])) {
+                    this.getDoorClose().play();
                     this.player.setXPos(632);
                     this.player.setYPos(300);
                     const cNum = this.player.getCharacterNum();
@@ -78,16 +78,16 @@ export default class ClassRoom1 extends Classroom {
         return null;
     }
     renderStars() {
-        this.gameFrame += 1;
-        if (this.gameFrame % this.staggerFrame === 0) {
-            if (this.frameX < 9) {
-                this.frameX += 1;
+        this.setGameFrame(this.getGameFrame() + 1);
+        if (this.getGameFrame() % this.staggerFrame === 0) {
+            if (this.getFrameX() < 9) {
+                this.setFrameX(this.getFrameX() + 1);
             }
             else {
-                this.frameX = 0;
+                this.setFrameX(0);
             }
         }
-        this.npcs[0].setFrameX(this.frameX);
+        this.getNpcs()[0].setFrameX(this.getFrameX());
     }
 }
 //# sourceMappingURL=Classroom1.js.map

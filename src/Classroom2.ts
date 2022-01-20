@@ -42,12 +42,12 @@ export default class ClassRoom2 extends Classroom {
     this.setComputer(new Computer(476, 247));
 
     // creating collectibles in the classroom
-    this.collectibles.push(
+    this.getCollectibles().push(
       new Hint(this.canvas.width / 2 - 100, this.canvas.height / 2 - 70),
     );
 
     // creating the door for the classroom
-    this.doors.push(new Door('./assets/img/door1.png', 912, 400.5));
+    this.getDoors().push(new Door('./assets/img/door1.png', 912, 400.5));
 
     // setting player starter position and image in the classroom
 
@@ -98,10 +98,10 @@ export default class ClassRoom2 extends Classroom {
     // Checking if the player is interacting with items
     if (this.player.isInteracting()) {
       // WITH DOORS
-      for (let i = 0; i < this.doors.length; i += 1) {
-        if (this.player.collidesWith(this.doors[i])) {
+      for (let i = 0; i < this.getDoors().length; i += 1) {
+        if (this.player.collidesWith(this.getDoors()[i])) {
           // console.log('interact with door');
-          this.doorClose.play();
+          this.getDoorClose().play();
           // console.log(this.previousScene);
 
           this.player.setXPos(450);

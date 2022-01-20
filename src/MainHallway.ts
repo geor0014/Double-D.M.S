@@ -69,22 +69,22 @@ export default class MainHallway extends Room {
     this.player.setYPos(681.5);
 
     // reseting the items in the room
-    this.collectibles = [];
-    this.npcs = [];
-    this.doors = [];
+    this.setCollectibles([]);
+    this.setNpcs([]);
+    this.setDoors([]);
 
     // creating collectibles
-    this.collectibles.push(
+    this.getCollectibles().push(
       new Candy(312, 376.5),
       new Hint(this.canvas.width / 3, this.canvas.height / 1.5)
     );
 
     // creating the door
-    this.doors.push(new Door('./assets/img/bossRoomDoorClosed.png', 511, 412));
-    this.doors.push(new Door('./assets/img/cafeteriaDoor.png', 284, 160));
+    this.getDoors().push(new Door('./assets/img/bossRoomDoorClosed.png', 511, 412));
+    this.getDoors().push(new Door('./assets/img/cafeteriaDoor.png', 284, 160));
 
     // creating Npc and dialog
-    this.npcs.push(
+    this.getNpcs().push(
       new Npc('./assets/img/teacherMale.png', 782, 315.5, [
         new Dialog(
           'Heyy how are you today?#',
@@ -137,17 +137,17 @@ export default class MainHallway extends Room {
     const nextScene: Scene = this.generalInteraction();
 
     if (this.player.getUserData().getScore() > -1) {
-      this.doors[0].setImage('./assets/img/bossRoomDoorOpened.png');
+      this.getDoors()[0].setImage('./assets/img/bossRoomDoorOpened.png');
     }
     // console.log(this.player.getXPos(), this.player.getYPos());
     if (this.player.isInteracting()) {
       // WITH DOORS
       // for (let i = 0; i < this.doors.length; i += 1) {
-      if (this.player.collidesWith(this.doors[0])) {
+      if (this.player.collidesWith(this.getDoors()[0])) {
         if (this.player.getUserData().getScore() < 12) {
           // console.log('interact with door');
 
-          this.doorOpen.play();
+          this.getDoorOpen().play();
           if (this.bRoomInteract === false) {
             this.bossRoom = new BossRoom(this.canvas, this, this.player);
             this.bRoomInteract = true;
@@ -157,8 +157,8 @@ export default class MainHallway extends Room {
         this.textToPresent =
           'You cant access this room! maybe youre not worthy enough (evil laugh)';
         // WITH CAFETERIA
-      } else if (this.player.collidesWith(this.doors[1])) {
-        this.doorOpen.play();
+      } else if (this.player.collidesWith(this.getDoors()[1])) {
+        this.getDoorOpen().play();
         if (this.cafeteriaBool === false) {
           this.cafeteria = new Cafeteria(this.canvas, this, this.player, false);
           this.cafeteriaBool = true;

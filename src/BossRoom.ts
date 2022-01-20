@@ -43,7 +43,7 @@ export default class BossRoom extends Room {
   public constructor(
     canvas: HTMLCanvasElement,
     previousScene: Scene,
-    player: Player
+    player: Player,
   ) {
     super(canvas, './assets/img/bossRoom.png');
     // sets the previous scene to go back to
@@ -57,9 +57,9 @@ export default class BossRoom extends Room {
     this.setYPos(0);
 
     // resets the items in this room that can be communicated with
-    this.collectibles = [];
-    this.npcs = [];
-    this.doors = [];
+    this.setCollectibles([]);
+    this.setNpcs([]);
+    this.setDoors([]);
     this.questions = [];
 
     // setting player starter position and image in the room
@@ -84,64 +84,64 @@ export default class BossRoom extends Room {
         'So you finaly made it here...#',
         'I am ready to face you!',
         'who are you again?',
-        'whatever...'
+        'whatever...',
       ),
       new Question(
         this.player.getUserData(),
         'I am your final challange! # before you can even dream of a phone you need to face me!# do you think you can handle this?!#',
         'Nothing will stand in my way!',
         'I can easily defeat you!',
-        'whatever...'
+        'whatever...',
       ),
       new Question(
         this.player.getUserData(),
         'Here are my questions!#',
         'okay man..',
         'let`s go!',
-        'whatever...'
+        'whatever...',
       ),
       new Question(
         this.player.getUserData(),
         'Hey kid, I can make you famous on tiktok# very fast and you can make all your friends jealous!# Send me your address and your mother`s credit card to pay!!#',
         'Ignore and delete the message',
         'OMG YES, I`ve always wanted to be famous take my money!',
-        'I dont even like tik-tok'
+        'I dont even like tik-tok',
       ),
       new Question(
         this.player.getUserData(),
         'How do you make sure that your data is secure enough?#',
         'Use a different password for different accounts',
         'Use an easy password you can use for every account',
-        'Use different passwords which are too long'
+        'Use different passwords which are too long',
       ),
       new Question(
         this.player.getUserData(),
         'Someone hacked into your account, what do you do?#',
         'Write the support to get your account back',
         'Not do anything',
-        'Create new account and not use the old one'
+        'Create new account and not use the old one',
       ),
       new Question(
         this.player.getUserData(),
         'Should you use 2-Factor authentication?#',
         'Yes, since the more safety the better!',
         'No since my password is strong enough',
-        'Not always'
+        'Not always',
       ),
       new Question(
         this.player.getUserData(),
         'I`m visiting a site from a company or organization that I`ve heard #of. They want my name and phone number so I can enter a contest.# Is it OK to enter?#',
         'I should check if it is really them, and ask my parents',
         'Yeah I know this company I can trust them',
-        'No I should never give out information online!'
+        'No I should never give out information online!',
       ),
       new Question(
         this.player.getUserData(),
         'I saw you liked my posts and videos and I think youre a cool kid!# Lets hang sometimes and ill give you # free tickets to my show! What do you do? #',
         'This is for sure fake, ignore and delete',
         'OMG I CANT BELIEVE ITS YOU! I LOVE YOU! IM COMINGGGG!',
-        'I never liked you anyway..'
-      )
+        'I never liked you anyway..',
+      ),
     );
 
     // creating a new boss
@@ -175,7 +175,7 @@ export default class BossRoom extends Room {
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   public update(elapsed: number): Scene {
-    this.gameFrame += 1;
+    this.setGameFrame(this.getGameFrame() + 1);
 
     // calling general checkups from Room class
     const nextScene: Scene = this.generalInteraction();
@@ -188,10 +188,10 @@ export default class BossRoom extends Room {
         return new QuestionScreen(this.canvas, this, this.questions);
       }
       // WITH DOORS
-      for (let i = 0; i < this.doors.length; i += 1) {
-        if (this.player.collidesWith(this.doors[i])) {
+      for (let i = 0; i < this.getDoors().length; i += 1) {
+        if (this.player.collidesWith(this.getDoors()[i])) {
           // console.log('interact with door');
-          this.doorClose.play();
+          this.getDoorClose().play();
           // console.log(this.previousScene);
 
           // setting player starter position and image for the next room
@@ -222,15 +222,15 @@ export default class BossRoom extends Room {
     }
 
     // BOSS RENDERING
-    if (this.gameFrame % this.staggerFrame === 0) {
-      if (this.frameY < 3) {
-        this.frameY += 1;
+    if (this.getGameFrame() % this.staggerFrame === 0) {
+      if (this.getFrameY() < 3) {
+        this.setFrameY(this.getFrameY() + 1);
       } else {
-        this.frameY = 0;
+        this.setFrameY(0);
       }
 
       // passes the frame to the Boss class
-      this.boss.setFrameY(this.frameY);
+      this.boss.setFrameY(this.getFrameY());
     }
 
     // if needs to move to a difeerent scene or not

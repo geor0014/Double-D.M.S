@@ -35,7 +35,7 @@ export default class ClassRoom5 extends Classroom {
     this.setComputer(new Computer(479, 253));
 
     // sets the NPCs with their dialogs in the classroom
-    this.npcs.push(
+    this.getNpcs().push(
       new Npc('./assets/img/teacherFemaleGlasses.png', 600, 250, [
         new Dialog(
           'You should take a break sometimes#',
@@ -51,12 +51,12 @@ export default class ClassRoom5 extends Classroom {
     );
 
     // creating collectibles in the classroom
-    this.collectibles.push(
+    this.getCollectibles().push(
       new Hint(this.canvas.width / 1.5, this.canvas.height / 3),
     );
 
     // creating the door for the classroom
-    this.doors.push(new Door('./assets/img/door1.png', 912, 400.5));
+    this.getDoors().push(new Door('./assets/img/door1.png', 912, 400.5));
 
     // creating questions for this classroom
     this.setQuestions([new Question(
@@ -112,10 +112,10 @@ export default class ClassRoom5 extends Classroom {
     // Checking if the player is interacting with items
     if (this.player.isInteracting()) {
       // WITH DOORS
-      for (let i = 0; i < this.doors.length; i += 1) {
-        if (this.player.collidesWith(this.doors[i])) {
+      for (let i = 0; i < this.getDoors().length; i += 1) {
+        if (this.player.collidesWith(this.getDoors()[i])) {
           // console.log('interact with door');
-          this.doorClose.play();
+          this.getDoorClose().play();
           // console.log(this.previousScene);
 
           this.player.setXPos(460);

@@ -26,40 +26,40 @@ export default abstract class Room extends Scene {
   private frameCounter: number = 0;
 
   // Image of the room
-  protected img: HTMLImageElement;
+  private img: HTMLImageElement;
 
   // all the collectibles
-  protected collectibles: Collectibles[];
+  private collectibles: Collectibles[];
 
   // all the npcs
-  protected npcs: Npc[];
+  private npcs: Npc[];
 
   // all the doors
-  protected doors: Door[];
+  private doors: Door[];
 
   // the menu bar
-  protected menu: Menu;
+  private menu: Menu;
 
   // boolean to hide and unhide the menu bar (toggle)
-  protected isMenuShowing: boolean;
+  private isMenuShowing: boolean;
 
   // audio when a door opens
-  protected doorOpen: HTMLAudioElement;
+  private doorOpen: HTMLAudioElement;
 
   // audio when a door closes
-  protected doorClose: HTMLAudioElement;
+  private doorClose: HTMLAudioElement;
 
   // the hitboxes
-  protected hitboxes: Hitbox[];
+  private hitboxes: Hitbox[];
 
   // frame so the image knows what to show
-  protected frameX = 0;
+  private frameX = 0;
 
   // frame so the image knows what to show
-  protected frameY = 0;
+  private frameY = 0;
 
   // frame counter of the update
-  protected gameFrame = 0;
+  private gameFrame = 0;
 
   /**
    * Create a new room
@@ -72,7 +72,7 @@ export default abstract class Room extends Scene {
     canvas: HTMLCanvasElement,
     imgSrc: string,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    state: boolean = false
+    state: boolean = false,
   ) {
     super(canvas);
 
@@ -182,8 +182,8 @@ export default abstract class Room extends Scene {
 
     // reading hint
     if (
-      this.player.isReadingHint() &&
-      this.player.getUserData().getHintAmount() > 0
+      this.player.isReadingHint()
+      && this.player.getUserData().getHintAmount() > 0
     ) {
       this.player
         .getUserData()
@@ -196,7 +196,7 @@ export default abstract class Room extends Scene {
       return new HintScreen(
         this.canvas,
         this,
-        this.player.getUserData().getHintNum() - 1
+        this.player.getUserData().getHintNum() - 1,
       );
     }
 
@@ -228,8 +228,7 @@ export default abstract class Room extends Scene {
             }
 
             if (
-              str.getText(0) ===
-              'Hey there! Have you seen a teddy bear around here?'
+              str.getText(0) === 'Hey there! Have you seen a teddy bear around here?'
             ) {
               this.player.getUserData().getQuests().push('Look for Teddy');
               this.npcs.splice(i, 1);
@@ -325,7 +324,7 @@ export default abstract class Room extends Scene {
         620,
         647,
         'left',
-        'black'
+        'black',
       );
     }
 
@@ -336,7 +335,7 @@ export default abstract class Room extends Scene {
         620,
         682,
         'left',
-        'black'
+        'black',
       );
     }
     if (this.player.getUserData().getQuests()[2]) {
@@ -510,5 +509,140 @@ export default abstract class Room extends Scene {
     }
 
     // this.menu.draw(this.ctx);
+  }
+
+  /**
+   * Getter for collectibles array
+   *
+   * @returns collectibles array
+   */
+  getCollectibles(): Collectibles[] {
+    return this.collectibles;
+  }
+
+  /**
+   * Setter for collectibles array
+   *
+   * @param arrayColl array collectibles
+   */
+  setCollectibles(arrayColl: Collectibles[]): void {
+    this.collectibles = arrayColl;
+  }
+
+  /**
+   * Getter for npc array
+   *
+   * @returns npc array
+   */
+  getNpcs(): Npc[] {
+    return this.npcs;
+  }
+
+  /**
+   * Setter for npc array
+   *
+   * @param arrayNpc array npc
+   */
+  setNpcs(arrayNpc: Npc[]): void {
+    this.npcs = arrayNpc;
+  }
+
+  /**
+   * Getter for door array
+   *
+   * @returns door array
+   */
+  getDoors(): Door[] {
+    return this.doors;
+  }
+
+  /**
+   * Setter for door array
+   *
+   * @param arrayDoor array door
+   */
+  setDoors(arrayDoor: Door[]): void {
+    this.doors = arrayDoor;
+  }
+
+  /**
+   * Getter for isMenuShowing boolean
+   *
+   * @returns true or false according to if the menu is showing
+   */
+  getIsMenuShowing(): boolean {
+    return this.isMenuShowing;
+  }
+
+  /**
+   * Getter for doorOpen AudioElement
+   *
+   * @returns doorOpen AudioElement
+   */
+  getDoorOpen(): HTMLAudioElement {
+    return this.doorOpen;
+  }
+
+  /**
+   * Getter for doorClose AudioElement
+   *
+   * @returns doorClose AudioElement
+   */
+  getDoorClose(): HTMLAudioElement {
+    return this.doorClose;
+  }
+
+  /**
+   * Getter for FrameX number
+   *
+   * @returns frameX number
+   */
+  getFrameX(): number {
+    return this.frameX;
+  }
+
+  /**
+   * Setter for FrameX number
+   *
+   * @param frame frameX number
+   */
+  setFrameX(frame: number): void {
+    this.frameX = frame;
+  }
+
+  /**
+   * Getter for FrameY number
+   *
+   * @returns frameY number
+   */
+  getFrameY(): number {
+    return this.frameY;
+  }
+
+  /**
+   * Setter for FrameY number
+   *
+   * @param frame FrameY number
+   */
+  setFrameY(frame: number): void {
+    this.frameY = frame;
+  }
+
+  /**
+ * Getter for GameFrame number
+ *
+ * @returns GameFrame number
+ */
+  getGameFrame(): number {
+    return this.gameFrame;
+  }
+
+  /**
+   * Setter for GameFrame number
+   *
+   * @param gameframe GameFrame number
+   */
+  setGameFrame(gameframe: number): void {
+    this.gameFrame = gameframe;
   }
 }

@@ -11,8 +11,8 @@ export default class ClassRoom2 extends Classroom {
     constructor(canvas, previousScene, player, state) {
         super(canvas, previousScene, player, state, './assets/img/scienceClass.png');
         this.setComputer(new Computer(476, 247));
-        this.collectibles.push(new Hint(this.canvas.width / 2 - 100, this.canvas.height / 2 - 70));
-        this.doors.push(new Door('./assets/img/door1.png', 912, 400.5));
+        this.getCollectibles().push(new Hint(this.canvas.width / 2 - 100, this.canvas.height / 2 - 70));
+        this.getDoors().push(new Door('./assets/img/door1.png', 912, 400.5));
         this.setQuestions([new Question(this.player.getUserData(), 'You are creating an account on your favorite social media.# Before you can access it,#they ask you to accept the general terms of condition!# What do you do?', 'Ask your parents what they think', 'Not read it and accept it', 'Read through everything and decide if you accept'), new Question(this.player.getUserData(), 'Which of these files are safe to download?#', 'Game.exe', 'Virus.exe ', 'Trojan.exe')]);
         this.insertHitbox(911, 563, 50, 5, 1);
         this.insertHitbox(909, 600, 10, 10, 1);
@@ -30,9 +30,9 @@ export default class ClassRoom2 extends Classroom {
     update(elapsed) {
         const nextScene = this.generalInteraction();
         if (this.player.isInteracting()) {
-            for (let i = 0; i < this.doors.length; i += 1) {
-                if (this.player.collidesWith(this.doors[i])) {
-                    this.doorClose.play();
+            for (let i = 0; i < this.getDoors().length; i += 1) {
+                if (this.player.collidesWith(this.getDoors()[i])) {
+                    this.getDoorClose().play();
                     this.player.setXPos(450);
                     this.player.setYPos(300);
                     const cNum = this.player.getCharacterNum();

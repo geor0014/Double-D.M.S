@@ -10,9 +10,9 @@ export default class Classroom extends Room {
         this.player = player;
         this.setXPos(0);
         this.setYPos(0);
-        this.collectibles = [];
-        this.npcs = [];
-        this.doors = [];
+        this.setCollectibles([]);
+        this.setNpcs([]);
+        this.setDoors([]);
         this.questions = [];
     }
     render() {

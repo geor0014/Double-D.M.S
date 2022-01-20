@@ -49,9 +49,9 @@ export default abstract class Classroom extends Room {
     this.setYPos(0);
 
     // resets the items in the room
-    this.collectibles = [];
-    this.npcs = [];
-    this.doors = [];
+    this.setCollectibles([]);
+    this.setNpcs([]);
+    this.setDoors([]);
     this.questions = [];
   }
 

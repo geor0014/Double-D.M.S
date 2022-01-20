@@ -7,7 +7,7 @@ export default class ClassRoom4 extends Classroom {
     constructor(canvas, previousScene, player, state) {
         super(canvas, previousScene, player, state, './assets/img/scienceClass.png');
         this.setComputer(new Computer(479, 253));
-        this.doors.push(new Door('./assets/img/door1.png', 912, 400.5));
+        this.getDoors().push(new Door('./assets/img/door1.png', 912, 400.5));
         this.setQuestions([new Question(this.player.getUserData(), 'I met someone in a chat room who wants to get together. #They live nearby. Should I go?', 'I should ask my parent about this and decide with them', 'Yes, it is always nice to have a new friend!', 'Talking to people online is wrong!'), new Question(this.player.getUserData(), 'Hey man! I just lost my account data for my Fortnite account# Do you think you could send me your password and username# so I can play with yours because all my skins are gone :((', 'Report that person', 'Send them wrong data', 'Send password and username since you feel bad for them'), new Question(this.player.getUserData(), 'You need to create a password for a website.# What should you use?#', 'A random word, number, and symbols (e.g. 1cecr3am!)', 'A nickname (e.g jumpingjacks)', 'Your name and the year you were born (e.g. jack2011)')]);
         this.insertHitbox(911, 563, 50, 5, 1);
         this.insertHitbox(909, 600, 10, 10, 1);
@@ -25,9 +25,9 @@ export default class ClassRoom4 extends Classroom {
     update(elapsed) {
         const nextScene = this.generalInteraction();
         if (this.player.isInteracting()) {
-            for (let i = 0; i < this.doors.length; i += 1) {
-                if (this.player.collidesWith(this.doors[i])) {
-                    this.doorClose.play();
+            for (let i = 0; i < this.getDoors().length; i += 1) {
+                if (this.player.collidesWith(this.getDoors()[i])) {
+                    this.getDoorClose().play();
                     this.player.setXPos(290);
                     this.player.setYPos(300);
                     const cNum = this.player.getCharacterNum();
