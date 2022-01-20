@@ -17,7 +17,7 @@ export default class ClassRoom2 extends Classroom {
     'teddy',
     './assets/img/teddy.png',
     263,
-    580,
+    580
   );
 
   private pushOnce: boolean = true;
@@ -34,16 +34,26 @@ export default class ClassRoom2 extends Classroom {
     canvas: HTMLCanvasElement,
     previousScene: Scene,
     player: Player,
-    state: boolean,
+    state: boolean
   ) {
+<<<<<<< HEAD
     super(canvas, previousScene, player, state,'./assets/img/scienceclass.png');
+=======
+    super(canvas, './assets/img/scienceClass.png', state);
+
+    // sets the previous scene to return to
+    this.previousScene = previousScene;
+
+    // sets the player
+    this.player = player;
+>>>>>>> 01bdef0fc671997649d82b5999211bbc6f9586e1
 
     // creating a new computer in the classroom
     this.setComputer(new Computer(476, 247));
 
     // creating collectibles in the classroom
     this.collectibles.push(
-      new Hint(this.canvas.width / 2 - 100, this.canvas.height / 2 - 70),
+      new Hint(this.canvas.width / 2 - 100, this.canvas.height / 2 - 70)
     );
 
     // creating the door for the classroom
@@ -52,6 +62,7 @@ export default class ClassRoom2 extends Classroom {
     // setting player starter position and image in the classroom
 
     // creating questions for this classroom
+<<<<<<< HEAD
     this.setQuestions([new Question(
       this.player.getUserData(),
       'You are creating an account on your favorite social media.# Before you can access it,#they ask you to accept the general terms of condition!# What do you do?',
@@ -65,6 +76,24 @@ export default class ClassRoom2 extends Classroom {
       'Virus.exe ',
       'Trojan.exe',
     )]);
+=======
+    this.questions.push(
+      new Question(
+        this.player.getUserData(),
+        'You are creating an account on your favorite social media.# Before you can access it,#they ask you to accept the general terms of condition!# What do you do?',
+        'Ask your parents what they think',
+        'Not read it and accept it',
+        'Read through everything and decide if you accept'
+      ),
+      new Question(
+        this.player.getUserData(),
+        'Which of these files are safe to download?#',
+        'Game.exe',
+        'Virus.exe ',
+        'Trojan.exe'
+      )
+    );
+>>>>>>> 01bdef0fc671997649d82b5999211bbc6f9586e1
 
     // Adds all the hitboxes to the bathroom
     this.insertHitbox(911, 563, 50, 5, 1);
@@ -108,13 +137,13 @@ export default class ClassRoom2 extends Classroom {
           // setting image of player according to the right character chosen
           const cNum: number = this.player.getCharacterNum();
           if (cNum === 1) {
-            this.player.setImage('./assets/img/player-boy1-down.png');
+            this.player.setImage('./assets/img/PlayerBoy1Down.png');
           } else if (cNum === 2) {
-            this.player.setImage('./assets/img/player-boy2-down.png');
+            this.player.setImage('./assets/img/playerBoy2Down.png');
           } else if (cNum === 3) {
-            this.player.setImage('./assets/img/player-girl2-down.png');
+            this.player.setImage('./assets/img/playerGirl2Down.png');
           } else if (cNum === 4) {
-            this.player.setImage('./assets/img/player-girl1-down.png');
+            this.player.setImage('./assets/img/playerGirl1Down.png');
           }
           return this.getPreviousScene();
         }

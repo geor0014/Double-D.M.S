@@ -352,7 +352,7 @@ export default abstract class Room extends Scene {
     y: number,
     w: number,
     h: number,
-    opacity: number,
+    opacity: number
   ): void {
     this.hitboxes.push(new Hitbox(x, y, w, h, opacity));
   }

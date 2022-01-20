@@ -27,7 +27,7 @@ export default class ClassRoom5 extends Classroom {
     canvas: HTMLCanvasElement,
     previousScene: Scene,
     player: Player,
-    state: boolean,
+    state: boolean
   ) {
     super(canvas, previousScene, player, state, './assets/img/classroom.png');
 
@@ -36,21 +36,30 @@ export default class ClassRoom5 extends Classroom {
 
     // sets the NPCs with their dialogs in the classroom
     this.npcs.push(
-      new Npc('./assets/img/teacher-blonde-hair-front-faced.png', 600, 250, [
-        new Dialog('You should take a break sometimes#', ['Yes Im tired', 'I am okay'], ['Studying can be hard', 'good to know!']),
-        new Dialog('The cafeteria has great food!#', ['Ill check it out!', 'I am hungry..'], ['', '']),
-      ]),
+      new Npc('./assets/img/BlondeHairTeacherFrontFacing.png', 600, 250, [
+        new Dialog(
+          'You should take a break sometimes#',
+          ['Yes Im tired', 'I am okay'],
+          ['Studying can be hard', 'good to know!']
+        ),
+        new Dialog(
+          'The cafeteria has great food!#',
+          ['Ill check it out!', 'I am hungry..'],
+          ['', '']
+        ),
+      ])
     );
 
     // creating collectibles in the classroom
     this.collectibles.push(
-      new Hint(this.canvas.width / 1.5, this.canvas.height / 3),
+      new Hint(this.canvas.width / 1.5, this.canvas.height / 3)
     );
 
     // creating the door for the classroom
     this.doors.push(new Door('./assets/img/door1.png', 912, 400.5));
 
     // creating questions for this classroom
+<<<<<<< HEAD
     this.setQuestions([new Question(
       this.player.getUserData(),
       ' Should you use free Anti-Virus?#',
@@ -70,6 +79,31 @@ export default class ClassRoom5 extends Classroom {
       'Someone who shares too much personal information',
       'Someone who regularly surfs the web',
     )]);
+=======
+    this.questions.push(
+      new Question(
+        this.player.getUserData(),
+        ' Should you use free Anti-Virus?#',
+        'No, since the anti-virus can be a virus!',
+        'No, since I know what I download!',
+        'No, since I do not want to use an anti-virus!'
+      ),
+      new Question(
+        this.player.getUserData(),
+        'Which of the following is NOT an example of cyberbullying?#',
+        'Inviting a friend to fight with you in a game',
+        'Creating a fake profile to humiliate someone',
+        'Posting or sharing embarrassing photos'
+      ),
+      new Question(
+        this.player.getUserData(),
+        'What is a predator?#',
+        'Someone who uses the internet to do harm to others',
+        'Someone who shares too much personal information',
+        'Someone who regularly surfs the web'
+      )
+    );
+>>>>>>> 01bdef0fc671997649d82b5999211bbc6f9586e1
 
     // Adds all the hitboxes to the bathroom
     this.insertHitbox(911, 563, 50, 5, 1);
@@ -114,13 +148,13 @@ export default class ClassRoom5 extends Classroom {
           // setting image of player according to the right character chosen
           const cNum: number = this.player.getCharacterNum();
           if (cNum === 1) {
-            this.player.setImage('./assets/img/player-boy1-down.png');
+            this.player.setImage('./assets/img/PlayerBoy1Down.png');
           } else if (cNum === 2) {
-            this.player.setImage('./assets/img/player-boy2-down.png');
+            this.player.setImage('./assets/img/playerBoy2Down.png');
           } else if (cNum === 3) {
-            this.player.setImage('./assets/img/player-girl2-down.png');
+            this.player.setImage('./assets/img/playerGirl2Down.png');
           } else if (cNum === 4) {
-            this.player.setImage('./assets/img/player-girl1-down.png');
+            this.player.setImage('./assets/img/playerGirl1Down.png');
           }
           return this.getPreviousScene();
         }

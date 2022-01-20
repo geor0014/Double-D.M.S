@@ -34,7 +34,7 @@ export default class Bathroom1 extends Room {
     canvas: HTMLCanvasElement,
     previousScene: Scene,
     player: Player,
-    state: boolean,
+    state: boolean
   ) {
     super(canvas, './assets/img/bathroom1.png', state);
 
@@ -65,38 +65,38 @@ export default class Bathroom1 extends Room {
         new Dialog(
           'Hey kid..#',
           ['What are you doing in the bathroom?', 'Hello??'],
-          ['He..He..', 'You are braver than most..'],
+          ['He..He..', 'You are braver than most..']
         ),
         new Dialog(
           'I heard its your birthday today..#',
           ['It is!', 'How did you know this?'],
-          ['Happy Birthday...', 'I know EVERYTHING!'],
+          ['Happy Birthday...', 'I know EVERYTHING!']
         ),
         new Dialog(
           'I can give you some candy if you want#',
           ['Yay candy!', 'I dont want anything from you!'],
-          ['hahaha', 'Why not I am pretty nice'],
+          ['hahaha', 'Why not I am pretty nice']
         ),
         new Dialog(
           'OR I can give you a PHONE!!#',
           ['Really?!', 'I shouldnt be talking to you'],
-          ['Yes!', 'Come on I know you want the phone!'],
+          ['Yes!', 'Come on I know you want the phone!']
         ),
         new Dialog(
           'What do you chose?#',
           ['The phone', 'Nothing..'],
-          ['Here you go... Ill call you', 'Fine whatever..'],
+          ['Here you go... Ill call you', 'Fine whatever..']
         ),
-      ],
+      ]
     );
 
     // creating collectibles in the classroom
     this.collectibles.push(
-      new Candy(this.canvas.width / 2, this.canvas.height / 2),
+      new Candy(this.canvas.width / 2, this.canvas.height / 2)
     );
 
     // creating the door for the classroom
-    this.doors.push(new Door('./assets/img/girl-bathroom-door.png', 912, 265));
+    this.doors.push(new Door('./assets/img/girlBathroomDoor.png', 912, 265));
 
     // Adds all the hitboxes to the bathroom
     this.insertHitbox(910, 435.5, 50, 70, 1);
@@ -142,13 +142,13 @@ export default class Bathroom1 extends Room {
           // setting image of player according to the right character chosen
           const cNum: number = this.player.getCharacterNum();
           if (cNum === 1) {
-            this.player.setImage('./assets/img/player-boy1-down.png');
+            this.player.setImage('./assets/img/PlayerBoy1Down.png');
           } else if (cNum === 2) {
-            this.player.setImage('./assets/img/player-boy2-down.png');
+            this.player.setImage('./assets/img/playerBoy2Down.png');
           } else if (cNum === 3) {
-            this.player.setImage('./assets/img/player-girl2-down.png');
+            this.player.setImage('./assets/img/playerGirl2Down.png');
           } else if (cNum === 4) {
-            this.player.setImage('./assets/img/player-girl1-down.png');
+            this.player.setImage('./assets/img/playerGirl1Down.png');
           }
           this.shadyGuyTheme.pause();
           return this.previousScene;
@@ -157,15 +157,15 @@ export default class Bathroom1 extends Room {
 
       // With Shady Guy
       if (
-        this.player.collidesWith(this.shadyGuy)
-        && this.interactShady === false
+        this.player.collidesWith(this.shadyGuy) &&
+        this.interactShady === false
       ) {
         this.interactShady = true;
         return new ShadyDialog(
           this.canvas,
           this,
           this.shadyGuy.getDialogs(),
-          this.player.getCharacterNum(),
+          this.player.getCharacterNum()
         );
       }
     }

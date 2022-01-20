@@ -78,7 +78,7 @@ export default class EasyHallway extends Room {
 
     // creates npcs with their dialogs for this room
     this.npcs.push(
-      new Npc('./assets/img/student-1-back-faced.png', 575, 495, [
+      new Npc('./assets/img/student1BackFacing.png', 575, 495, [
         new Dialog(
           'Hello, I lost my backpack....#',
           ['really?', 'oh no'],
@@ -90,7 +90,7 @@ export default class EasyHallway extends Room {
           ['', '']
         ),
       ]),
-      new Npc('./assets/img/student-black-haired-left-faced.png', 195, 315, [
+      new Npc('./assets/img/blackHairStudentLeftFacing.png', 195, 315, [
         new Dialog(
           'There are some things you should never share!#',
           ['I know that', 'ok..'],
@@ -102,7 +102,7 @@ export default class EasyHallway extends Room {
           ['', '']
         ),
       ]),
-      new Npc('./assets/img/student-red-right-faced.png', 155, 315, [
+      new Npc('./assets/img/redHairStudentRightFacing.png', 155, 315, [
         new Dialog(
           'Did you hear about Jessica?#',
           ['No..', 'What happaned?'],
@@ -121,10 +121,8 @@ export default class EasyHallway extends Room {
     this.doors.push(new Door('./assets/img/door1.png', 450, 228.5));
     this.doors.push(new Door('./assets/img/door1.png', 280, 228.5));
 
-    this.doors.push(
-      new Door('./assets/img/girl-bathroom-door.png', 910, 228.5),
-    );
-    this.doors.push(new Door('./assets/img/boy-bathroom-door.png', 100, 228.5));
+    this.doors.push(new Door('./assets/img/girlBathroomDoor.png', 910, 228.5));
+    this.doors.push(new Door('./assets/img/boyBathroomDoor.png', 100, 228.5));
 
     this.insertHitbox(49, 245, 1000, 10, 1);
     this.insertHitbox(144, 548.5, 1000, 10, 1);
@@ -158,13 +156,13 @@ export default class EasyHallway extends Room {
       this.player.setYPos(440);
       // setting image of player according to the right character chosen
       if (cNum === 1) {
-        this.player.setImage('./assets/img/player-boy1-right.png');
+        this.player.setImage('./assets/img/PlayerBoy1RIght.png');
       } else if (cNum === 2) {
-        this.player.setImage('./assets/img/player-boy2-right.png');
+        this.player.setImage('./assets/img/playerBoy2Right.png');
       } else if (cNum === 3) {
-        this.player.setImage('./assets/img/player-girl2-right.png');
+        this.player.setImage('./assets/img/playerGirl2Right.png');
       } else if (cNum === 4) {
-        this.player.setImage('./assets/img/player-girl1-right.png');
+        this.player.setImage('./assets/img/playerGirl1Right.png');
       }
       return this.mainHallway;
     }
@@ -180,13 +178,13 @@ export default class EasyHallway extends Room {
           this.player.setYPos(473);
           // setting image of player according to the right character chosen
           if (cNum === 1) {
-            this.player.setImage('./assets/img/player-boy1-down.png');
+            this.player.setImage('./assets/img/PlayerBoy1Down.png');
           } else if (cNum === 2) {
-            this.player.setImage('./assets/img/player-boy2-down.png');
+            this.player.setImage('./assets/img/playerBoy2Down.png');
           } else if (cNum === 3) {
-            this.player.setImage('./assets/img/player-girl2-down.png');
+            this.player.setImage('./assets/img/playerGirl2Down.png');
           } else if (cNum === 4) {
-            this.player.setImage('./assets/img/player-girl1-down.png');
+            this.player.setImage('./assets/img/playerGirl1Down.png');
           }
           this.doorOpen.play();
           if (i === 0) {

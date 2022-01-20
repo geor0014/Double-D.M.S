@@ -70,14 +70,12 @@ export default class MainHallway extends Room {
     );
 
     // creating the door
-    this.doors.push(
-      new Door('./assets/img/boss-room-door-closed.png', 511, 412)
-    );
-    this.doors.push(new Door('./assets/img/cafeteria-door.png', 284, 160));
+    this.doors.push(new Door('./assets/img/bossRoomDoorClosed.png', 511, 412));
+    this.doors.push(new Door('./assets/img/cafeteriaDoor.png', 284, 160));
 
     // creating Npc and dialog
     this.npcs.push(
-      new Npc('./assets/img/teacher-front.png', 782, 315.5, [
+      new Npc('./assets/img/teacherFrontFacing.png', 782, 315.5, [
         new Dialog(
           'Heyy how are you today?#',
           ['Good Thank you!', 'Excited for my birthday!'],
@@ -126,7 +124,7 @@ export default class MainHallway extends Room {
     const nextScene: Scene = this.generalInteraction();
 
     if (this.player.getUserData().getScore() > 12) {
-      this.doors[0].setImage('./assets/img/boss-room-door-opened.png');
+      this.doors[0].setImage('./assets/img/bossRoomDoorOpened.png');
     }
     // console.log(this.player.getXPos(), this.player.getYPos());
     if (this.player.isInteracting()) {
