@@ -26,11 +26,7 @@ export default class Cafeteria extends Room {
         this.lunchLady = new Npc('./assets/img/lunchLady.png', 300, 500, [
             new Dialog('Good day!# we have some special treats today!#', ['ohh delicious', 'I am starving'], ['I hope so, I worked hard on this', 'You should eat something']),
             new Dialog('I can trade you some candy for hints#', ['Yes please', 'No thank you'], ['There you go', 'Okay maybe later']),
-<<<<<<< HEAD
         ], true);
-=======
-        ]);
->>>>>>> 8a21a8d4bd2497e86c32f9daf6e79cda090ba92a
         this.collectibles.push(new Candy(this.canvas.width / 2, this.canvas.height / 3));
         this.doors.push(new Door('./assets/img/cafeteriaDoor.png', 907, 362));
         this.insertHitbox(955, 356.5, 10, 160, 1);

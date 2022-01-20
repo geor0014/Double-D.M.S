@@ -144,11 +144,7 @@ export default class MainHallway extends Room {
       // WITH DOORS
       // for (let i = 0; i < this.doors.length; i += 1) {
       if (this.player.collidesWith(this.doors[0])) {
-<<<<<<< HEAD
         if (this.player.getUserData().getScore() < 12) {
-=======
-        if (this.player.getUserData().getScore() > -1) {
->>>>>>> 0ade14d043b3baf0bf45de5fa0cbe2e843ffea62
           // console.log('interact with door');
 
           this.doorOpen.play();
@@ -190,11 +186,7 @@ export default class MainHallway extends Room {
 
     // Entrance for the hallway on the right hand side
     if (this.player.getXPos() >= 909 && this.player.getYPos() >= 402.5) {
-<<<<<<< HEAD
       if (this.player.getUserData().getScore() < 3) {
-=======
-      if (this.player.getUserData().getScore() > -1) {
->>>>>>> 0ade14d043b3baf0bf45de5fa0cbe2e843ffea62
         if (this.dHallInteract === false) {
           this.diffHall = new DifficultHallway(this.canvas, this, this.player);
           this.dHallInteract = true;
