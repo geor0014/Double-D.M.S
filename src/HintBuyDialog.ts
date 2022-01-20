@@ -30,11 +30,8 @@ export default class CandyBuyDialog extends Screen {
   // text which should show up on the canvas
   private textToPresent: string;
 
-<<<<<<< HEAD
   // stay!!
-=======
   // attribute for the userdata to know about the hints
->>>>>>> a4548cc16aa436073ef071d98d9d78057b7de75c
   private userData: UserData;
 
   /**

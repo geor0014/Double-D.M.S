@@ -1,14 +1,11 @@
 export default class UserData {
     hintAmount;
     candyAmount;
-    img;
     score;
     hintNum;
     quests = [];
     questItems = [];
     constructor() {
-        this.img = new Image();
-        this.img.src = './assets/img/player-boy-up.png';
         this.hintAmount = 0;
         this.candyAmount = 0;
         this.score = 0;

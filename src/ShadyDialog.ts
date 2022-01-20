@@ -30,11 +30,8 @@ export default class ShadyDialog extends Screen {
   // text which should show up on the canvas
   private textToPresent: string;
 
-<<<<<<< HEAD
   // stay!!
-=======
   // number of the character the player chose
->>>>>>> a4548cc16aa436073ef071d98d9d78057b7de75c
   private characterNum: number;
 
   /**

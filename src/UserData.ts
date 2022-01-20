@@ -7,9 +7,6 @@ export default class UserData {
   // amount of the candy the player has
   private candyAmount: number;
 
-  // image of the player
-  private img: HTMLImageElement;
-
   // score of the player
   private score: number;
 
@@ -26,8 +23,6 @@ export default class UserData {
    * Initialises every attribute
    */
   public constructor() {
-    this.img = new Image();
-    this.img.src = './assets/img/player-boy-up.png';
     this.hintAmount = 0;
     this.candyAmount = 0;
     this.score = 0;
