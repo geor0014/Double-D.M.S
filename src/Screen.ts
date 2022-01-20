@@ -1,10 +1,13 @@
 import Scene from './Scene.js';
 
 export default abstract class Screen extends Scene {
+  // image of the screen
   private img: HTMLImageElement;
 
+  // x position of the scene
   private xPos: number;
 
+  // y position of the scemne
   private yPos: number;
 
   /**
@@ -20,12 +23,10 @@ export default abstract class Screen extends Scene {
     this.img.src = imgSrc;
   }
 
+  // place the functions its children need
   public abstract processInput(): boolean;
-
   public abstract update(elapsed: number): Scene;
-
   public abstract render(): void;
-
   public abstract draw(ctx: CanvasRenderingContext2D): void;
 
   /**

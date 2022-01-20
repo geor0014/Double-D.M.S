@@ -179,6 +179,7 @@ export default class BossRoom extends Room {
    * @param elapsed a number
    * @returns a scene or null
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   public update(elapsed: number): Scene {
     this.gameFrame += 1;
 
@@ -195,9 +196,10 @@ export default class BossRoom extends Room {
       // WITH DOORS
       for (let i = 0; i < this.doors.length; i += 1) {
         if (this.player.collidesWith(this.doors[i])) {
-          console.log('interact with door');
+          // console.log('interact with door');
           this.doorClose.play();
-          console.log(this.previousScene);
+          // console.log(this.previousScene);
+
           // setting player starter position and image for the next room
           this.player.setXPos(521);
           this.player.setYPos(235);
@@ -252,9 +254,12 @@ export default class BossRoom extends Room {
 
     // DRAW ROOM
     this.draw(this.ctx);
+
     // DRAW BOSS
     this.boss.draw(this.ctx);
+
     this.drawHitBoxes();
+
     // calls the render function of the parent aka ROOM
     super.render();
   }

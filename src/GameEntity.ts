@@ -1,8 +1,11 @@
 export default abstract class GameEntity {
+  // image of the gameEntity
   private img: HTMLImageElement;
 
+  // x position relative to the (0;0) of the canvas
   private xPos: number;
 
+  // y position relative to the (0;0) of the canvas
   private yPos: number;
 
   /**
@@ -12,7 +15,8 @@ export default abstract class GameEntity {
    * @param xPos a number for x pos
    * @param yPos a number for y pos
    */
-  constructor(imageSrc: string, xPos: number, yPos: number) {
+  public constructor(imageSrc: string, xPos: number, yPos: number) {
+    // sets all the attributes
     this.img = GameEntity.loadNewImage(imageSrc);
     this.xPos = xPos;
     this.yPos = yPos;

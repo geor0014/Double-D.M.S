@@ -47,9 +47,7 @@ export default class Bathroom1 extends Room {
         if (this.player.isInteracting()) {
             for (let i = 0; i < this.doors.length; i += 1) {
                 if (this.player.collidesWith(this.doors[i])) {
-                    console.log('interact with door');
                     this.doorClose.play();
-                    console.log(this.previousScene);
                     this.player.setXPos(910);
                     this.player.setYPos(300);
                     const cNum = this.player.getCharacterNum();

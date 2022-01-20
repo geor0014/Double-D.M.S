@@ -1,7 +1,8 @@
 import Screen from './Screen.js';
-import KeyListener from './KeyListener.js';
 import Scene from './Scene.js';
 import ParentsScreen from './ParentsScreen.js';
+
+import KeyListener from './KeyListener.js';
 
 export default class CharacterPick extends Screen {
   // Keyboardlistener to check if a key got pressed or not

@@ -23,7 +23,7 @@ export default class ClassRoom6 extends Classroom {
     canvas: HTMLCanvasElement,
     previousScene: Scene,
     player: Player,
-    state: boolean
+    state: boolean,
   ) {
     super(canvas, previousScene, player, state, './assets/img/artclass.png');
 
@@ -32,7 +32,7 @@ export default class ClassRoom6 extends Classroom {
 
     // creating collectibles in the classroom
     this.collectibles.push(
-      new Candy(this.canvas.width / 4, this.canvas.height / 4)
+      new Candy(this.canvas.width / 4, this.canvas.height / 4),
     );
 
     // creating the door for the classroom
@@ -98,6 +98,7 @@ export default class ClassRoom6 extends Classroom {
           // console.log(this.previousScene);
           this.player.setXPos(650);
           this.player.setYPos(300);
+
           // setting image of player according to the right character chosen
           const cNum: number = this.player.getCharacterNum();
           if (cNum === 1) {

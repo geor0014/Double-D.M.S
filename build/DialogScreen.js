@@ -40,7 +40,6 @@ export default class DialogScreen extends Screen {
     }
     moveBetweenDialogs() {
         if (this.keyboard.isKeyDown(KeyListener.KEY_RIGHT)) {
-            console.log('right pressed');
             this.nextD = true;
         }
         else {
@@ -53,9 +52,9 @@ export default class DialogScreen extends Screen {
             return this.previousScene;
         }
         this.moveBetweenDialogs();
-        if (this.nextD &&
-            this.dCounter < this.dialogs.length - 1 &&
-            this.frameCounter === 10) {
+        if (this.nextD
+            && this.dCounter < this.dialogs.length - 1
+            && this.frameCounter === 10) {
             this.dCounter += 1;
             this.textToPresent = '...';
         }

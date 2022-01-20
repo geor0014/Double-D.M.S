@@ -22,7 +22,6 @@ export default class EasyHallway extends Room {
     bathroom2;
     constructor(canvas, mainHallway, player) {
         super(canvas, './assets/img/easyHallway.png');
-        console.log('creating easy hallway');
         this.room1Interact = false;
         this.room2Interact = false;
         this.room3Interact = false;
@@ -86,7 +85,6 @@ export default class EasyHallway extends Room {
         if (this.player.isInteracting()) {
             for (let i = 0; i < this.doors.length; i += 1) {
                 if (this.player.collidesWith(this.doors[i])) {
-                    console.log('interact with door');
                     this.player.setXPos(911);
                     this.player.setYPos(473);
                     if (cNum === 1) {

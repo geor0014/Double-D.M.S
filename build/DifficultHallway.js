@@ -14,14 +14,14 @@ export default class DifficultHallway extends Room {
     class4;
     class5;
     class6;
-    doll = new QuestItem('doll', './assets/img/doll.png', 930, 471.5);
-    pushOnce = true;
+    doll;
+    pushOnce;
     constructor(canvas, mainHallway, player) {
         super(canvas, './assets/img/difficultHallway.png');
-        console.log('creating difficult hallway');
         this.room4Interact = false;
         this.room5Interact = false;
         this.room6Interact = false;
+        this.pushOnce = true;
         this.mainHallway = mainHallway;
         this.player = player;
         this.collectibles = [];
@@ -39,6 +39,7 @@ export default class DifficultHallway extends Room {
         this.doors.push(new Door('./assets/img/door1.png', 290, 228.5));
         this.doors.push(new Door('./assets/img/door1.png', 460, 228.5));
         this.doors.push(new Door('./assets/img/door1.png', 650, 228.5));
+        this.doll = new QuestItem('doll', './assets/img/doll.png', 930, 471.5);
         this.insertHitbox(105, 305, 150, 5, 1);
         this.insertHitbox(276, 176, 5, 90, 1);
         this.insertHitbox(323, 202, 650, 5, 1);
@@ -81,13 +82,11 @@ export default class DifficultHallway extends Room {
             else if (cNum === 4) {
                 this.player.setImage('./assets/img/playerGirl1Left.png');
             }
-            console.log('main halwway return');
             return this.mainHallway;
         }
         if (this.player.isInteracting()) {
             for (let i = 0; i < this.doors.length; i += 1) {
                 if (this.player.collidesWith(this.doors[i])) {
-                    console.log('interact with door');
                     this.player.setXPos(911);
                     this.player.setYPos(473);
                     if (cNum === 1) {

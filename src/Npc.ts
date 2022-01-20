@@ -2,6 +2,7 @@ import Dialog from './Dialog.js';
 import GameEntity from './GameEntity.js';
 
 export default class Npc extends GameEntity {
+  // Dialogs which show up on the screen
   private dialogs: Dialog[];
 
   /**

@@ -2,12 +2,11 @@ import GameLoop from './GameLoop.js';
 import StartScreen from './StartScreen.js';
 
 export default class Game {
+  // attribute to be able to draw and store the canvas tag of the index.html
   private canvas: HTMLCanvasElement;
 
   // game loop
   private gameLoop: GameLoop;
-
-  // private player: Player;
 
   /**
    * Initialize the game

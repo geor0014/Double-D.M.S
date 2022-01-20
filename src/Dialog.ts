@@ -1,8 +1,10 @@
 import MainText from './MainText.js';
 
 export default class Dialog extends MainText {
+  // possible answers
   private possibleAns: string[];
 
+  // replies to the text
   private replies: string[];
 
   /**
@@ -12,7 +14,7 @@ export default class Dialog extends MainText {
    * @param answers string array for answers
    * @param replies string array for replies from NPCs
    */
-  constructor(dText: string, answers: string[], replies: string[]) {
+  public constructor(dText: string, answers: string[], replies: string[]) {
     super(dText);
     this.possibleAns = answers;
     this.replies = replies;

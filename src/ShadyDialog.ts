@@ -6,23 +6,35 @@ import Dialog from './Dialog.js';
 import SadEnding from './SadEnding.js';
 
 export default class ShadyDialog extends Screen {
+  // Keyboardlistener so the game knows
   private keyboard: KeyListener;
 
+  // Room the player have previously been
   private previousScene: Room;
 
+  // Dialogs which show up on the screen
   private dialogs: Dialog[];
 
+  // boolean to show the next dialog in the array
   private nextD: boolean;
 
+  // counter for all the dialogs
   private dCounter: number;
 
+  // counter for the frames
   private frameCounter: number = 0;
 
+  // boolean to check if a key got pressed or not
   private okPressed: boolean;
 
+  // text which should show up on the canvas
   private textToPresent: string;
 
+<<<<<<< HEAD
   // stay!!
+=======
+  // number of the character the player chose
+>>>>>>> a4548cc16aa436073ef071d98d9d78057b7de75c
   private characterNum: number;
 
   /**
@@ -33,11 +45,11 @@ export default class ShadyDialog extends Screen {
    * @param dialogs an array of dialogs string
    * @param characterNum number of character
    */
-  constructor(
+  public constructor(
     canvas: HTMLCanvasElement,
     previousScene: Room,
     dialogs: Dialog[],
-    characterNum: number
+    characterNum:number,
   ) {
     super(canvas, './assets/img/dialogScreenShadyGuy.png');
 
@@ -56,14 +68,17 @@ export default class ShadyDialog extends Screen {
     // counter which dialog is presented
     this.dCounter = 0;
 
+    // sets the check up boolean to false
     this.okPressed = false;
 
     // sets the background image position
     this.setXPos(0);
     this.setYPos(0);
 
+    // sets the text which is supposed to show
     this.textToPresent = '...';
 
+    // sets the number of the character the player picked
     this.characterNum = characterNum;
   }
 
@@ -102,7 +117,8 @@ export default class ShadyDialog extends Screen {
    */
   public moveBetweenDialogs(): void {
     if (this.keyboard.isKeyDown(KeyListener.KEY_RIGHT)) {
-      console.log('right pressed');
+      // console.log('right pressed');
+
       this.nextD = true;
     } else {
       this.nextD = false;
@@ -115,6 +131,7 @@ export default class ShadyDialog extends Screen {
    * @param elapsed time elapsed
    * @returns previous Scene
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   public update(elapsed: number): Scene {
     // clears canvas
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -127,9 +144,9 @@ export default class ShadyDialog extends Screen {
     // calls to check if player wants to move to the next dialog
     this.moveBetweenDialogs();
     if (
-      this.nextD &&
-      this.dCounter < this.dialogs.length - 1 &&
-      this.frameCounter === 15
+      this.nextD
+      && this.dCounter < this.dialogs.length - 1
+      && this.frameCounter === 15
     ) {
       this.dCounter += 1;
       this.textToPresent = '...';
@@ -141,6 +158,7 @@ export default class ShadyDialog extends Screen {
         answerRecived = this.reciveAnswer();
       }
       // console.log(`answer Recived ${answerRecived}`);
+
       if (answerRecived !== 0 && this.okPressed === true) {
         if (this.dCounter === this.dialogs.length - 1) {
           if (answerRecived === 1) {
@@ -188,7 +206,7 @@ export default class ShadyDialog extends Screen {
         this.canvas.width / 2,
         420,
         'center',
-        'Grey'
+        'Grey',
       );
 
       let textToWrite: string = '';
@@ -200,13 +218,14 @@ export default class ShadyDialog extends Screen {
       for (let i = 0; i < 3; i += 1) {
         textToWrite = this.dialogs[this.dCounter].getText(i);
         // console.log(textToWrite);
+
         this.writeTextToCanvas(
           textToWrite,
           30,
           textWPos + 150,
           textHPos,
           'center',
-          'black'
+          'black',
         );
         textHPos += 50;
       }
@@ -219,7 +238,7 @@ export default class ShadyDialog extends Screen {
           this.canvas.width / 5,
           textHPos + 20,
           'left',
-          'black'
+          'black',
         );
         textHPos += 50;
       }
@@ -233,7 +252,7 @@ export default class ShadyDialog extends Screen {
         this.canvas.width / 2 + 200,
         420,
         'center',
-        'Grey'
+        'Grey',
       );
     } else {
       this.writeTextToCanvas(
@@ -242,7 +261,7 @@ export default class ShadyDialog extends Screen {
         this.canvas.width / 2 + 200,
         420,
         'center',
-        'Grey'
+        'Grey',
       );
     }
     this.writeTextToCanvas(
@@ -251,7 +270,7 @@ export default class ShadyDialog extends Screen {
       this.canvas.width / 3,
       this.canvas.height / 4,
       'center',
-      'red'
+      'red',
     );
   }
 }

@@ -27,7 +27,7 @@ export default class ClassRoom5 extends Classroom {
     canvas: HTMLCanvasElement,
     previousScene: Scene,
     player: Player,
-    state: boolean
+    state: boolean,
   ) {
     super(canvas, previousScene, player, state, './assets/img/classroom.png');
 
@@ -40,19 +40,19 @@ export default class ClassRoom5 extends Classroom {
         new Dialog(
           'You should take a break sometimes#',
           ['Yes Im tired', 'I am okay'],
-          ['Studying can be hard', 'good to know!']
+          ['Studying can be hard', 'good to know!'],
         ),
         new Dialog(
           'The cafeteria has great food!#',
           ['Ill check it out!', 'I am hungry..'],
-          ['', '']
+          ['', ''],
         ),
-      ])
+      ]),
     );
 
     // creating collectibles in the classroom
     this.collectibles.push(
-      new Hint(this.canvas.width / 1.5, this.canvas.height / 3)
+      new Hint(this.canvas.width / 1.5, this.canvas.height / 3),
     );
 
     // creating the door for the classroom
@@ -117,6 +117,7 @@ export default class ClassRoom5 extends Classroom {
           // console.log('interact with door');
           this.doorClose.play();
           // console.log(this.previousScene);
+
           this.player.setXPos(460);
           this.player.setYPos(300);
           // setting image of player according to the right character chosen

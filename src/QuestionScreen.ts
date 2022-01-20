@@ -3,9 +3,37 @@ import Room from './Room.js';
 import Question from './Question.js';
 import InteractiveScreen from './InteractiveScreen.js';
 
+<<<<<<< HEAD
 export default class QuestionScreen extends InteractiveScreen {
   private questions: Question[];
 
+=======
+export default class QuestionScreen extends Screen {
+  // Keyboardlistener to check if a key got pressed or not
+  private keyboard: KeyListener;
+
+  // Room the player have previously been
+  private previousScene: Room;
+
+  // questions displayed on the screen
+  private questions: Question[];
+
+  // next question which should show up
+  private nextQ: boolean;
+
+  // counter to show what question is being doisplayed
+  private qCounter: number;
+
+  // counter for the frames
+  private frameCounter: number = 0;
+
+  // checkup if the key got pressed successfully
+  private okPressed: boolean;
+
+  // text which should show up next
+  private textToPresent: string;
+
+>>>>>>> a4548cc16aa436073ef071d98d9d78057b7de75c
   /**
    * Creates new Question Screen
    *
@@ -13,7 +41,7 @@ export default class QuestionScreen extends InteractiveScreen {
    * @param previousScene previous scene to return to
    * @param questions an array of questions string
    */
-  constructor(
+  public constructor(
     canvas: HTMLCanvasElement,
     previousScene: Room,
     questions: Question[],
@@ -23,7 +51,73 @@ export default class QuestionScreen extends InteractiveScreen {
     // sets the questions
     this.questions = questions;
 
+<<<<<<< HEAD
     this.setTextToPresent('No answer recieved');
+=======
+    // if needed to move to the next question
+    this.nextQ = false;
+
+    // sets the counter to 0
+    this.qCounter = 0;
+
+    // sets the check up boolean
+    this.okPressed = false;
+
+    // sets the background image position
+    this.setXPos(0);
+    this.setYPos(0);
+
+    // sets the text to display
+    this.textToPresent = 'No answer recieved';
+  }
+
+  /**
+   * Checks if player wants to exit the dialog screen
+   *
+   * @returns if player pressed space key
+   */
+  public processInput(): boolean {
+    if (this.keyboard.isKeyDown(KeyListener.KEY_ESC)) {
+      return true;
+    }
+    return false;
+  }
+
+  /**
+   * changes if player wants to read next question
+   */
+  public moveBetweenQuestions(): void {
+    if (this.keyboard.isKeyDown(KeyListener.KEY_RIGHT)) {
+      // console.log('right pressed');
+
+      this.nextQ = true;
+    } else {
+      this.nextQ = false;
+    }
+  }
+
+  /**
+   * checks if player chose an answer
+   *
+   * @returns number pressed
+   */
+  public reciveAnswer(): number {
+    if (this.keyboard.isKeyDown(KeyListener.KEY_1)) {
+      this.okPressed = true;
+      return 1;
+    }
+
+    if (this.keyboard.isKeyDown(KeyListener.KEY_2)) {
+      this.okPressed = true;
+      return 2;
+    }
+
+    if (this.keyboard.isKeyDown(KeyListener.KEY_3)) {
+      this.okPressed = true;
+      return 3;
+    }
+    return 0;
+>>>>>>> a4548cc16aa436073ef071d98d9d78057b7de75c
   }
 
   /**
@@ -32,13 +126,20 @@ export default class QuestionScreen extends InteractiveScreen {
    * @param elapsed time elapsed
    * @returns previous Scene
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   public update(elapsed: number): Scene {
     // checks if player moved to next question
     this.moveBetweenInteractions();
     if (
+<<<<<<< HEAD
       this.getNextText() &&
       this.getTCounter() < this.questions.length - 1 &&
       this.getFrameCounter() === 10
+=======
+      this.nextQ
+      && this.qCounter < this.questions.length - 1
+      && this.frameCounter === 10
+>>>>>>> a4548cc16aa436073ef071d98d9d78057b7de75c
     ) {
       this.setTCounter( this.getTCounter() + 1);
       this.setTextToPresent('No answer recieved');
@@ -46,10 +147,12 @@ export default class QuestionScreen extends InteractiveScreen {
 
     const userData = this.questions[this.getTCounter()].getUserData();
     // console.log(` frame counter ${this.frameCounter}`);
+
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
     // console.log(this.qCounter);
 
-    // if player wants to exit dialog
+    // if player wants to exit the dialog
     if (this.processInput()) {
       return this.getPreviousScene();
     }
@@ -60,15 +163,27 @@ export default class QuestionScreen extends InteractiveScreen {
       if (this.getOkPressed() === false) {
         answerRecived = this.reciveAnswer();
       }
+<<<<<<< HEAD
       // console.log(`answer Recived ${answerRecived}`);
       if (answerRecived !== 0 && this.getOkPressed() === true) {
+=======
+      // console.log(`answer Recived ${answerRecived}`)
+
+      if (answerRecived !== 0 && this.okPressed === true) {
+>>>>>>> a4548cc16aa436073ef071d98d9d78057b7de75c
         // this.okPressed = false;
         this.setTextToPresent('your answer has been registered, please go to the next question >>');
       }
 
       // check if the answer chosen is correct
+<<<<<<< HEAD
       if (answerRecived === this.questions[this.getTCounter()].getRPos() + 1) {
         // console.log('right answer selected');
+=======
+      if (answerRecived === this.questions[this.qCounter].getRPos() + 1) {
+        // console.log('right answer selected')
+
+>>>>>>> a4548cc16aa436073ef071d98d9d78057b7de75c
         userData.setScore(userData.getScore() + 1);
       }
       // answerRecived = 0;
@@ -96,7 +211,7 @@ export default class QuestionScreen extends InteractiveScreen {
         this.canvas.width / 5,
         230,
         'center',
-        'Red'
+        'Red',
       );
 
       let textToWrite: string = '';
@@ -108,13 +223,14 @@ export default class QuestionScreen extends InteractiveScreen {
       for (let i = 0; i < 3; i += 1) {
         textToWrite = this.questions[this.getTCounter()].getText(i);
         // console.log(textToWrite);
+
         this.writeTextToCanvas(
           textToWrite,
           20,
           textWPos,
           textHPos,
           'left',
-          'black'
+          'black',
         );
         textHPos += 50;
       }
@@ -133,7 +249,7 @@ export default class QuestionScreen extends InteractiveScreen {
           this.canvas.width / 5,
           textHPos + 20,
           'left',
-          'black'
+          'black',
         );
         textHPos += 50;
       }
@@ -146,7 +262,7 @@ export default class QuestionScreen extends InteractiveScreen {
         this.canvas.width / 2 + 100,
         600,
         'center',
-        'Red'
+        'Red',
       );
     } else {
       this.writeTextToCanvas(
@@ -155,7 +271,7 @@ export default class QuestionScreen extends InteractiveScreen {
         this.canvas.width / 2 + 100,
         600,
         'center',
-        'Red'
+        'Red',
       );
     }
 
@@ -165,7 +281,7 @@ export default class QuestionScreen extends InteractiveScreen {
       this.canvas.width / 2,
       675,
       'center',
-      'red'
+      'red',
     );
   }
 }

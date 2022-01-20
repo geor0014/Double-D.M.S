@@ -8,18 +8,25 @@ export default class DialogScreen extends Screen {
   // Keyboardlistener so the game knows
   private keyboard: KeyListener;
 
+  // Room the player have previously been
   private previousScene: Room;
 
+  // Dialogs which show up on the screen
   private dialogs: Dialog[];
 
+  // boolean to show the next dialog in the array
   private nextD: boolean;
 
+  // counter for all the dialogs
   private dCounter: number;
 
+  // counter for the frames
   private frameCounter: number = 0;
 
+  // boolean to check if a key got pressed or not
   private okPressed: boolean;
 
+  // text which should show up on the canvas
   private textToPresent: string;
 
   /**
@@ -29,10 +36,10 @@ export default class DialogScreen extends Screen {
    * @param previousScene rerturns player to previous screen
    * @param dialogs an array of dialogs string
    */
-  constructor(
+  public constructor(
     canvas: HTMLCanvasElement,
     previousScene: Room,
-    dialogs: Dialog[]
+    dialogs: Dialog[],
   ) {
     super(canvas, './assets/img/dialogscreen.png');
 
@@ -51,12 +58,14 @@ export default class DialogScreen extends Screen {
     // counter which dialog is presented
     this.dCounter = 0;
 
+    // sets the boolean
     this.okPressed = false;
 
     // sets the background image position
     this.setXPos(0);
     this.setYPos(0);
 
+    // sets the text to present on the canvas
     this.textToPresent = '...';
   }
 
@@ -95,7 +104,8 @@ export default class DialogScreen extends Screen {
    */
   public moveBetweenDialogs(): void {
     if (this.keyboard.isKeyDown(KeyListener.KEY_RIGHT)) {
-      console.log('right pressed');
+      // console.log('right pressed');
+
       this.nextD = true;
     } else {
       this.nextD = false;
@@ -108,6 +118,7 @@ export default class DialogScreen extends Screen {
    * @param elapsed time elapsed
    * @returns previous Scene
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   public update(elapsed: number): Scene {
     // clears canvas
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -120,9 +131,9 @@ export default class DialogScreen extends Screen {
     // calls to check if player wants to move to the next dialog
     this.moveBetweenDialogs();
     if (
-      this.nextD &&
-      this.dCounter < this.dialogs.length - 1 &&
-      this.frameCounter === 10
+      this.nextD
+      && this.dCounter < this.dialogs.length - 1
+      && this.frameCounter === 10
     ) {
       this.dCounter += 1;
       this.textToPresent = '...';
@@ -178,7 +189,7 @@ export default class DialogScreen extends Screen {
         this.canvas.width / 2,
         420,
         'center',
-        'Grey'
+        'Grey',
       );
 
       let textToWrite: string = '';
@@ -190,13 +201,14 @@ export default class DialogScreen extends Screen {
       for (let i = 0; i < 3; i += 1) {
         textToWrite = this.dialogs[this.dCounter].getText(i);
         // console.log(textToWrite);
+
         this.writeTextToCanvas(
           textToWrite,
           30,
           textWPos + 150,
           textHPos,
           'center',
-          'black'
+          'black',
         );
         textHPos += 50;
       }
@@ -209,7 +221,7 @@ export default class DialogScreen extends Screen {
           this.canvas.width / 5,
           textHPos + 20,
           'left',
-          'black'
+          'black',
         );
         textHPos += 50;
       }
@@ -223,7 +235,7 @@ export default class DialogScreen extends Screen {
         this.canvas.width / 2 + 200,
         420,
         'center',
-        'Grey'
+        'Grey',
       );
     } else {
       this.writeTextToCanvas(
@@ -232,7 +244,7 @@ export default class DialogScreen extends Screen {
         this.canvas.width / 2 + 200,
         420,
         'center',
-        'Grey'
+        'Grey',
       );
     }
     this.writeTextToCanvas(
@@ -241,7 +253,7 @@ export default class DialogScreen extends Screen {
       this.canvas.width / 3,
       this.canvas.height / 4,
       'center',
-      'red'
+      'red',
     );
   }
 }

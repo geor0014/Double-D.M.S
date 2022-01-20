@@ -22,10 +22,6 @@ export default class Room extends Scene {
     hitboxes;
     constructor(canvas, imgSrc, state = false) {
         super(canvas);
-        const canvasPosition = this.canvas.getBoundingClientRect();
-        this.canvas.addEventListener('click', (event) => {
-            console.log(event.x - canvasPosition.left, event.y - canvasPosition.top);
-        });
         this.img = new Image();
         this.img.src = imgSrc;
         this.doorClose = new Audio('./assets/sound/DoorClose.ogg');
@@ -65,8 +61,8 @@ export default class Room extends Scene {
     }
     generalInteraction() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        if (this.player.isReadingHint() &&
-            this.player.getUserData().getHintAmount() > 0) {
+        if (this.player.isReadingHint()
+            && this.player.getUserData().getHintAmount() > 0) {
             this.player
                 .getUserData()
                 .setHintAmount(this.player.getUserData().getHintAmount() - 1);
@@ -95,8 +91,7 @@ export default class Room extends Scene {
                             this.player.getUserData().getQuests().push('Find backpack');
                             this.npcs.splice(i, 1);
                         }
-                        if (str.getText(0) ===
-                            'Hey there! Have you seen a teddy bear around here?') {
+                        if (str.getText(0) === 'Hey there! Have you seen a teddy bear around here?') {
                             this.player.getUserData().getQuests().push('Look for Teddy');
                             this.npcs.splice(i, 1);
                         }
@@ -115,13 +110,11 @@ export default class Room extends Scene {
                         this.player
                             .getUserData()
                             .setCandyAmount(this.player.getUserData().getCandyAmount() + 1);
-                        console.log(this.player.getUserData().getCandyAmount());
                     }
                     else if (item instanceof Hint) {
                         this.player
                             .getUserData()
                             .setHintAmount(this.player.getUserData().getHintAmount() + 1);
-                        console.log(this.player.getUserData().getHintAmount());
                     }
                 }
             });
@@ -136,7 +129,6 @@ export default class Room extends Scene {
             .getQuestItems()
             .forEach((item, i) => {
             if (this.player.collidesWith(item)) {
-                console.log(this.player.getUserData().getQuestItems());
                 if (item.getName() === 'backpack') {
                     this.player.getUserData().getQuests().splice(i, 1);
                     this.player.getUserData().getQuestItems().splice(i, 1);

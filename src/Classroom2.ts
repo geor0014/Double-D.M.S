@@ -17,7 +17,7 @@ export default class ClassRoom2 extends Classroom {
     'teddy',
     './assets/img/teddy.png',
     263,
-    580
+    580,
   );
 
   private pushOnce: boolean = true;
@@ -34,16 +34,16 @@ export default class ClassRoom2 extends Classroom {
     canvas: HTMLCanvasElement,
     previousScene: Scene,
     player: Player,
-    state: boolean
+    state: boolean,
   ) {
-    super(canvas, previousScene, player, state,'./assets/img/scienceClass.png');
+    super(canvas, previousScene, player, state, './assets/img/scienceClass.png');
 
     // creating a new computer in the classroom
     this.setComputer(new Computer(476, 247));
 
     // creating collectibles in the classroom
     this.collectibles.push(
-      new Hint(this.canvas.width / 2 - 100, this.canvas.height / 2 - 70)
+      new Hint(this.canvas.width / 2 - 100, this.canvas.height / 2 - 70),
     );
 
     // creating the door for the classroom
@@ -103,6 +103,7 @@ export default class ClassRoom2 extends Classroom {
           // console.log('interact with door');
           this.doorClose.play();
           // console.log(this.previousScene);
+
           this.player.setXPos(450);
           this.player.setYPos(300);
           // setting image of player according to the right character chosen
@@ -139,6 +140,9 @@ export default class ClassRoom2 extends Classroom {
     return null;
   }
 
+  /**
+   * Adds the ques items to the array
+   */
   private addQuestItems(): void {
     // CREATES BACKPACK
     if (this.pushOnce === true) {

@@ -1,10 +1,14 @@
 export default class MainText {
+  // text which should be displayed
   private text: string;
 
+  // text part 1
   private part1: string;
 
+  // text part 2
   private part2: string;
 
+  // text part 3
   private part3: string;
 
   /**
@@ -12,7 +16,8 @@ export default class MainText {
    *
    * @param text string
    */
-  constructor(text: string) {
+  public constructor(text: string) {
+    // sets the attributes
     this.text = text;
     this.part1 = '';
     this.part2 = '';
@@ -30,6 +35,7 @@ export default class MainText {
       this.part1 = this.text;
     }
 
+    // splits the text when it hits a #
     for (let h = 0; h <= hCount; h += 1) {
       while (this.text[i] !== '#' && i < this.text.length) {
         if (h === 0) {

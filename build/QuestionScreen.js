@@ -4,6 +4,7 @@ export default class QuestionScreen extends InteractiveScreen {
     constructor(canvas, previousScene, questions) {
         super(canvas, previousScene, './assets/img/computerScreen.png');
         this.questions = questions;
+<<<<<<< HEAD
         this.setTextToPresent('No answer recieved');
     }
     update(elapsed) {
@@ -13,6 +14,51 @@ export default class QuestionScreen extends InteractiveScreen {
             this.getFrameCounter() === 10) {
             this.setTCounter(this.getTCounter() + 1);
             this.setTextToPresent('No answer recieved');
+=======
+        this.nextQ = false;
+        this.qCounter = 0;
+        this.okPressed = false;
+        this.setXPos(0);
+        this.setYPos(0);
+        this.textToPresent = 'No answer recieved';
+    }
+    processInput() {
+        if (this.keyboard.isKeyDown(KeyListener.KEY_ESC)) {
+            return true;
+        }
+        return false;
+    }
+    moveBetweenQuestions() {
+        if (this.keyboard.isKeyDown(KeyListener.KEY_RIGHT)) {
+            this.nextQ = true;
+        }
+        else {
+            this.nextQ = false;
+        }
+    }
+    reciveAnswer() {
+        if (this.keyboard.isKeyDown(KeyListener.KEY_1)) {
+            this.okPressed = true;
+            return 1;
+        }
+        if (this.keyboard.isKeyDown(KeyListener.KEY_2)) {
+            this.okPressed = true;
+            return 2;
+        }
+        if (this.keyboard.isKeyDown(KeyListener.KEY_3)) {
+            this.okPressed = true;
+            return 3;
+        }
+        return 0;
+    }
+    update(elapsed) {
+        this.moveBetweenQuestions();
+        if (this.nextQ
+            && this.qCounter < this.questions.length - 1
+            && this.frameCounter === 10) {
+            this.qCounter += 1;
+            this.textToPresent = 'No answer recieved';
+>>>>>>> a4548cc16aa436073ef071d98d9d78057b7de75c
         }
         const userData = this.questions[this.getTCounter()].getUserData();
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);

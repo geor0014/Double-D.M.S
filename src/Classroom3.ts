@@ -22,7 +22,7 @@ export default class ClassRoom3 extends Classroom {
     canvas: HTMLCanvasElement,
     previousScene: Scene,
     player: Player,
-    state: boolean
+    state: boolean,
   ) {
     super(canvas, previousScene, player, state, './assets/img/library.png');
 
@@ -86,6 +86,7 @@ export default class ClassRoom3 extends Classroom {
           // console.log('interact with door');
           this.doorClose.play();
           // console.log(this.previousScene);
+
           this.player.setXPos(280);
           this.player.setYPos(300);
           // setting image of player according to the right character chosen
