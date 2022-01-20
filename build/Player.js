@@ -34,21 +34,12 @@ export default class Player extends GameEntity {
         this.walk = new Audio(this.walkPath);
     }
     movePlayer(canvas) {
-<<<<<<< HEAD
-        if (this.keyboard.isKeyDown(KeyListener.KEY_RIGHT) &&
-            this.getXPos() + this.getImage().width < canvas.width &&
-            (this.collision === 'none' ||
-                this.collision === 'left' ||
-                this.collision === 'bottom' ||
-                this.collision === 'top')) {
-=======
         if (this.keyboard.isKeyDown(KeyListener.KEY_RIGHT)
             && this.getXPos() + this.getImage().width < canvas.width
             && (this.collision === 'none'
                 || this.collision === 'left'
                 || this.collision === 'bottom'
                 || this.collision === 'top')) {
->>>>>>> 86bdae84640bc8b1b180d6742262bc797e494dac
             this.setXPos(this.getXPos() + this.xVelocity);
             this.walk.play();
             if (this.characterNum === 1) {
@@ -64,21 +55,12 @@ export default class Player extends GameEntity {
                 this.setImage('./assets/img/playerGirl1Right.png');
             }
         }
-<<<<<<< HEAD
-        if (this.keyboard.isKeyDown(KeyListener.KEY_LEFT) &&
-            this.getXPos() > 0 &&
-            (this.collision === 'none' ||
-                this.collision === 'right' ||
-                this.collision === 'bottom' ||
-                this.collision === 'top')) {
-=======
         if (this.keyboard.isKeyDown(KeyListener.KEY_LEFT)
             && this.getXPos() > 0
             && (this.collision === 'none'
                 || this.collision === 'right'
                 || this.collision === 'bottom'
                 || this.collision === 'top')) {
->>>>>>> 86bdae84640bc8b1b180d6742262bc797e494dac
             this.setXPos(this.getXPos() - this.xVelocity);
             this.walk.play();
             if (this.characterNum === 1) {
@@ -94,21 +76,12 @@ export default class Player extends GameEntity {
                 this.setImage('./assets/img/playerGirl1Left.png');
             }
         }
-<<<<<<< HEAD
-        if (this.keyboard.isKeyDown(KeyListener.KEY_UP) &&
-            this.getYPos() > 0 &&
-            (this.collision === 'none' ||
-                this.collision === 'left' ||
-                this.collision === 'bottom' ||
-                this.collision === 'right')) {
-=======
         if (this.keyboard.isKeyDown(KeyListener.KEY_UP)
             && this.getYPos() > 0
             && (this.collision === 'none'
                 || this.collision === 'left'
                 || this.collision === 'bottom'
                 || this.collision === 'right')) {
->>>>>>> 86bdae84640bc8b1b180d6742262bc797e494dac
             this.setYPos(this.getYPos() - this.yVelocity);
             this.walk.play();
             if (this.characterNum === 1) {
@@ -124,21 +97,12 @@ export default class Player extends GameEntity {
                 this.setImage('./assets/img/playerGirl1Up.png');
             }
         }
-<<<<<<< HEAD
-        if (this.keyboard.isKeyDown(KeyListener.KEY_DOWN) &&
-            this.getYPos() + this.getImage().height < canvas.height &&
-            (this.collision === 'none' ||
-                this.collision === 'left' ||
-                this.collision === 'right' ||
-                this.collision === 'top')) {
-=======
         if (this.keyboard.isKeyDown(KeyListener.KEY_DOWN)
             && this.getYPos() + this.getImage().height < canvas.height
             && (this.collision === 'none'
                 || this.collision === 'left'
                 || this.collision === 'right'
                 || this.collision === 'top')) {
->>>>>>> 86bdae84640bc8b1b180d6742262bc797e494dac
             this.setYPos(this.getYPos() + this.yVelocity);
             this.walk.play();
             if (this.characterNum === 1) {
@@ -175,34 +139,19 @@ export default class Player extends GameEntity {
         return false;
     }
     collidesWith(other) {
-<<<<<<< HEAD
-        if (this.getXPos() < other.getXPos() + other.getImage().width &&
-            this.getXPos() + this.getImage().width > other.getXPos() &&
-            this.getYPos() < other.getYPos() + other.getImage().height &&
-            this.getYPos() + this.getImage().height > other.getYPos()) {
-=======
         if (this.getXPos() < other.getXPos() + other.getImage().width
             && this.getXPos() + this.getImage().width > other.getXPos()
             && this.getYPos() < other.getYPos() + other.getImage().height
             && this.getYPos() + this.getImage().height > other.getYPos()) {
->>>>>>> 86bdae84640bc8b1b180d6742262bc797e494dac
             return true;
         }
         return false;
     }
     collidesWithHitbox(box) {
-<<<<<<< HEAD
-        if (this.getXPos() < box.getXPos() + box.getWidth() &&
-            this.getXPos() + this.getImage().width > box.getXPos() &&
-            this.getYPos() < box.getYPos() + box.getHeight() &&
-            this.getYPos() + this.getImage().height > box.getYPos()) {
-            console.log('collision');
-=======
         if (this.getXPos() < box.getXPos() + box.getWidth()
             && this.getXPos() + this.getImage().width > box.getXPos()
             && this.getYPos() < box.getYPos() + box.getHeight()
             && this.getYPos() + this.getImage().height > box.getYPos()) {
->>>>>>> 86bdae84640bc8b1b180d6742262bc797e494dac
             return true;
         }
         return false;
@@ -220,17 +169,8 @@ export default class Player extends GameEntity {
         return this.characterNum;
     }
     rectCollision(box, player) {
-<<<<<<< HEAD
-        const dx = box.getXPos() +
-            box.getWidth() / 2 -
-            (player.getXPos() + player.getImage().width / 2);
-        const dy = box.getYPos() +
-            box.getHeight() / 2 -
-            (player.getYPos() + player.getImage().height / 2);
-=======
         const dx = box.getXPos() + box.getWidth() / 2 - (player.getXPos() + player.getImage().width / 2);
         const dy = box.getYPos() + box.getHeight() / 2 - (player.getYPos() + player.getImage().height / 2);
->>>>>>> 86bdae84640bc8b1b180d6742262bc797e494dac
         const width = (box.getWidth() + player.getImage().width) / 2;
         const height = (box.getHeight() + player.getImage().height) / 2;
         const crossWidth = width * dy;

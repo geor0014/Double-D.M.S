@@ -7,6 +7,7 @@ import HintBuyDialog from './HintBuyDialog.js';
 export default class Cafeteria extends Room {
     previousScene;
     lunchLady;
+    staggerFrame = 8;
     constructor(canvas, previousScene, player, state) {
         super(canvas, './assets/img/diningroom.png', state);
         this.previousScene = previousScene;
@@ -25,12 +26,8 @@ export default class Cafeteria extends Room {
         this.lunchLady = new Npc('./assets/img/lunchLady.png', 300, 500, [
             new Dialog('Good day!# we have some special treats today!#', ['ohh delicious', 'I am starving'], ['I hope so, I worked hard on this', 'You should eat something']),
             new Dialog('I can trade you some candy for hints#', ['Yes please', 'No thank you'], ['There you go', 'Okay maybe later']),
-        ]);
-<<<<<<< HEAD
-        this.collectibles.push(new Candy(this.canvas.width / 2, this.canvas.height / 2));
-=======
+        ], true);
         this.collectibles.push(new Candy(this.canvas.width / 2, this.canvas.height / 3));
->>>>>>> 86bdae84640bc8b1b180d6742262bc797e494dac
         this.doors.push(new Door('./assets/img/cafeteriaDoor.png', 907, 362));
         this.insertHitbox(955, 356.5, 10, 160, 1);
         this.insertHitbox(906, 563.5, 45, 100, 1);
@@ -46,16 +43,11 @@ export default class Cafeteria extends Room {
     }
     update(elapsed) {
         const nextScene = this.generalInteraction();
+        this.renderStars();
         if (this.player.isInteracting()) {
             for (let i = 0; i < this.doors.length; i += 1) {
                 if (this.player.collidesWith(this.doors[i])) {
-<<<<<<< HEAD
-                    console.log('interact with door');
                     this.doorClose.play();
-                    console.log(this.previousScene);
-=======
-                    this.doorClose.play();
->>>>>>> 86bdae84640bc8b1b180d6742262bc797e494dac
                     this.player.setXPos(284);
                     this.player.setYPos(250);
                     const cNum = this.player.getCharacterNum();
@@ -78,10 +70,6 @@ export default class Cafeteria extends Room {
                 return new HintBuyDialog(this.canvas, this, this.lunchLady.getDialogs(), this.player.getUserData());
             }
         }
-<<<<<<< HEAD
-        console.log(`score is ${this.player.getUserData().getScore()}`);
-=======
->>>>>>> 86bdae84640bc8b1b180d6742262bc797e494dac
         if (nextScene !== null) {
             return nextScene;
         }
@@ -92,6 +80,18 @@ export default class Cafeteria extends Room {
         this.lunchLady.draw(this.ctx);
         super.render();
         this.drawHitBoxes();
+    }
+    renderStars() {
+        this.gameFrame += 1;
+        if (this.gameFrame % this.staggerFrame === 0) {
+            if (this.frameX < 9) {
+                this.frameX += 1;
+            }
+            else {
+                this.frameX = 0;
+            }
+        }
+        this.lunchLady.setFrameX(this.frameX);
     }
 }
 //# sourceMappingURL=Cafeteria.js.map

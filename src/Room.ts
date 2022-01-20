@@ -52,6 +52,15 @@ export default abstract class Room extends Scene {
   // the hitboxes
   protected hitboxes: Hitbox[];
 
+  // frame so the image knows what to show
+  protected frameX = 0;
+
+  // frame so the image knows what to show
+  protected frameY = 0;
+
+  // frame counter of the update
+  protected gameFrame = 0;
+
   /**
    * Create a new room
    *
@@ -63,7 +72,7 @@ export default abstract class Room extends Scene {
     canvas: HTMLCanvasElement,
     imgSrc: string,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    state: boolean = false,
+    state: boolean = false
   ) {
     super(canvas);
 
@@ -173,8 +182,8 @@ export default abstract class Room extends Scene {
 
     // reading hint
     if (
-      this.player.isReadingHint()
-      && this.player.getUserData().getHintAmount() > 0
+      this.player.isReadingHint() &&
+      this.player.getUserData().getHintAmount() > 0
     ) {
       this.player
         .getUserData()
@@ -187,7 +196,7 @@ export default abstract class Room extends Scene {
       return new HintScreen(
         this.canvas,
         this,
-        this.player.getUserData().getHintNum() - 1,
+        this.player.getUserData().getHintNum() - 1
       );
     }
 
@@ -219,7 +228,8 @@ export default abstract class Room extends Scene {
             }
 
             if (
-              str.getText(0) === 'Hey there! Have you seen a teddy bear around here?'
+              str.getText(0) ===
+              'Hey there! Have you seen a teddy bear around here?'
             ) {
               this.player.getUserData().getQuests().push('Look for Teddy');
               this.npcs.splice(i, 1);
@@ -311,7 +321,7 @@ export default abstract class Room extends Scene {
         620,
         647,
         'left',
-        'black',
+        'black'
       );
     }
 
@@ -322,7 +332,7 @@ export default abstract class Room extends Scene {
         620,
         682,
         'left',
-        'black',
+        'black'
       );
     }
     if (this.player.getUserData().getQuests()[2]) {
@@ -332,7 +342,7 @@ export default abstract class Room extends Scene {
         620,
         714,
         'left',
-        'black',
+        'black'
       );
     }
   }
@@ -386,7 +396,7 @@ export default abstract class Room extends Scene {
       this.canvas.width / 2,
       this.canvas.height - 50,
       'center',
-      'Blue',
+      'Blue'
     );
 
     this.writeTextToCanvas(
@@ -395,7 +405,7 @@ export default abstract class Room extends Scene {
       this.canvas.width / 2,
       this.canvas.height - 80,
       'center',
-      'Blue',
+      'Blue'
     );
 
     // DRAWS NPCS

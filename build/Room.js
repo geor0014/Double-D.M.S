@@ -20,15 +20,11 @@ export default class Room extends Scene {
     doorOpen;
     doorClose;
     hitboxes;
+    frameX = 0;
+    frameY = 0;
+    gameFrame = 0;
     constructor(canvas, imgSrc, state = false) {
         super(canvas);
-<<<<<<< HEAD
-        const canvasPosition = this.canvas.getBoundingClientRect();
-        this.canvas.addEventListener('click', (event) => {
-            console.log(event.x - canvasPosition.left, event.y - canvasPosition.top);
-        });
-=======
->>>>>>> 86bdae84640bc8b1b180d6742262bc797e494dac
         this.img = new Image();
         this.img.src = imgSrc;
         this.doorClose = new Audio('./assets/sound/DoorClose.ogg');
@@ -68,13 +64,8 @@ export default class Room extends Scene {
     }
     generalInteraction() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-<<<<<<< HEAD
         if (this.player.isReadingHint() &&
             this.player.getUserData().getHintAmount() > 0) {
-=======
-        if (this.player.isReadingHint()
-            && this.player.getUserData().getHintAmount() > 0) {
->>>>>>> 86bdae84640bc8b1b180d6742262bc797e494dac
             this.player
                 .getUserData()
                 .setHintAmount(this.player.getUserData().getHintAmount() - 1);
@@ -103,12 +94,8 @@ export default class Room extends Scene {
                             this.player.getUserData().getQuests().push('Find backpack');
                             this.npcs.splice(i, 1);
                         }
-<<<<<<< HEAD
                         if (str.getText(0) ===
                             'Hey there! Have you seen a teddy bear around here?') {
-=======
-                        if (str.getText(0) === 'Hey there! Have you seen a teddy bear around here?') {
->>>>>>> 86bdae84640bc8b1b180d6742262bc797e494dac
                             this.player.getUserData().getQuests().push('Look for Teddy');
                             this.npcs.splice(i, 1);
                         }
@@ -127,19 +114,11 @@ export default class Room extends Scene {
                         this.player
                             .getUserData()
                             .setCandyAmount(this.player.getUserData().getCandyAmount() + 1);
-<<<<<<< HEAD
-                        console.log(this.player.getUserData().getCandyAmount());
-=======
->>>>>>> 86bdae84640bc8b1b180d6742262bc797e494dac
                     }
                     else if (item instanceof Hint) {
                         this.player
                             .getUserData()
                             .setHintAmount(this.player.getUserData().getHintAmount() + 1);
-<<<<<<< HEAD
-                        console.log(this.player.getUserData().getHintAmount());
-=======
->>>>>>> 86bdae84640bc8b1b180d6742262bc797e494dac
                     }
                 }
             });
@@ -154,10 +133,6 @@ export default class Room extends Scene {
             .getQuestItems()
             .forEach((item, i) => {
             if (this.player.collidesWith(item)) {
-<<<<<<< HEAD
-                console.log(this.player.getUserData().getQuestItems());
-=======
->>>>>>> 86bdae84640bc8b1b180d6742262bc797e494dac
                 if (item.getName() === 'backpack') {
                     this.player.getUserData().getQuests().splice(i, 1);
                     this.player.getUserData().getQuestItems().splice(i, 1);

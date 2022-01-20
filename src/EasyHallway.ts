@@ -45,6 +45,9 @@ export default class EasyHallway extends Room {
   // attribute to store the boy bathrrom
   private bathroom2: Bathroom2;
 
+  // set frames
+  private staggerFrame = 8;
+
   /**
    * Initialises every attribute
    *
@@ -55,7 +58,7 @@ export default class EasyHallway extends Room {
   public constructor(
     canvas: HTMLCanvasElement,
     mainHallway: Room,
-    player: Player,
+    player: Player
   ) {
     super(canvas, './assets/img/easyHallway.png');
     // console.log('creating easy hallway');
@@ -84,47 +87,53 @@ export default class EasyHallway extends Room {
 
     // creating collectibles
     this.collectibles.push(
-      new Hint(this.canvas.width / 3, this.canvas.height / 3),
+      new Hint(this.canvas.width / 3, this.canvas.height / 3)
     );
 
     // creates npcs with their dialogs for this room
     this.npcs.push(
-      new Npc('./assets/img/student1BackFacing.png', 575, 495, [
-        new Dialog(
-          'Hello, I lost my backpack....#',
-          ['really?', 'oh no'],
-          ['yes..', 'all my things are there'],
-        ),
-        new Dialog(
-          'Can you please look for it and bring it back to me tomorrow?#',
-          ['Sure!', 'okay'],
-          ['', ''],
-        ),
-      ]),
+      new Npc(
+        './assets/img/student1BackFacing.png',
+        575,
+        495,
+        [
+          new Dialog(
+            'Hello, I lost my backpack....#',
+            ['really?', 'oh no'],
+            ['yes..', 'all my things are there']
+          ),
+          new Dialog(
+            'Can you please look for it and bring it back to me tomorrow?#',
+            ['Sure!', 'okay'],
+            ['', '']
+          ),
+        ],
+        true
+      ),
       new Npc('./assets/img/blackHairStudentLeftFacing.png', 195, 315, [
         new Dialog(
           'There are some things you should never share!#',
           ['I know that', 'ok..'],
-          ['Good!', 'I am scared'],
+          ['Good!', 'I am scared']
         ),
         new Dialog(
           'I hope she will not be bullied#',
           ['Me too!', '...'],
-          ['', ''],
+          ['', '']
         ),
       ]),
       new Npc('./assets/img/redHairStudentRightFacing.png', 155, 315, [
         new Dialog(
           'Did you hear about Jessica?#',
           ['No..', 'What happaned?'],
-          ['How not?', 'The picture!'],
+          ['How not?', 'The picture!']
         ),
         new Dialog(
           'Cant believe she shared that picture :O#',
           ['Didnt see it', '...'],
-          ['', ''],
+          ['', '']
         ),
-      ]),
+      ])
     );
 
     // creats the doors in the hallway
@@ -161,6 +170,9 @@ export default class EasyHallway extends Room {
     // calling general checkups from Room class
     const nextScene: Scene = this.generalInteraction();
     const cNum: number = this.player.getCharacterNum();
+
+    // renders the stars
+    this.renderStars();
 
     // LEAVES EASY HALLWAY
     if (this.player.getXPos() >= 969 && this.player.getYPos() >= 309.5) {
@@ -207,7 +219,7 @@ export default class EasyHallway extends Room {
                 this.canvas,
                 this,
                 this.player,
-                this.isMenuShowing,
+                this.isMenuShowing
               );
               this.room1Interact = true;
             }
@@ -221,7 +233,7 @@ export default class EasyHallway extends Room {
                 this.canvas,
                 this,
                 this.player,
-                this.isMenuShowing,
+                this.isMenuShowing
               );
               this.room2Interact = true;
             }
@@ -236,7 +248,7 @@ export default class EasyHallway extends Room {
                 this.canvas,
                 this,
                 this.player,
-                this.isMenuShowing,
+                this.isMenuShowing
               );
               this.room3Interact = true;
             }
@@ -253,7 +265,7 @@ export default class EasyHallway extends Room {
                 this.canvas,
                 this,
                 this.player,
-                this.isMenuShowing,
+                this.isMenuShowing
               );
               this.bathroomInteractGirl = true;
             }
@@ -270,7 +282,7 @@ export default class EasyHallway extends Room {
                 this.canvas,
                 this,
                 this.player,
-                this.isMenuShowing,
+                this.isMenuShowing
               );
               this.bathroomInteractBoy = true;
             }
@@ -291,9 +303,24 @@ export default class EasyHallway extends Room {
    */
   public render(): void {
     this.draw(this.ctx);
+    // this.npcs[0].drawStar(this.ctx, 576, 455);
 
     // calls the render function of the parent
     super.render();
     this.drawHitBoxes();
+  }
+
+  private renderStars() {
+    this.gameFrame += 1;
+    // STAR RENDERING
+    if (this.gameFrame % this.staggerFrame === 0) {
+      if (this.frameX < 9) {
+        this.frameX += 1;
+      } else {
+        this.frameX = 0;
+      }
+    }
+    // passes the frame to the NPC class
+    this.npcs[0].setFrameX(this.frameX);
   }
 }

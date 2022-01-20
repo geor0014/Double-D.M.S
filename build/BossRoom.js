@@ -10,8 +10,6 @@ export default class BossRoom extends Room {
     questions;
     boss;
     bossNpc;
-    frameY = 0;
-    gameFrame = 0;
     staggerFrame = 11;
     endingScreen = false;
     music;
@@ -67,13 +65,7 @@ export default class BossRoom extends Room {
             }
             for (let i = 0; i < this.doors.length; i += 1) {
                 if (this.player.collidesWith(this.doors[i])) {
-<<<<<<< HEAD
-                    console.log('interact with door');
                     this.doorClose.play();
-                    console.log(this.previousScene);
-=======
-                    this.doorClose.play();
->>>>>>> 86bdae84640bc8b1b180d6742262bc797e494dac
                     this.player.setXPos(521);
                     this.player.setYPos(235);
                     const cNum = this.player.getCharacterNum();

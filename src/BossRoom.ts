@@ -24,12 +24,6 @@ export default class BossRoom extends Room {
   // the npc which the player interacts with to talk to the boss
   private bossNpc: Npc;
 
-  // frame so the image knows what to show
-  private frameY = 0;
-
-  // frame counter of the update
-  private gameFrame = 0;
-
   // set frames
   private staggerFrame = 11;
 
@@ -226,6 +220,7 @@ export default class BossRoom extends Room {
       }
       return new SadEnding(this.canvas, this.player.getCharacterNum());
     }
+
     // BOSS RENDERING
     if (this.gameFrame % this.staggerFrame === 0) {
       if (this.frameY < 3) {
