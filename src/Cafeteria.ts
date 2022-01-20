@@ -86,7 +86,7 @@ export default class Cafeteria extends Room {
 
     // creating collectibles in the classroom
     this.collectibles.push(
-      new Candy(this.canvas.width / 2, this.canvas.height / 2)
+      new Candy(this.canvas.width / 2, this.canvas.height / 3)
     );
 
     this.doors.push(new Door('./assets/img/cafeteriaDoor.png', 907, 362));

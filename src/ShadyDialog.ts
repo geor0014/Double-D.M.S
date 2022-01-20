@@ -22,6 +22,7 @@ export default class ShadyDialog extends Screen {
 
   private textToPresent: string;
 
+  // stay!!
   private characterNum: number;
 
   /**

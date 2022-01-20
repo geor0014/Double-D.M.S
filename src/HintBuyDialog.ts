@@ -22,6 +22,7 @@ export default class CandyBuyDialog extends Screen {
 
   private textToPresent: string;
 
+  // stay!!
   private userData: UserData;
 
   /**
@@ -148,9 +149,8 @@ export default class CandyBuyDialog extends Screen {
             if (this.userData.getCandyAmount() > 1) {
               this.userData.setCandyAmount(candyAmount - 2);
               this.userData.setHintAmount(hintAmount + 1);
-              this.textToPresent = `${
-                this.dialogs[this.dCounter].getReplies()[0]
-              }`;
+              this.textToPresent = `${this.dialogs[this.dCounter].getReplies()[0]
+                }`;
             } else {
               this.textToPresent =
                 'You dont have enough candy, 2 candy for 1 hint';
