@@ -7,6 +7,10 @@ export default class QuestionScreen extends InteractiveScreen {
   // questions displayed on the screen
   private questions: Question[];
 
+  private questoinPick: HTMLAudioElement;
+
+  private questoinSelect: HTMLAudioElement;
+
   /**
    * Creates new Question Screen
    *
@@ -17,12 +21,20 @@ export default class QuestionScreen extends InteractiveScreen {
   public constructor(
     canvas: HTMLCanvasElement,
     previousScene: Room,
-    questions: Question[],
+    questions: Question[]
   ) {
     super(canvas, previousScene, './assets/img/computerScreen.png');
 
     // sets the questions
     this.questions = questions;
+    this.questoinPick = new Audio();
+    this.questoinSelect = new Audio();
+
+    this.questoinPick.src = './assets/sound/questionPick.wav';
+    this.questoinSelect.src = './assets/sound/questionSelect.wav';
+
+    this.questoinPick.volume = 0.2;
+    this.questoinSelect.volume = 0.2;
 
     this.setTextToPresent('No answer recieved');
   }
@@ -42,6 +54,7 @@ export default class QuestionScreen extends InteractiveScreen {
       this.getTCounter() < this.questions.length - 1 &&
       this.getFrameCounter() === 10
     ) {
+      this.questoinSelect.play();
       this.setImage('./assets/img/computerScreen.png');
       this.setOkPressed(false);
       this.setTCounter(this.getTCounter() + 1);
@@ -68,6 +81,7 @@ export default class QuestionScreen extends InteractiveScreen {
       }
       // console.log(`answer Recived ${answerRecived}`);
       if (answerRecived !== 0 && this.getOkPressed() === true) {
+        this.questoinPick.play();
         if (answerRecived === 1) {
           this.setImage('./assets/img/computerScreen1.png');
         } else if (answerRecived === 2) {
@@ -75,10 +89,15 @@ export default class QuestionScreen extends InteractiveScreen {
         } else {
           this.setImage('./assets/img/computerScreen3.png');
         }
-        this.setTextToPresent('your answer has been registered, please go to the next question >>');
+        this.setTextToPresent(
+          'your answer has been registered, please go to the next question >>'
+        );
 
         // check if the answer chosen is correct
-        if (answerRecived === this.questions[this.getTCounter()].getRPos() + 1) {
+        if (
+          answerRecived ===
+          this.questions[this.getTCounter()].getRPos() + 1
+        ) {
           // console.log('right answer selected');
           userData.setScore(userData.getScore() + 1);
         }
@@ -108,7 +127,7 @@ export default class QuestionScreen extends InteractiveScreen {
         this.canvas.width / 5,
         230,
         'center',
-        'Red',
+        'Red'
       );
 
       let textToWrite: string = '';
@@ -127,7 +146,7 @@ export default class QuestionScreen extends InteractiveScreen {
           textWPos,
           textHPos,
           'left',
-          'black',
+          'black'
         );
         textHPos += 50;
       }
@@ -135,9 +154,13 @@ export default class QuestionScreen extends InteractiveScreen {
       // draws possible answers
       for (let i = 0; i <= 2; i += 1) {
         if (this.questions[this.getTCounter()].getRPos() === i) {
-          textToWrite = `${i + 1} ${this.questions[this.getTCounter()].getRAns()}`;
+          textToWrite = `${i + 1} ${this.questions[
+            this.getTCounter()
+          ].getRAns()}`;
         } else if (j <= 1) {
-          textToWrite = `${i + 1} ${this.questions[this.getTCounter()].getWAns(j)}`;
+          textToWrite = `${i + 1} ${this.questions[this.getTCounter()].getWAns(
+            j
+          )}`;
           j += 1;
         }
         this.writeTextToCanvas(
@@ -146,7 +169,7 @@ export default class QuestionScreen extends InteractiveScreen {
           this.canvas.width / 5,
           textHPos + 20,
           'left',
-          'black',
+          'black'
         );
         textHPos += 50;
       }
@@ -159,7 +182,7 @@ export default class QuestionScreen extends InteractiveScreen {
         this.canvas.width / 2 + 100,
         600,
         'center',
-        'Red',
+        'Red'
       );
     } else {
       this.writeTextToCanvas(
@@ -168,7 +191,7 @@ export default class QuestionScreen extends InteractiveScreen {
         this.canvas.width / 2 + 100,
         600,
         'center',
-        'Red',
+        'Red'
       );
     }
 
@@ -178,7 +201,7 @@ export default class QuestionScreen extends InteractiveScreen {
       this.canvas.width / 2,
       675,
       'center',
-      'red',
+      'red'
     );
   }
 }

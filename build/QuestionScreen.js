@@ -1,9 +1,17 @@
 import InteractiveScreen from './InteractiveScreen.js';
 export default class QuestionScreen extends InteractiveScreen {
     questions;
+    questoinPick;
+    questoinSelect;
     constructor(canvas, previousScene, questions) {
         super(canvas, previousScene, './assets/img/computerScreen.png');
         this.questions = questions;
+        this.questoinPick = new Audio();
+        this.questoinSelect = new Audio();
+        this.questoinPick.src = './assets/sound/questionPick.wav';
+        this.questoinSelect.src = './assets/sound/questionSelect.wav';
+        this.questoinPick.volume = 0.2;
+        this.questoinSelect.volume = 0.2;
         this.setTextToPresent('No answer recieved');
     }
     update(elapsed) {
@@ -11,6 +19,7 @@ export default class QuestionScreen extends InteractiveScreen {
         if (this.getNextText() &&
             this.getTCounter() < this.questions.length - 1 &&
             this.getFrameCounter() === 10) {
+            this.questoinSelect.play();
             this.setImage('./assets/img/computerScreen.png');
             this.setOkPressed(false);
             this.setTCounter(this.getTCounter() + 1);
@@ -28,6 +37,7 @@ export default class QuestionScreen extends InteractiveScreen {
                 answerRecived = this.reciveAnswer();
             }
             if (answerRecived !== 0 && this.getOkPressed() === true) {
+                this.questoinPick.play();
                 if (answerRecived === 1) {
                     this.setImage('./assets/img/computerScreen1.png');
                 }
@@ -38,7 +48,8 @@ export default class QuestionScreen extends InteractiveScreen {
                     this.setImage('./assets/img/computerScreen3.png');
                 }
                 this.setTextToPresent('your answer has been registered, please go to the next question >>');
-                if (answerRecived === this.questions[this.getTCounter()].getRPos() + 1) {
+                if (answerRecived ===
+                    this.questions[this.getTCounter()].getRPos() + 1) {
                     userData.setScore(userData.getScore() + 1);
                 }
             }
