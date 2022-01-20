@@ -13,7 +13,6 @@ export default class UserData {
         this.candyAmount = 0;
         this.score = 0;
         this.hintNum = 0;
-        const questItems = new Set();
     }
     getHintNum() {
         return this.hintNum;

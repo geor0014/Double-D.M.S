@@ -124,6 +124,7 @@ export default class ClassRoom4 extends Room {
           // console.log('interact with door');
           this.doorClose.play();
           // console.log(this.previousScene);
+
           this.player.setXPos(290);
           this.player.setYPos(300);
           // setting image of player according to the right character chosen
@@ -165,8 +166,8 @@ export default class ClassRoom4 extends Room {
   public render(): void {
     this.draw(this.ctx);
     this.drawHitBoxes();
-
     this.computer.draw(this.ctx);
+
     // calls the render function of the parent aka ROOM
     super.render();
   }

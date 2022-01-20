@@ -10,31 +10,41 @@ import DifficultHallway from './DifficultHallway.js';
 import Player from './Player.js';
 import BossRoom from './BossRoom.js';
 import Dialog from './Dialog.js';
-import Hitbox from './Hitbox.js';
 import QuestItem from './QuestItem.js';
 import Cafeteria from './Cafeteria.js';
 
 export default class MainHallway extends Room {
+  // boolean to create the boss room once only
   private bRoomInteract: boolean;
 
+  // the bossroom itself
   private bossRoom: BossRoom;
 
+  // boolean to create the easy hallway once only
   private eHallInteract: boolean;
 
+  // the easy hallway itself
   private easyHall: EasyHallway;
 
+  // boolean to create the difficult hallway once only
   private dHallInteract: boolean;
 
+  // the difficult hallway itself
   private diffHall: DifficultHallway;
 
+  // quest item backpack
   private backpack: QuestItem;
 
+  // boolean so the doll only appears once
   private pushOnce: boolean = true;
 
+  // text which shows on the canvas upon entering if not enough score
   private textToPresent: string = '';
 
+  // boolean to create the cafeteria once only
   private cafeteriaBool: boolean = false;
 
+  // the cafeteria itself
   private cafeteria: Cafeteria;
 
   /**
@@ -66,12 +76,12 @@ export default class MainHallway extends Room {
     // creating collectibles
     this.collectibles.push(
       new Candy(312, 376.5),
-      new Hint(this.canvas.width / 3, this.canvas.height / 1.5)
+      new Hint(this.canvas.width / 3, this.canvas.height / 1.5),
     );
 
     // creating the door
     this.doors.push(
-      new Door('./assets/img/boss-room-door-closed.png', 511, 412)
+      new Door('./assets/img/boss-room-door-closed.png', 511, 412),
     );
     this.doors.push(new Door('./assets/img/cafeteria-door.png', 284, 160));
 
@@ -81,28 +91,30 @@ export default class MainHallway extends Room {
         new Dialog(
           'Heyy how are you today?#',
           ['Good Thank you!', 'Excited for my birthday!'],
-          ['Glad to hear that', 'Happy Birthday!']
+          ['Glad to hear that', 'Happy Birthday!'],
         ),
         new Dialog(
           'Good luck with your exams!#',
           ['Thanks!', 'Thank you'],
-          ['', '']
+          ['', ''],
         ),
-      ])
+      ]),
     );
 
+    // creates the backpack
     this.backpack = new QuestItem(
       'backpack',
       './assets/img/backpack.png',
       682,
-      318.5
+      318.5,
     );
 
+    // sets the music of the footsteps of the player
     this.player.setWalkPath('./assets/sound/stoneWalk.ogg');
 
-    console.log(this.player.getWalkPath());
+    // console.log(this.player.getWalkPath());
 
-    // HITBOXS
+    // Adds all the hitboxes to the bathroom
     this.insertHitbox(382, 101, 300, 300, 1);
     this.insertHitbox(176, 102, 170, 105, 1);
     this.insertHitbox(150, 260, 50, 200, 1);
@@ -122,6 +134,7 @@ export default class MainHallway extends Room {
    * @param elapsed a number
    * @returns a scene or null
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   public update(elapsed: number): Scene {
     const nextScene: Scene = this.generalInteraction();
 
@@ -134,7 +147,8 @@ export default class MainHallway extends Room {
       // for (let i = 0; i < this.doors.length; i += 1) {
       if (this.player.collidesWith(this.doors[0])) {
         if (this.player.getUserData().getScore() > 12) {
-          console.log('interact with door');
+          // console.log('interact with door');
+
           this.doorOpen.play();
           if (this.bRoomInteract === false) {
             this.bossRoom = new BossRoom(this.canvas, this, this.player);
@@ -142,8 +156,7 @@ export default class MainHallway extends Room {
           }
           return this.bossRoom;
         }
-        this.textToPresent =
-          'You cant access this room! maybe youre not worthy enough (evil laugh)';
+        this.textToPresent = 'You cant access this room! maybe youre not worthy enough (evil laugh)';
         // WITH CAFETERIA
       } else if (this.player.collidesWith(this.doors[1])) {
         this.doorOpen.play();
@@ -184,8 +197,7 @@ export default class MainHallway extends Room {
         this.player.setYPos(335);
         return this.diffHall;
       }
-      this.textToPresent =
-        'Sorry you cant enter here yet you need at least 4 points!';
+      this.textToPresent = 'Sorry you cant enter here yet you need at least 4 points!';
     }
     this.addQuestItems();
     // according to the general checks in room
@@ -196,6 +208,9 @@ export default class MainHallway extends Room {
     return null;
   }
 
+  /**
+   * Adds the ques items to the array
+   */
   private addQuestItems(): void {
     // CREATES BACKPACK
     if (this.pushOnce === true) {
@@ -236,10 +251,12 @@ export default class MainHallway extends Room {
       this.canvas.width / 2,
       75,
       'center',
-      'red'
+      'red',
     );
 
+    // resets the text to show on the canvas
     this.textToPresent = '';
+
     // console.log(this.player.getXPos(), this.player.getYPos());
   }
 }

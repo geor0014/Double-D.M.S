@@ -8,31 +8,34 @@ import ClassRoom6 from './Classroom6.js';
 import Dialog from './Dialog.js';
 import Npc from './Npc.js';
 import QuestItem from './QuestItem.js';
-import Hitbox from './Hitbox.js';
 
 export default class DifficultHallway extends Room {
+  // attribute to store the mainhallway
   private mainHallway: Room;
 
+  // interaction for the first classroom in this hallway
   private room4Interact: boolean;
 
+  // interaction for the second classroom in this hallway
   private room5Interact: boolean;
 
+  // interaction for the third classroom in this hallway
   private room6Interact: boolean;
 
+  // attribute to store the first classroom in this hallway
   private class4: ClassRoom4;
 
+  // attribute to store the second classroom in this hallway
   private class5: ClassRoom5;
 
+  // attribute to store the third classroom in this hallway
   private class6: ClassRoom6;
 
-  private doll: QuestItem = new QuestItem(
-    'doll',
-    './assets/img/doll.png',
-    930,
-    471.5
-  );
+  // attribute for the doll, needed for a quest
+  private doll: QuestItem;
 
-  private pushOnce: boolean = true;
+  // boolean so the doll only appears once
+  private pushOnce: boolean;
 
   /**
    * Initialises every attribute
@@ -44,16 +47,19 @@ export default class DifficultHallway extends Room {
   public constructor(
     canvas: HTMLCanvasElement,
     mainHallway: Room,
-    player: Player
+    player: Player,
   ) {
     super(canvas, './assets/img/difficultHallway.png');
 
-    console.log('creating difficult hallway');
+    // console.log('creating difficult hallway');
 
     // sets the classrooms to not interacted
     this.room4Interact = false;
     this.room5Interact = false;
     this.room6Interact = false;
+
+    // sets the boolean for the doll
+    this.pushOnce = true;
 
     // sets previous scene
     this.mainHallway = mainHallway;
@@ -76,38 +82,42 @@ export default class DifficultHallway extends Room {
         new Dialog(
           'I heard there is this weird dude in the bathroom#',
           ['really?', 'oh no...'],
-          ['YES!', 'He is creepy..']
+          ['YES!', 'He is creepy..'],
         ),
         new Dialog(
           'I am too scared to go there#',
           ['Me too!', 'Ill go!'],
-          ['', '']
+          ['', ''],
         ),
       ]),
       new Npc('./assets/img/student-blue-hair-faced.png', 532, 300, [
         new Dialog(
           'Hey there! Have you seen a teddy bear around here?#',
           ['No..', 'Dont think so...'],
-          ['Oh...', 'oh...']
+          ['Oh...', 'oh...'],
         ),
         new Dialog(
           'I lost mine. If you see it, can you bring it to me tomorrow?#',
           ['Sure!', 'Yeah why not'],
-          ['', '']
+          ['', ''],
         ),
-      ])
+      ]),
     );
-
-    // PLAYER POSITTION UPON ENTERING
-    // this.player.setXPos(13);
-    // this.player.setYPos(335);
 
     // creats the doors in the hallway
     this.doors.push(new Door('./assets/img/door1.png', 290, 228.5));
     this.doors.push(new Door('./assets/img/door1.png', 460, 228.5));
     this.doors.push(new Door('./assets/img/door1.png', 650, 228.5));
 
-    // HITBOX
+    // creates the doll
+    this.doll = new QuestItem(
+      'doll',
+      './assets/img/doll.png',
+      930,
+      471.5,
+    );
+
+    // Adds all the hitboxes to the bathroom
     this.insertHitbox(105, 305, 150, 5, 1);
     this.insertHitbox(276, 176, 5, 90, 1);
     this.insertHitbox(323, 202, 650, 5, 1);
@@ -120,6 +130,9 @@ export default class DifficultHallway extends Room {
     this.insertHitbox(320, 246, 500, 5, 1);
   }
 
+  /**
+   * Adds the ques items to the array
+   */
   private addQuestItems(): void {
     // CREATES BACKPACK
     if (this.pushOnce === true) {
@@ -161,7 +174,7 @@ export default class DifficultHallway extends Room {
       } else if (cNum === 4) {
         this.player.setImage('./assets/img/player-girl1-left.png');
       }
-      console.log('main halwway return');
+      // console.log('main halwway return');
       return this.mainHallway;
     }
 
@@ -170,7 +183,8 @@ export default class DifficultHallway extends Room {
       // WITH DOORS
       for (let i = 0; i < this.doors.length; i += 1) {
         if (this.player.collidesWith(this.doors[i])) {
-          console.log('interact with door');
+          // console.log('interact with door');
+
           // setting player starter position and image in the classrooms
           this.player.setXPos(911);
           this.player.setYPos(473);
@@ -193,7 +207,7 @@ export default class DifficultHallway extends Room {
                 this.canvas,
                 this,
                 this.player,
-                this.isMenuShowing
+                this.isMenuShowing,
               );
               this.room4Interact = true;
             }
@@ -207,7 +221,7 @@ export default class DifficultHallway extends Room {
                 this.canvas,
                 this,
                 this.player,
-                this.isMenuShowing
+                this.isMenuShowing,
               );
               this.room5Interact = true;
             }
@@ -222,7 +236,7 @@ export default class DifficultHallway extends Room {
                 this.canvas,
                 this,
                 this.player,
-                this.isMenuShowing
+                this.isMenuShowing,
               );
               this.room6Interact = true;
             }
@@ -255,6 +269,7 @@ export default class DifficultHallway extends Room {
         if (item.getName() === 'doll') item.draw(this.ctx);
       });
 
+    // calls the render function of the parent
     super.render();
 
     this.drawHitBoxes();

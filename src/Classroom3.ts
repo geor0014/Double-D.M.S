@@ -119,6 +119,7 @@ export default class ClassRoom3 extends Room {
           // console.log('interact with door');
           this.doorClose.play();
           // console.log(this.previousScene);
+
           this.player.setXPos(280);
           this.player.setYPos(300);
           // setting image of player according to the right character chosen

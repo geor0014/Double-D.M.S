@@ -2,12 +2,16 @@ import MainText from './MainText.js';
 import UserData from './UserData.js';
 
 export default class Question extends MainText {
+  // right answer to the displayed question
   private rightAnswer: string;
 
+  // wrong answeres to the displayed question
   private wrongAnswers: string[] = [];
 
+  // position of the correct answer
   private rAnsPosition: number;
 
+  // userdata of the player
   private userData: UserData;
 
   /**
@@ -19,14 +23,15 @@ export default class Question extends MainText {
    * @param wAns1 wrong ans 1
    * @param wAns2 wrong ans 2
    */
-  constructor(
+  public constructor(
     userData: UserData,
     qText: string,
     rAns: string,
     wAns1: string,
-    wAns2: string
+    wAns2: string,
   ) {
     super(qText);
+    // sets the attributes
     this.userData = userData;
     this.rightAnswer = rAns;
     this.wrongAnswers.push(wAns1, wAns2);

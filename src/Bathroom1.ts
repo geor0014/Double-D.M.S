@@ -20,6 +20,7 @@ export default class Bathroom1 extends Room {
   // Boolean to interact with Shady Guy
   private interactShady: boolean;
 
+  // attribute for the audio of shady guy
   private shadyGuyTheme: HTMLAudioElement;
 
   /**
@@ -110,6 +111,7 @@ export default class Bathroom1 extends Room {
     this.insertHitbox(170, 179.5, 21, 370, 1);
     this.insertHitbox(188, 122, 720, 10, 1);
 
+    // sets the music for shady guy
     this.shadyGuyTheme = new Audio('./assets/sound/shady.wav');
     this.shadyGuyTheme.volume = 0.2;
     setTimeout(() => this.shadyGuyTheme.play(), 100);
@@ -134,11 +136,14 @@ export default class Bathroom1 extends Room {
       // WITH DOORS
       for (let i = 0; i < this.doors.length; i += 1) {
         if (this.player.collidesWith(this.doors[i])) {
-          console.log('interact with door');
+          // console.log('interact with door');
+
           this.doorClose.play();
-          console.log(this.previousScene);
+          // console.log(this.previousScene);
+
           this.player.setXPos(910);
           this.player.setYPos(300);
+
           // setting image of player according to the right character chosen
           const cNum: number = this.player.getCharacterNum();
           if (cNum === 1) {
@@ -182,9 +187,12 @@ export default class Bathroom1 extends Room {
   public render(): void {
     this.draw(this.ctx);
     this.shadyGuy.draw(this.ctx);
+
     // calls the render function of the parent aka ROOM
     super.render();
+
     this.drawHitBoxes();
+
     // console.log(this.player.getXPos(), this.player.getYPos());
   }
 }

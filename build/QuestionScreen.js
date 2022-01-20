@@ -29,7 +29,6 @@ export default class QuestionScreen extends Screen {
     }
     moveBetweenQuestions() {
         if (this.keyboard.isKeyDown(KeyListener.KEY_RIGHT)) {
-            console.log('right pressed');
             this.nextQ = true;
         }
         else {
@@ -53,9 +52,9 @@ export default class QuestionScreen extends Screen {
     }
     update(elapsed) {
         this.moveBetweenQuestions();
-        if (this.nextQ &&
-            this.qCounter < this.questions.length - 1 &&
-            this.frameCounter === 10) {
+        if (this.nextQ
+            && this.qCounter < this.questions.length - 1
+            && this.frameCounter === 10) {
             this.qCounter += 1;
             this.textToPresent = 'No answer recieved';
         }

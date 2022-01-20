@@ -1,6 +1,6 @@
 import Screen from './Screen.js';
-import KeyListener from './KeyListener.js';
 import ParentsScreen from './ParentsScreen.js';
+import KeyListener from './KeyListener.js';
 export default class CharacterPick extends Screen {
     keyListener;
     characterNum;

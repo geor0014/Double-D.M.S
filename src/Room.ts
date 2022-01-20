@@ -8,7 +8,6 @@ import Hint from './Hint.js';
 import DialogScreen from './DialogScreen.js';
 import HintScreen from './HintScreen.js';
 import Hitbox from './Hitbox.js';
-import Dialog from './Dialog.js';
 
 export default abstract class Room extends Scene {
   // X position of the image of the room
@@ -17,29 +16,40 @@ export default abstract class Room extends Scene {
   // Y position of the image of the room
   private yPos: number;
 
+  // image which displays according to the number of the hints
   private hintNumImg: HTMLImageElement;
 
+  // image which displays according to the number of the candy
   private candyNumImg: HTMLImageElement;
 
+  // counter for the frames
   private frameCounter: number = 0;
 
   // Image of the room
   protected img: HTMLImageElement;
 
+  // all the collectibles
   protected collectibles: Collectibles[];
 
+  // all the npcs
   protected npcs: Npc[];
 
+  // all the doors
   protected doors: Door[];
 
+  // the menu bar
   protected menu: Menu;
 
+  // boolean to hide and unhide the menu bar (toggle)
   protected isMenuShowing: boolean;
 
+  // audio when a door opens
   protected doorOpen: HTMLAudioElement;
 
+  // audio when a door closes
   protected doorClose: HTMLAudioElement;
 
+  // the hitboxes
   protected hitboxes: Hitbox[];
 
   /**
@@ -49,22 +59,23 @@ export default abstract class Room extends Scene {
    * @param imgSrc source for image
    * @param state boolean for the menubar
    */
-  constructor(
+  public constructor(
     canvas: HTMLCanvasElement,
     imgSrc: string,
-    state: boolean = false
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    state: boolean = false,
   ) {
     super(canvas);
 
     // setting canvas position
-    const canvasPosition = this.canvas.getBoundingClientRect();
+    // const canvasPosition = this.canvas.getBoundingClientRect();
 
-    this.canvas.addEventListener('click', (event) => {
-      // eslint-disable-next-line @typescript-eslint/func-call-spacing
-      // console.log(this.player.getXPos(), this.player.getYPos());
-      // alert (`${this.player.getXPos()} ${this.player.getYPos()}`);
-      console.log(event.x - canvasPosition.left, event.y - canvasPosition.top);
-    });
+    // this.canvas.addEventListener('click', (event) => {
+    //   // eslint-disable-next-line @typescript-eslint/func-call-spacing
+    //   // console.log(this.player.getXPos(), this.player.getYPos());
+    //   // alert (`${this.player.getXPos()} ${this.player.getYPos()}`);
+    //   console.log(event.x - canvasPosition.left, event.y - canvasPosition.top);
+    // });
 
     // creates new image and src
     this.img = new Image();
@@ -89,7 +100,7 @@ export default abstract class Room extends Scene {
    *
    * @returns xPos
    */
-  getXPos(): number {
+  public getXPos(): number {
     return this.xPos;
   }
 
@@ -98,7 +109,7 @@ export default abstract class Room extends Scene {
    *
    * @param newPos new Xposition
    */
-  setXPos(newPos: number): void {
+  public setXPos(newPos: number): void {
     this.xPos = newPos;
   }
 
@@ -107,7 +118,7 @@ export default abstract class Room extends Scene {
    *
    * @returns y position
    */
-  getYPos(): number {
+  public getYPos(): number {
     return this.yPos;
   }
 
@@ -116,7 +127,7 @@ export default abstract class Room extends Scene {
    *
    * @param newPos new Y Position
    */
-  setYPos(newPos: number): void {
+  public setYPos(newPos: number): void {
     this.yPos = newPos;
   }
 
@@ -126,6 +137,7 @@ export default abstract class Room extends Scene {
   public processInput(): void {
     let isPlayerColliding: string = 'none';
 
+    // checks if the player collides with a hitbox and moves the player accordingly
     this.hitboxes.forEach((box) => {
       if (this.player.rectCollision(box, this.player) !== 'none') {
         isPlayerColliding = this.player.rectCollision(box, this.player);
@@ -161,20 +173,21 @@ export default abstract class Room extends Scene {
 
     // reading hint
     if (
-      this.player.isReadingHint() &&
-      this.player.getUserData().getHintAmount() > 0
+      this.player.isReadingHint()
+      && this.player.getUserData().getHintAmount() > 0
     ) {
       this.player
         .getUserData()
         .setHintAmount(this.player.getUserData().getHintAmount() - 1);
       // console.log(this.player.getUserData().getHintAmount());
+
       this.player
         .getUserData()
         .setHintNum(this.player.getUserData().getHintNum() + 1);
       return new HintScreen(
         this.canvas,
         this,
-        this.player.getUserData().getHintNum() - 1
+        this.player.getUserData().getHintNum() - 1,
       );
     }
 
@@ -198,6 +211,7 @@ export default abstract class Room extends Scene {
         if (this.player.collidesWith(this.npcs[i])) {
           const currentNPC: Npc = this.npcs[i];
 
+          // sets the quests according to the npc
           currentNPC.getDialogs().forEach((str) => {
             if (str.getText(0) === 'Hello, I lost my backpack....') {
               this.player.getUserData().getQuests().push('Find backpack');
@@ -205,8 +219,7 @@ export default abstract class Room extends Scene {
             }
 
             if (
-              str.getText(0) ===
-              'Hey there! Have you seen a teddy bear around here?'
+              str.getText(0) === 'Hey there! Have you seen a teddy bear around here?'
             ) {
               this.player.getUserData().getQuests().push('Look for Teddy');
               this.npcs.splice(i, 1);
@@ -222,6 +235,7 @@ export default abstract class Room extends Scene {
         }
       }
 
+      // checks if the player collected a collectible
       this.collectibles.forEach((item) => {
         if (this.player.collidesWith(item)) {
           this.collectCollectibles();
@@ -230,13 +244,15 @@ export default abstract class Room extends Scene {
             this.player
               .getUserData()
               .setCandyAmount(this.player.getUserData().getCandyAmount() + 1);
-            console.log(this.player.getUserData().getCandyAmount());
+            // console.log(this.player.getUserData().getCandyAmount());
+
             // WITH HINT
           } else if (item instanceof Hint) {
             this.player
               .getUserData()
               .setHintAmount(this.player.getUserData().getHintAmount() + 1);
-            console.log(this.player.getUserData().getHintAmount());
+
+            // console.log(this.player.getUserData().getHintAmount());
           }
         }
       });
@@ -247,16 +263,17 @@ export default abstract class Room extends Scene {
     return null;
   }
 
+  /**
+   * Filters through the quest items
+   */
   private filterQuestItems(): void {
     // REMOVES QUESTITEM FROM QUESTS
     this.player
       .getUserData()
       .getQuestItems()
       .forEach((item, i) => {
-        //
         if (this.player.collidesWith(item)) {
-          //
-          console.log(this.player.getUserData().getQuestItems());
+          // console.log(this.player.getUserData().getQuestItems());
 
           if (item.getName() === 'backpack') {
             this.player.getUserData().getQuests().splice(i, 1);
@@ -281,7 +298,6 @@ export default abstract class Room extends Scene {
               .getUserData()
               .setCandyAmount(this.player.getUserData().getCandyAmount() + 1);
           }
-          //
         }
       });
   }
@@ -295,7 +311,7 @@ export default abstract class Room extends Scene {
         620,
         647,
         'left',
-        'black'
+        'black',
       );
     }
 
@@ -306,7 +322,7 @@ export default abstract class Room extends Scene {
         620,
         682,
         'left',
-        'black'
+        'black',
       );
     }
     if (this.player.getUserData().getQuests()[2]) {
@@ -316,7 +332,7 @@ export default abstract class Room extends Scene {
         620,
         714,
         'left',
-        'black'
+        'black',
       );
     }
   }
@@ -342,10 +358,11 @@ export default abstract class Room extends Scene {
   /**
    * Adds a new hitbox to the array
    *
-   * @param x of the hitbox
-   * @param y of the hitbox
-   * @param w of the hitbox
-   * @param h of the hitbox
+   * @param x number of the position of the hitbox
+   * @param y number of the position of the hitbox
+   * @param w number of the width
+   * @param h number of the height
+   * @param opacity of the hitbox
    */
   protected insertHitbox(
     x: number,
@@ -369,7 +386,7 @@ export default abstract class Room extends Scene {
       this.canvas.width / 2,
       this.canvas.height - 50,
       'center',
-      'Blue'
+      'Blue',
     );
 
     this.writeTextToCanvas(
@@ -378,7 +395,7 @@ export default abstract class Room extends Scene {
       this.canvas.width / 2,
       this.canvas.height - 80,
       'center',
-      'Blue'
+      'Blue',
     );
 
     // DRAWS NPCS
@@ -459,9 +476,11 @@ export default abstract class Room extends Scene {
       // DRAWS QUEST ITEMS
       this.drawQuestItems();
 
+      // draws the numbers of the hints and candy
       this.ctx.drawImage(this.hintNumImg, 400, 670, 50, 50);
       this.ctx.drawImage(this.candyNumImg, 545, 670, 50, 50);
 
+      // draws the player according to the cnumb
       const cNum: number = this.player.getCharacterNum();
       let characterImg: HTMLImageElement = Scene.loadNewImage('');
       if (cNum === 1) {

@@ -44,7 +44,6 @@ export default class MainHallway extends Room {
         ]));
         this.backpack = new QuestItem('backpack', './assets/img/backpack.png', 682, 318.5);
         this.player.setWalkPath('./assets/sound/stoneWalk.ogg');
-        console.log(this.player.getWalkPath());
         this.insertHitbox(382, 101, 300, 300, 1);
         this.insertHitbox(176, 102, 170, 105, 1);
         this.insertHitbox(150, 260, 50, 200, 1);
@@ -64,7 +63,6 @@ export default class MainHallway extends Room {
         if (this.player.isInteracting()) {
             if (this.player.collidesWith(this.doors[0])) {
                 if (this.player.getUserData().getScore() > 12) {
-                    console.log('interact with door');
                     this.doorOpen.play();
                     if (this.bRoomInteract === false) {
                         this.bossRoom = new BossRoom(this.canvas, this, this.player);
@@ -72,8 +70,7 @@ export default class MainHallway extends Room {
                     }
                     return this.bossRoom;
                 }
-                this.textToPresent =
-                    'You cant access this room! maybe youre not worthy enough (evil laugh)';
+                this.textToPresent = 'You cant access this room! maybe youre not worthy enough (evil laugh)';
             }
             else if (this.player.collidesWith(this.doors[1])) {
                 this.doorOpen.play();
@@ -105,8 +102,7 @@ export default class MainHallway extends Room {
                 this.player.setYPos(335);
                 return this.diffHall;
             }
-            this.textToPresent =
-                'Sorry you cant enter here yet you need at least 4 points!';
+            this.textToPresent = 'Sorry you cant enter here yet you need at least 4 points!';
         }
         this.addQuestItems();
         if (nextScene !== null) {

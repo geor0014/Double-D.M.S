@@ -38,13 +38,17 @@ export default class ClassRoom6 extends Room {
     state: boolean,
   ) {
     super(canvas, './assets/img/artclass.png', state);
+    // sets the previous scene
     this.previousScene = previousScene;
 
+    // sets the player
     this.player = player;
 
+    // sets the position of the image
     this.setXPos(0);
     this.setYPos(0);
 
+    // resets all relevant arrays
     this.collectibles = [];
     this.npcs = [];
     this.doors = [];
@@ -123,6 +127,7 @@ export default class ClassRoom6 extends Room {
           // console.log(this.previousScene);
           this.player.setXPos(650);
           this.player.setYPos(300);
+
           // setting image of player according to the right character chosen
           const cNum: number = this.player.getCharacterNum();
           if (cNum === 1) {
@@ -162,8 +167,8 @@ export default class ClassRoom6 extends Room {
   public render(): void {
     this.draw(this.ctx);
     this.drawHitBoxes();
-
     this.computer.draw(this.ctx);
+
     // calls the render function of the parent aka ROOM
     super.render();
   }

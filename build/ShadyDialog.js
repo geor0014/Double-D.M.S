@@ -43,7 +43,6 @@ export default class ShadyDialog extends Screen {
     }
     moveBetweenDialogs() {
         if (this.keyboard.isKeyDown(KeyListener.KEY_RIGHT)) {
-            console.log('right pressed');
             this.nextD = true;
         }
         else {
@@ -56,9 +55,9 @@ export default class ShadyDialog extends Screen {
             return this.previousScene;
         }
         this.moveBetweenDialogs();
-        if (this.nextD &&
-            this.dCounter < this.dialogs.length - 1 &&
-            this.frameCounter === 15) {
+        if (this.nextD
+            && this.dCounter < this.dialogs.length - 1
+            && this.frameCounter === 15) {
             this.dCounter += 1;
             this.textToPresent = '...';
         }

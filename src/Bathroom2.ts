@@ -90,9 +90,12 @@ export default class Bathroom2 extends Room {
       // WITH DOORS
       for (let i = 0; i < this.doors.length; i += 1) {
         if (this.player.collidesWith(this.doors[i])) {
-          console.log('interact with door');
+          // console.log('interact with door');
+
           this.doorClose.play();
-          console.log(this.previousScene);
+
+          // console.log(this.previousScene);
+
           this.player.setXPos(100);
           this.player.setYPos(300);
           // setting image of player according to the right character chosen
@@ -110,7 +113,8 @@ export default class Bathroom2 extends Room {
         }
       }
     }
-    console.log(`score is ${this.player.getUserData().getScore()}`);
+    // console.log(`score is ${this.player.getUserData().getScore()}`);
+
     // according to the general checks in room
     if (nextScene !== null) {
       return nextScene;

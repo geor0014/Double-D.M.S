@@ -45,9 +45,7 @@ export default class Cafeteria extends Room {
         if (this.player.isInteracting()) {
             for (let i = 0; i < this.doors.length; i += 1) {
                 if (this.player.collidesWith(this.doors[i])) {
-                    console.log('interact with door');
                     this.doorClose.play();
-                    console.log(this.previousScene);
                     this.player.setXPos(284);
                     this.player.setYPos(250);
                     const cNum = this.player.getCharacterNum();
@@ -70,7 +68,6 @@ export default class Cafeteria extends Room {
                 return new HintBuyDialog(this.canvas, this, this.lunchLady.getDialogs(), this.player.getUserData());
             }
         }
-        console.log(`score is ${this.player.getUserData().getScore()}`);
         if (nextScene !== null) {
             return nextScene;
         }

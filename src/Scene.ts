@@ -10,10 +10,13 @@ import Player from './Player.js';
  * @author BugSlayer
  */
 export default abstract class Scene {
+  // canvas of the game
   protected canvas: HTMLCanvasElement;
 
+  // context of the canvas
   protected ctx: CanvasRenderingContext2D;
 
+  // player of the game
   protected player: Player;
 
   /**
@@ -21,7 +24,7 @@ export default abstract class Scene {
    *
    * @param canvas a canvas
    */
-  constructor(canvas: HTMLCanvasElement) {
+  public constructor(canvas: HTMLCanvasElement) {
     this.canvas = canvas;
     this.ctx = this.canvas.getContext('2d');
   }
@@ -70,7 +73,7 @@ export default abstract class Scene {
     xCoordinate: number,
     yCoordinate: number,
     alignment: CanvasTextAlign = 'center',
-    color: string = 'white'
+    color: string = 'white',
   ): void {
     this.ctx.font = `${fontSize}px 'VT323', monospace`;
     this.ctx.fillStyle = color;

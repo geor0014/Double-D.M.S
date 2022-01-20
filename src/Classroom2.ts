@@ -132,6 +132,7 @@ export default class ClassRoom2 extends Room {
           // console.log('interact with door');
           this.doorClose.play();
           // console.log(this.previousScene);
+
           this.player.setXPos(450);
           this.player.setYPos(300);
           // setting image of player according to the right character chosen
@@ -169,6 +170,9 @@ export default class ClassRoom2 extends Room {
     return null;
   }
 
+  /**
+   * Adds the ques items to the array
+   */
   private addQuestItems(): void {
     // CREATES BACKPACK
     if (this.pushOnce === true) {
