@@ -11,6 +11,10 @@ export default class CharacterPick extends Screen {
   // number of the character the player chose
   private characterNum: number;
 
+  private charPickSound: HTMLAudioElement;
+
+  private charSelectSound: HTMLAudioElement;
+
   /**
    * Creates a new start screen
    *
@@ -22,6 +26,11 @@ export default class CharacterPick extends Screen {
 
     // creates keylistener
     this.keyListener = new KeyListener();
+
+    this.charPickSound = new Audio('./assets/sound/charPick.wav');
+    this.charSelectSound = new Audio('./assets/sound/charSelect.wav');
+    this.charPickSound.volume = 0.2;
+    this.charSelectSound.volume = 0.2;
 
     // sets backgroung image position
     this.setXPos(0);
@@ -35,6 +44,7 @@ export default class CharacterPick extends Screen {
    */
   public processInput(): boolean {
     if (this.keyListener.isKeyDown(KeyListener.KEY_SPACE)) {
+      this.charSelectSound.play();
       return true;
     }
 
@@ -48,18 +58,22 @@ export default class CharacterPick extends Screen {
    */
   public chooseCharacter(): number {
     if (this.keyListener.isKeyDown(KeyListener.KEY_1)) {
+      this.charPickSound.play();
       return 1;
     }
 
     if (this.keyListener.isKeyDown(KeyListener.KEY_2)) {
+      this.charPickSound.play();
       return 2;
     }
 
     if (this.keyListener.isKeyDown(KeyListener.KEY_3)) {
+      this.charPickSound.play();
       return 3;
     }
 
     if (this.keyListener.isKeyDown(KeyListener.KEY_4)) {
+      this.charPickSound.play();
       return 4;
     }
 

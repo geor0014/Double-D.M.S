@@ -4,30 +4,41 @@ import KeyListener from './KeyListener.js';
 export default class CharacterPick extends Screen {
     keyListener;
     characterNum;
+    charPickSound;
+    charSelectSound;
     constructor(canvas) {
         super(canvas, './assets/img/characterPick.png');
         this.characterNum = 0;
         this.keyListener = new KeyListener();
+        this.charPickSound = new Audio('./assets/sound/charPick.wav');
+        this.charSelectSound = new Audio('./assets/sound/charSelect.wav');
+        this.charPickSound.volume = 0.2;
+        this.charSelectSound.volume = 0.2;
         this.setXPos(0);
         this.setYPos(0);
     }
     processInput() {
         if (this.keyListener.isKeyDown(KeyListener.KEY_SPACE)) {
+            this.charSelectSound.play();
             return true;
         }
         return false;
     }
     chooseCharacter() {
         if (this.keyListener.isKeyDown(KeyListener.KEY_1)) {
+            this.charPickSound.play();
             return 1;
         }
         if (this.keyListener.isKeyDown(KeyListener.KEY_2)) {
+            this.charPickSound.play();
             return 2;
         }
         if (this.keyListener.isKeyDown(KeyListener.KEY_3)) {
+            this.charPickSound.play();
             return 3;
         }
         if (this.keyListener.isKeyDown(KeyListener.KEY_4)) {
+            this.charPickSound.play();
             return 4;
         }
         return 0;
