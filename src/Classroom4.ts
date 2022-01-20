@@ -1,5 +1,4 @@
 import Door from './Door.js';
-import Room from './Room.js';
 import Scene from './Scene.js';
 
 import Player from './Player.js';
@@ -8,20 +7,9 @@ import Computer from './Computer.js';
 
 import Question from './Question.js';
 import QuestionScreen from './QuestionScreen.js';
+import Classroom from './Classroom.js';
 
-export default class ClassRoom4 extends Room {
-  // Room the player have previously been
-  private previousScene: Scene;
-
-  // computer ther player interacts with to asnwer the questions
-  private computer: Computer;
-
-  // questions which are displayed on the computer
-  private questions: Question[];
-
-  // interaction for the computer
-  private pcInteract: boolean = false;
-
+export default class ClassRoom4 extends Classroom {
   /**
    * creats a new classroom
    *
@@ -34,58 +22,36 @@ export default class ClassRoom4 extends Room {
     canvas: HTMLCanvasElement,
     previousScene: Scene,
     player: Player,
-    state: boolean,
+    state: boolean
   ) {
-    super(canvas, './assets/img/scienceclass.png', state);
-
-    // sets the previous scene to return to
-    this.previousScene = previousScene;
-
-    // sets the player
-    this.player = player;
-
-    // sets the background image position
-    this.setXPos(0);
-    this.setYPos(0);
-
-    // resets the items in the room
-    this.collectibles = [];
-    this.npcs = [];
-    this.doors = [];
-    this.questions = [];
+    super(canvas, previousScene, player, state, './assets/img/scienceClass.png');
 
     // creating a new computer in the classroom
-    this.computer = new Computer(479, 253);
-
-    // creating collectibles in the classroom
+    this.setComputer(new Computer(479, 253));
 
     // creating the door for the classroom
     this.doors.push(new Door('./assets/img/door1.png', 912, 400.5));
 
     // creating questions for this classroom
-    this.questions.push(
-      new Question(
-        this.player.getUserData(),
-        'I met someone in a chat room who wants to get together. #They live nearby. Should I go?',
-        'I should ask my parent about this and decide with them',
-        'Yes, it is always nice to have a new friend!',
-        'Talking to people online is wrong!',
-      ),
-      new Question(
-        this.player.getUserData(),
-        'Hey man! I just lost my account data for my Fortnite account# Do you think you could send me your password and username# so I can play with yours because all my skins are gone :((',
-        'Report that person',
-        'Send them wrong data',
-        'Send password and username since you feel bad for them',
-      ),
-      new Question(
-        this.player.getUserData(),
-        'You need to create a password for a website.# What should you use?#',
-        'A random word, number, and symbols (e.g. 1cecr3am!)',
-        'A nickname (e.g jumpingjacks)',
-        'Your name and the year you were born (e.g. jack2011)',
-      ),
-    );
+    this.setQuestions([new Question(
+      this.player.getUserData(),
+      'I met someone in a chat room who wants to get together. #They live nearby. Should I go?',
+      'I should ask my parent about this and decide with them',
+      'Yes, it is always nice to have a new friend!',
+      'Talking to people online is wrong!',
+    ), new Question(
+      this.player.getUserData(),
+      'Hey man! I just lost my account data for my Fortnite account# Do you think you could send me your password and username# so I can play with yours because all my skins are gone :((',
+      'Report that person',
+      'Send them wrong data',
+      'Send password and username since you feel bad for them',
+    ), new Question(
+      this.player.getUserData(),
+      'You need to create a password for a website.# What should you use?#',
+      'A random word, number, and symbols (e.g. 1cecr3am!)',
+      'A nickname (e.g jumpingjacks)',
+      'Your name and the year you were born (e.g. jack2011)',
+    )]);
 
     // Adds all the hitboxes to the bathroom
     this.insertHitbox(911, 563, 50, 5, 1);
@@ -130,24 +96,24 @@ export default class ClassRoom4 extends Room {
           // setting image of player according to the right character chosen
           const cNum: number = this.player.getCharacterNum();
           if (cNum === 1) {
-            this.player.setImage('./assets/img/player-boy1-down.png');
+            this.player.setImage('./assets/img/PlayerBoy1Down.png');
           } else if (cNum === 2) {
-            this.player.setImage('./assets/img/player-boy2-down.png');
+            this.player.setImage('./assets/img/playerBoy2Down.png');
           } else if (cNum === 3) {
-            this.player.setImage('./assets/img/player-girl2-down.png');
+            this.player.setImage('./assets/img/playerGirl2Down.png');
           } else if (cNum === 4) {
-            this.player.setImage('./assets/img/player-girl1-down.png');
+            this.player.setImage('./assets/img/playerGirl1Down.png');
           }
-          return this.previousScene;
+          return this.getPreviousScene();
         }
       }
 
       // WITH COMPUTER
-      if (this.player.collidesWith(this.computer)) {
-        if (this.pcInteract === false) {
+      if (this.player.collidesWith(this.getComputer())) {
+        if (this.getPcInteract() === false) {
           // present question screen
-          this.pcInteract = true;
-          return new QuestionScreen(this.canvas, this, this.questions);
+          this.setPcInteract(true);
+          return new QuestionScreen(this.canvas, this, this.getQuestions());
         }
         // console.log('cant use the pc at the moment');
       }
@@ -159,6 +125,7 @@ export default class ClassRoom4 extends Room {
     }
     return null;
   }
+<<<<<<< HEAD
 
   /**
    * draws items to screen
@@ -171,4 +138,6 @@ export default class ClassRoom4 extends Room {
     // calls the render function of the parent aka ROOM
     super.render();
   }
+=======
+>>>>>>> a87c5cbdcb5f3184a6d1e2273a08f06b5157e9a8
 }

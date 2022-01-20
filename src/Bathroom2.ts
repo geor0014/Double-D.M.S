@@ -25,7 +25,7 @@ export default class Bathroom2 extends Room {
     canvas: HTMLCanvasElement,
     previousScene: Scene,
     player: Player,
-    state: boolean,
+    state: boolean
   ) {
     super(canvas, './assets/img/bathroom2.png', state);
 
@@ -46,17 +46,17 @@ export default class Bathroom2 extends Room {
 
     // sets the NPCs with their dialogs in the classroom
     this.npcs.push(
-      new Npc('./assets/img/green-boy.png', 652, 436, [
+      new Npc('./assets/img/greenBoy.png', 652, 436, [
         new Dialog('I am escaping class', ['ok', 'Me too'], ['', '']),
-      ]),
+      ])
     );
     // creating collectibles in the classroom
     this.collectibles.push(
-      new Candy(this.canvas.width / 2, this.canvas.height / 2),
+      new Candy(this.canvas.width / 2, this.canvas.height / 2)
     );
 
     // creating the door for the classroom
-    this.doors.push(new Door('./assets/img/boy-bathroom-door.png', 912, 265));
+    this.doors.push(new Door('./assets/img/boyBathroomDoor.png', 912, 265));
 
     // Adds all the hitboxes to the bathroom
     this.insertHitbox(910, 435.5, 50, 70, 1);
@@ -101,13 +101,13 @@ export default class Bathroom2 extends Room {
           // setting image of player according to the right character chosen
           const cNum: number = this.player.getCharacterNum();
           if (cNum === 1) {
-            this.player.setImage('./assets/img/player-boy1-down.png');
+            this.player.setImage('./assets/img/PlayerBoy1Down.png');
           } else if (cNum === 2) {
-            this.player.setImage('./assets/img/player-boy2-down.png');
+            this.player.setImage('./assets/img/playerBoy2Down.png');
           } else if (cNum === 3) {
-            this.player.setImage('./assets/img/player-girl2-down.png');
+            this.player.setImage('./assets/img/playerGirl2Down.png');
           } else if (cNum === 4) {
-            this.player.setImage('./assets/img/player-girl1-down.png');
+            this.player.setImage('./assets/img/playerGirl1Down.png');
           }
           return this.previousScene;
         }

@@ -14,11 +14,11 @@ export default class Bathroom2 extends Room {
         this.collectibles = [];
         this.npcs = [];
         this.doors = [];
-        this.npcs.push(new Npc('./assets/img/green-boy.png', 652, 436, [
+        this.npcs.push(new Npc('./assets/img/greenBoy.png', 652, 436, [
             new Dialog('I am escaping class', ['ok', 'Me too'], ['', '']),
         ]));
         this.collectibles.push(new Candy(this.canvas.width / 2, this.canvas.height / 2));
-        this.doors.push(new Door('./assets/img/boy-bathroom-door.png', 912, 265));
+        this.doors.push(new Door('./assets/img/boyBathroomDoor.png', 912, 265));
         this.insertHitbox(910, 435.5, 50, 70, 1);
         this.insertHitbox(956, 136.5, 10, 242, 1);
         this.insertHitbox(479, 181.5, 410, 70, 1);
@@ -40,16 +40,16 @@ export default class Bathroom2 extends Room {
                     this.player.setYPos(300);
                     const cNum = this.player.getCharacterNum();
                     if (cNum === 1) {
-                        this.player.setImage('./assets/img/player-boy1-down.png');
+                        this.player.setImage('./assets/img/PlayerBoy1Down.png');
                     }
                     else if (cNum === 2) {
-                        this.player.setImage('./assets/img/player-boy2-down.png');
+                        this.player.setImage('./assets/img/playerBoy2Down.png');
                     }
                     else if (cNum === 3) {
-                        this.player.setImage('./assets/img/player-girl2-down.png');
+                        this.player.setImage('./assets/img/playerGirl2Down.png');
                     }
                     else if (cNum === 4) {
-                        this.player.setImage('./assets/img/player-girl1-down.png');
+                        this.player.setImage('./assets/img/playerGirl1Down.png');
                     }
                     return this.previousScene;
                 }

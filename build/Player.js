@@ -16,16 +16,16 @@ export default class Player extends GameEntity {
         this.userData = new UserData();
         this.characterNum = characterNum;
         if (this.characterNum === 1) {
-            this.setImage('./assets/img/player-boy1-up.png');
+            this.setImage('./assets/img/playerBoy1Up.png');
         }
         else if (this.characterNum === 2) {
-            this.setImage('./assets/img/player-boy2-up.png');
+            this.setImage('./assets/img/playerBoy2Up.png');
         }
         else if (this.characterNum === 3) {
-            this.setImage('./assets/img/player-girl2-up.png');
+            this.setImage('./assets/img/playerGirl2Up.png');
         }
         else if (this.characterNum === 4) {
-            this.setImage('./assets/img/player-girl1-up.png');
+            this.setImage('./assets/img/playerGirl1Up.png');
         }
         this.xVelocity = 3;
         this.yVelocity = 3;
@@ -43,16 +43,16 @@ export default class Player extends GameEntity {
             this.setXPos(this.getXPos() + this.xVelocity);
             this.walk.play();
             if (this.characterNum === 1) {
-                this.setImage('./assets/img/player-boy1-right.png');
+                this.setImage('./assets/img/PlayerBoy1RIght.png');
             }
             else if (this.characterNum === 2) {
-                this.setImage('./assets/img/player-boy2-right.png');
+                this.setImage('./assets/img/playerBoy2Right.png');
             }
             else if (this.characterNum === 3) {
-                this.setImage('./assets/img/player-girl2-right.png');
+                this.setImage('./assets/img/playerGirl2Right.png');
             }
             else if (this.characterNum === 4) {
-                this.setImage('./assets/img/player-girl1-right.png');
+                this.setImage('./assets/img/playerGirl1Right.png');
             }
         }
         if (this.keyboard.isKeyDown(KeyListener.KEY_LEFT)
@@ -64,16 +64,16 @@ export default class Player extends GameEntity {
             this.setXPos(this.getXPos() - this.xVelocity);
             this.walk.play();
             if (this.characterNum === 1) {
-                this.setImage('./assets/img/player-boy1-left.png');
+                this.setImage('./assets/img/PlayerBoy1Left.png');
             }
             else if (this.characterNum === 2) {
-                this.setImage('./assets/img/player-boy2-left.png');
+                this.setImage('./assets/img/playerBoy2Left.png');
             }
             else if (this.characterNum === 3) {
-                this.setImage('./assets/img/player-girl2-left.png');
+                this.setImage('./assets/img/playerGirl2Left.png');
             }
             else if (this.characterNum === 4) {
-                this.setImage('./assets/img/player-girl1-left.png');
+                this.setImage('./assets/img/playerGirl1Left.png');
             }
         }
         if (this.keyboard.isKeyDown(KeyListener.KEY_UP)
@@ -85,16 +85,16 @@ export default class Player extends GameEntity {
             this.setYPos(this.getYPos() - this.yVelocity);
             this.walk.play();
             if (this.characterNum === 1) {
-                this.setImage('./assets/img/player-boy1-up.png');
+                this.setImage('./assets/img/playerBoy1Up.png');
             }
             else if (this.characterNum === 2) {
-                this.setImage('./assets/img/player-boy2-up.png');
+                this.setImage('./assets/img/playerBoy2Up.png');
             }
             else if (this.characterNum === 3) {
-                this.setImage('./assets/img/player-girl2-up.png');
+                this.setImage('./assets/img/playerGirl2Up.png');
             }
             else if (this.characterNum === 4) {
-                this.setImage('./assets/img/player-girl1-up.png');
+                this.setImage('./assets/img/playerGirl1Up.png');
             }
         }
         if (this.keyboard.isKeyDown(KeyListener.KEY_DOWN)
@@ -106,16 +106,16 @@ export default class Player extends GameEntity {
             this.setYPos(this.getYPos() + this.yVelocity);
             this.walk.play();
             if (this.characterNum === 1) {
-                this.setImage('./assets/img/player-boy1-down.png');
+                this.setImage('./assets/img/PlayerBoy1Down.png');
             }
             else if (this.characterNum === 2) {
-                this.setImage('./assets/img/player-boy2-down.png');
+                this.setImage('./assets/img/playerBoy2Down.png');
             }
             else if (this.characterNum === 3) {
-                this.setImage('./assets/img/player-girl2-down.png');
+                this.setImage('./assets/img/playerGirl2Down.png');
             }
             else if (this.characterNum === 4) {
-                this.setImage('./assets/img/player-girl1-down.png');
+                this.setImage('./assets/img/playerGirl1Down.png');
             }
         }
     }

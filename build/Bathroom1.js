@@ -27,7 +27,7 @@ export default class Bathroom1 extends Room {
             new Dialog('What do you chose?#', ['The phone', 'Nothing..'], ['Here you go... Ill call you', 'Fine whatever..']),
         ]);
         this.collectibles.push(new Candy(this.canvas.width / 2, this.canvas.height / 2));
-        this.doors.push(new Door('./assets/img/girl-bathroom-door.png', 912, 265));
+        this.doors.push(new Door('./assets/img/girlBathroomDoor.png', 912, 265));
         this.insertHitbox(910, 435.5, 50, 70, 1);
         this.insertHitbox(956, 136.5, 10, 242, 1);
         this.insertHitbox(479, 181.5, 410, 70, 1);
@@ -52,23 +52,23 @@ export default class Bathroom1 extends Room {
                     this.player.setYPos(300);
                     const cNum = this.player.getCharacterNum();
                     if (cNum === 1) {
-                        this.player.setImage('./assets/img/player-boy1-down.png');
+                        this.player.setImage('./assets/img/PlayerBoy1Down.png');
                     }
                     else if (cNum === 2) {
-                        this.player.setImage('./assets/img/player-boy2-down.png');
+                        this.player.setImage('./assets/img/playerBoy2Down.png');
                     }
                     else if (cNum === 3) {
-                        this.player.setImage('./assets/img/player-girl2-down.png');
+                        this.player.setImage('./assets/img/playerGirl2Down.png');
                     }
                     else if (cNum === 4) {
-                        this.player.setImage('./assets/img/player-girl1-down.png');
+                        this.player.setImage('./assets/img/playerGirl1Down.png');
                     }
                     this.shadyGuyTheme.pause();
                     return this.previousScene;
                 }
             }
-            if (this.player.collidesWith(this.shadyGuy)
-                && this.interactShady === false) {
+            if (this.player.collidesWith(this.shadyGuy) &&
+                this.interactShady === false) {
                 this.interactShady = true;
                 return new ShadyDialog(this.canvas, this, this.shadyGuy.getDialogs(), this.player.getCharacterNum());
             }

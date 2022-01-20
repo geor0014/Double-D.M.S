@@ -52,13 +52,13 @@ export default class ParentsScreen extends Screen {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   public update(elapsed: number): Scene {
     if (this.characterNum === 1) {
-      this.setImage('./assets/img/DialogParentsBoy1.png');
+      this.setImage('./assets/img/dialogParentsBoy1.png');
     } else if (this.characterNum === 2) {
-      this.setImage('./assets/img/DialogParentsBoy2.png');
+      this.setImage('./assets/img/dialogParentsBoy2.png');
     } else if (this.characterNum === 3) {
-      this.setImage('./assets/img/DialogParentsGirl2.png');
+      this.setImage('./assets/img/dialogParentsGirl2.png');
     } else if (this.characterNum === 4) {
-      this.setImage('./assets/img/DialogParentsGirl1.png');
+      this.setImage('./assets/img/dialogParentsGirl1.png');
     }
 
     if (this.characterNum !== 0) {

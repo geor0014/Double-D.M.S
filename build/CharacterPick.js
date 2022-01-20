@@ -5,7 +5,7 @@ export default class CharacterPick extends Screen {
     keyListener;
     characterNum;
     constructor(canvas) {
-        super(canvas, './assets/img/character-pick.png');
+        super(canvas, './assets/img/characterPick.png');
         this.characterNum = 0;
         this.keyListener = new KeyListener();
         this.setXPos(0);
@@ -38,16 +38,16 @@ export default class CharacterPick extends Screen {
             this.characterNum = temp;
         }
         if (this.characterNum === 1) {
-            this.setImage('./assets/img/character-pick-1.png');
+            this.setImage('./assets/img/characterPick1.png');
         }
         else if (this.characterNum === 2) {
-            this.setImage('./assets/img/character-pick-2.png');
+            this.setImage('./assets/img/characterPick2.png');
         }
         else if (this.characterNum === 3) {
-            this.setImage('./assets/img/character-pick-3.png');
+            this.setImage('./assets/img/characterPick3.png');
         }
         else if (this.characterNum === 4) {
-            this.setImage('./assets/img/character-pick-4.png');
+            this.setImage('./assets/img/characterPick4.png');
         }
         if (this.characterNum !== 0) {
             if (this.processInput()) {

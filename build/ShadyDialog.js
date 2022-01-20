@@ -12,7 +12,7 @@ export default class ShadyDialog extends Screen {
     textToPresent;
     characterNum;
     constructor(canvas, previousScene, dialogs, characterNum) {
-        super(canvas, './assets/img/dialogscreen-Shady.png');
+        super(canvas, './assets/img/dialogScreenShadyGuy.png');
         this.keyboard = new KeyListener();
         this.previousScene = previousScene;
         this.dialogs = dialogs;

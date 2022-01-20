@@ -29,10 +29,10 @@ export default class DifficultHallway extends Room {
         this.doors = [];
         this.setXPos(0);
         this.setYPos(0);
-        this.npcs.push(new Npc('./assets/img/student-grey-hair-back-faced.png', 597, 500, [
+        this.npcs.push(new Npc('./assets/img/greyHairStudentBackFacing.png', 597, 500, [
             new Dialog('I heard there is this weird dude in the bathroom#', ['really?', 'oh no...'], ['YES!', 'He is creepy..']),
             new Dialog('I am too scared to go there#', ['Me too!', 'Ill go!'], ['', '']),
-        ]), new Npc('./assets/img/student-blue-hair-faced.png', 532, 300, [
+        ]), new Npc('./assets/img/BlueHairStudentFrontFacing.png', 532, 300, [
             new Dialog('Hey there! Have you seen a teddy bear around here?#', ['No..', 'Dont think so...'], ['Oh...', 'oh...']),
             new Dialog('I lost mine. If you see it, can you bring it to me tomorrow?#', ['Sure!', 'Yeah why not'], ['', '']),
         ]));
@@ -71,16 +71,16 @@ export default class DifficultHallway extends Room {
             this.player.setXPos(900);
             this.player.setYPos(443.5);
             if (cNum === 1) {
-                this.player.setImage('./assets/img/player-boy1-left.png');
+                this.player.setImage('./assets/img/PlayerBoy1Left.png');
             }
             else if (cNum === 2) {
-                this.player.setImage('./assets/img/player-boy2-left.png');
+                this.player.setImage('./assets/img/playerBoy2Left.png');
             }
             else if (cNum === 3) {
-                this.player.setImage('./assets/img/player-girl2-left.png');
+                this.player.setImage('./assets/img/playerGirl2Left.png');
             }
             else if (cNum === 4) {
-                this.player.setImage('./assets/img/player-girl1-left.png');
+                this.player.setImage('./assets/img/playerGirl1Left.png');
             }
             return this.mainHallway;
         }
@@ -90,16 +90,16 @@ export default class DifficultHallway extends Room {
                     this.player.setXPos(911);
                     this.player.setYPos(473);
                     if (cNum === 1) {
-                        this.player.setImage('./assets/img/player-boy1-down.png');
+                        this.player.setImage('./assets/img/PlayerBoy1Down.png');
                     }
                     else if (cNum === 2) {
-                        this.player.setImage('./assets/img/player-boy2-down.png');
+                        this.player.setImage('./assets/img/playerBoy2Down.png');
                     }
                     else if (cNum === 3) {
-                        this.player.setImage('./assets/img/player-girl2-down.png');
+                        this.player.setImage('./assets/img/playerGirl2Down.png');
                     }
                     else if (cNum === 4) {
-                        this.player.setImage('./assets/img/player-girl1-down.png');
+                        this.player.setImage('./assets/img/playerGirl1Down.png');
                     }
                     this.doorOpen.play();
                     if (i === 0) {

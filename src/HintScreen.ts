@@ -27,8 +27,13 @@ export default class HintScreen extends Screen {
    * @param previousSceen scene to return to
    * @param hintNum number of hint presented
    */
+<<<<<<< HEAD
   public constructor(canvas: HTMLCanvasElement, previousSceen: Room, hintNum: number) {
     super(canvas, './assets/img/hint-screen.png');
+=======
+  constructor(canvas: HTMLCanvasElement, previousSceen: Room, hintNum: number) {
+    super(canvas, './assets/img/hintScreen.png');
+>>>>>>> a87c5cbdcb5f3184a6d1e2273a08f06b5157e9a8
     // sets the previous scene
     this.previousScene = previousSceen;
 
@@ -126,7 +131,7 @@ export default class HintScreen extends Screen {
       this.canvas.width / 2 + 200,
       600,
       'center',
-      'Black',
+      'Black'
     );
   }
 

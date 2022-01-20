@@ -45,9 +45,9 @@ export default class CandyBuyDialog extends Screen {
     canvas: HTMLCanvasElement,
     previousScene: Room,
     dialogs: Dialog[],
-    userData: UserData,
+    userData: UserData
   ) {
-    super(canvas, './assets/img/lunch-lady-dialog.png');
+    super(canvas, './assets/img/lunchLadyDialog.png');
 
     // sets keylistener
     this.keyboard = new KeyListener();
@@ -129,7 +129,7 @@ export default class CandyBuyDialog extends Screen {
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   public update(elapsed: number): Scene {
-    const candyAmount : number = this.userData.getCandyAmount();
+    const candyAmount: number = this.userData.getCandyAmount();
     const hintAmount: number = this.userData.getHintAmount();
     // clears canvas
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -163,9 +163,12 @@ export default class CandyBuyDialog extends Screen {
             if (this.userData.getCandyAmount() > 1) {
               this.userData.setCandyAmount(candyAmount - 2);
               this.userData.setHintAmount(hintAmount + 1);
-              this.textToPresent = `${this.dialogs[this.dCounter].getReplies()[0]}`;
+              this.textToPresent = `${
+                this.dialogs[this.dCounter].getReplies()[0]
+              }`;
             } else {
-              this.textToPresent = 'You dont have enough candy, 2 candy for 1 hint';
+              this.textToPresent =
+                'You dont have enough candy, 2 candy for 1 hint';
             }
           }
         } else if (answerRecived === 1) {

@@ -8,7 +8,7 @@ export default class HintScreen extends Screen {
     keyboard;
     textToShow;
     constructor(canvas, previousSceen, hintNum) {
-        super(canvas, './assets/img/hint-screen.png');
+        super(canvas, './assets/img/hintScreen.png');
         this.previousScene = previousSceen;
         this.keyboard = new KeyListener();
         this.setXPos(0);

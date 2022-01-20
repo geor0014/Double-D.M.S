@@ -36,9 +36,9 @@ export default class MainHallway extends Room {
         this.npcs = [];
         this.doors = [];
         this.collectibles.push(new Candy(312, 376.5), new Hint(this.canvas.width / 3, this.canvas.height / 1.5));
-        this.doors.push(new Door('./assets/img/boss-room-door-closed.png', 511, 412));
-        this.doors.push(new Door('./assets/img/cafeteria-door.png', 284, 160));
-        this.npcs.push(new Npc('./assets/img/teacher-front.png', 782, 315.5, [
+        this.doors.push(new Door('./assets/img/bossRoomDoorClosed.png', 511, 412));
+        this.doors.push(new Door('./assets/img/cafeteriaDoor.png', 284, 160));
+        this.npcs.push(new Npc('./assets/img/teacherFrontFacing.png', 782, 315.5, [
             new Dialog('Heyy how are you today?#', ['Good Thank you!', 'Excited for my birthday!'], ['Glad to hear that', 'Happy Birthday!']),
             new Dialog('Good luck with your exams!#', ['Thanks!', 'Thank you'], ['', '']),
         ]));
@@ -58,11 +58,16 @@ export default class MainHallway extends Room {
     update(elapsed) {
         const nextScene = this.generalInteraction();
         if (this.player.getUserData().getScore() > 12) {
-            this.doors[0].setImage('./assets/img/boss-room-door-opened.png');
+            this.doors[0].setImage('./assets/img/bossRoomDoorOpened.png');
         }
         if (this.player.isInteracting()) {
             if (this.player.collidesWith(this.doors[0])) {
+<<<<<<< HEAD
                 if (this.player.getUserData().getScore() > 12) {
+=======
+                if (this.player.getUserData().getScore() > -1) {
+                    console.log('interact with door');
+>>>>>>> a87c5cbdcb5f3184a6d1e2273a08f06b5157e9a8
                     this.doorOpen.play();
                     if (this.bRoomInteract === false) {
                         this.bossRoom = new BossRoom(this.canvas, this, this.player);

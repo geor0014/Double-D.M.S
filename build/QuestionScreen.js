@@ -10,7 +10,7 @@ export default class QuestionScreen extends Screen {
     okPressed;
     textToPresent;
     constructor(canvas, previousScene, questions) {
-        super(canvas, './assets/img/computer-screen.png');
+        super(canvas, './assets/img/computerScreen.png');
         this.keyboard = new KeyListener();
         this.previousScene = previousScene;
         this.questions = questions;
@@ -69,7 +69,8 @@ export default class QuestionScreen extends Screen {
                 answerRecived = this.reciveAnswer();
             }
             if (answerRecived !== 0 && this.okPressed === true) {
-                this.textToPresent = 'your answer has been registered, please go to the next question >>';
+                this.textToPresent =
+                    'your answer has been registered, please go to the next question >>';
             }
             if (answerRecived === this.questions[this.qCounter].getRPos() + 1) {
                 userData.setScore(userData.getScore() + 1);

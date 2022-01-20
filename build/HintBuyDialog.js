@@ -11,7 +11,7 @@ export default class CandyBuyDialog extends Screen {
     textToPresent;
     userData;
     constructor(canvas, previousScene, dialogs, userData) {
-        super(canvas, './assets/img/lunch-lady-dialog.png');
+        super(canvas, './assets/img/lunchLadyDialog.png');
         this.keyboard = new KeyListener();
         this.previousScene = previousScene;
         this.dialogs = dialogs;
@@ -76,7 +76,8 @@ export default class CandyBuyDialog extends Screen {
                             this.textToPresent = `${this.dialogs[this.dCounter].getReplies()[0]}`;
                         }
                         else {
-                            this.textToPresent = 'You dont have enough candy, 2 candy for 1 hint';
+                            this.textToPresent =
+                                'You dont have enough candy, 2 candy for 1 hint';
                         }
                     }
                 }

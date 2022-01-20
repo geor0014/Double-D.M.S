@@ -46,13 +46,13 @@ export default class Player extends GameEntity {
 
     // sets the player image according to the number of cnumb
     if (this.characterNum === 1) {
-      this.setImage('./assets/img/player-boy1-up.png');
+      this.setImage('./assets/img/playerBoy1Up.png');
     } else if (this.characterNum === 2) {
-      this.setImage('./assets/img/player-boy2-up.png');
+      this.setImage('./assets/img/playerBoy2Up.png');
     } else if (this.characterNum === 3) {
-      this.setImage('./assets/img/player-girl2-up.png');
+      this.setImage('./assets/img/playerGirl2Up.png');
     } else if (this.characterNum === 4) {
-      this.setImage('./assets/img/player-girl1-up.png');
+      this.setImage('./assets/img/playerGirl1Up.png');
     }
 
     // sets the speed of the player
@@ -90,13 +90,13 @@ export default class Player extends GameEntity {
 
       // sets the image of the player accoring to cnumb
       if (this.characterNum === 1) {
-        this.setImage('./assets/img/player-boy1-right.png');
+        this.setImage('./assets/img/PlayerBoy1RIght.png');
       } else if (this.characterNum === 2) {
-        this.setImage('./assets/img/player-boy2-right.png');
+        this.setImage('./assets/img/playerBoy2Right.png');
       } else if (this.characterNum === 3) {
-        this.setImage('./assets/img/player-girl2-right.png');
+        this.setImage('./assets/img/playerGirl2Right.png');
       } else if (this.characterNum === 4) {
-        this.setImage('./assets/img/player-girl1-right.png');
+        this.setImage('./assets/img/playerGirl1Right.png');
       }
     }
 
@@ -114,13 +114,13 @@ export default class Player extends GameEntity {
 
       // sets the image of the player accoring to cnumb
       if (this.characterNum === 1) {
-        this.setImage('./assets/img/player-boy1-left.png');
+        this.setImage('./assets/img/PlayerBoy1Left.png');
       } else if (this.characterNum === 2) {
-        this.setImage('./assets/img/player-boy2-left.png');
+        this.setImage('./assets/img/playerBoy2Left.png');
       } else if (this.characterNum === 3) {
-        this.setImage('./assets/img/player-girl2-left.png');
+        this.setImage('./assets/img/playerGirl2Left.png');
       } else if (this.characterNum === 4) {
-        this.setImage('./assets/img/player-girl1-left.png');
+        this.setImage('./assets/img/playerGirl1Left.png');
       }
     }
 
@@ -138,13 +138,13 @@ export default class Player extends GameEntity {
 
       // sets the image of the player accoring to cnumb
       if (this.characterNum === 1) {
-        this.setImage('./assets/img/player-boy1-up.png');
+        this.setImage('./assets/img/playerBoy1Up.png');
       } else if (this.characterNum === 2) {
-        this.setImage('./assets/img/player-boy2-up.png');
+        this.setImage('./assets/img/playerBoy2Up.png');
       } else if (this.characterNum === 3) {
-        this.setImage('./assets/img/player-girl2-up.png');
+        this.setImage('./assets/img/playerGirl2Up.png');
       } else if (this.characterNum === 4) {
-        this.setImage('./assets/img/player-girl1-up.png');
+        this.setImage('./assets/img/playerGirl1Up.png');
       }
     }
 
@@ -162,13 +162,13 @@ export default class Player extends GameEntity {
 
       // sets the image of the player accoring to cnumb
       if (this.characterNum === 1) {
-        this.setImage('./assets/img/player-boy1-down.png');
+        this.setImage('./assets/img/PlayerBoy1Down.png');
       } else if (this.characterNum === 2) {
-        this.setImage('./assets/img/player-boy2-down.png');
+        this.setImage('./assets/img/playerBoy2Down.png');
       } else if (this.characterNum === 3) {
-        this.setImage('./assets/img/player-girl2-down.png');
+        this.setImage('./assets/img/playerGirl2Down.png');
       } else if (this.characterNum === 4) {
-        this.setImage('./assets/img/player-girl1-down.png');
+        this.setImage('./assets/img/playerGirl1Down.png');
       }
     }
   }

@@ -29,7 +29,7 @@ export default class Cafeteria extends Room {
     canvas: HTMLCanvasElement,
     previousScene: Scene,
     player: Player,
-    state: boolean,
+    state: boolean
   ) {
     super(canvas, './assets/img/diningroom.png', state);
 
@@ -50,42 +50,46 @@ export default class Cafeteria extends Room {
 
     // sets the NPCs with their dialogs in the classroom
     this.npcs.push(
-      new Npc('./assets/img/ginger-girl.png', 652, 436, [
+      new Npc('./assets/img/gingerGirl.png', 652, 436, [
         new Dialog(
           'This is some delicious food they have here#',
           ['I know right!', 'I guess..'],
-          ['I am excited for today', 'Happy bithday btw!'],
+          ['I am excited for today', 'Happy bithday btw!']
         ),
-        new Dialog('I love french fries, how about you?#', ['Meh..', 'LOVE THEM'], ['oh shame..', 'I KNOW THEY ARE THE BEST']),
+        new Dialog(
+          'I love french fries, how about you?#',
+          ['Meh..', 'LOVE THEM'],
+          ['oh shame..', 'I KNOW THEY ARE THE BEST']
+        ),
       ]),
-      new Npc('./assets/img/green-girl.png', 714, 298, [
+      new Npc('./assets/img/greenGirl.png', 714, 298, [
         new Dialog(
           'Hurry up, everyone, class starts in 10 minutes!!#',
           ['Dont feel like it..', 'Better go!'],
-          ['', ''],
+          ['', '']
         ),
-      ]),
+      ])
     );
 
-    this.lunchLady = new Npc('./assets/img/lunch-lady.png', 300, 500, [
+    this.lunchLady = new Npc('./assets/img/lunchLady.png', 300, 500, [
       new Dialog(
         'Good day!# we have some special treats today!#',
         ['ohh delicious', 'I am starving'],
-        ['I hope so, I worked hard on this', 'You should eat something'],
+        ['I hope so, I worked hard on this', 'You should eat something']
       ),
       new Dialog(
         'I can trade you some candy for hints#',
         ['Yes please', 'No thank you'],
-        ['There you go', 'Okay maybe later'],
+        ['There you go', 'Okay maybe later']
       ),
     ]);
 
     // creating collectibles in the classroom
     this.collectibles.push(
-      new Candy(this.canvas.width / 2, this.canvas.height / 2),
+      new Candy(this.canvas.width / 2, this.canvas.height / 2)
     );
 
-    this.doors.push(new Door('./assets/img/cafeteria-door.png', 907, 362));
+    this.doors.push(new Door('./assets/img/cafeteriaDoor.png', 907, 362));
 
     // Adds all the hitboxes to the bathroom
     this.insertHitbox(955, 356.5, 10, 160, 1);
@@ -127,13 +131,13 @@ export default class Cafeteria extends Room {
           // setting image of player according to the right character chosen
           const cNum: number = this.player.getCharacterNum();
           if (cNum === 1) {
-            this.player.setImage('./assets/img/player-boy1-down.png');
+            this.player.setImage('./assets/img/PlayerBoy1Down.png');
           } else if (cNum === 2) {
-            this.player.setImage('./assets/img/player-boy2-down.png');
+            this.player.setImage('./assets/img/playerBoy2Down.png');
           } else if (cNum === 3) {
-            this.player.setImage('./assets/img/player-girl2-down.png');
+            this.player.setImage('./assets/img/playerGirl2Down.png');
           } else if (cNum === 4) {
-            this.player.setImage('./assets/img/player-girl1-down.png');
+            this.player.setImage('./assets/img/playerGirl1Down.png');
           }
           return this.previousScene;
         }
@@ -145,7 +149,7 @@ export default class Cafeteria extends Room {
           this.canvas,
           this,
           this.lunchLady.getDialogs(),
-          this.player.getUserData(),
+          this.player.getUserData()
         );
       }
     }
