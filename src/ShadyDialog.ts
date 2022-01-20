@@ -5,10 +5,8 @@ import SadEnding from './SadEnding.js';
 import DialogParent from './DialogParent.js';
 
 export default class ShadyDialog extends DialogParent {
-  // stay!!
   // number of the character the player chose
   private characterNum: number;
-
 
   /**
    * Creates new Dialog screen

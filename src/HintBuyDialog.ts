@@ -5,18 +5,17 @@ import UserData from './UserData.js';
 import DialogParent from './DialogParent.js';
 
 export default class CandyBuyDialog extends DialogParent {
-  // stay!!
   // attribute for the userdata to know about the hints
   private userData: UserData;
 
   /**
-     * Creates new Dialog screen
-     *
-     * @param canvas passes the canvas to Screen
-     * @param previousScene rerturns player to previous screen
-     * @param dialogs an array of dialogs string
-     * @param userData user data
-     */
+   * Creates new Dialog screen
+   *
+   * @param canvas passes the canvas to Screen
+   * @param previousScene rerturns player to previous screen
+   * @param dialogs an array of dialogs string
+   * @param userData user data
+   */
   public constructor(
     canvas: HTMLCanvasElement,
     previousScene: Room,
