@@ -478,7 +478,7 @@ export default abstract class Room extends Scene {
    *
    * @returns collectibles array
    */
-  getCollectibles(): Collectibles[] {
+  public getCollectibles(): Collectibles[] {
     return this.collectibles;
   }
 
@@ -487,7 +487,7 @@ export default abstract class Room extends Scene {
    *
    * @param arrayColl array collectibles
    */
-  setCollectibles(arrayColl: Collectibles[]): void {
+  public setCollectibles(arrayColl: Collectibles[]): void {
     this.collectibles = arrayColl;
   }
 
@@ -496,7 +496,7 @@ export default abstract class Room extends Scene {
    *
    * @returns npc array
    */
-  getNpcs(): Npc[] {
+  public getNpcs(): Npc[] {
     return this.npcs;
   }
 
@@ -505,7 +505,7 @@ export default abstract class Room extends Scene {
    *
    * @param arrayNpc array npc
    */
-  setNpcs(arrayNpc: Npc[]): void {
+  public setNpcs(arrayNpc: Npc[]): void {
     this.npcs = arrayNpc;
   }
 
@@ -514,7 +514,7 @@ export default abstract class Room extends Scene {
    *
    * @returns door array
    */
-  getDoors(): Door[] {
+  public getDoors(): Door[] {
     return this.doors;
   }
 
@@ -523,7 +523,7 @@ export default abstract class Room extends Scene {
    *
    * @param arrayDoor array door
    */
-  setDoors(arrayDoor: Door[]): void {
+  public setDoors(arrayDoor: Door[]): void {
     this.doors = arrayDoor;
   }
 
@@ -532,7 +532,7 @@ export default abstract class Room extends Scene {
    *
    * @returns true or false according to if the menu is showing
    */
-  getIsMenuShowing(): boolean {
+  public getIsMenuShowing(): boolean {
     return this.isMenuShowing;
   }
 
@@ -541,7 +541,7 @@ export default abstract class Room extends Scene {
    *
    * @returns doorOpen AudioElement
    */
-  getDoorOpen(): HTMLAudioElement {
+  public getDoorOpen(): HTMLAudioElement {
     return this.doorOpen;
   }
 
@@ -550,7 +550,7 @@ export default abstract class Room extends Scene {
    *
    * @returns doorClose AudioElement
    */
-  getDoorClose(): HTMLAudioElement {
+  public getDoorClose(): HTMLAudioElement {
     return this.doorClose;
   }
 
@@ -559,7 +559,7 @@ export default abstract class Room extends Scene {
    *
    * @returns frameX number
    */
-  getFrameX(): number {
+  public getFrameX(): number {
     return this.frameX;
   }
 
@@ -568,7 +568,7 @@ export default abstract class Room extends Scene {
    *
    * @param frame frameX number
    */
-  setFrameX(frame: number): void {
+  public setFrameX(frame: number): void {
     this.frameX = frame;
   }
 
@@ -577,7 +577,7 @@ export default abstract class Room extends Scene {
    *
    * @returns frameY number
    */
-  getFrameY(): number {
+  public getFrameY(): number {
     return this.frameY;
   }
 
@@ -586,7 +586,7 @@ export default abstract class Room extends Scene {
    *
    * @param frame FrameY number
    */
-  setFrameY(frame: number): void {
+  public setFrameY(frame: number): void {
     this.frameY = frame;
   }
 
@@ -595,7 +595,7 @@ export default abstract class Room extends Scene {
  *
  * @returns GameFrame number
  */
-  getGameFrame(): number {
+  public getGameFrame(): number {
     return this.gameFrame;
   }
 
@@ -604,7 +604,7 @@ export default abstract class Room extends Scene {
    *
    * @param gameframe GameFrame number
    */
-  setGameFrame(gameframe: number): void {
+  public setGameFrame(gameframe: number): void {
     this.gameFrame = gameframe;
 
   }
