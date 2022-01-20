@@ -38,7 +38,7 @@ export default class Bathroom1 extends Room {
         this.insertHitbox(240, 180.5, 45, 290, 1);
         this.insertHitbox(170, 179.5, 21, 370, 1);
         this.insertHitbox(188, 122, 720, 10, 1);
-        this.shadyGuyTheme = new Audio('./assets/sound/shady.wav');
+        this.shadyGuyTheme = new Audio('./assets/sound/shady.mp3');
         this.shadyGuyTheme.volume = 0.2;
         setTimeout(() => this.shadyGuyTheme.play(), 100);
     }
