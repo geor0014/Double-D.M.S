@@ -4,18 +4,25 @@ import Room from './Room.js';
 import Scene from './Scene.js';
 
 export default abstract class InteractiveScreen extends Screen {
+  // Keyboardlistener so the game knows
   private keyboard: KeyListener;
 
+  // Room the player have previously been
   private previousScene: Room;
 
+  // boolean to show the next text in the array
   private nextText: boolean;
 
+  // counter for all the texts
   private tCounter: number;
 
+  // counter for the frames
   private frameCounter: number = 0;
 
+  // boolean to check if a key got pressed or not
   private okPressed: boolean;
 
+  // text which should show up on the canvas
   private textToPresent: string;
 
   /**
