@@ -1,5 +1,5 @@
 import Door from './Door.js';
-import Room from './Room.js';
+
 import Scene from './Scene.js';
 
 import Player from './Player.js';
@@ -12,20 +12,9 @@ import QuestionScreen from './QuestionScreen.js';
 import Npc from './Npc.js';
 
 import Dialog from './Dialog.js';
+import Classroom from './Classroom.js';
 
-export default class ClassRoom5 extends Room {
-  // Room the player have previously been
-  private previousScene: Scene;
-
-  // computer ther player interacts with to asnwer the questions
-  private computer: Computer;
-
-  // questions which are displayed on the computer
-  private questions: Question[];
-
-  // interaction for the computer
-  private pcInteract: boolean = false;
-
+export default class ClassRoom5 extends Classroom {
   /**
    * creats a new classroom
    *
@@ -38,28 +27,12 @@ export default class ClassRoom5 extends Room {
     canvas: HTMLCanvasElement,
     previousScene: Scene,
     player: Player,
-    state: boolean
+    state: boolean,
   ) {
-    super(canvas, './assets/img/classroom.png', state);
-
-    // sets the previous scene to return to
-    this.previousScene = previousScene;
-
-    // sets the player
-    this.player = player;
-
-    // sets the background image position
-    this.setXPos(0);
-    this.setYPos(0);
-
-    // resets the items in the room
-    this.collectibles = [];
-    this.npcs = [];
-    this.doors = [];
-    this.questions = [];
+    super(canvas, previousScene, player, state, './assets/img/classroom.png');
 
     // creating a new computer in the classroom
-    this.computer = new Computer(479, 253);
+    this.setComputer(new Computer(479, 253));
 
     // sets the NPCs with their dialogs in the classroom
     this.npcs.push(
@@ -67,48 +40,44 @@ export default class ClassRoom5 extends Room {
         new Dialog(
           'You should take a break sometimes#',
           ['Yes Im tired', 'I am okay'],
-          ['Studying can be hard', 'good to know!']
+          ['Studying can be hard', 'good to know!'],
         ),
         new Dialog(
           'The cafeteria has great food!#',
           ['Ill check it out!', 'I am hungry..'],
-          ['', '']
+          ['', ''],
         ),
-      ])
+      ]),
     );
 
     // creating collectibles in the classroom
     this.collectibles.push(
-      new Hint(this.canvas.width / 1.5, this.canvas.height / 3)
+      new Hint(this.canvas.width / 1.5, this.canvas.height / 3),
     );
 
     // creating the door for the classroom
     this.doors.push(new Door('./assets/img/door1.png', 912, 400.5));
 
     // creating questions for this classroom
-    this.questions.push(
-      new Question(
-        this.player.getUserData(),
-        ' Should you use free Anti-Virus?#',
-        'No, since the anti-virus can be a virus!',
-        'No, since I know what I download!',
-        'No, since I do not want to use an anti-virus!'
-      ),
-      new Question(
-        this.player.getUserData(),
-        'Which of the following is NOT an example of cyberbullying?#',
-        'Inviting a friend to fight with you in a game',
-        'Creating a fake profile to humiliate someone',
-        'Posting or sharing embarrassing photos'
-      ),
-      new Question(
-        this.player.getUserData(),
-        'What is a predator?#',
-        'Someone who uses the internet to do harm to others',
-        'Someone who shares too much personal information',
-        'Someone who regularly surfs the web'
-      )
-    );
+    this.setQuestions([new Question(
+      this.player.getUserData(),
+      ' Should you use free Anti-Virus?#',
+      'No, since the anti-virus can be a virus!',
+      'No, since I know what I download!',
+      'No, since I do not want to use an anti-virus!',
+    ), new Question(
+      this.player.getUserData(),
+      'Which of the following is NOT an example of cyberbullying?#',
+      'Inviting a friend to fight with you in a game',
+      'Creating a fake profile to humiliate someone',
+      'Posting or sharing embarrassing photos',
+    ), new Question(
+      this.player.getUserData(),
+      'What is a predator?#',
+      'Someone who uses the internet to do harm to others',
+      'Someone who shares too much personal information',
+      'Someone who regularly surfs the web',
+    )]);
 
     // Adds all the hitboxes to the bathroom
     this.insertHitbox(911, 563, 50, 5, 1);
@@ -148,6 +117,7 @@ export default class ClassRoom5 extends Room {
           // console.log('interact with door');
           this.doorClose.play();
           // console.log(this.previousScene);
+
           this.player.setXPos(460);
           this.player.setYPos(300);
           // setting image of player according to the right character chosen
@@ -161,16 +131,16 @@ export default class ClassRoom5 extends Room {
           } else if (cNum === 4) {
             this.player.setImage('./assets/img/playerGirl1Down.png');
           }
-          return this.previousScene;
+          return this.getPreviousScene();
         }
       }
 
       // WITH COMPUTER
-      if (this.player.collidesWith(this.computer)) {
-        if (this.pcInteract === false) {
+      if (this.player.collidesWith(this.getComputer())) {
+        if (this.getPcInteract() === false) {
           // present question screen
-          this.pcInteract = true;
-          return new QuestionScreen(this.canvas, this, this.questions);
+          this.setPcInteract(true);
+          return new QuestionScreen(this.canvas, this, this.getQuestions());
         }
         // console.log('cant use the pc at the moment');
       }
@@ -181,17 +151,5 @@ export default class ClassRoom5 extends Room {
       return nextScene;
     }
     return null;
-  }
-
-  /**
-   * draws items to screen
-   */
-  public render(): void {
-    this.draw(this.ctx);
-    this.drawHitBoxes();
-
-    this.computer.draw(this.ctx);
-    // calls the render function of the parent aka ROOM
-    super.render();
   }
 }

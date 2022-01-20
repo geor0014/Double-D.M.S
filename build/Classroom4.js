@@ -1,8 +1,8 @@
 import Door from './Door.js';
-import Room from './Room.js';
 import Computer from './Computer.js';
 import Question from './Question.js';
 import QuestionScreen from './QuestionScreen.js';
+<<<<<<< HEAD
 export default class ClassRoom4 extends Room {
     previousScene;
     computer;
@@ -21,6 +21,15 @@ export default class ClassRoom4 extends Room {
         this.computer = new Computer(479, 253);
         this.doors.push(new Door('./assets/img/door1.png', 912, 400.5));
         this.questions.push(new Question(this.player.getUserData(), 'I met someone in a chat room who wants to get together. #They live nearby. Should I go?', 'I should ask my parent about this and decide with them', 'Yes, it is always nice to have a new friend!', 'Talking to people online is wrong!'), new Question(this.player.getUserData(), 'Hey man! I just lost my account data for my Fortnite account# Do you think you could send me your password and username# so I can play with yours because all my skins are gone :((', 'Report that person', 'Send them wrong data', 'Send password and username since you feel bad for them'), new Question(this.player.getUserData(), 'You need to create a password for a website.# What should you use?#', 'A random word, number, and symbols (e.g. 1cecr3am!)', 'A nickname (e.g jumpingjacks)', 'Your name and the year you were born (e.g. jack2011)'));
+=======
+import Classroom from './Classroom.js';
+export default class ClassRoom4 extends Classroom {
+    constructor(canvas, previousScene, player, state) {
+        super(canvas, previousScene, player, state, './assets/img/scienceClass.png');
+        this.setComputer(new Computer(479, 253));
+        this.doors.push(new Door('./assets/img/door1.png', 912, 400.5));
+        this.setQuestions([new Question(this.player.getUserData(), 'I met someone in a chat room who wants to get together. #They live nearby. Should I go?', 'I should ask my parent about this and decide with them', 'Yes, it is always nice to have a new friend!', 'Talking to people online is wrong!'), new Question(this.player.getUserData(), 'Hey man! I just lost my account data for my Fortnite account# Do you think you could send me your password and username# so I can play with yours because all my skins are gone :((', 'Report that person', 'Send them wrong data', 'Send password and username since you feel bad for them'), new Question(this.player.getUserData(), 'You need to create a password for a website.# What should you use?#', 'A random word, number, and symbols (e.g. 1cecr3am!)', 'A nickname (e.g jumpingjacks)', 'Your name and the year you were born (e.g. jack2011)')]);
+>>>>>>> 86bdae84640bc8b1b180d6742262bc797e494dac
         this.insertHitbox(911, 563, 50, 5, 1);
         this.insertHitbox(909, 600, 10, 10, 1);
         this.insertHitbox(147, 658, 750, 5, 1);
@@ -55,6 +64,7 @@ export default class ClassRoom4 extends Room {
                     else if (cNum === 4) {
                         this.player.setImage('./assets/img/playerGirl1Down.png');
                     }
+<<<<<<< HEAD
                     return this.previousScene;
                 }
             }
@@ -62,6 +72,15 @@ export default class ClassRoom4 extends Room {
                 if (this.pcInteract === false) {
                     this.pcInteract = true;
                     return new QuestionScreen(this.canvas, this, this.questions);
+=======
+                    return this.getPreviousScene();
+                }
+            }
+            if (this.player.collidesWith(this.getComputer())) {
+                if (this.getPcInteract() === false) {
+                    this.setPcInteract(true);
+                    return new QuestionScreen(this.canvas, this, this.getQuestions());
+>>>>>>> 86bdae84640bc8b1b180d6742262bc797e494dac
                 }
             }
         }
@@ -69,12 +88,15 @@ export default class ClassRoom4 extends Room {
             return nextScene;
         }
         return null;
+<<<<<<< HEAD
     }
     render() {
         this.draw(this.ctx);
         this.drawHitBoxes();
         this.computer.draw(this.ctx);
         super.render();
+=======
+>>>>>>> 86bdae84640bc8b1b180d6742262bc797e494dac
     }
 }
 //# sourceMappingURL=Classroom4.js.map

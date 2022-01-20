@@ -12,26 +12,37 @@ import Bathroom1 from './Bathroom1.js';
 import Bathroom2 from './Bathroom2.js';
 
 export default class EasyHallway extends Room {
+  // attribute to store the mainhallway
   private mainHallway: Room;
 
+  // interaction for the first classroom in this hallway
   private room1Interact: boolean;
 
+  // interaction for the second classroom in this hallway
   private room2Interact: boolean;
 
+  // interaction for the third classroom in this hallway
   private room3Interact: boolean;
 
+  // boolean to only create the boy bathroom once
   private bathroomInteractBoy: boolean;
 
+  // boolean to only create the girls bathroom once
   private bathroomInteractGirl: boolean;
 
+  // attribute to store the first classroom in this hallway
   private class1: ClassRoom1;
 
+  // attribute to store the second classroom in this hallway
   private class2: ClassRoom2;
 
+  // attribute to store the third classroom in this hallway
   private class3: ClassRoom3;
 
+  // attribute to store the girl bathroom
   private bathroom1: Bathroom1;
 
+  // attribute to store the boy bathrrom
   private bathroom2: Bathroom2;
 
   /**
@@ -44,10 +55,10 @@ export default class EasyHallway extends Room {
   public constructor(
     canvas: HTMLCanvasElement,
     mainHallway: Room,
-    player: Player
+    player: Player,
   ) {
     super(canvas, './assets/img/easyHallway.png');
-    console.log('creating easy hallway');
+    // console.log('creating easy hallway');
 
     // sets the classrooms to not interacted
     this.room1Interact = false;
@@ -73,7 +84,7 @@ export default class EasyHallway extends Room {
 
     // creating collectibles
     this.collectibles.push(
-      new Hint(this.canvas.width / 3, this.canvas.height / 3)
+      new Hint(this.canvas.width / 3, this.canvas.height / 3),
     );
 
     // creates npcs with their dialogs for this room
@@ -82,38 +93,38 @@ export default class EasyHallway extends Room {
         new Dialog(
           'Hello, I lost my backpack....#',
           ['really?', 'oh no'],
-          ['yes..', 'all my things are there']
+          ['yes..', 'all my things are there'],
         ),
         new Dialog(
           'Can you please look for it and bring it back to me tomorrow?#',
           ['Sure!', 'okay'],
-          ['', '']
+          ['', ''],
         ),
       ]),
       new Npc('./assets/img/blackHairStudentLeftFacing.png', 195, 315, [
         new Dialog(
           'There are some things you should never share!#',
           ['I know that', 'ok..'],
-          ['Good!', 'I am scared']
+          ['Good!', 'I am scared'],
         ),
         new Dialog(
           'I hope she will not be bullied#',
           ['Me too!', '...'],
-          ['', '']
+          ['', ''],
         ),
       ]),
       new Npc('./assets/img/redHairStudentRightFacing.png', 155, 315, [
         new Dialog(
           'Did you hear about Jessica?#',
           ['No..', 'What happaned?'],
-          ['How not?', 'The picture!']
+          ['How not?', 'The picture!'],
         ),
         new Dialog(
           'Cant believe she shared that picture :O#',
           ['Didnt see it', '...'],
-          ['', '']
+          ['', ''],
         ),
-      ])
+      ]),
     );
 
     // creats the doors in the hallway
@@ -124,6 +135,7 @@ export default class EasyHallway extends Room {
     this.doors.push(new Door('./assets/img/girlBathroomDoor.png', 910, 228.5));
     this.doors.push(new Door('./assets/img/boyBathroomDoor.png', 100, 228.5));
 
+    // Adds all the hitboxes to the bathroom
     this.insertHitbox(49, 245, 1000, 10, 1);
     this.insertHitbox(144, 548.5, 1000, 10, 1);
     this.insertHitbox(957, 304, 50, 10, 1);
@@ -172,7 +184,8 @@ export default class EasyHallway extends Room {
       // WITH DOORS
       for (let i = 0; i < this.doors.length; i += 1) {
         if (this.player.collidesWith(this.doors[i])) {
-          console.log('interact with door');
+          // console.log('interact with door');
+
           // setting player starter position and image in the classrooms
           this.player.setXPos(911);
           this.player.setYPos(473);
@@ -194,7 +207,7 @@ export default class EasyHallway extends Room {
                 this.canvas,
                 this,
                 this.player,
-                this.isMenuShowing
+                this.isMenuShowing,
               );
               this.room1Interact = true;
             }
@@ -208,7 +221,7 @@ export default class EasyHallway extends Room {
                 this.canvas,
                 this,
                 this.player,
-                this.isMenuShowing
+                this.isMenuShowing,
               );
               this.room2Interact = true;
             }
@@ -223,7 +236,7 @@ export default class EasyHallway extends Room {
                 this.canvas,
                 this,
                 this.player,
-                this.isMenuShowing
+                this.isMenuShowing,
               );
               this.room3Interact = true;
             }
@@ -240,7 +253,7 @@ export default class EasyHallway extends Room {
                 this.canvas,
                 this,
                 this.player,
-                this.isMenuShowing
+                this.isMenuShowing,
               );
               this.bathroomInteractGirl = true;
             }
@@ -257,7 +270,7 @@ export default class EasyHallway extends Room {
                 this.canvas,
                 this,
                 this.player,
-                this.isMenuShowing
+                this.isMenuShowing,
               );
               this.bathroomInteractBoy = true;
             }
@@ -278,15 +291,9 @@ export default class EasyHallway extends Room {
    */
   public render(): void {
     this.draw(this.ctx);
+
+    // calls the render function of the parent
     super.render();
     this.drawHitBoxes();
   }
-
-  /*
-  public drawRectengles(): void {
-    this.ctx.beginPath();
-    this.ctx.rect(1450, 433, 50, 50);
-    this.ctx.stroke();
-  }
-  */
 }

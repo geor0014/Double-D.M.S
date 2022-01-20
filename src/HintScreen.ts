@@ -5,14 +5,19 @@ import KeyListener from './KeyListener.js';
 import HintText from './hintText.js';
 
 export default class HintScreen extends Screen {
+  // Room the player have previously been
   private previousScene: Room;
 
+  // number of the hints
   private hintNum: number = 0;
 
+  // hints array of the game
   private hints: HintText[];
 
+  // Keyboardlistener so the game knows
   private keyboard: KeyListener;
 
+  // text which shows on the canvas
   private textToShow: string;
 
   /**
@@ -22,7 +27,7 @@ export default class HintScreen extends Screen {
    * @param previousSceen scene to return to
    * @param hintNum number of hint presented
    */
-  constructor(canvas: HTMLCanvasElement, previousSceen: Room, hintNum: number) {
+  public constructor(canvas: HTMLCanvasElement, previousSceen: Room, hintNum: number) {
     super(canvas, './assets/img/hintScreen.png');
     // sets the previous scene
     this.previousScene = previousSceen;
@@ -40,22 +45,22 @@ export default class HintScreen extends Screen {
     // creating the hints
     this.hints = [
       new HintText(
-        'It`s very important that you never agree to get together with someone you# "met"online without first checking with your parents.# it should also be in a public place and with a parent present.'
+        'It`s very important that you never agree to get together with someone you# "met"online without first checking with your parents.# it should also be in a public place and with a parent present.',
       ),
       new HintText(
-        'You must always keep your password a secret.# NEVER give it to anyone else or ask for their password.# If you do that, someone could steal your identity.'
+        'You must always keep your password a secret.# NEVER give it to anyone else or ask for their password.# If you do that, someone could steal your identity.',
       ),
       new HintText(
-        'Be careful with who you talk to # not all people are who they say they are#'
+        'Be careful with who you talk to # not all people are who they say they are#',
       ),
       new HintText(
-        'Never click sospicious links without making sure who sent them and why,# always ask a parent for help#'
+        'Never click sospicious links without making sure who sent them and why,# always ask a parent for help#',
       ),
       new HintText(
-        'Watch what you share online!# some private information can be used against you,# and once its online its there forever'
+        'Watch what you share online!# some private information can be used against you,# and once its online its there forever',
       ),
       new HintText(
-        'Cyber bullying is a very mean act,# be watchful what you do and say online to not hurt anybody`s feellings#'
+        'Cyber bullying is a very mean act,# be watchful what you do and say online to not hurt anybody`s feellings#',
       ),
       new HintText('Dont accept friend requests from strangers!'),
       new HintText('No more hints available'),
@@ -80,6 +85,7 @@ export default class HintScreen extends Screen {
    * @param elapsed number
    * @returns nex scene or null
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   public update(elapsed: number): Scene {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
@@ -101,30 +107,32 @@ export default class HintScreen extends Screen {
     for (let i = 0; i < 3; i += 1) {
       this.textToShow = this.hints[this.hintNum].getText(i);
       // console.log(textToWrite);
+
       this.writeTextToCanvas(
         this.textToShow,
         18,
         textWPos,
         textHPos,
         'center',
-        'black'
+        'black',
       );
       textHPos += 50;
     }
 
-    // rendering controler reminder
+    // rendering controls reminder
     this.writeTextToCanvas(
       'press ESC to leave',
       24,
       this.canvas.width / 2 + 200,
       600,
       'center',
-      'Black'
+      'Black',
     );
   }
 
   /**
    * draws the image
+   *
    * @param ctx cnavas rendering context 2D
    */
   public draw(ctx: CanvasRenderingContext2D): void {

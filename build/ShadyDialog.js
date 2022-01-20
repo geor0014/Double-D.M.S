@@ -43,7 +43,10 @@ export default class ShadyDialog extends Screen {
     }
     moveBetweenDialogs() {
         if (this.keyboard.isKeyDown(KeyListener.KEY_RIGHT)) {
+<<<<<<< HEAD
             console.log('right pressed');
+=======
+>>>>>>> 86bdae84640bc8b1b180d6742262bc797e494dac
             this.nextD = true;
         }
         else {
@@ -56,9 +59,15 @@ export default class ShadyDialog extends Screen {
             return this.previousScene;
         }
         this.moveBetweenDialogs();
+<<<<<<< HEAD
         if (this.nextD &&
             this.dCounter < this.dialogs.length - 1 &&
             this.frameCounter === 15) {
+=======
+        if (this.nextD
+            && this.dCounter < this.dialogs.length - 1
+            && this.frameCounter === 15) {
+>>>>>>> 86bdae84640bc8b1b180d6742262bc797e494dac
             this.dCounter += 1;
             this.textToPresent = '...';
         }

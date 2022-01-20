@@ -7,7 +7,7 @@ export default class Hint extends Collectibles {
    * @param xPos number
    * @param yPos number
    */
-  constructor(xPos: number, yPos: number) {
+  public constructor(xPos: number, yPos: number) {
     super('./assets/img/hint.png', xPos, yPos);
   }
 }

@@ -1,11 +1,11 @@
 import Door from './Door.js';
-import Room from './Room.js';
 import Hint from './Hint.js';
 import Computer from './Computer.js';
 import Question from './Question.js';
 import QuestionScreen from './QuestionScreen.js';
 import Npc from './Npc.js';
 import Dialog from './Dialog.js';
+<<<<<<< HEAD
 export default class ClassRoom5 extends Room {
     previousScene;
     computer;
@@ -22,13 +22,24 @@ export default class ClassRoom5 extends Room {
         this.doors = [];
         this.questions = [];
         this.computer = new Computer(479, 253);
+=======
+import Classroom from './Classroom.js';
+export default class ClassRoom5 extends Classroom {
+    constructor(canvas, previousScene, player, state) {
+        super(canvas, previousScene, player, state, './assets/img/classroom.png');
+        this.setComputer(new Computer(479, 253));
+>>>>>>> 86bdae84640bc8b1b180d6742262bc797e494dac
         this.npcs.push(new Npc('./assets/img/BlondeHairTeacherFrontFacing.png', 600, 250, [
             new Dialog('You should take a break sometimes#', ['Yes Im tired', 'I am okay'], ['Studying can be hard', 'good to know!']),
             new Dialog('The cafeteria has great food!#', ['Ill check it out!', 'I am hungry..'], ['', '']),
         ]));
         this.collectibles.push(new Hint(this.canvas.width / 1.5, this.canvas.height / 3));
         this.doors.push(new Door('./assets/img/door1.png', 912, 400.5));
+<<<<<<< HEAD
         this.questions.push(new Question(this.player.getUserData(), ' Should you use free Anti-Virus?#', 'No, since the anti-virus can be a virus!', 'No, since I know what I download!', 'No, since I do not want to use an anti-virus!'), new Question(this.player.getUserData(), 'Which of the following is NOT an example of cyberbullying?#', 'Inviting a friend to fight with you in a game', 'Creating a fake profile to humiliate someone', 'Posting or sharing embarrassing photos'), new Question(this.player.getUserData(), 'What is a predator?#', 'Someone who uses the internet to do harm to others', 'Someone who shares too much personal information', 'Someone who regularly surfs the web'));
+=======
+        this.setQuestions([new Question(this.player.getUserData(), ' Should you use free Anti-Virus?#', 'No, since the anti-virus can be a virus!', 'No, since I know what I download!', 'No, since I do not want to use an anti-virus!'), new Question(this.player.getUserData(), 'Which of the following is NOT an example of cyberbullying?#', 'Inviting a friend to fight with you in a game', 'Creating a fake profile to humiliate someone', 'Posting or sharing embarrassing photos'), new Question(this.player.getUserData(), 'What is a predator?#', 'Someone who uses the internet to do harm to others', 'Someone who shares too much personal information', 'Someone who regularly surfs the web')]);
+>>>>>>> 86bdae84640bc8b1b180d6742262bc797e494dac
         this.insertHitbox(911, 563, 50, 5, 1);
         this.insertHitbox(909, 600, 10, 10, 1);
         this.insertHitbox(147, 658, 750, 5, 1);
@@ -64,6 +75,7 @@ export default class ClassRoom5 extends Room {
                     else if (cNum === 4) {
                         this.player.setImage('./assets/img/playerGirl1Down.png');
                     }
+<<<<<<< HEAD
                     return this.previousScene;
                 }
             }
@@ -71,6 +83,15 @@ export default class ClassRoom5 extends Room {
                 if (this.pcInteract === false) {
                     this.pcInteract = true;
                     return new QuestionScreen(this.canvas, this, this.questions);
+=======
+                    return this.getPreviousScene();
+                }
+            }
+            if (this.player.collidesWith(this.getComputer())) {
+                if (this.getPcInteract() === false) {
+                    this.setPcInteract(true);
+                    return new QuestionScreen(this.canvas, this, this.getQuestions());
+>>>>>>> 86bdae84640bc8b1b180d6742262bc797e494dac
                 }
             }
         }
@@ -78,12 +99,15 @@ export default class ClassRoom5 extends Room {
             return nextScene;
         }
         return null;
+<<<<<<< HEAD
     }
     render() {
         this.draw(this.ctx);
         this.drawHitBoxes();
         this.computer.draw(this.ctx);
         super.render();
+=======
+>>>>>>> 86bdae84640bc8b1b180d6742262bc797e494dac
     }
 }
 //# sourceMappingURL=Classroom5.js.map

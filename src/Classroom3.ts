@@ -1,5 +1,4 @@
 import Door from './Door.js';
-import Room from './Room.js';
 
 import Scene from './Scene.js';
 import Player from './Player.js';
@@ -8,20 +7,9 @@ import Computer from './Computer.js';
 
 import Question from './Question.js';
 import QuestionScreen from './QuestionScreen.js';
+import Classroom from './Classroom.js';
 
-export default class ClassRoom3 extends Room {
-  // Room the player have previously been
-  private previousScene: Scene;
-
-  // computer ther player interacts with to asnwer the questions
-  private computer: Computer;
-
-  // questions which are displayed on the computer
-  private questions: Question[];
-
-  // interaction for the computer
-  private pcInteract: boolean = false;
-
+export default class ClassRoom3 extends Classroom {
   /**
    * creats a new classroom
    *
@@ -34,30 +22,12 @@ export default class ClassRoom3 extends Room {
     canvas: HTMLCanvasElement,
     previousScene: Scene,
     player: Player,
-    state: boolean
+    state: boolean,
   ) {
-    super(canvas, './assets/img/library.png', state);
-
-    // sets the previous scene to return to
-    this.previousScene = previousScene;
-
-    // sets the player
-    this.player = player;
-
-    // sets the background image position
-    this.setXPos(0);
-    this.setYPos(0);
-
-    // resets the items in the room
-    this.collectibles = [];
-    this.npcs = [];
-    this.doors = [];
-    this.questions = [];
+    super(canvas, previousScene, player, state, './assets/img/library.png');
 
     // creating a new computer in the classroom
-    this.computer = new Computer(495, 455);
-
-    // creating collectibles in the classroom
+    this.setComputer(new Computer(495, 455));
 
     // creating the door for the classroom
     this.doors.push(new Door('./assets/img/door1.png', 912, 390));
@@ -65,22 +35,19 @@ export default class ClassRoom3 extends Room {
     // setting player starter position and image in the classroom
 
     // creating questions for this classroom
-    this.questions.push(
-      new Question(
-        this.player.getUserData(),
-        'You see the following post:#“Hey look at Timmy`s head, man he looks horrible! #Share this video or we will stop talking to you!” What will you do? ',
-        'Report it and help poor Timmy',
-        'Share it I don`t want to be alone',
-        'Ignore and let it happen '
-      ),
-      new Question(
-        this.player.getUserData(),
-        'My parents and I have established rules as to what I can do #on the Internet when Im home, but Im at a friend`s house. #Should I go by my parents rules or do whatever my friend does?',
-        'Go by your parents rules',
-        'Do whatever your friend does ',
-        'It doesn`t really matter'
-      )
-    );
+    this.setQuestions([new Question(
+      this.player.getUserData(),
+      'You see the following post:#“Hey look at Timmy`s head, man he looks horrible! #Share this video or we will stop talking to you!” What will you do? ',
+      'Report it and help poor Timmy',
+      'Share it I don`t want to be alone',
+      'Ignore and let it happen ',
+    ), new Question(
+      this.player.getUserData(),
+      'My parents and I have established rules as to what I can do #on the Internet when Im home, but Im at a friend`s house. #Should I go by my parents rules or do whatever my friend does?',
+      'Go by your parents rules',
+      'Do whatever your friend does ',
+      'It doesn`t really matter',
+    )]);
 
     // Adds all the hitboxes to the bathroom
     this.insertHitbox(143, 78.5, 715, 160, 1);
@@ -119,6 +86,7 @@ export default class ClassRoom3 extends Room {
           // console.log('interact with door');
           this.doorClose.play();
           // console.log(this.previousScene);
+
           this.player.setXPos(280);
           this.player.setYPos(300);
           // setting image of player according to the right character chosen
@@ -132,16 +100,16 @@ export default class ClassRoom3 extends Room {
           } else if (cNum === 4) {
             this.player.setImage('./assets/img/playerGirl1Down.png');
           }
-          return this.previousScene;
+          return this.getPreviousScene();
         }
       }
 
       // WITH COMPUTER
-      if (this.player.collidesWith(this.computer)) {
-        if (this.pcInteract === false) {
+      if (this.player.collidesWith(this.getComputer())) {
+        if (this.getPcInteract() === false) {
           // present question screen
-          this.pcInteract = true;
-          return new QuestionScreen(this.canvas, this, this.questions);
+          this.setPcInteract(true);
+          return new QuestionScreen(this.canvas, this, this.getQuestions());
         }
         // console.log('cant use the pc at the moment');
       }
@@ -152,16 +120,5 @@ export default class ClassRoom3 extends Room {
       return nextScene;
     }
     return null;
-  }
-
-  /**
-   * draws items to screen
-   */
-  public render(): void {
-    this.draw(this.ctx);
-    this.computer.draw(this.ctx);
-    // calls the render function of the parent aka ROOM
-    super.render();
-    this.drawHitBoxes();
   }
 }

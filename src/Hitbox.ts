@@ -1,22 +1,29 @@
 export default class Hitbox {
+  // x position of the hitbox
   private x: number;
 
+  // y position of the hitbox
   private y: number;
 
+  // width of the hitbox
   private width: number;
 
+  // height if the hitbox
   private height: number;
 
+  // opacity/density of the htibox
   private opacity: number;
 
   /**
    *
-   * @param x number
-   * @param y number
-   * @param w number
-   * @param h number
+   * @param x position
+   * @param y position
+   * @param w number representing the width
+   * @param h number representing the height
+   * @param opacity number for the opacity
    */
   constructor(x: number, y: number, w: number, h: number, opacity?: number) {
+    // sets every attribute
     this.x = x;
     this.y = y;
     this.width = w;

@@ -8,6 +8,10 @@ export default class StartScreen extends Screen {
         super(canvas, './assets/img/schoolFront.png');
         this.music = new Audio('./assets/sound/StartScreen.mp3');
         this.music.volume = 0.2;
+<<<<<<< HEAD
+=======
+        this.music.play();
+>>>>>>> 86bdae84640bc8b1b180d6742262bc797e494dac
         this.keyListener = new KeyListener();
         this.setXPos(0);
         this.setYPos(0);

@@ -4,8 +4,10 @@ import MainHallway from './MainHallway.js';
 import Scene from './Scene.js';
 
 export default class InstructionScreen extends Screen {
+  // Keyboardlistener so the game knows
   private keyListener: KeyListener;
 
+  // number of the character the player chose
   private characterNum: number;
 
   /**
@@ -24,6 +26,7 @@ export default class InstructionScreen extends Screen {
     // sets backgroung image position
     this.setXPos(0);
     this.setYPos(0);
+
     // console.log(this.getImage().width, this.getImage().height);
   }
 

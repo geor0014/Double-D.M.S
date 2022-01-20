@@ -1,8 +1,8 @@
 import Door from './Door.js';
-import Room from './Room.js';
 import Computer from './Computer.js';
 import Question from './Question.js';
 import QuestionScreen from './QuestionScreen.js';
+<<<<<<< HEAD
 export default class ClassRoom3 extends Room {
     previousScene;
     computer;
@@ -21,6 +21,15 @@ export default class ClassRoom3 extends Room {
         this.computer = new Computer(495, 455);
         this.doors.push(new Door('./assets/img/door1.png', 912, 390));
         this.questions.push(new Question(this.player.getUserData(), 'You see the following post:#“Hey look at Timmy`s head, man he looks horrible! #Share this video or we will stop talking to you!” What will you do? ', 'Report it and help poor Timmy', 'Share it I don`t want to be alone', 'Ignore and let it happen '), new Question(this.player.getUserData(), 'My parents and I have established rules as to what I can do #on the Internet when Im home, but Im at a friend`s house. #Should I go by my parents rules or do whatever my friend does?', 'Go by your parents rules', 'Do whatever your friend does ', 'It doesn`t really matter'));
+=======
+import Classroom from './Classroom.js';
+export default class ClassRoom3 extends Classroom {
+    constructor(canvas, previousScene, player, state) {
+        super(canvas, previousScene, player, state, './assets/img/library.png');
+        this.setComputer(new Computer(495, 455));
+        this.doors.push(new Door('./assets/img/door1.png', 912, 390));
+        this.setQuestions([new Question(this.player.getUserData(), 'You see the following post:#“Hey look at Timmy`s head, man he looks horrible! #Share this video or we will stop talking to you!” What will you do? ', 'Report it and help poor Timmy', 'Share it I don`t want to be alone', 'Ignore and let it happen '), new Question(this.player.getUserData(), 'My parents and I have established rules as to what I can do #on the Internet when Im home, but Im at a friend`s house. #Should I go by my parents rules or do whatever my friend does?', 'Go by your parents rules', 'Do whatever your friend does ', 'It doesn`t really matter')]);
+>>>>>>> 86bdae84640bc8b1b180d6742262bc797e494dac
         this.insertHitbox(143, 78.5, 715, 160, 1);
         this.insertHitbox(864, 13.5, 100, 10, 1);
         this.insertHitbox(909, 77.5, 45, 250, 1);
@@ -55,6 +64,7 @@ export default class ClassRoom3 extends Room {
                     else if (cNum === 4) {
                         this.player.setImage('./assets/img/playerGirl1Down.png');
                     }
+<<<<<<< HEAD
                     return this.previousScene;
                 }
             }
@@ -62,6 +72,15 @@ export default class ClassRoom3 extends Room {
                 if (this.pcInteract === false) {
                     this.pcInteract = true;
                     return new QuestionScreen(this.canvas, this, this.questions);
+=======
+                    return this.getPreviousScene();
+                }
+            }
+            if (this.player.collidesWith(this.getComputer())) {
+                if (this.getPcInteract() === false) {
+                    this.setPcInteract(true);
+                    return new QuestionScreen(this.canvas, this, this.getQuestions());
+>>>>>>> 86bdae84640bc8b1b180d6742262bc797e494dac
                 }
             }
         }
@@ -69,12 +88,15 @@ export default class ClassRoom3 extends Room {
             return nextScene;
         }
         return null;
+<<<<<<< HEAD
     }
     render() {
         this.draw(this.ctx);
         this.computer.draw(this.ctx);
         super.render();
         this.drawHitBoxes();
+=======
+>>>>>>> 86bdae84640bc8b1b180d6742262bc797e494dac
     }
 }
 //# sourceMappingURL=Classroom3.js.map
