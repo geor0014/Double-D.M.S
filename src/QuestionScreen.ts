@@ -4,7 +4,7 @@ import Question from './Question.js';
 import InteractiveScreen from './InteractiveScreen.js';
 
 export default class QuestionScreen extends InteractiveScreen {
-   // questions displayed on the screen
+  // questions displayed on the screen
   private questions: Question[];
 
   /**
@@ -42,12 +42,14 @@ export default class QuestionScreen extends InteractiveScreen {
       this.getTCounter() < this.questions.length - 1 &&
       this.getFrameCounter() === 10
     ) {
-      this.setTCounter( this.getTCounter() + 1);
+      this.setImage('./assets/img/computerScreen.png');
+      this.setOkPressed(false);
+      this.setTCounter(this.getTCounter() + 1);
       this.setTextToPresent('No answer recieved');
     }
 
     const userData = this.questions[this.getTCounter()].getUserData();
-    // console.log(` frame counter ${this.frameCounter}`);
+    console.log(` score ${userData.getScore()}`);
 
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
@@ -66,15 +68,22 @@ export default class QuestionScreen extends InteractiveScreen {
       }
       // console.log(`answer Recived ${answerRecived}`);
       if (answerRecived !== 0 && this.getOkPressed() === true) {
-        // this.okPressed = false;
+        if (answerRecived === 1) {
+          this.setImage('./assets/img/computerScreen1.png');
+        } else if (answerRecived === 2) {
+          this.setImage('./assets/img/computerScreen2.png');
+        } else {
+          this.setImage('./assets/img/computerScreen3.png');
+        }
         this.setTextToPresent('your answer has been registered, please go to the next question >>');
+
+        // check if the answer chosen is correct
+        if (answerRecived === this.questions[this.getTCounter()].getRPos() + 1) {
+          // console.log('right answer selected');
+          userData.setScore(userData.getScore() + 1);
+        }
       }
 
-      // check if the answer chosen is correct
-      if (answerRecived === this.questions[this.getTCounter()].getRPos() + 1) {
-        // console.log('right answer selected');
-        userData.setScore(userData.getScore() + 1);
-      }
       // answerRecived = 0;
     }
 
@@ -83,7 +92,6 @@ export default class QuestionScreen extends InteractiveScreen {
       this.setFrameCounter(0);
     }
     this.setFrameCounter(this.getFrameCounter() + 1);
-    this.setOkPressed(false);
     return null;
   }
 

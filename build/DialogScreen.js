@@ -12,6 +12,7 @@ export default class DialogScreen extends DialogParent {
         if (this.getNextText()
             && this.getTCounter() < this.getDialogs().length - 1
             && this.getFrameCounter() === 10) {
+            this.setOkPressed(false);
             this.setTCounter(this.getTCounter() + 1);
             this.setTextToPresent('...');
         }
@@ -34,7 +35,6 @@ export default class DialogScreen extends DialogParent {
             this.setFrameCounter(0);
         }
         this.setFrameCounter(this.getFrameCounter() + 1);
-        this.setOkPressed(false);
         return null;
     }
 }

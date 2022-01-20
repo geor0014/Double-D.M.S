@@ -11,10 +11,13 @@ export default class QuestionScreen extends InteractiveScreen {
         if (this.getNextText() &&
             this.getTCounter() < this.questions.length - 1 &&
             this.getFrameCounter() === 10) {
+            this.setImage('./assets/img/computerScreen.png');
+            this.setOkPressed(false);
             this.setTCounter(this.getTCounter() + 1);
             this.setTextToPresent('No answer recieved');
         }
         const userData = this.questions[this.getTCounter()].getUserData();
+        console.log(` score ${userData.getScore()}`);
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         if (this.processInput()) {
             return this.getPreviousScene();
@@ -25,17 +28,25 @@ export default class QuestionScreen extends InteractiveScreen {
                 answerRecived = this.reciveAnswer();
             }
             if (answerRecived !== 0 && this.getOkPressed() === true) {
+                if (answerRecived === 1) {
+                    this.setImage('./assets/img/computerScreen1.png');
+                }
+                else if (answerRecived === 2) {
+                    this.setImage('./assets/img/computerScreen2.png');
+                }
+                else {
+                    this.setImage('./assets/img/computerScreen3.png');
+                }
                 this.setTextToPresent('your answer has been registered, please go to the next question >>');
-            }
-            if (answerRecived === this.questions[this.getTCounter()].getRPos() + 1) {
-                userData.setScore(userData.getScore() + 1);
+                if (answerRecived === this.questions[this.getTCounter()].getRPos() + 1) {
+                    userData.setScore(userData.getScore() + 1);
+                }
             }
         }
         if (this.getFrameCounter() === 10) {
             this.setFrameCounter(0);
         }
         this.setFrameCounter(this.getFrameCounter() + 1);
-        this.setOkPressed(false);
         return null;
     }
     render() {
