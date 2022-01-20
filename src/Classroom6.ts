@@ -11,6 +11,8 @@ import QuestionScreen from './QuestionScreen.js';
 import Classroom from './Classroom.js';
 
 export default class ClassRoom6 extends Classroom {
+  private ambiance: HTMLAudioElement;
+
   /**
    * creats a new classroom
    *
@@ -23,41 +25,49 @@ export default class ClassRoom6 extends Classroom {
     canvas: HTMLCanvasElement,
     previousScene: Scene,
     player: Player,
-    state: boolean,
+    state: boolean
   ) {
     super(canvas, previousScene, player, state, './assets/img/artclass.png');
 
+    this.ambiance = new Audio();
+    this.ambiance.src = './assets/sound/pianoRoom.mp3';
+    this.ambiance.volume = 0.1;
+    setTimeout(() => this.ambiance.play(), 1000);
     // creating a new computer in the classroom
     this.setComputer(new Computer(480, 282));
 
     // creating collectibles in the classroom
     this.collectibles.push(
-      new Candy(this.canvas.width / 4, this.canvas.height / 4),
+      new Candy(this.canvas.width / 4, this.canvas.height / 4)
     );
 
     // creating the door for the classroom
     this.doors.push(new Door('./assets/img/door1.png', 912, 400.5));
 
     // creating questions for this classroom
-    this.setQuestions([new Question(
-      this.player.getUserData(),
-      'You are about to join this amazing new website# all your friends are there.# What information is OK to give online?#',
-      'Nickname',
-      'Phone number',
-      'Adress',
-    ), new Question(
-      this.player.getUserData(),
-      'You are having trouble doing an activity on a safe site you use at #school. Your friend offers to help but needs your password.# Would you give your password to them.',
-      'No',
-      'It depends',
-      'Yes',
-    ), new Question(
-      this.player.getUserData(),
-      'Your parents want to know what you have been doing on a safe site #you use at school. #Would you let them use your account?',
-      'You would let them have a look but while youre there',
-      'Yes, they are my parents I trust them',
-      'No way, this site is only for kids and teachers',
-    )]);
+    this.setQuestions([
+      new Question(
+        this.player.getUserData(),
+        'You are about to join this amazing new website# all your friends are there.# What information is OK to give online?#',
+        'Nickname',
+        'Phone number',
+        'Adress'
+      ),
+      new Question(
+        this.player.getUserData(),
+        'You are having trouble doing an activity on a safe site you use at #school. Your friend offers to help but needs your password.# Would you give your password to them.',
+        'No',
+        'It depends',
+        'Yes'
+      ),
+      new Question(
+        this.player.getUserData(),
+        'Your parents want to know what you have been doing on a safe site #you use at school. #Would you let them use your account?',
+        'You would let them have a look but while youre there',
+        'Yes, they are my parents I trust them',
+        'No way, this site is only for kids and teachers'
+      ),
+    ]);
 
     // Adds all the hitboxes to the bathroom
     this.insertHitbox(911, 590, 50, 5, 1);
@@ -110,6 +120,8 @@ export default class ClassRoom6 extends Classroom {
           } else if (cNum === 4) {
             this.player.setImage('./assets/img/playerGirl1Down.png');
           }
+
+          this.ambiance.pause();
           return this.getPreviousScene();
         }
       }
