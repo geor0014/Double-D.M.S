@@ -29,7 +29,7 @@ export default class StartScreen extends Screen {
     this.setXPos(0);
     this.setYPos(0);
 
-    // console.log(this.getImage().width, this.getImage().height);
+    console.log(this.getImage().width, this.getImage().height);
   }
 
   /**
