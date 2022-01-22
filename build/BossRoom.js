@@ -54,6 +54,7 @@ export default class BossRoom extends Room {
         this.insertHitbox(820, 293, 40, 5, 1);
         this.insertHitbox(860, 342, 5, 250, 1);
         this.insertHitbox(625, 638, 195, 5, 1);
+        setTimeout(() => this.music.pause, 10000);
     }
     update(elapsed) {
         this.setGameFrame(this.getGameFrame() + 1);
@@ -86,7 +87,7 @@ export default class BossRoom extends Room {
             }
         }
         if (this.endingScreen) {
-            if (this.player.getUserData().getScore() > 17) {
+            if (this.player.getUserData().getScore() > 1) {
                 return new HappyEnding(this.canvas, this.player.getCharacterNum());
             }
             return new SadEnding(this.canvas, this.player.getCharacterNum());

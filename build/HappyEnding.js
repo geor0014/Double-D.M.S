@@ -11,9 +11,9 @@ export default class HappyEnding extends Screen {
         this.keyListener = new KeyListener();
         this.happyTheme = new Audio();
         this.happyTheme.src = './assets/sound/happyEnding.mp3';
+        this.happyTheme.play();
         this.setXPos(0);
         this.setYPos(0);
-        this.happyTheme.play();
     }
     processInput() {
         if (this.keyListener.isKeyDown(KeyListener.KEY_SPACE)) {
