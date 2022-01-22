@@ -34,7 +34,7 @@ export default class Bathroom1 extends Room {
   public constructor(
     canvas: HTMLCanvasElement,
     previousScene: Scene,
-    player: Player,
+    player: Player
   ) {
     super(canvas, './assets/img/bathroom1.png');
 
@@ -96,7 +96,9 @@ export default class Bathroom1 extends Room {
     );
 
     // creating the door for the classroom
-    this.getDoors().push(new Door('./assets/img/girlBathroomDoor.png', 912, 265));
+    this.getDoors().push(
+      new Door('./assets/img/girlBathroomDoor.png', 912, 265)
+    );
 
     // Adds all the hitboxes to the bathroom
     this.insertHitbox(910, 435.5, 50, 70, 1);
@@ -165,6 +167,7 @@ export default class Bathroom1 extends Room {
         this.interactShady === false
       ) {
         this.interactShady = true;
+        this.shadyGuyTheme.pause();
         return new ShadyDialog(
           this.canvas,
           this,

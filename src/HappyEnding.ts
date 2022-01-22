@@ -10,6 +10,8 @@ export default class HappyEnding extends Screen {
   // number of the character the player chose
   private characterNum: number;
 
+  private happyTheme: HTMLAudioElement;
+
   /**
    * Creates a new start screen
    *
@@ -23,11 +25,15 @@ export default class HappyEnding extends Screen {
     // creates keylistener
     this.keyListener = new KeyListener();
 
+    this.happyTheme = new Audio();
+    this.happyTheme.src = './assets/sound/happyEnding.mp3';
+
     // sets backgroung image position
     this.setXPos(0);
     this.setYPos(0);
 
     // console.log(this.getImage().width, this.getImage().height);
+    this.happyTheme.play();
   }
 
   /**
@@ -86,7 +92,7 @@ export default class HappyEnding extends Screen {
       this.canvas.width / 2,
       this.canvas.height - 50,
       'center',
-      'white',
+      'white'
     );
   }
 }

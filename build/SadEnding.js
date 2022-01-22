@@ -4,10 +4,14 @@ import StartScreen from './StartScreen.js';
 export default class SadEnding extends Screen {
     keyListener;
     characterNum;
+    sadTheme;
     constructor(canvas, characterNum) {
         super(canvas, '');
         this.characterNum = characterNum;
         this.keyListener = new KeyListener();
+        this.sadTheme = new Audio();
+        this.sadTheme.src = './assets/sound/sadEnding.mp3';
+        this.sadTheme.play();
         this.setXPos(0);
         this.setYPos(0);
     }

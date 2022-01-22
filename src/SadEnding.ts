@@ -10,6 +10,8 @@ export default class SadEnding extends Screen {
   // number of the character the player chose
   private characterNum: number;
 
+  private sadTheme: HTMLAudioElement;
+
   /**
    * Creates a new start screen
    *
@@ -22,6 +24,10 @@ export default class SadEnding extends Screen {
 
     // creates keylistener
     this.keyListener = new KeyListener();
+
+    this.sadTheme = new Audio();
+    this.sadTheme.src = './assets/sound/sadEnding.mp3';
+    this.sadTheme.play();
 
     // sets backgroung image position
     this.setXPos(0);
@@ -86,7 +92,7 @@ export default class SadEnding extends Screen {
       this.canvas.width / 2,
       this.canvas.height - 50,
       'center',
-      'white',
+      'white'
     );
   }
 }

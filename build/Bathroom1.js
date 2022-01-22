@@ -70,6 +70,7 @@ export default class Bathroom1 extends Room {
             if (this.player.collidesWith(this.shadyGuy) &&
                 this.interactShady === false) {
                 this.interactShady = true;
+                this.shadyGuyTheme.pause();
                 return new ShadyDialog(this.canvas, this, this.shadyGuy.getDialogs(), this.player.getCharacterNum());
             }
         }

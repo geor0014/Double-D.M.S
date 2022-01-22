@@ -4,12 +4,16 @@ import StartScreen from './StartScreen.js';
 export default class HappyEnding extends Screen {
     keyListener;
     characterNum;
+    happyTheme;
     constructor(canvas, characterNum) {
         super(canvas, '');
         this.characterNum = characterNum;
         this.keyListener = new KeyListener();
+        this.happyTheme = new Audio();
+        this.happyTheme.src = './assets/sound/happyEnding.mp3';
         this.setXPos(0);
         this.setYPos(0);
+        this.happyTheme.play();
     }
     processInput() {
         if (this.keyListener.isKeyDown(KeyListener.KEY_SPACE)) {
