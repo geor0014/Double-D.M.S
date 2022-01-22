@@ -17,7 +17,7 @@ export default class InstructionScreen extends Screen {
    * @param characterNum number of character
    */
   public constructor(canvas: HTMLCanvasElement, characterNum: number) {
-    super(canvas, './assets/img/controlsScreen.png');
+    super(canvas, './assets/img/ControlsScreen.png');
     this.characterNum = characterNum;
 
     // creates keylistener

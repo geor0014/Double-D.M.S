@@ -471,9 +471,9 @@ export default abstract class Room extends Scene {
       } else if (cNum === 2) {
         characterImg = Scene.loadNewImage('./assets/img/boy2Face.png');
       } else if (cNum === 3) {
-        characterImg = Scene.loadNewImage('./assets/img/girl2Face.png');
+        characterImg = Scene.loadNewImage('./assets/img/girl2face.png');
       } else if (cNum === 4) {
-        characterImg = Scene.loadNewImage('./assets/img/girl1Face.png');
+        characterImg = Scene.loadNewImage('./assets/img/girl1face.png');
       }
       this.ctx.drawImage(characterImg, 280, 600, 130, 130);
     }

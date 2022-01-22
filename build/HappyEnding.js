@@ -23,16 +23,16 @@ export default class HappyEnding extends Screen {
     }
     update(elapsed) {
         if (this.characterNum === 1) {
-            this.setImage('./assets/img/happyEndingBoy1.png');
+            this.setImage('./assets/img/HappyEndingBoy1.png');
         }
         else if (this.characterNum === 2) {
-            this.setImage('./assets/img/happyEndingBoy2.png');
+            this.setImage('./assets/img/HappyEndingBoy2.png');
         }
         else if (this.characterNum === 3) {
-            this.setImage('./assets/img/happyEndingGirl2.png');
+            this.setImage('./assets/img/HappyEndingGirl2.png');
         }
         else if (this.characterNum === 4) {
-            this.setImage('./assets/img/happyEndingGirl1.png');
+            this.setImage('./assets/img/HappyEndingGirl1.png');
         }
         if (this.processInput()) {
             return new StartScreen(this.canvas);

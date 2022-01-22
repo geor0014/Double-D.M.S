@@ -5,7 +5,7 @@ export default class InstructionScreen extends Screen {
     keyListener;
     characterNum;
     constructor(canvas, characterNum) {
-        super(canvas, './assets/img/controlsScreen.png');
+        super(canvas, './assets/img/ControlsScreen.png');
         this.characterNum = characterNum;
         this.keyListener = new KeyListener();
         this.setXPos(0);

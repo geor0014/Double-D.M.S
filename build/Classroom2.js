@@ -9,7 +9,7 @@ export default class ClassRoom2 extends Classroom {
     teddy = new QuestItem('teddy', './assets/img/teddy.png', 263, 480);
     pushOnce = true;
     constructor(canvas, previousScene, player, state) {
-        super(canvas, previousScene, player, state, './assets/img/scienceClass.png');
+        super(canvas, previousScene, player, state, './assets/img/scienceclass.png');
         this.setComputer(new Computer(476, 247));
         this.getCollectibles().push(new Hint(this.canvas.width / 2 - 100, this.canvas.height / 2 - 70));
         this.getDoors().push(new Door('./assets/img/door1.png', 912, 400.5));

@@ -24,7 +24,7 @@ export default class ClassRoom4 extends Classroom {
     player: Player,
     state: boolean,
   ) {
-    super(canvas, previousScene, player, state, './assets/img/scienceClass.png');
+    super(canvas, previousScene, player, state, './assets/img/scienceclass.png');
 
     // creating a new computer in the classroom
     this.setComputer(new Computer(479, 253));
