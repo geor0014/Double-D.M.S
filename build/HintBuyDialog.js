@@ -1,9 +1,11 @@
 import DialogParent from './DialogParent.js';
 export default class CandyBuyDialog extends DialogParent {
     userData;
+    charSelectSound;
     constructor(canvas, previousScene, dialogs, userData) {
         super(canvas, previousScene, dialogs, './assets/img/lunchLadyDialog.png');
         this.userData = userData;
+        this.charSelectSound = new Audio('./assets/sound/charSelect.wav');
     }
     update(elapsed) {
         const candyAmount = this.userData.getCandyAmount();
@@ -31,6 +33,7 @@ export default class CandyBuyDialog extends DialogParent {
                         if (this.userData.getCandyAmount() > 1) {
                             this.userData.setCandyAmount(candyAmount - 2);
                             this.userData.setHintAmount(hintAmount + 1);
+                            this.charSelectSound.play();
                             this.setTextToPresent(this.getDialogs()[this.getTCounter()].getReplies()[0]);
                         }
                         else {

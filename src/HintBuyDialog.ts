@@ -8,6 +8,8 @@ export default class CandyBuyDialog extends DialogParent {
   // attribute for the userdata to know about the hints
   private userData: UserData;
 
+  private charSelectSound: HTMLAudioElement;
+
   /**
    * Creates new Dialog screen
    *
@@ -25,6 +27,8 @@ export default class CandyBuyDialog extends DialogParent {
     super(canvas, previousScene, dialogs, './assets/img/lunchLadyDialog.png');
     // sets the userdata
     this.userData = userData;
+
+    this.charSelectSound = new Audio('./assets/sound/charSelect.wav');
   }
 
   /**
@@ -70,6 +74,7 @@ export default class CandyBuyDialog extends DialogParent {
             if (this.userData.getCandyAmount() > 1) {
               this.userData.setCandyAmount(candyAmount - 2);
               this.userData.setHintAmount(hintAmount + 1);
+              this.charSelectSound.play();
               this.setTextToPresent(this.getDialogs()[this.getTCounter()].getReplies()[0]);
             } else {
               this.setTextToPresent('You dont have enough candy, 2 candy for 1 hint');

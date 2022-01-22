@@ -61,6 +61,9 @@ export default abstract class Room extends Scene {
   // frame counter of the update
   private gameFrame = 0;
 
+  // sound for collecting
+  private charSelectSound: HTMLAudioElement;
+
   /**
    * Create a new room
    *
@@ -100,6 +103,9 @@ export default abstract class Room extends Scene {
 
     // hit boxes
     this.hitboxes = [];
+
+    // setting audio
+    this.charSelectSound = new Audio('./assets/sound/charSelect.wav');
   }
 
   /**
@@ -251,6 +257,7 @@ export default abstract class Room extends Scene {
             array.splice(i, 1);
             const index = this.player.getUserData().getQuests().findIndex((str) => str === 'Find backpack');
             this.player.getUserData().getQuests().splice(index, 1);
+            this.charSelectSound.play();
             this.player
               .getUserData()
               .setCandyAmount(this.player.getUserData().getCandyAmount() + 1);
@@ -260,6 +267,7 @@ export default abstract class Room extends Scene {
             array.splice(i, 1);
             const index = this.player.getUserData().getQuests().findIndex((str) => str === 'Look for Teddy');
             this.player.getUserData().getQuests().splice(index, 1);
+            this.charSelectSound.play();
             this.player
               .getUserData()
               .setCandyAmount(this.player.getUserData().getCandyAmount() + 1);
@@ -269,6 +277,7 @@ export default abstract class Room extends Scene {
             array.splice(i, 1);
             const index = this.player.getUserData().getQuests().findIndex((str) => str === 'Help find doll');
             this.player.getUserData().getQuests().splice(index, 1);
+            this.charSelectSound.play();
             this.player
               .getUserData()
               .setCandyAmount(this.player.getUserData().getCandyAmount() + 1);

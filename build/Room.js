@@ -23,6 +23,7 @@ export default class Room extends Scene {
     frameX = 0;
     frameY = 0;
     gameFrame = 0;
+    charSelectSound;
     constructor(canvas, imgSrc) {
         super(canvas);
         this.img = new Image();
@@ -32,6 +33,7 @@ export default class Room extends Scene {
         this.menu = new Menu(this.canvas.width / 3 - 100, 600);
         this.isMenuShowing = false;
         this.hitboxes = [];
+        this.charSelectSound = new Audio('./assets/sound/charSelect.wav');
     }
     processInput() {
         let isPlayerColliding = 'none';
@@ -124,6 +126,7 @@ export default class Room extends Scene {
                     array.splice(i, 1);
                     const index = this.player.getUserData().getQuests().findIndex((str) => str === 'Find backpack');
                     this.player.getUserData().getQuests().splice(index, 1);
+                    this.charSelectSound.play();
                     this.player
                         .getUserData()
                         .setCandyAmount(this.player.getUserData().getCandyAmount() + 1);
@@ -132,6 +135,7 @@ export default class Room extends Scene {
                     array.splice(i, 1);
                     const index = this.player.getUserData().getQuests().findIndex((str) => str === 'Look for Teddy');
                     this.player.getUserData().getQuests().splice(index, 1);
+                    this.charSelectSound.play();
                     this.player
                         .getUserData()
                         .setCandyAmount(this.player.getUserData().getCandyAmount() + 1);
@@ -140,6 +144,7 @@ export default class Room extends Scene {
                     array.splice(i, 1);
                     const index = this.player.getUserData().getQuests().findIndex((str) => str === 'Help find doll');
                     this.player.getUserData().getQuests().splice(index, 1);
+                    this.charSelectSound.play();
                     this.player
                         .getUserData()
                         .setCandyAmount(this.player.getUserData().getCandyAmount() + 1);

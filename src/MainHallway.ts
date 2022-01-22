@@ -186,7 +186,7 @@ export default class MainHallway extends Room {
 
     // Entrance for the hallway on the right hand side
     if (this.player.getXPos() >= 909 && this.player.getYPos() >= 402.5) {
-      if (this.player.getUserData().getScore() > 3) {
+      if (this.player.getUserData().getScore() > -1) {
         if (this.dHallInteract === false) {
           this.diffHall = new DifficultHallway(this.canvas, this, this.player);
           this.dHallInteract = true;
