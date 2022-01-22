@@ -92,7 +92,7 @@ export default class HappyEnding extends Screen {
       this.canvas.width / 2,
       this.canvas.height - 50,
       'center',
-      'white'
+      'white',
     );
   }
 }

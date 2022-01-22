@@ -19,7 +19,6 @@ export default class Bathroom2 extends Room {
    * @param canvas canvas element
    * @param previousScene a scene
    * @param player a player
-   * @param state a way of hiding and unhidding the menu bar
    */
   public constructor(
     canvas: HTMLCanvasElement,
@@ -47,11 +46,11 @@ export default class Bathroom2 extends Room {
     this.getNpcs().push(
       new Npc('./assets/img/purpleBoy.png', 652, 436, [
         new Dialog('I am escaping class#', ['ok', 'Me too'], ['I guess..', 'Yay!']),
-      ])
+      ]),
     );
     // creating collectibles in the classroom
     this.getCollectibles().push(
-      new Candy(this.canvas.width / 2, this.canvas.height / 2)
+      new Candy(this.canvas.width / 2, this.canvas.height / 2),
     );
 
     // creating the door for the classroom

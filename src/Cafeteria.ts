@@ -26,7 +26,6 @@ export default class Cafeteria extends Room {
    * @param canvas canvas element
    * @param previousScene a scene
    * @param player a player
-   * @param state a way of hiding and unhidding the menu bar
    */
   public constructor(
     canvas: HTMLCanvasElement,
@@ -56,21 +55,21 @@ export default class Cafeteria extends Room {
         new Dialog(
           'This is some delicious food they have here#',
           ['I know right!', 'I guess..'],
-          ['I am excited for today', 'Happy bithday btw!']
+          ['I am excited for today', 'Happy bithday btw!'],
         ),
         new Dialog(
           'I love french fries, how about you?#',
           ['Meh..', 'LOVE THEM'],
-          ['oh shame..', 'I KNOW THEY ARE THE BEST']
+          ['oh shame..', 'I KNOW THEY ARE THE BEST'],
         ),
       ]),
       new Npc('./assets/img/greenGirl.png', 714, 298, [
         new Dialog(
           'Hurry up, everyone, class starts in 10 minutes!!#',
           ['Dont feel like it..', 'Better go!'],
-          ['', '']
+          ['', ''],
         ),
-      ])
+      ]),
     );
 
     this.lunchLady = new Npc(
@@ -81,20 +80,20 @@ export default class Cafeteria extends Room {
         new Dialog(
           'Good day!# we have some special treats today!#',
           ['ohh delicious', 'I am starving'],
-          ['I hope so, I worked hard on this', 'You should eat something']
+          ['I hope so, I worked hard on this', 'You should eat something'],
         ),
         new Dialog(
           'I can trade you some candy for hints#',
           ['Yes please', 'No thank you'],
-          ['There you go', 'Okay maybe later']
+          ['There you go', 'Okay maybe later'],
         ),
       ],
-      true
+      true,
     );
 
     // creating collectibles in the classroom
     this.getCollectibles().push(
-      new Candy(this.canvas.width / 2, this.canvas.height / 3)
+      new Candy(this.canvas.width / 2, this.canvas.height / 3),
     );
 
     this.getDoors().push(new Door('./assets/img/cafeteriaDoor.png', 907, 362));
@@ -160,7 +159,7 @@ export default class Cafeteria extends Room {
           this.canvas,
           this,
           this.lunchLady.getDialogs(),
-          this.player.getUserData()
+          this.player.getUserData(),
         );
       }
     }

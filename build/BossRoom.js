@@ -87,7 +87,7 @@ export default class BossRoom extends Room {
             }
         }
         if (this.endingScreen) {
-            if (this.player.getUserData().getScore() > 1) {
+            if (this.player.getUserData().getScore() > 17) {
                 this.music.pause();
                 return new HappyEnding(this.canvas, this.player.getCharacterNum());
             }

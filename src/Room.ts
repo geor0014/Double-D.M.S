@@ -69,7 +69,6 @@ export default abstract class Room extends Scene {
    *
    * @param canvas canvas element
    * @param imgSrc source for image
-   * @param state boolean for the menubar
    */
   public constructor(
     canvas: HTMLCanvasElement,
@@ -316,7 +315,7 @@ export default abstract class Room extends Scene {
         620,
         714,
         'left',
-        'black'
+        'black',
       );
     }
   }
@@ -370,7 +369,7 @@ export default abstract class Room extends Scene {
       this.canvas.width / 2,
       this.canvas.height - 50,
       'center',
-      'Blue'
+      'Blue',
     );
 
     this.writeTextToCanvas(
@@ -379,7 +378,7 @@ export default abstract class Room extends Scene {
       this.canvas.width / 2,
       this.canvas.height - 80,
       'center',
-      'Blue'
+      'Blue',
     );
 
     // DRAWS NPCS
@@ -600,10 +599,10 @@ export default abstract class Room extends Scene {
   }
 
   /**
- * Getter for GameFrame number
- *
- * @returns GameFrame number
- */
+   * Getter for GameFrame number
+   *
+   * @returns GameFrame number
+   */
   public getGameFrame(): number {
     return this.gameFrame;
   }
@@ -615,7 +614,6 @@ export default abstract class Room extends Scene {
    */
   public setGameFrame(gameframe: number): void {
     this.gameFrame = gameframe;
-
   }
 
   /**

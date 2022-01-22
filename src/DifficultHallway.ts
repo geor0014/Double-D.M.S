@@ -50,7 +50,7 @@ export default class DifficultHallway extends Room {
   public constructor(
     canvas: HTMLCanvasElement,
     mainHallway: Room,
-    player: Player
+    player: Player,
   ) {
     super(canvas, './assets/img/difficultHallway.png');
 
@@ -89,28 +89,28 @@ export default class DifficultHallway extends Room {
           new Dialog(
             'Hey there! Have you seen a teddy bear around here?#',
             ['No..', 'Dont think so...'],
-            ['Oh...', 'oh...']
+            ['Oh...', 'oh...'],
           ),
           new Dialog(
             'I lost mine. If you see it, can you bring it to me tomorrow?#',
             ['Sure!', 'Yeah why not'],
-            ['', '']
+            ['', ''],
           ),
         ],
-        true
+        true,
       ),
       new Npc('./assets/img/pinkLadyUp.png', 597, 500, [
         new Dialog(
           'I heard there is this weird dude in the bathroom#',
           ['really?', 'oh no...'],
-          ['YES!', 'He is creepy..']
+          ['YES!', 'He is creepy..'],
         ),
         new Dialog(
           'I am too scared to go there#',
           ['Me too!', 'Ill go!'],
-          ['', '']
+          ['', ''],
         ),
-      ])
+      ]),
     );
 
     // creats the doors in the hallway
@@ -245,7 +245,7 @@ export default class DifficultHallway extends Room {
                 this.canvas,
                 this,
                 this.player,
-                this.getIsMenuShowing()
+                this.getIsMenuShowing(),
               );
               this.room6Interact = true;
             }

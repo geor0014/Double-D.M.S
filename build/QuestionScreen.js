@@ -16,9 +16,9 @@ export default class QuestionScreen extends InteractiveScreen {
     }
     update(elapsed) {
         this.moveBetweenInteractions();
-        if (this.getNextText() &&
-            this.getTCounter() < this.questions.length - 1 &&
-            this.getFrameCounter() === 10) {
+        if (this.getNextText()
+            && this.getTCounter() < this.questions.length - 1
+            && this.getFrameCounter() === 10) {
             this.questoinSelect.play();
             this.setImage('./assets/img/computerScreen.png');
             this.setOkPressed(false);
@@ -48,8 +48,7 @@ export default class QuestionScreen extends InteractiveScreen {
                     this.setImage('./assets/img/computerScreen3.png');
                 }
                 this.setTextToPresent('your answer has been registered');
-                if (answerRecived ===
-                    this.questions[this.getTCounter()].getRPos() + 1) {
+                if (answerRecived === this.questions[this.getTCounter()].getRPos() + 1) {
                     userData.setScore(userData.getScore() + 1);
                 }
             }

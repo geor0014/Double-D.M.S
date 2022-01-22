@@ -58,7 +58,7 @@ export default class EasyHallway extends Room {
   public constructor(
     canvas: HTMLCanvasElement,
     mainHallway: Room,
-    player: Player
+    player: Player,
   ) {
     super(canvas, './assets/img/easyHallway.png');
     // console.log('creating easy hallway');
@@ -87,7 +87,7 @@ export default class EasyHallway extends Room {
 
     // creating collectibles
     this.getCollectibles().push(
-      new Hint(this.canvas.width / 3, this.canvas.height / 3)
+      new Hint(this.canvas.width / 3, this.canvas.height / 3),
     );
 
     // creates npcs with their dialogs for this room
@@ -100,40 +100,40 @@ export default class EasyHallway extends Room {
           new Dialog(
             'Hello, I lost my backpack....#',
             ['really?', 'oh no'],
-            ['yes..', 'all my things are there']
+            ['yes..', 'all my things are there'],
           ),
           new Dialog(
             'Can you please look for it and bring it back to me tomorrow?#',
             ['Sure!', 'okay'],
-            ['', '']
+            ['', ''],
           ),
         ],
-        true
+        true,
       ),
       new Npc('./assets/img/whiteHairBoy.png', 195, 315, [
         new Dialog(
           'There are some things you should never share!#',
           ['I know that', 'ok..'],
-          ['Good!', 'I am scared']
+          ['Good!', 'I am scared'],
         ),
         new Dialog(
           'I hope she will not be bullied#',
           ['Me too!', '...'],
-          ['', '']
+          ['', ''],
         ),
       ]),
       new Npc('./assets/img/ponytailGirl.png', 155, 315, [
         new Dialog(
           'Did you hear about Jessica?#',
           ['No..', 'What happaned?'],
-          ['How not?', 'The picture!']
+          ['How not?', 'The picture!'],
         ),
         new Dialog(
           'Cant believe she shared that picture :O#',
           ['Didnt see it', '...'],
-          ['', '']
+          ['', ''],
         ),
-      ])
+      ]),
     );
 
     // creats the doors in the hallway
@@ -264,7 +264,7 @@ export default class EasyHallway extends Room {
               this.bathroom1 = new Bathroom1(
                 this.canvas,
                 this,
-                this.player
+                this.player,
               );
               this.bathroomInteractGirl = true;
             }

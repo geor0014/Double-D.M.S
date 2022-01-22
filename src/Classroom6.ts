@@ -25,7 +25,7 @@ export default class ClassRoom6 extends Classroom {
     canvas: HTMLCanvasElement,
     previousScene: Scene,
     player: Player,
-    state: boolean
+    state: boolean,
   ) {
     super(canvas, previousScene, player, state, './assets/img/artclass.png');
 
@@ -38,7 +38,7 @@ export default class ClassRoom6 extends Classroom {
 
     // creating collectibles in the classroom
     this.getCollectibles().push(
-      new Candy(this.canvas.width / 4, this.canvas.height / 4)
+      new Candy(this.canvas.width / 4, this.canvas.height / 4),
     );
 
     // creating the door for the classroom
@@ -51,21 +51,21 @@ export default class ClassRoom6 extends Classroom {
         'You are about to join this amazing new website# all your friends are there.# What information is OK to give online?#',
         'Nickname',
         'Phone number',
-        'Adress'
+        'Adress',
       ),
       new Question(
         this.player.getUserData(),
         'You are having trouble doing an activity on a safe site you use at #school. Your friend offers to help but needs your password.# Would you give your password to them.',
         'No',
         'It depends',
-        'Yes'
+        'Yes',
       ),
       new Question(
         this.player.getUserData(),
         'Your parents want to know what you have been doing on a safe site #you use at school. #Would you let them use your account?',
         'You would let them have a look but while youre there',
         'Yes, they are my parents I trust them',
-        'No way, this site is only for kids and teachers'
+        'No way, this site is only for kids and teachers',
       ),
     ]);
 

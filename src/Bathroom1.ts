@@ -29,12 +29,11 @@ export default class Bathroom1 extends Room {
    * @param canvas canvas element
    * @param previousScene a scene
    * @param player a player
-   * @param state a way of hiding and unhidding the menu bar
    */
   public constructor(
     canvas: HTMLCanvasElement,
     previousScene: Scene,
-    player: Player
+    player: Player,
   ) {
     super(canvas, './assets/img/bathroom1.png');
 
@@ -65,39 +64,39 @@ export default class Bathroom1 extends Room {
         new Dialog(
           'Hey kid..#',
           ['What are you doing in the bathroom?', 'Hello??'],
-          ['He..He..', 'You are braver than most..']
+          ['He..He..', 'You are braver than most..'],
         ),
         new Dialog(
           'I heard its your birthday today..#',
           ['It is!', 'How did you know this?'],
-          ['Happy Birthday...', 'I know EVERYTHING!']
+          ['Happy Birthday...', 'I know EVERYTHING!'],
         ),
         new Dialog(
           'I can give you some candy if you want#',
           ['Yay candy!', 'I dont want anything from you!'],
-          ['hahaha', 'Why not I am pretty nice']
+          ['hahaha', 'Why not I am pretty nice'],
         ),
         new Dialog(
           'OR I can give you a PHONE!!#',
           ['Really?!', 'I shouldnt be talking to you'],
-          ['Yes!', 'Come on I know you want the phone!']
+          ['Yes!', 'Come on I know you want the phone!'],
         ),
         new Dialog(
           'What do you chose?#',
           ['The phone', 'Nothing..'],
-          ['Here you go... Ill call you', 'Fine whatever..']
+          ['Here you go... Ill call you', 'Fine whatever..'],
         ),
-      ]
+      ],
     );
 
     // creating collectibles in the classroom
     this.getCollectibles().push(
-      new Candy(this.canvas.width / 2, this.canvas.height / 2)
+      new Candy(this.canvas.width / 2, this.canvas.height / 2),
     );
 
     // creating the door for the classroom
     this.getDoors().push(
-      new Door('./assets/img/girlBathroomDoor.png', 912, 265)
+      new Door('./assets/img/girlBathroomDoor.png', 912, 265),
     );
 
     // Adds all the hitboxes to the bathroom
@@ -163,8 +162,7 @@ export default class Bathroom1 extends Room {
 
       // With Shady Guy
       if (
-        this.player.collidesWith(this.shadyGuy) &&
-        this.interactShady === false
+        this.player.collidesWith(this.shadyGuy) && this.interactShady === false
       ) {
         this.interactShady = true;
         this.shadyGuyTheme.pause();
@@ -172,7 +170,7 @@ export default class Bathroom1 extends Room {
           this.canvas,
           this,
           this.shadyGuy.getDialogs(),
-          this.player.getCharacterNum()
+          this.player.getCharacterNum(),
         );
       }
     }

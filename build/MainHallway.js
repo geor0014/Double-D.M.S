@@ -57,12 +57,12 @@ export default class MainHallway extends Room {
     }
     update(elapsed) {
         const nextScene = this.generalInteraction();
-        if (this.player.getUserData().getScore() > -1) {
+        if (this.player.getUserData().getScore() > 12) {
             this.getDoors()[0].setImage('./assets/img/bossRoomDoorOpened.png');
         }
         if (this.player.isInteracting()) {
             if (this.player.collidesWith(this.getDoors()[0])) {
-                if (this.player.getUserData().getScore() > -1) {
+                if (this.player.getUserData().getScore() > 12) {
                     this.getDoorOpen().play();
                     if (this.bRoomInteract === false) {
                         this.bossRoom = new BossRoom(this.canvas, this, this.player);
@@ -70,8 +70,7 @@ export default class MainHallway extends Room {
                     }
                     return this.bossRoom;
                 }
-                this.textToPresent =
-                    'You cant access this room! maybe youre not worthy enough (evil laugh)';
+                this.textToPresent = 'You cant access this room! maybe youre not worthy enough (evil laugh)';
             }
             else if (this.player.collidesWith(this.getDoors()[1])) {
                 this.getDoorOpen().play();
@@ -94,7 +93,7 @@ export default class MainHallway extends Room {
             return this.easyHall;
         }
         if (this.player.getXPos() >= 909 && this.player.getYPos() >= 402.5) {
-            if (this.player.getUserData().getScore() > -1) {
+            if (this.player.getUserData().getScore() > 3) {
                 if (this.dHallInteract === false) {
                     this.diffHall = new DifficultHallway(this.canvas, this, this.player);
                     this.dHallInteract = true;
@@ -103,8 +102,7 @@ export default class MainHallway extends Room {
                 this.player.setYPos(335);
                 return this.diffHall;
             }
-            this.textToPresent =
-                'Sorry you cant enter here yet you need at least 4 points!';
+            this.textToPresent = 'Sorry you cant enter here yet you need at least 4 points!';
         }
         this.addQuestItems();
         if (nextScene !== null) {

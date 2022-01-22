@@ -131,7 +131,7 @@ export default class CharacterPick extends Screen {
       this.canvas.width / 2,
       this.canvas.height - 50,
       'center',
-      'white'
+      'white',
     );
   }
 }
